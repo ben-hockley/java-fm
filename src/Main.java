@@ -1,7 +1,9 @@
 import javax.swing.*;
 
 public class Main {
+    static String teamName;
     public static void main(String[] args) {
-        JFrame userUI = new UI();
+        teamName = "Sheffield Wednesday";
+        JFrame userUI = new UI(teamName);
     }
 }
