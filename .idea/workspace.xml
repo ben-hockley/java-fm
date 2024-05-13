@@ -5,8 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/JFrames/ManageTeam.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/JFrames/Settings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/JFrames/TransferMarket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/JFrames/ViewSchedule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Objects/League.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Objects/Nation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Objects/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Objects/Team.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EventType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/EventType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JPanels/HomeDefaultDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JPanels/HomeDefaultDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JPanels/HomeGameDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JPanels/HomeGameDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dateTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/dateTime.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +59,9 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -66,7 +82,8 @@
       <option name="presentableId" value="Default" />
       <updated>1715528215067</updated>
       <workItem from="1715528215069" duration="2188000" />
-      <workItem from="1715594134965" duration="21145000" />
+      <workItem from="1715594134965" duration="21172000" />
+      <workItem from="1715622878265" duration="6914000" />
     </task>
     <task id="LOCAL-00001" summary="calendar and event types to add to calendar">
       <created>1715611792284</created>
@@ -89,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715617782897</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="new frames when homescreen options selected">
+      <created>1715619243165</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715619243165</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -99,6 +123,7 @@
     <MESSAGE value="calendar and event types to add to calendar" />
     <MESSAGE value="updates main JPanel based on the action landed on through the calendar" />
     <MESSAGE value="Scroll panel for league standings on default homepage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Scroll panel for league standings on default homepage" />
+    <MESSAGE value="new frames when homescreen options selected" />
+    <option name="LAST_COMMIT_MESSAGE" value="new frames when homescreen options selected" />
   </component>
 </project>

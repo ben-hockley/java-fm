@@ -1,8 +1,10 @@
+package Objects;
+
 public class Event {
     private EventType type;
     private Integer date;
     private Integer month;
-    Event(EventType type, Integer date, Integer month){
+    public Event(EventType type, Integer date, Integer month){
         this.type = type;
         this.date = date;
         this.month = month;

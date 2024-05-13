@@ -1,5 +1,10 @@
 package JPanels;
 
+import JFrames.ManageTeam;
+import JFrames.Settings;
+import JFrames.TransferMarket;
+import JFrames.ViewSchedule;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -45,51 +50,39 @@ public class HomeDefaultDisplay extends JPanel {
         this.add(westScrollPane, BorderLayout.WEST);
 
         //Game Options (CENTER)
-        JPanel centerPanel = new JPanel();
-        centerPanel.setPreferredSize(new Dimension(800,300));
-        centerPanel.setBackground(Color.BLUE);
-        centerPanel.setLayout(new GridLayout(2, 2));
+        JLabel centerLabel = new JLabel();
+        centerLabel.setPreferredSize(new Dimension(750,300));
+        centerLabel.setBackground(Color.BLUE);
+        centerLabel.setLayout(new GridLayout(2, 2));
 
-        Button manageTeamButton = new Button("Manage Team");
-        Button viewScheduleButton = new Button("View Schedule");
-        Button transferMarketButton = new Button("Transfer Market");
-        Button settingsButton = new Button("Settings");
+        JButton manageTeamButton = new JButton("Manage Team");
+        JButton viewScheduleButton = new JButton("View Schedule");
+        JButton transferMarketButton = new JButton("Transfer Market");
+        JButton settingsButton = new JButton("Settings");
 
         manageTeamButton.addActionListener(e -> {
-            JFrame manageTeamFrame = new JFrame("Manage Team");
-            manageTeamFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            manageTeamFrame.setSize(500, 500);
-            manageTeamFrame.setVisible(true);
+            JFrame manageTeamFrame = new ManageTeam();
         });
 
         viewScheduleButton.addActionListener(e -> {
-            JFrame viewScheduleFrame = new JFrame("View Schedule");
-            viewScheduleFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            viewScheduleFrame.setSize(500, 500);
-            viewScheduleFrame.setVisible(true);
+            JFrame viewScheduleFrame = new ViewSchedule();
         });
 
         transferMarketButton.addActionListener(e -> {
-            JFrame transferMarketFrame = new JFrame("Transfer Market");
-            transferMarketFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            transferMarketFrame.setSize(500, 500);
-            transferMarketFrame.setVisible(true);
+            JFrame transferMarketFrame = new TransferMarket();
         });
 
         settingsButton.addActionListener(e -> {
-            JFrame settingsFrame = new JFrame("Settings");
-            settingsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            settingsFrame.setSize(500, 500);
-            settingsFrame.setVisible(true);
+            JFrame settingsFrame = new Settings();
         });
 
-        centerPanel.add(manageTeamButton);
-        centerPanel.add(viewScheduleButton);
-        centerPanel.add(transferMarketButton);
-        centerPanel.add(settingsButton);
+        centerLabel.add(manageTeamButton);
+        centerLabel.add(viewScheduleButton);
+        centerLabel.add(transferMarketButton);
+        centerLabel.add(settingsButton);
 
-        centerPanel.setOpaque(true);
+        centerLabel.setOpaque(true);
 
-        this.add(centerPanel, BorderLayout.CENTER);
+        this.add(centerLabel, BorderLayout.EAST);
     }
 }
