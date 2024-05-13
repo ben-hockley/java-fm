@@ -8,7 +8,7 @@ public class HomeDefaultDisplay extends JPanel {
         this.setPreferredSize(new Dimension(1000,350));
         this.setLayout(new BorderLayout());
 
-        //Title of the team
+        //Title of the team (NORTH)
         JLabel northLabel = new JLabel(teamName);
         northLabel.setHorizontalAlignment(SwingConstants.CENTER);
         northLabel.setVerticalAlignment(SwingConstants.CENTER);
@@ -19,7 +19,7 @@ public class HomeDefaultDisplay extends JPanel {
         northLabel.setOpaque(true);
         this.add(northLabel, BorderLayout.NORTH);
 
-        //League Standings
+        //League Standings (WEST)
         JLabel westLabel = new JLabel();
         westLabel.setPreferredSize(new Dimension(150, 300));
         westLabel.setBackground(Color.YELLOW);
@@ -43,5 +43,53 @@ public class HomeDefaultDisplay extends JPanel {
         JScrollPane westScrollPane = new JScrollPane(westLabel);
         westScrollPane.setPreferredSize(new Dimension(200, 300));
         this.add(westScrollPane, BorderLayout.WEST);
+
+        //Game Options (CENTER)
+        JPanel centerPanel = new JPanel();
+        centerPanel.setPreferredSize(new Dimension(800,300));
+        centerPanel.setBackground(Color.BLUE);
+        centerPanel.setLayout(new GridLayout(2, 2));
+
+        Button manageTeamButton = new Button("Manage Team");
+        Button viewScheduleButton = new Button("View Schedule");
+        Button transferMarketButton = new Button("Transfer Market");
+        Button settingsButton = new Button("Settings");
+
+        manageTeamButton.addActionListener(e -> {
+            JFrame manageTeamFrame = new JFrame("Manage Team");
+            manageTeamFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            manageTeamFrame.setSize(500, 500);
+            manageTeamFrame.setVisible(true);
+        });
+
+        viewScheduleButton.addActionListener(e -> {
+            JFrame viewScheduleFrame = new JFrame("View Schedule");
+            viewScheduleFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            viewScheduleFrame.setSize(500, 500);
+            viewScheduleFrame.setVisible(true);
+        });
+
+        transferMarketButton.addActionListener(e -> {
+            JFrame transferMarketFrame = new JFrame("Transfer Market");
+            transferMarketFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            transferMarketFrame.setSize(500, 500);
+            transferMarketFrame.setVisible(true);
+        });
+
+        settingsButton.addActionListener(e -> {
+            JFrame settingsFrame = new JFrame("Settings");
+            settingsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            settingsFrame.setSize(500, 500);
+            settingsFrame.setVisible(true);
+        });
+
+        centerPanel.add(manageTeamButton);
+        centerPanel.add(viewScheduleButton);
+        centerPanel.add(transferMarketButton);
+        centerPanel.add(settingsButton);
+
+        centerPanel.setOpaque(true);
+
+        this.add(centerPanel, BorderLayout.CENTER);
     }
 }
