@@ -47,6 +47,7 @@ public class HomeDefaultDisplay extends JPanel {
         westLabel.setOpaque(true);
         JScrollPane westScrollPane = new JScrollPane(westLabel);
         westScrollPane.setPreferredSize(new Dimension(200, 300));
+        westScrollPane.setFocusable(false);
         this.add(westScrollPane, BorderLayout.WEST);
 
         //Game Options (CENTER)
@@ -56,9 +57,14 @@ public class HomeDefaultDisplay extends JPanel {
         centerLabel.setLayout(new GridLayout(2, 2));
 
         JButton manageTeamButton = new JButton("Manage Team");
+        manageTeamButton.setRolloverEnabled(false);
         JButton viewScheduleButton = new JButton("View Schedule");
+        viewScheduleButton.setRolloverEnabled(false);
         JButton transferMarketButton = new JButton("Transfer Market");
+        transferMarketButton.setRolloverEnabled(false);
         JButton settingsButton = new JButton("Settings");
+        settingsButton.setRolloverEnabled(false);
+        //setRolloverEnabled is used to disable the button from showing over current home display when hovered over.
 
         manageTeamButton.addActionListener(e -> {
             JFrame manageTeamFrame = new ManageTeam();

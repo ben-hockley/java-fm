@@ -28,4 +28,27 @@ public class Nation {
     public void addLeague(League league) {
         this.leagues.add(league);
     }
+
+    public String getNationName() {
+        return nationName;
+    }
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public ArrayList<League> getAllLeagues() {
+        return leagues;
+    }
+
+
+    //searches for a league by tier.
+    // e.g: England.getLeagueByTier(1) would return the premier league.
+    public League getLeagueByTier(Integer tier) {
+        for (League league : leagues) {
+            if (league.getTier().equals(tier)) {
+                return league;
+            }
+        }
+        return null;
+    }
 }

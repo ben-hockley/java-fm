@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Data/Data.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Events/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JPanels/HomeDefaultDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JPanels/HomeDefaultDisplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JPanels/HomeGameDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JPanels/HomeGameDisplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Events/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/EventType.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Objects/League.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/League.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Objects/Nation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Nation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Objects/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Team.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +100,7 @@
       <workItem from="1715622878265" duration="8794000" />
       <workItem from="1715673646886" duration="7825000" />
       <workItem from="1715780008983" duration="455000" />
-      <workItem from="1715780511340" duration="11401000" />
+      <workItem from="1715780511340" duration="22698000" />
     </task>
     <task id="LOCAL-00001" summary="calendar and event types to add to calendar">
       <created>1715611792284</created>
@@ -141,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715632809280</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="static data class and search function to get best players available">
+      <created>1715796606353</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715796606353</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,7 +156,8 @@
     <MESSAGE value="Scroll panel for league standings on default homepage" />
     <MESSAGE value="new frames when homescreen options selected" />
     <MESSAGE value="Objects Team, Player, Nation, and League designed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Objects Team, Player, Nation, and League designed." />
+    <MESSAGE value="static data class and search function to get best players available" />
+    <option name="LAST_COMMIT_MESSAGE" value="static data class and search function to get best players available" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
