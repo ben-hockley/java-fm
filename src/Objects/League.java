@@ -16,7 +16,7 @@ public class League {
         this.tier = tier;
         this.nation = nation;
 
-        this.teams = new ArrayList<Team>();
+        this.teams = new ArrayList<Team>(); // Initialize an empty list of teams.
 
         nation.addLeague(this);
     };

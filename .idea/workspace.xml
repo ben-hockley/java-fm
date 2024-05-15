@@ -5,21 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/JFrames/ManageTeam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/JFrames/Settings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/JFrames/TransferMarket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/JFrames/ViewSchedule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Objects/League.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Objects/Nation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Objects/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Objects/Team.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Data/Data.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Events/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/EventType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JPanels/HomeDefaultDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JPanels/HomeDefaultDisplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JPanels/HomeGameDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JPanels/HomeGameDisplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dateTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/dateTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Objects/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Events/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Objects/EventType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Objects/League.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/League.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Objects/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Objects/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Team.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +26,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -48,23 +46,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/c23037255/IdeaProjects/IdeaProjects/BroCode/Panels",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/c23037255/IdeaProjects/IdeaProjects/BroCode/Panels&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
@@ -72,6 +76,20 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\c23037255\IdeaProjects\miniFootballManager" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="miniFootballManager" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -83,7 +101,10 @@
       <updated>1715528215067</updated>
       <workItem from="1715528215069" duration="2188000" />
       <workItem from="1715594134965" duration="21172000" />
-      <workItem from="1715622878265" duration="6914000" />
+      <workItem from="1715622878265" duration="8794000" />
+      <workItem from="1715673646886" duration="7825000" />
+      <workItem from="1715780008983" duration="455000" />
+      <workItem from="1715780511340" duration="11401000" />
     </task>
     <task id="LOCAL-00001" summary="calendar and event types to add to calendar">
       <created>1715611792284</created>
@@ -113,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715619243165</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Objects Team, Player, Nation, and League designed.">
+      <created>1715632809279</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715632809280</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,6 +152,11 @@
     <MESSAGE value="updates main JPanel based on the action landed on through the calendar" />
     <MESSAGE value="Scroll panel for league standings on default homepage" />
     <MESSAGE value="new frames when homescreen options selected" />
-    <option name="LAST_COMMIT_MESSAGE" value="new frames when homescreen options selected" />
+    <MESSAGE value="Objects Team, Player, Nation, and League designed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Objects Team, Player, Nation, and League designed." />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
