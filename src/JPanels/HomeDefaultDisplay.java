@@ -87,8 +87,6 @@ public class HomeDefaultDisplay extends JPanel {
         centerLabel.add(transferMarketButton);
         centerLabel.add(settingsButton);
 
-        centerLabel.setOpaque(true);
-
         this.add(centerLabel, BorderLayout.EAST);
     }
 }

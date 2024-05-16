@@ -45,6 +45,7 @@ public class HomeGameDisplay extends JPanel {
         this.add(opponentsLineup,BorderLayout.EAST);
 
         //Game Title (NORTH)
+
         JLabel northLabel = new JLabel(homeTeam.getTeamName() + " vs " + awayTeam.getTeamName());
         northLabel.setHorizontalAlignment(SwingConstants.CENTER);
         northLabel.setVerticalAlignment(SwingConstants.CENTER);

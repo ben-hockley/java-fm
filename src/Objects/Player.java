@@ -33,4 +33,8 @@ public class Player {
     public Integer getRating() {
         return rating;
     }
+
+    public Team getTeam() {
+        return team;
+    }
 }

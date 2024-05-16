@@ -12,7 +12,7 @@
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Objects/League.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/League.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Objects/Nation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Nation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Objects/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +100,9 @@
       <workItem from="1715622878265" duration="8794000" />
       <workItem from="1715673646886" duration="7825000" />
       <workItem from="1715780008983" duration="455000" />
-      <workItem from="1715780511340" duration="22698000" />
+      <workItem from="1715780511340" duration="26546000" />
+      <workItem from="1715847114822" duration="19000" />
+      <workItem from="1715847150119" duration="3938000" />
     </task>
     <task id="LOCAL-00001" summary="calendar and event types to add to calendar">
       <created>1715611792284</created>
@@ -144,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715796606353</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Two home displays and various back-end object based changes">
+      <created>1715807995416</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1715807995417</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -157,7 +166,8 @@
     <MESSAGE value="new frames when homescreen options selected" />
     <MESSAGE value="Objects Team, Player, Nation, and League designed." />
     <MESSAGE value="static data class and search function to get best players available" />
-    <option name="LAST_COMMIT_MESSAGE" value="static data class and search function to get best players available" />
+    <MESSAGE value="Two home displays and various back-end object based changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Two home displays and various back-end object based changes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

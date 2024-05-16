@@ -3,10 +3,10 @@ package Objects;
 import java.util.ArrayList;
 
 public class League {
-    private String leagueName;
-    private String leagueLogo;
-    private Integer tier;
-    private Nation nation;
+    private final String leagueName;
+    private final String leagueLogo;
+    private final Integer tier;
+    private final Nation nation;
 
     private ArrayList<Team> teams;
 
@@ -32,6 +32,7 @@ public class League {
         }
     }
 
+    //could be used for relegation/promotion
     public void addTeam(Team team) {
         this.teams.add(team);
     }
@@ -63,5 +64,11 @@ public class League {
             }
         }
         return null;
+    }
+
+
+    //could be used for relegation/promotion
+    public void removeTeam(Team team) {
+        teams.remove(team);
     }
 }

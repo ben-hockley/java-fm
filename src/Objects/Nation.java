@@ -36,6 +36,64 @@ public class Nation {
         return players;
     }
 
+    public ArrayList<Player> getPlayersByPosition(String position, Integer numberOfPlayers){
+        ArrayList<Player> playersInPosition = new ArrayList<Player>();
+        for (Player player : players) {
+            if (player.getPosition().equals(position)) {
+                playersInPosition.add(player);
+            }
+        }
+
+        while (playersInPosition.size() > numberOfPlayers) {
+            Integer lowestRating = 100;
+            Player lowestRatedPlayer = null;
+            for (Player player : playersInPosition) {
+
+                if (player.getRating() < lowestRating) {
+                    lowestRating = player.getRating();
+                    lowestRatedPlayer = player;
+                }
+            }
+            playersInPosition.remove(lowestRatedPlayer);
+        }
+
+        return playersInPosition;
+    }
+
+    public Player[] bestStartingEleven(){
+        Player[] startingEleven = new Player[11];
+
+        //National team's default formation set to 4-3-3, can change this later.
+
+        Integer numberGoalkeepers = 1;
+        Integer numberDefenders = 4;
+        Integer numberMidfielders = 3;
+        Integer numberForwards = 3;
+
+        ArrayList<Player> goalkeepers = getPlayersByPosition("GK", numberGoalkeepers);
+        ArrayList<Player> defenders = getPlayersByPosition("DEF", numberDefenders);
+        ArrayList<Player> midfielders = getPlayersByPosition("MID", numberMidfielders);
+        ArrayList<Player> forwards = getPlayersByPosition("FWD", numberForwards);
+
+        startingEleven[0] = goalkeepers.get(0);
+
+        Integer playerIndex = 1;
+        for (Player player : defenders) {
+            startingEleven[playerIndex] = player;
+            playerIndex++;
+        }
+        for (Player player : midfielders) {
+            startingEleven[playerIndex] = player;
+            playerIndex++;
+        }
+        for (Player player : forwards) {
+            startingEleven[playerIndex] = player;
+            playerIndex++;
+        }
+
+        return startingEleven;
+    }
+
     public ArrayList<League> getAllLeagues() {
         return leagues;
     }
