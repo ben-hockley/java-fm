@@ -1,11 +1,12 @@
 package JPanels;
 
-import JFrames.ManageTeam;
 import Objects.Player;
 import Objects.Team;
 
 import javax.swing.*;
 import java.awt.*;
+
+//import static JPanels.HomeDefaultDisplay.manageTeamButton;
 
 public class HomeGameDisplay extends JPanel {
     public HomeGameDisplay(Team homeTeam, Team awayTeam, String[] leagueStandings) {
@@ -86,10 +87,10 @@ public class HomeGameDisplay extends JPanel {
         JPanel centerPanel = new JPanel(new GridLayout(2, 1));
         centerPanel.setPreferredSize(new Dimension(750,300));
         centerPanel.setBackground(Color.BLUE);
-
-        JButton manageTeamButton = new JButton("Manage Team");
-        manageTeamButton.setRolloverEnabled(false);
-        manageTeamButton.addActionListener(e -> {
+        /*
+        JButton bigManageTeamButton = new JButton("Manage Team");
+        bigManageTeamButton.setRolloverEnabled(false);
+        bigManageTeamButton.addActionListener(e -> {
             JFrame manageTeamFrame = new JFrame("Manage Team");
             manageTeamFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             manageTeamFrame.add(new ManageTeam());
@@ -103,9 +104,9 @@ public class HomeGameDisplay extends JPanel {
             System.out.println("Kick Off");
         });
 
-        centerPanel.add(manageTeamButton);
+        centerPanel.add(bigManageTeamButton);
         centerPanel.add(kickOffButton);
-
+         */
         this.add(centerPanel, BorderLayout.CENTER);
     }
 }

@@ -12,6 +12,7 @@ public class HomeDefaultDisplay extends JPanel {
     public HomeDefaultDisplay(String teamName, String[] leagueStandings) {
         this.setPreferredSize(new Dimension(1000,350));
         this.setLayout(new BorderLayout());
+        this.removeAll();
 
         //Title of the team (NORTH)
         JLabel northLabel = new JLabel(teamName);
@@ -56,16 +57,25 @@ public class HomeDefaultDisplay extends JPanel {
         centerLabel.setBackground(Color.BLUE);
         centerLabel.setLayout(new GridLayout(2, 2));
 
+        /*
         JButton manageTeamButton = new JButton("Manage Team");
         manageTeamButton.setRolloverEnabled(false);
+
         JButton viewScheduleButton = new JButton("View Schedule");
         viewScheduleButton.setRolloverEnabled(false);
+
+
         JButton transferMarketButton = new JButton("Transfer Market");
         transferMarketButton.setRolloverEnabled(false);
+
         JButton settingsButton = new JButton("Settings");
         settingsButton.setRolloverEnabled(false);
-        //setRolloverEnabled is used to disable the button from showing over current home display when hovered over.
 
+
+
+         */
+        //setRolloverEnabled is used to disable the button from showing over current home display when hovered over.
+/*
         manageTeamButton.addActionListener(e -> {
             JFrame manageTeamFrame = new ManageTeam();
         });
@@ -82,10 +92,13 @@ public class HomeDefaultDisplay extends JPanel {
             JFrame settingsFrame = new Settings();
         });
 
+
         centerLabel.add(manageTeamButton);
         centerLabel.add(viewScheduleButton);
         centerLabel.add(transferMarketButton);
         centerLabel.add(settingsButton);
+
+ */
 
         this.add(centerLabel, BorderLayout.EAST);
     }

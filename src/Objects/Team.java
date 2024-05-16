@@ -121,5 +121,7 @@ public class Team {
         return formation[0] + "-" + formation[1] + "-" + formation[2];
     }
 
-    //gets the best subs for the team.
+    public League getLeague(){
+        return league;
+    }
 }

@@ -18,7 +18,7 @@ import Data.Data;
 public class UI extends JFrame {
 
     //ArrayList to store all events. Events can be added and removed.
-    ArrayList<Event> events = new ArrayList<Event>();
+    ArrayList<Event> events = new ArrayList<>();
 
     /**
      * The clock object used to track date and month to update the calendar.
@@ -64,6 +64,7 @@ public class UI extends JFrame {
         progressDateButton.addActionListener(e -> {
             clock.progressDate();
             updateCalendar(clock.getDateNumber());
+
         });
         this.add(progressDateButton, BorderLayout.SOUTH);
 
