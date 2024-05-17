@@ -26,6 +26,7 @@ public class UI extends JFrame {
      * The panel that contains the calendar, applied NORTH in the BorderLayout.
      */
     private final JPanel topPanel; //JPanel to hold the calendar. (North)
+    private final Button progressDateButton; //Button to progress the date. (South)
 
     private final String myTeamName;
 
@@ -53,7 +54,7 @@ public class UI extends JFrame {
 
         // Add a button to progress the date to the South of the BorderLayout.
         //Button to progress the date. (South)
-        Button progressDateButton = new Button("Progress Date");
+        progressDateButton = new Button("Progress Date");
         progressDateButton.setPreferredSize(new Dimension(100, 50));
         progressDateButton.addActionListener(e -> {
             clock.progressDate();
@@ -68,6 +69,8 @@ public class UI extends JFrame {
 
     Boolean homeDisplaySet;
     public void updateCalendar(final Integer dateNumber, Team userTeam) {
+        if (progressDateButton!=null) progressDateButton.setEnabled(true);
+
         topPanel.removeAll();
         topPanel.add(new JLabel(clock.getMonthName())); //month name to the left of the calendar.
         homeDisplaySet = false;
@@ -141,9 +144,10 @@ public class UI extends JFrame {
                     this.remove(homeDefaultDisplay);
                     label.setBackground(Color.BLUE);
                     homeDisplaySet = true;
+                    progressDateButton.setEnabled(false);
                     if (event instanceof Game) {
                         homeDefaultDisplay.setVisible(false); // Hide the default display
-                        this.add(new HomeGameDisplay(((Game) event).homeTeam,((Game) event).awayTeam, userTeam.getLeague().getStandings(), userTeam ), BorderLayout.CENTER);
+                        this.add(new HomeGameDisplay(((Game) event).homeTeam,((Game) event).awayTeam, userTeam, clock, this), BorderLayout.CENTER);
                         this.revalidate();
                     }
                 }
