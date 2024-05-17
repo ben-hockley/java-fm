@@ -8,6 +8,8 @@ import JFrames.UI;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.concurrent.Callable;
 
 import static JPanels.HomeDefaultDisplay.getTitleBanner;
 
@@ -32,7 +34,7 @@ public class HomeGameDisplay extends JPanel {
         centerPanel.setPreferredSize(new Dimension(750,300));
         centerPanel.setBackground(Color.BLUE);
 
-        JLabel playGameButton = getPlayGameButton(userTeam, clock, ui);
+        JLabel playGameButton = getPlayGameButton(userTeam, clock, ui, homeTeam, awayTeam);
         JLabel manageTeamButton = getManageTeamButton();
 
         centerPanel.add(playGameButton);
@@ -61,15 +63,76 @@ public class HomeGameDisplay extends JPanel {
         return manageTeamButton;
     }
 
-    private JLabel getPlayGameButton(Team userTeam, dateTime clock, UI ui) {
+    private JLabel getPlayGameButton(Team userTeam, dateTime clock, UI ui, Team homeTeam, Team awayTeam) {
         JLabel playGameButton = new JLabel("Play Game");
         playGameButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 System.out.println("Game played!");
+                playGameButton.removeMouseListener(this);
+
+
+                JFrame gameSimulator = new JFrame();
+                gameSimulator.setSize(500,500);
+                JPanel pitch = new JPanel(new BorderLayout());
+                pitch.setBackground(new Color(40, 140, 40));
+                pitch.setOpaque(true);
+                gameSimulator.add(pitch);
+
+
+                //game logic is very simple and entierly random at this point,
+                //will be replaced with a more complex system in the future.
+                int homeGoals = (int)(Math.floor((Math.random() * 5)));
+                int awayGoals = (int)(Math.floor((Math.random() * 5)));
+
+                if (homeGoals > awayGoals) {
+                    //home win
+                    homeTeam.addPoints(3);
+                } else if (awayGoals > homeGoals) {
+                    //away win
+                    awayTeam.addPoints(3);
+                } else {
+                    //draw
+                    homeTeam.addPoints(1);
+                    awayTeam.addPoints(1);
+                }
+
+                //add points for none user teams
+                Integer numberOfDraws = ((int)Math.floor(Math.random() * 4))*2;
+                Integer numberOfWins = (userTeam.getLeague().getNumberOfTeams() - 2 - numberOfDraws)/2;
+                //number of losses same as number of wins.
+
+                ArrayList<Team> allTeams = userTeam.getLeague().getAllTeams();
+                Collections.shuffle(allTeams);
+                allTeams.remove(homeTeam);
+                allTeams.remove(awayTeam);
+
+                for (int i = 0; i < numberOfDraws; i++) {
+                    allTeams.get(i).addPoints(1);
+                }
+                for (int i = numberOfDraws; i < numberOfDraws + numberOfWins; i++) {
+                    allTeams.get(i).addPoints(3);
+                }
+
+
+
+                JLabel score = new JLabel(homeTeam.getTeamName() + " " + homeGoals + " - " + awayGoals + " " + awayTeam.getTeamName());
+                score.setFont(new Font("Arial", Font.PLAIN, 20));
+                score.setHorizontalAlignment(SwingConstants.CENTER);
+                score.setVerticalAlignment(SwingConstants.CENTER);
+                score.setBackground(Color.WHITE);
+                score.setForeground(Color.BLACK);
+                score.setOpaque(true);
+                pitch.add(score, BorderLayout.NORTH);
+
+                gameSimulator.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                gameSimulator.setVisible(true);
+
+                allTeams.add(homeTeam);
+                allTeams.add(awayTeam);
+
                 clock.progressDate();
                 ui.updateCalendar(clock.getDateNumber(), userTeam);
                 ui.revalidate();
-                playGameButton.removeMouseListener(this);
             }
         });
         playGameButton.setHorizontalAlignment(SwingConstants.CENTER);

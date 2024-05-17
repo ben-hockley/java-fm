@@ -52,4 +52,8 @@ public class League {
 
         return standings;
     }
+
+    public Integer getNumberOfTeams(){
+        return teams.size();
+    }
 }
