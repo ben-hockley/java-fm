@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class League {
     private final Integer tier;
 
-    private ArrayList<Team> teams;
+    private final ArrayList<Team> teams;
 
     public League(String leagueName, String leagueLogo, Integer tier, Nation nation) {
         this.tier = tier;
@@ -27,9 +27,7 @@ public class League {
     }
 
     //could be used for relegation/promotion
-    public void addTeam(Team team) {
-        this.teams.add(team);
-    }
+    public void addTeam(Team team) { teams.add(team); }
 
     public ArrayList<Team> getAllTeams() {
         return teams;

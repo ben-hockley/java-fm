@@ -13,17 +13,37 @@ public class HomeDefaultDisplay extends JPanel {
         this.removeAll();
 
         //Title of the team (NORTH)
-        JLabel northLabel = new JLabel(teamName);
-        northLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        northLabel.setVerticalAlignment(SwingConstants.CENTER);
-        northLabel.setFont(new Font("Arial", Font.PLAIN, 20));
-        northLabel.setPreferredSize(new Dimension(1000,50));
-        northLabel.setForeground(Color.WHITE);
-        northLabel.setBackground(Color.BLUE);
-        northLabel.setOpaque(true);
-        this.add(northLabel, BorderLayout.NORTH);
+        this.add(teamTitle(teamName), BorderLayout.NORTH);
+        this.add(leagueTable(leagueStandings), BorderLayout.WEST);
 
-        //League Standings (WEST)
+        //Game Options (CENTER)
+        JLabel centerLabel = new JLabel();
+        centerLabel.setPreferredSize(new Dimension(750,300));
+        centerLabel.setBackground(Color.BLUE);
+        centerLabel.setLayout(new GridLayout(2, 2));
+
+        this.add(centerLabel, BorderLayout.EAST);
+    }
+
+    private JLabel teamTitle(String teamName){
+        JLabel teamTitle = new JLabel(teamName);
+        return getTitleBanner(teamTitle);
+    }
+
+    static JLabel getTitleBanner(JLabel teamTitle) {
+        teamTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        teamTitle.setVerticalAlignment(SwingConstants.CENTER);
+        teamTitle.setFont(new Font("Arial", Font.PLAIN, 20));
+        teamTitle.setPreferredSize(new Dimension(1000,50));
+        teamTitle.setForeground(Color.WHITE);
+        teamTitle.setBackground(Color.BLUE);
+        teamTitle.setOpaque(true);
+        return teamTitle;
+    }
+
+
+    //League Standings (WEST)
+    static JScrollPane leagueTable(ArrayList<Team> leagueStandings){
         JLabel westLabel = new JLabel();
         westLabel.setPreferredSize(new Dimension(150, 300));
         westLabel.setBackground(Color.YELLOW);
@@ -47,14 +67,6 @@ public class HomeDefaultDisplay extends JPanel {
         JScrollPane westScrollPane = new JScrollPane(westLabel);
         westScrollPane.setPreferredSize(new Dimension(200, 300));
         westScrollPane.setFocusable(false);
-        this.add(westScrollPane, BorderLayout.WEST);
-
-        //Game Options (CENTER)
-        JLabel centerLabel = new JLabel();
-        centerLabel.setPreferredSize(new Dimension(750,300));
-        centerLabel.setBackground(Color.BLUE);
-        centerLabel.setLayout(new GridLayout(2, 2));
-
-        this.add(centerLabel, BorderLayout.EAST);
+        return westScrollPane;
     }
 }

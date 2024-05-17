@@ -25,7 +25,7 @@ public class UI extends JFrame {
     /**
      * The panel that contains the calendar, applied NORTH in the BorderLayout.
      */
-    private final JPanel topPanel;
+    private final JPanel topPanel; //JPanel to hold the calendar. (North)
 
     private final String myTeamName;
 
@@ -36,37 +36,28 @@ public class UI extends JFrame {
     public UI(Team userTeam) {
         this.myTeamName = userTeam.getTeamName();
 
+        ArrayList<Game> fixtures = userTeam.generateFixtures(); //generate league fixtures for the user's team.
+        events.addAll(fixtures); //add the fixtures to the events list.
 
-        // Just testing data here, will be removed later.
-        userTeam.addPoints(20);
-        //Game game1 =new Game(Data.england.getLeagueByTier(1).getTeamByName("Manchester City"), Data.england.getLeagueByTier(1).getTeamByName("Arsenal"), new Integer[]{4, 1}); //4th January
-
-        ArrayList<Game> fixtures = userTeam.generateFixtures();
-
-        events.addAll(fixtures);
-
-
-        this.setTitle("JFrames.UI");
+        //set basic properties of the JFrame.
         this.setSize(1000, 500);
         this.setLayout(new BorderLayout());
         this.setResizable(false);
 
 
-        // Create a new JPanel (North)
+        // Add calendar JPanel to the North of the BorderLayout.
         topPanel = new CalendarPanel();
-        clock = new dateTime(new Integer[]{1,8}); //start on 1st August
-
-        //set calendar to default date (1st January)
-        updateCalendar(clock.getDateNumber(), userTeam);
-
+        clock = new dateTime(new Integer[]{1,8}); //pass starting date as args.
+        updateCalendar(clock.getDateNumber(), userTeam); //set calendar to default date.
         this.add(topPanel, BorderLayout.NORTH);
 
+        // Add a button to progress the date to the South of the BorderLayout.
+        //Button to progress the date. (South)
         Button progressDateButton = new Button("Progress Date");
         progressDateButton.setPreferredSize(new Dimension(100, 50));
         progressDateButton.addActionListener(e -> {
             clock.progressDate();
             updateCalendar(clock.getDateNumber(), userTeam);
-
         });
         this.add(progressDateButton, BorderLayout.SOUTH);
 
@@ -78,7 +69,7 @@ public class UI extends JFrame {
     Boolean homeDisplaySet;
     public void updateCalendar(final Integer dateNumber, Team userTeam) {
         topPanel.removeAll();
-        topPanel.add(new JLabel(clock.getMonthName()));
+        topPanel.add(new JLabel(clock.getMonthName())); //month name to the left of the calendar.
         homeDisplaySet = false;
 
 
@@ -115,25 +106,28 @@ public class UI extends JFrame {
         JLabel subLabel2 = new JLabel();
 
         if (dateNumber > 0 && dateNumber <= clock.getMonthLength()) {
-            label.setText(dateNumber.toString());
+            label.setText(dateNumber.toString()); //add the date to the label if in the current month.
             if (dateNumber.equals(clock.getDateNumber())) {
-                label.setBackground(Color.BLUE);
+                label.setBackground(Color.BLUE); //set the label to blue when the date is the current date.
             }
+        } else {
+            label.setBackground(Color.BLACK); // If the date is not in the current month, set the background to black.
         }
-        // If the date is not in the current month, set the background to black.
-        else {
-            label.setBackground(Color.BLACK);
-        }
+
+
         // Check if there is an event on this date, add the event logo to the label if there is.
         for (Event event : events) {
             if (event.getDayOfMonth().equals(dateNumber) && event.getMonth().equals(clock.getMonthNumber())) {
-                label.setBackground(Color.yellow);
+                label.setBackground(Color.yellow); //set the label to yellow when there is an event on this date.
                 if (event instanceof Game) {
+
+                    //add the home team's name and badge to the left of the label.
                     subLabel1.setText(((Game) event).homeTeam.getShortName());
                     subLabel1.setIcon(new ImageIcon(new ImageIcon("teamImages/" + ((Game) event).homeTeam.getTeamLogo()).getImage().getScaledInstance(50,50, Image.SCALE_SMOOTH)));
                     subLabel1.setHorizontalTextPosition(JLabel.CENTER);
                     subLabel1.setVerticalTextPosition(JLabel.BOTTOM);
 
+                    //add the away team's name and badge to the right of the label.
                     subLabel2.setText((((Game) event).awayTeam.getShortName()));
                     subLabel2.setIcon(new ImageIcon(new ImageIcon("teamImages/" + ((Game) event).awayTeam.getTeamLogo()).getImage().getScaledInstance(50,50, Image.SCALE_SMOOTH)));
                     subLabel2.setHorizontalTextPosition(JLabel.CENTER);
@@ -149,7 +143,7 @@ public class UI extends JFrame {
                     homeDisplaySet = true;
                     if (event instanceof Game) {
                         homeDefaultDisplay.setVisible(false); // Hide the default display
-                        this.add(new HomeGameDisplay(((Game) event).homeTeam,((Game) event).awayTeam, userTeam.getLeague().getStandings() ), BorderLayout.CENTER);
+                        this.add(new HomeGameDisplay(((Game) event).homeTeam,((Game) event).awayTeam, userTeam.getLeague().getStandings(), userTeam ), BorderLayout.CENTER);
                         this.revalidate();
                     }
                 }

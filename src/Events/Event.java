@@ -9,7 +9,4 @@ public abstract class Event {
     public Integer getMonth(){
         return date[1];
     }
-    public Integer[] getDate(){
-        return this.date;
-    }
 }
