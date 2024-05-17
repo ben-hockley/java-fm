@@ -1,9 +1,9 @@
 package Objects;
 
 public class Player {
-    private String firstName;
-    private String lastName;
-    private String position;
+    private final String firstName;
+    private final String lastName;
+    private final String position;
     private Team team;
     private Nation nationality;
 
@@ -32,9 +32,5 @@ public class Player {
 
     public Integer getRating() {
         return rating;
-    }
-
-    public Team getTeam() {
-        return team;
     }
 }

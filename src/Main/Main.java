@@ -3,7 +3,6 @@ package Main;
 import Data.Data;
 import Events.Game;
 import JFrames.UI;
-import Objects.Player;
 import Objects.Team;
 
 import javax.swing.*;
@@ -17,7 +16,9 @@ public class Main {
 
         //User Interface
         Team userTeam = Data.england.getLeagueByTier(1).getTeamByName("Arsenal");
+
         JFrame userUI = new UI(userTeam);
+        userUI.setTitle("Football Manager 2024");
 
         ArrayList<Game> fixtures = userTeam.generateFixtures();
 

@@ -55,49 +55,6 @@ public class HomeDefaultDisplay extends JPanel {
         centerLabel.setBackground(Color.BLUE);
         centerLabel.setLayout(new GridLayout(2, 2));
 
-        /*
-        JButton manageTeamButton = new JButton("Manage Team");
-        manageTeamButton.setRolloverEnabled(false);
-
-        JButton viewScheduleButton = new JButton("View Schedule");
-        viewScheduleButton.setRolloverEnabled(false);
-
-
-        JButton transferMarketButton = new JButton("Transfer Market");
-        transferMarketButton.setRolloverEnabled(false);
-
-        JButton settingsButton = new JButton("Settings");
-        settingsButton.setRolloverEnabled(false);
-
-
-
-         */
-        //setRolloverEnabled is used to disable the button from showing over current home display when hovered over.
-/*
-        manageTeamButton.addActionListener(e -> {
-            JFrame manageTeamFrame = new ManageTeam();
-        });
-
-        viewScheduleButton.addActionListener(e -> {
-            JFrame viewScheduleFrame = new ViewSchedule();
-        });
-
-        transferMarketButton.addActionListener(e -> {
-            JFrame transferMarketFrame = new TransferMarket();
-        });
-
-        settingsButton.addActionListener(e -> {
-            JFrame settingsFrame = new Settings();
-        });
-
-
-        centerLabel.add(manageTeamButton);
-        centerLabel.add(viewScheduleButton);
-        centerLabel.add(transferMarketButton);
-        centerLabel.add(settingsButton);
-
- */
-
         this.add(centerLabel, BorderLayout.EAST);
     }
 }

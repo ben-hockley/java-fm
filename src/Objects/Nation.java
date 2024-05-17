@@ -3,13 +3,13 @@ package Objects;
 import java.util.ArrayList;
 
 public class Nation {
-    private String nationName;
-    private String nationFlag;
+    private final String nationName;
+    private final String nationFlag;
     private Integer worldRanking;
-    private String Continent;
+    private final String Continent;
 
     private ArrayList<Player> players;
-    private ArrayList<League> leagues;
+    private final ArrayList<League> leagues;
 
     public Nation(String nationName, String nationFlag, Integer worldRanking, String Continent) {
         this.nationName = nationName;
@@ -17,8 +17,8 @@ public class Nation {
         this.worldRanking = worldRanking;
         this.Continent = Continent;
 
-        this.players = new ArrayList<Player>();
-        this.leagues = new ArrayList<League>();
+        this.players = new ArrayList<>();
+        this.leagues = new ArrayList<>();
     }
 
     public void addPlayer(Player player) {
@@ -32,12 +32,9 @@ public class Nation {
     public String getNationName() {
         return nationName;
     }
-    public ArrayList<Player> getPlayers() {
-        return players;
-    }
 
     public ArrayList<Player> getPlayersByPosition(String position, Integer numberOfPlayers){
-        ArrayList<Player> playersInPosition = new ArrayList<Player>();
+        ArrayList<Player> playersInPosition = new ArrayList<>();
         for (Player player : players) {
             if (player.getPosition().equals(position)) {
                 playersInPosition.add(player);
@@ -77,7 +74,7 @@ public class Nation {
 
         startingEleven[0] = goalkeepers.get(0);
 
-        Integer playerIndex = 1;
+        int playerIndex = 1;
         for (Player player : defenders) {
             startingEleven[playerIndex] = player;
             playerIndex++;

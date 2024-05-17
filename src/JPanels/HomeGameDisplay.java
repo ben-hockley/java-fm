@@ -33,9 +33,13 @@ public class HomeGameDisplay extends JPanel {
         opponentsLineup.setForeground(Color.BLACK);
         opponentsLineup.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        opponentsLineup.add(new JLabel("Opponent: " + opponent.getTeamName()));
-        opponentsLineup.add(new JLabel("Formation: " + opponent.getFormationInText()));
+            if (opponent != null) {
+                opponentsLineup.add(new JLabel("Opponent: " + opponent.getTeamName()));
+            } else {
+                opponentsLineup.add(new JLabel("Error: Opponent Not found"));
+            }
 
+        assert opponent != null;
         Player[] opponentStarting11 = opponent.bestStartingEleven();
 
         for (Player player : opponentStarting11) {
@@ -81,26 +85,10 @@ public class HomeGameDisplay extends JPanel {
         JPanel centerPanel = new JPanel(new GridLayout(2, 1));
         centerPanel.setPreferredSize(new Dimension(750,300));
         centerPanel.setBackground(Color.BLUE);
-        /*
-        JButton bigManageTeamButton = new JButton("Manage Team");
-        bigManageTeamButton.setRolloverEnabled(false);
-        bigManageTeamButton.addActionListener(e -> {
-            JFrame manageTeamFrame = new JFrame("Manage Team");
-            manageTeamFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            manageTeamFrame.add(new ManageTeam());
-            manageTeamFrame.pack();
-            manageTeamFrame.setVisible(true);
-        });
 
         JButton kickOffButton = new JButton("Kick Off");
         kickOffButton.setRolloverEnabled(false);
-        kickOffButton.addActionListener(e -> {
-            System.out.println("Kick Off");
-        });
-
-        centerPanel.add(bigManageTeamButton);
-        centerPanel.add(kickOffButton);
-         */
+        kickOffButton.addActionListener(e -> System.out.println("Kick Off"));
         this.add(centerPanel, BorderLayout.CENTER);
     }
 

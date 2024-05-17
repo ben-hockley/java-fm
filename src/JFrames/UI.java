@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import Objects.*;
 import Events.Event;
 
-import Data.Data;
-
 //JAVA swing to create the user interface.
 public class UI extends JFrame {
 
