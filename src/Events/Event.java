@@ -1,13 +1,15 @@
 package Events;
 
 public abstract class Event {
-    protected Integer date;
-    protected Integer month;
+    protected Integer[] date; //protected so that subclasses can access it.
     //getters
-    public Integer getDate(){
-        return date;
+    public Integer getDayOfMonth(){
+        return date[0];
     }
     public Integer getMonth(){
-        return month;
+        return date[1];
+    }
+    public Integer[] getDate(){
+        return this.date;
     }
 }

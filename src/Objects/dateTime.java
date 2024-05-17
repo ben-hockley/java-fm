@@ -8,9 +8,9 @@ public class dateTime {
     private Integer monthLength;
     private String monthName;
 
-    public dateTime(){
-        this.dateNumber = 1;
-        this.monthNumber = 1;
+    public dateTime(Integer[] startingDate){
+        this.dateNumber = startingDate[0];
+        this.monthNumber = startingDate[1];
         this.monthLength = setMonthLength(monthNumber);
         this.monthName = setMonthName(monthNumber);
     }
@@ -61,6 +61,9 @@ public class dateTime {
             this.monthNumber += 1;
             setMonthLength(monthNumber);
             setMonthName(monthNumber);
+        }
+        if (monthNumber > 12){
+            this.monthNumber = 1;
         }
     }
 

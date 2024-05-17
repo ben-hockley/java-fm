@@ -1,10 +1,5 @@
 package JPanels;
 
-import JFrames.ManageTeam;
-import JFrames.Settings;
-import JFrames.TransferMarket;
-import JFrames.ViewSchedule;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -37,8 +32,8 @@ public class HomeDefaultDisplay extends JPanel {
         leagueStandingsTitle.setVerticalAlignment(SwingConstants.CENTER);
 
         westLabel.add(leagueStandingsTitle);
-        for (int i = 0; i < leagueStandings.length; i++) {
-            JLabel team = new JLabel(leagueStandings[i]);
+        for (String leagueStanding : leagueStandings) {
+            JLabel team = new JLabel(leagueStanding);
             team.setHorizontalAlignment(SwingConstants.CENTER);
             team.setVerticalAlignment(SwingConstants.CENTER);
             team.setBorder(BorderFactory.createLineBorder(Color.BLACK));

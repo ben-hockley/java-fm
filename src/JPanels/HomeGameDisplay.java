@@ -47,14 +47,7 @@ public class HomeGameDisplay extends JPanel {
 
         //Game Title (NORTH)
 
-        JLabel northLabel = new JLabel(homeTeam.getTeamName() + " vs " + awayTeam.getTeamName());
-        northLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        northLabel.setVerticalAlignment(SwingConstants.CENTER);
-        northLabel.setFont(new Font("Arial", Font.PLAIN, 20));
-        northLabel.setPreferredSize(new Dimension(1000,50));
-        northLabel.setForeground(Color.WHITE);
-        northLabel.setBackground(Color.BLUE);
-        northLabel.setOpaque(true);
+        JLabel northLabel = getNorthLabel(homeTeam, awayTeam);
         this.add(northLabel, BorderLayout.NORTH);
 
         //League Standings (WEST) -- copied from HomeDefaultDisplay, clean up this code later.
@@ -69,8 +62,8 @@ public class HomeGameDisplay extends JPanel {
         leagueStandingsTitle.setVerticalAlignment(SwingConstants.CENTER);
 
         westLabel.add(leagueStandingsTitle);
-        for (int i = 0; i < leagueStandings.length; i++) {
-            JLabel team = new JLabel(leagueStandings[i]);
+        for (String leagueStanding : leagueStandings) {
+            JLabel team = new JLabel(leagueStanding);
             team.setHorizontalAlignment(SwingConstants.CENTER);
             team.setVerticalAlignment(SwingConstants.CENTER);
             team.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -108,5 +101,17 @@ public class HomeGameDisplay extends JPanel {
         centerPanel.add(kickOffButton);
          */
         this.add(centerPanel, BorderLayout.CENTER);
+    }
+
+    private static JLabel getNorthLabel(Team homeTeam, Team awayTeam) {
+        JLabel northLabel = new JLabel(homeTeam.getTeamName() + " vs " + awayTeam.getTeamName());
+        northLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        northLabel.setVerticalAlignment(SwingConstants.CENTER);
+        northLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        northLabel.setPreferredSize(new Dimension(1000,50));
+        northLabel.setForeground(Color.WHITE);
+        northLabel.setBackground(Color.BLUE);
+        northLabel.setOpaque(true);
+        return northLabel;
     }
 }

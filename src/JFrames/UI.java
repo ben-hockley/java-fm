@@ -40,8 +40,11 @@ public class UI extends JFrame {
 
 
         // Just testing data here, will be removed later.
-        Game game1 =new Game(Data.england.getLeagueByTier(1).getTeamByName("Manchester City"), Data.england.getLeagueByTier(1).getTeamByName("Arsenal"), 4, 1);
-        events.add(game1);
+        //Game game1 =new Game(Data.england.getLeagueByTier(1).getTeamByName("Manchester City"), Data.england.getLeagueByTier(1).getTeamByName("Arsenal"), new Integer[]{4, 1}); //4th January
+
+        ArrayList<Game> fixtures = userTeam.generateFixtures();
+
+        events.addAll(fixtures);
 
 
         this.setTitle("JFrames.UI");
@@ -52,7 +55,7 @@ public class UI extends JFrame {
 
         // Create a new JPanel (North)
         topPanel = new CalendarPanel();
-        clock = new dateTime();
+        clock = new dateTime(new Integer[]{1,8}); //start on 1st August
 
         //set calendar to default date (1st January)
         updateCalendar(clock.getDateNumber());
@@ -121,7 +124,7 @@ public class UI extends JFrame {
         }
         // Check if there is an event on this date, add the event logo to the label if there is.
         for (Event event : events) {
-            if (event.getDate().equals(dateNumber) && event.getMonth().equals(clock.getMonthNumber())) {
+            if (event.getDayOfMonth().equals(dateNumber) && event.getMonth().equals(clock.getMonthNumber())) {
                 label.setBackground(Color.yellow);
                 if (event instanceof Game) {
                     subLabel1.setText(((Game) event).homeTeam.getShortName());
