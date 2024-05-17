@@ -1,6 +1,6 @@
 package JFrames;
 
-import Events.Game;
+import events.Game;
 import JPanels.CalendarPanel;
 import JPanels.HomeDefaultDisplay;
 import JPanels.HomeGameDisplay;
@@ -10,7 +10,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import Objects.*;
-import Events.Event;
+import events.Event;
 
 //JAVA swing to create the user interface.
 public class UI extends JFrame {
@@ -125,14 +125,14 @@ public class UI extends JFrame {
                 if (event instanceof Game) {
 
                     //add the home team's name and badge to the left of the label.
-                    subLabel1.setText(((Game) event).homeTeam.getShortName());
-                    subLabel1.setIcon(new ImageIcon(new ImageIcon("teamImages/" + ((Game) event).homeTeam.getTeamLogo()).getImage().getScaledInstance(50,50, Image.SCALE_SMOOTH)));
+                    subLabel1.setText(((Game) event).getHomeTeam().getShortName());
+                    subLabel1.setIcon(new ImageIcon(new ImageIcon("teamImages/" + ((Game) event).getHomeTeam().getTeamLogo()).getImage().getScaledInstance(50,50, Image.SCALE_SMOOTH)));
                     subLabel1.setHorizontalTextPosition(JLabel.CENTER);
                     subLabel1.setVerticalTextPosition(JLabel.BOTTOM);
 
                     //add the away team's name and badge to the right of the label.
-                    subLabel2.setText((((Game) event).awayTeam.getShortName()));
-                    subLabel2.setIcon(new ImageIcon(new ImageIcon("teamImages/" + ((Game) event).awayTeam.getTeamLogo()).getImage().getScaledInstance(50,50, Image.SCALE_SMOOTH)));
+                    subLabel2.setText((((Game) event).getAwayTeam().getShortName()));
+                    subLabel2.setIcon(new ImageIcon(new ImageIcon("teamImages/" + ((Game) event).getAwayTeam().getTeamLogo()).getImage().getScaledInstance(50,50, Image.SCALE_SMOOTH)));
                     subLabel2.setHorizontalTextPosition(JLabel.CENTER);
                     subLabel2.setVerticalTextPosition(JLabel.BOTTOM);
 
@@ -147,7 +147,7 @@ public class UI extends JFrame {
                     progressDateButton.setEnabled(false);
                     if (event instanceof Game) {
                         homeDefaultDisplay.setVisible(false); // Hide the default display
-                        this.add(new HomeGameDisplay(((Game) event).homeTeam,((Game) event).awayTeam, userTeam, clock, this), BorderLayout.CENTER);
+                        this.add(new HomeGameDisplay(((Game) event).getHomeTeam(),((Game) event).getAwayTeam(), userTeam, clock, this), BorderLayout.CENTER);
                         this.revalidate();
                     }
                 }

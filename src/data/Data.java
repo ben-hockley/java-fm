@@ -1,4 +1,4 @@
-package Data;
+package data;
 
 import Objects.Player;
 import Objects.Team;
