@@ -1,12 +1,10 @@
 package Main;
 
 import Data.Data;
-import Events.Game;
 import JFrames.UI;
 import Objects.Team;
 
 import javax.swing.*;
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,16 +17,6 @@ public class Main {
 
         JFrame userUI = new UI(userTeam);
         userUI.setTitle("Football Manager 2024");
-
-        ArrayList<Game> fixtures = userTeam.generateFixtures();
-
-        for (Game game : fixtures) {
-            System.out.println(game.homeTeam.getTeamName() + " vs " + game.awayTeam.getTeamName() + " on " + game.getDate()[0] + "/" + game.getDate()[1] + "\n");
-        }
-
-
-
-
     }
 }
 

@@ -119,6 +119,25 @@ public class Team {
         return startingEleven;
     }
 
+    public ArrayList<Player> bestSubs() {
+    ArrayList<Player> subs = players;
+    for (Player player : bestStartingEleven()){
+        subs.remove(player);
+    }
+    while (subs.size() > 7) {
+        Integer lowestRating = 100;
+        Player lowestRatedPlayer = null;
+        for (Player player : subs) {
+            if (player.getRating() < lowestRating) {
+                lowestRating = player.getRating();
+                lowestRatedPlayer = player;
+            }
+        }
+        subs.remove(lowestRatedPlayer);
+    }
+return subs;
+    }
+
     public String getFormationInText() {
         return formation[0] + "-" + formation[1] + "-" + formation[2];
     }
