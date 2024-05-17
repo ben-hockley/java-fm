@@ -33,13 +33,14 @@ public class UI extends JFrame {
 
     private JPanel homeDefaultDisplay;
 
-    String[] testStandings = {"1. Sheffield Wednesday", "2. Manchester United", "3. Liverpool", "4. Chelsea", "5. Arsenal"};
+    //String[] testStandings = {"1. Sheffield Wednesday", "2. Manchester United", "3. Liverpool", "4. Chelsea", "5. Arsenal"};
     //constructor to initialize homepage.
     public UI(Team userTeam) {
         this.myTeamName = userTeam.getTeamName();
 
 
         // Just testing data here, will be removed later.
+        userTeam.addPoints(20);
         //Game game1 =new Game(Data.england.getLeagueByTier(1).getTeamByName("Manchester City"), Data.england.getLeagueByTier(1).getTeamByName("Arsenal"), new Integer[]{4, 1}); //4th January
 
         ArrayList<Game> fixtures = userTeam.generateFixtures();
@@ -58,7 +59,7 @@ public class UI extends JFrame {
         clock = new dateTime(new Integer[]{1,8}); //start on 1st August
 
         //set calendar to default date (1st January)
-        updateCalendar(clock.getDateNumber());
+        updateCalendar(clock.getDateNumber(), userTeam);
 
         this.add(topPanel, BorderLayout.NORTH);
 
@@ -66,7 +67,7 @@ public class UI extends JFrame {
         progressDateButton.setPreferredSize(new Dimension(100, 50));
         progressDateButton.addActionListener(e -> {
             clock.progressDate();
-            updateCalendar(clock.getDateNumber());
+            updateCalendar(clock.getDateNumber(), userTeam);
 
         });
         this.add(progressDateButton, BorderLayout.SOUTH);
@@ -77,18 +78,21 @@ public class UI extends JFrame {
     }
 
     Boolean homeDisplaySet;
-    public void updateCalendar(final Integer dateNumber) {
+    public void updateCalendar(final Integer dateNumber, Team userTeam) {
         topPanel.removeAll();
         topPanel.add(new JLabel(clock.getMonthName()));
         homeDisplaySet = false;
 
 
         for (int i = dateNumber - 2; i <= dateNumber + 2; i++) {
-            topPanel.add(label(i));
+            topPanel.add(label(i, userTeam));
         }
         topPanel.revalidate();
         if (!homeDisplaySet) {
-            homeDefaultDisplay = new HomeDefaultDisplay(myTeamName, testStandings);
+
+            ArrayList<Team> actualStandings = userTeam.getLeague().getStandings();
+
+            homeDefaultDisplay = new HomeDefaultDisplay(myTeamName, actualStandings);
             this.add(homeDefaultDisplay, BorderLayout.CENTER);
             homeDisplaySet = true;
         }
@@ -101,7 +105,7 @@ public class UI extends JFrame {
      * @param dateNumber The date to display.
      * @return The JLabel with the dateNumber as text.
      */
-    public JLabel label(final Integer dateNumber) {
+    public JLabel label(final Integer dateNumber, Team userTeam) {
         JLabel label = new JLabel();
         label.setFont(new Font("Arial", Font.PLAIN, 10));
         label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -147,7 +151,7 @@ public class UI extends JFrame {
                     homeDisplaySet = true;
                     if (event instanceof Game) {
                         homeDefaultDisplay.setVisible(false); // Hide the default display
-                        this.add(new HomeGameDisplay(((Game) event).homeTeam,((Game) event).awayTeam, testStandings), BorderLayout.CENTER);
+                        this.add(new HomeGameDisplay(((Game) event).homeTeam,((Game) event).awayTeam, userTeam.getLeague().getStandings() ), BorderLayout.CENTER);
                         this.revalidate();
                     }
                 }

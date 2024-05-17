@@ -127,6 +127,18 @@ public class Team {
         return league;
     }
 
+    public Integer getPoints() {
+        return points;
+    }
+
+    public void addPoints(Integer points) {
+        this.points += points;
+    }
+
+    public void removePoints(Integer points) {
+        this.points -= points;
+    }
+
     public ArrayList<Player> getAllPlayers() {
         return players;
     }
@@ -216,8 +228,7 @@ public class Team {
         //Games alternate between home and away fixtures, set the first fixture to home.
         boolean home = true;
         Game game;
-
-        Integer n = 0;
+        int n = 0;
         //loop through all teams in the league (first round of fixtures)
         for (Team team : teams) {
             //create a new game object with the current team and the team in the loop.
@@ -252,7 +263,8 @@ public class Team {
             n++;
         }
 
-
+        //add userTeam back to the array so it is included in the table.
+        teams.add(this);
         return fixtures;
     }
 

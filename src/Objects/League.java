@@ -1,5 +1,7 @@
 package Objects;
 
+import Data.Data;
+
 import java.util.ArrayList;
 
 public class League {
@@ -64,6 +66,13 @@ public class League {
             }
         }
         return null;
+    }
+
+    public ArrayList<Team> getStandings() {
+        ArrayList<Team> standings = getAllTeams();
+        standings.sort((team1, team2) -> team2.getPoints().compareTo(team1.getPoints()));
+
+        return standings;
     }
 
 

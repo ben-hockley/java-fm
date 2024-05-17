@@ -1,10 +1,13 @@
 package JPanels;
 
+import Objects.Team;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class HomeDefaultDisplay extends JPanel {
-    public HomeDefaultDisplay(String teamName, String[] leagueStandings) {
+    public HomeDefaultDisplay(String teamName, ArrayList<Team> leagueStandings) {
         this.setPreferredSize(new Dimension(1000,350));
         this.setLayout(new BorderLayout());
         this.removeAll();
@@ -25,15 +28,15 @@ public class HomeDefaultDisplay extends JPanel {
         westLabel.setPreferredSize(new Dimension(150, 300));
         westLabel.setBackground(Color.YELLOW);
         westLabel.setForeground(Color.WHITE);
-        westLabel.setLayout(new GridLayout(leagueStandings.length + 1, 1));
+        westLabel.setLayout(new GridLayout(leagueStandings.size() + 1, 1));
 
         JLabel leagueStandingsTitle = new JLabel("League Standings");
         leagueStandingsTitle.setHorizontalAlignment(SwingConstants.CENTER);
         leagueStandingsTitle.setVerticalAlignment(SwingConstants.CENTER);
 
         westLabel.add(leagueStandingsTitle);
-        for (String leagueStanding : leagueStandings) {
-            JLabel team = new JLabel(leagueStanding);
+        for (Team leagueStanding : leagueStandings) {
+            JLabel team = new JLabel(leagueStanding.getTeamName() + " - " + leagueStanding.getPoints());
             team.setHorizontalAlignment(SwingConstants.CENTER);
             team.setVerticalAlignment(SwingConstants.CENTER);
             team.setBorder(BorderFactory.createLineBorder(Color.BLACK));

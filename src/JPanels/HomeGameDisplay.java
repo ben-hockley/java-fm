@@ -5,11 +5,12 @@ import Objects.Team;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 //import static JPanels.HomeDefaultDisplay.manageTeamButton;
 
 public class HomeGameDisplay extends JPanel {
-    public HomeGameDisplay(Team homeTeam, Team awayTeam, String[] leagueStandings) {
+    public HomeGameDisplay(Team homeTeam, Team awayTeam, ArrayList<Team> leagueStandings) {
         this.removeAll();
         this.setPreferredSize(new Dimension(1000,350));
         this.setBackground(Color.GREEN);
@@ -55,15 +56,15 @@ public class HomeGameDisplay extends JPanel {
         westLabel.setPreferredSize(new Dimension(150, 300));
         westLabel.setBackground(Color.YELLOW);
         westLabel.setForeground(Color.WHITE);
-        westLabel.setLayout(new GridLayout(leagueStandings.length + 1, 1));
+        westLabel.setLayout(new GridLayout(leagueStandings.size() + 1, 1));
 
         JLabel leagueStandingsTitle = new JLabel("League Standings");
         leagueStandingsTitle.setHorizontalAlignment(SwingConstants.CENTER);
         leagueStandingsTitle.setVerticalAlignment(SwingConstants.CENTER);
 
         westLabel.add(leagueStandingsTitle);
-        for (String leagueStanding : leagueStandings) {
-            JLabel team = new JLabel(leagueStanding);
+        for (Team leagueStanding : leagueStandings) {
+            JLabel team = new JLabel(leagueStanding.getTeamName() + " - " + leagueStanding.getPoints());
             team.setHorizontalAlignment(SwingConstants.CENTER);
             team.setVerticalAlignment(SwingConstants.CENTER);
             team.setBorder(BorderFactory.createLineBorder(Color.BLACK));
