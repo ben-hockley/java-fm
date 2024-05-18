@@ -1,5 +1,6 @@
 package events;
 
+import Objects.Player;
 import Objects.Team;
 
 public class Game extends Event {
@@ -11,24 +12,27 @@ public class Game extends Event {
      * The away team in the game.
      */
     private final Team awayTeam;
+
     /**
      * Constructor for the Game class.
+     *
      * @param homeTeam The home team in the game.
      * @param awayTeam The away team in the game.
-     * @param date The date of the game.
+     * @param date     The date of the game.
      */
-    public Game(final Team homeTeam, final Team awayTeam, final Integer[] date){
+    public Game(final Team homeTeam, final Team awayTeam, final Integer[] date) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.date = date;
     }
 
-    public Team getHomeTeam(){
+    public Team getHomeTeam() {
         return homeTeam;
     }
 
-    public Team getAwayTeam(){
+    public Team getAwayTeam() {
         return awayTeam;
     }
+
 
 }

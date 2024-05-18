@@ -287,4 +287,13 @@ return subs;
         return fixtures;
     }
 
+    public Integer getRating() {
+        Player[] startingEleven = bestStartingEleven();
+        Integer teamRating = 0;
+        for (Player player : startingEleven) {
+            teamRating += player.getRating();
+        }
+        return teamRating;
+    }
+
 }

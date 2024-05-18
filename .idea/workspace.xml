@@ -4,18 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="Simple game sim, results alter points in league table">
-      <change afterPath="$PROJECT_DIR$/src/data/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/events/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/package-info.java" afterDir="false" />
+    <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="checkstyle">
+      <change afterPath="$PROJECT_DIR$/src/JFrames/gameSimulator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Events/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Events/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JFrames/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JPanels/HomeDefaultDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JPanels/HomeDefaultDisplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JPanels/HomeGameDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JPanels/HomeGameDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Objects/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/events/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="package-info" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -64,34 +59,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/c23037255/IdeaProjects/IdeaProjects/BroCode/Panels&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.Main.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.main.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/c23037255/IdeaProjects/IdeaProjects/BroCode/Panels",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
@@ -153,7 +149,8 @@
       <workItem from="1715847150119" duration="3938000" />
       <workItem from="1715861584899" duration="28709000" />
       <workItem from="1715953699187" duration="13449000" />
-      <workItem from="1715976799396" duration="2809000" />
+      <workItem from="1715976799396" duration="2871000" />
+      <workItem from="1716017758905" duration="4614000" />
     </task>
     <task id="LOCAL-00001" summary="calendar and event types to add to calendar">
       <created>1715611792284</created>
@@ -260,7 +257,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715976532094</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="checkstyle">
+      <option name="closed" value="true" />
+      <created>1715979731907</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1715979731907</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,7 +297,8 @@
     <MESSAGE value="cleaned up code in UI panels" />
     <MESSAGE value="added some buttons with mock functionality, will replace with actual functions." />
     <MESSAGE value="Simple game sim, results alter points in league table" />
-    <option name="LAST_COMMIT_MESSAGE" value="Simple game sim, results alter points in league table" />
+    <MESSAGE value="checkstyle" />
+    <option name="LAST_COMMIT_MESSAGE" value="checkstyle" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

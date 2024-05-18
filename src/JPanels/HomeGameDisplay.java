@@ -1,5 +1,6 @@
 package JPanels;
 
+import JFrames.gameSimulator;
 import Objects.Player;
 import Objects.Team;
 import Objects.dateTime;
@@ -64,36 +65,13 @@ public class HomeGameDisplay extends JPanel {
 
     private JLabel getPlayGameButton(Team userTeam, dateTime clock, UI ui, Team homeTeam, Team awayTeam) {
         JLabel playGameButton = new JLabel("Play Game");
-        playGameButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        playGameButton.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 System.out.println("Game played!");
                 playGameButton.removeMouseListener(this);
 
 
-                JFrame gameSimulator = new JFrame();
-                gameSimulator.setSize(500,500);
-                JPanel pitch = new JPanel(new BorderLayout());
-                pitch.setBackground(new Color(40, 140, 40));
-                pitch.setOpaque(true);
-                gameSimulator.add(pitch);
-
-
-                //game logic is very simple and entierly random at this point,
-                //will be replaced with a more complex system in the future.
-                int homeGoals = (int)(Math.floor((Math.random() * 5)));
-                int awayGoals = (int)(Math.floor((Math.random() * 5)));
-
-                if (homeGoals > awayGoals) {
-                    //home win
-                    homeTeam.addPoints(3);
-                } else if (awayGoals > homeGoals) {
-                    //away win
-                    awayTeam.addPoints(3);
-                } else {
-                    //draw
-                    homeTeam.addPoints(1);
-                    awayTeam.addPoints(1);
-                }
+                JFrame gameSimulator = new gameSimulator(homeTeam, awayTeam);
 
                 //add points for none user teams
                 Integer numberOfDraws = ((int)Math.floor(Math.random() * 4))*2;
@@ -111,20 +89,6 @@ public class HomeGameDisplay extends JPanel {
                 for (int i = numberOfDraws; i < numberOfDraws + numberOfWins; i++) {
                     allTeams.get(i).addPoints(3);
                 }
-
-
-
-                JLabel score = new JLabel(homeTeam.getTeamName() + " " + homeGoals + " - " + awayGoals + " " + awayTeam.getTeamName());
-                score.setFont(new Font("Arial", Font.PLAIN, 20));
-                score.setHorizontalAlignment(SwingConstants.CENTER);
-                score.setVerticalAlignment(SwingConstants.CENTER);
-                score.setBackground(Color.WHITE);
-                score.setForeground(Color.BLACK);
-                score.setOpaque(true);
-                pitch.add(score, BorderLayout.NORTH);
-
-                gameSimulator.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                gameSimulator.setVisible(true);
 
                 allTeams.add(homeTeam);
                 allTeams.add(awayTeam);

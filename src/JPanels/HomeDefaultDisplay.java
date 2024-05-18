@@ -55,12 +55,27 @@ public class HomeDefaultDisplay extends JPanel {
         leagueStandingsTitle.setVerticalAlignment(SwingConstants.CENTER);
 
         westLabel.add(leagueStandingsTitle);
+
+        int tablePosition = 1;
         for (Team leagueStanding : leagueStandings) {
-            JLabel team = new JLabel(leagueStanding.getTeamName() + " - " + leagueStanding.getPoints());
+            JLabel team = new JLabel(tablePosition + "." + leagueStanding.getTeamName() + " - " + leagueStanding.getPoints());
             team.setHorizontalAlignment(SwingConstants.CENTER);
             team.setVerticalAlignment(SwingConstants.CENTER);
             team.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+            if (tablePosition <= 4) {
+                team.setBackground(Color.BLUE);
+            } else if (tablePosition <= 6) {
+                team.setBackground(Color.GREEN);
+            } else if (tablePosition <= 17) {
+                team.setBackground(Color.ORANGE);
+            } else {
+                team.setBackground(Color.RED);
+            }
+            team.setOpaque(true);
+            team.setForeground(Color.WHITE);
             westLabel.add(team);
+            tablePosition++;
         }
 
         westLabel.setOpaque(true);
