@@ -84,10 +84,13 @@ public class HomeGameDisplay extends JPanel {
                 allTeams.remove(awayTeam);
 
                 for (int i = 0; i < numberOfDraws; i++) {
-                    allTeams.get(i).addPoints(1);
+                    allTeams.get(i).addDraw();
                 }
                 for (int i = numberOfDraws; i < numberOfDraws + numberOfWins; i++) {
-                    allTeams.get(i).addPoints(3);
+                    allTeams.get(i).addWin();
+                }
+                for (int i = numberOfDraws + numberOfWins; i < numberOfDraws + numberOfWins*2; i++) {
+                    allTeams.get(i).addLoss();
                 }
 
                 allTeams.add(homeTeam);

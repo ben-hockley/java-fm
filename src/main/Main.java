@@ -8,9 +8,7 @@ import javax.swing.JFrame;
 
 public class Main {
     /**
-     *
-     * @param args --
-     *             Main class, running this starts the application.
+     * Main method, starting point of the application.
      */
     public static void main(final String[] args) {
 

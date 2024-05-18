@@ -45,20 +45,29 @@ public class HomeDefaultDisplay extends JPanel {
     //League Standings (WEST)
     static JScrollPane leagueTable(ArrayList<Team> leagueStandings){
         JLabel westLabel = new JLabel();
-        westLabel.setPreferredSize(new Dimension(150, 300));
+        westLabel.setPreferredSize(new Dimension(350, 300));
         westLabel.setBackground(Color.YELLOW);
         westLabel.setForeground(Color.WHITE);
-        westLabel.setLayout(new GridLayout(leagueStandings.size() + 1, 1));
 
-        JLabel leagueStandingsTitle = new JLabel("League Standings");
-        leagueStandingsTitle.setHorizontalAlignment(SwingConstants.CENTER);
-        leagueStandingsTitle.setVerticalAlignment(SwingConstants.CENTER);
+        westLabel.setLayout(new GridLayout(1, 2));
 
-        westLabel.add(leagueStandingsTitle);
+        JLabel teamNames = new JLabel();
+        JLabel teamStats = new JLabel();
+
+        teamNames.setLayout(new GridLayout(leagueStandings.size() + 1, 1));
+
+        JLabel tableTitle = new JLabel("League Standings");
+        tableTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        tableTitle.setVerticalAlignment(SwingConstants.CENTER);
+        tableTitle.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        tableTitle.setOpaque(true);
+        tableTitle.setBackground(Color.BLUE);
+        tableTitle.setForeground(Color.WHITE);
+        teamNames.add(tableTitle);
 
         int tablePosition = 1;
         for (Team leagueStanding : leagueStandings) {
-            JLabel team = new JLabel(tablePosition + "." + leagueStanding.getTeamName() + " - " + leagueStanding.getPoints());
+            JLabel team = new JLabel(tablePosition + "." + leagueStanding.getShortName());
             team.setHorizontalAlignment(SwingConstants.CENTER);
             team.setVerticalAlignment(SwingConstants.CENTER);
             team.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -74,13 +83,36 @@ public class HomeDefaultDisplay extends JPanel {
             }
             team.setOpaque(true);
             team.setForeground(Color.WHITE);
-            westLabel.add(team);
+            teamNames.add(team);
             tablePosition++;
         }
 
+        teamStats.setLayout(new GridLayout(leagueStandings.size() + 1, 5));
+
+        teamStats.add(new JLabel("MP"));
+        teamStats.add(new JLabel("W"));
+        teamStats.add(new JLabel("D"));
+        teamStats.add(new JLabel("L"));
+        teamStats.add(new JLabel("PTS"));
+
+        for (Team leagueStanding : leagueStandings) {
+            teamStats.add(new JLabel(String.valueOf(leagueStanding.getMatchesPlayed())));
+            teamStats.add(new JLabel(String.valueOf(leagueStanding.getWins())));
+            teamStats.add(new JLabel(String.valueOf(leagueStanding.getDraws())));
+            teamStats.add(new JLabel(String.valueOf(leagueStanding.getLosses())));
+            teamStats.add(new JLabel(String.valueOf(leagueStanding.getPoints())));
+        }
+
+
+
+
+
+        westLabel.add(teamNames);
+        westLabel.add(teamStats);
+
         westLabel.setOpaque(true);
         JScrollPane westScrollPane = new JScrollPane(westLabel);
-        westScrollPane.setPreferredSize(new Dimension(200, 300));
+        westScrollPane.setPreferredSize(new Dimension(400, 300));
         westScrollPane.setFocusable(false);
         return westScrollPane;
     }

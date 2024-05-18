@@ -13,6 +13,10 @@ public class Team {
     //Team properties that can change.
     private League league;
     private Integer points;
+    private Integer matchesPlayed;
+    private Integer wins;
+    private Integer draws;
+    private Integer losses;
     private Integer[] formation; //e.g. 4-4-2 would be [4,4,2], should always be 3 numbers.
 
 
@@ -24,10 +28,15 @@ public class Team {
         this.teamLogo = teamLogo;
 
         this.league = league;
-        this.points = 0;
         this.formation = formation;
 
         this.players = new ArrayList<>();
+
+        this.matchesPlayed = 0;
+        this.wins = 0;
+        this.draws = 0;
+        this.losses = 0;
+        this.points = 0;
 
         league.addTeam(this); //after creating a team, add them to their league.
     }
@@ -146,14 +155,42 @@ return subs;
         return league;
     }
 
+    public Integer getMatchesPlayed() {
+        return matchesPlayed;
+    }
+
+    public Integer getWins() {
+        return wins;
+    }
+
+    public Integer getDraws() {
+        return draws;
+    }
+
+    public Integer getLosses() {
+        return losses;
+    }
+
     public Integer getPoints() {
         return points;
     }
 
-    public void addPoints(Integer points) {
-        this.points += points;
+    public void addWin() {
+        this.matchesPlayed += 1;
+        this.wins += 1;
+        this.points += 3;
     }
 
+    public void addDraw() {
+        this.matchesPlayed += 1;
+        this.draws += 1;
+        this.points += 1;
+    }
+
+    public void addLoss() {
+        this.matchesPlayed += 1;
+        this.losses += 1;
+    }
     public void removePoints(Integer points) {
         this.points -= points;
     }
@@ -289,7 +326,7 @@ return subs;
 
     public Integer getRating() {
         Player[] startingEleven = bestStartingEleven();
-        Integer teamRating = 0;
+        Integer teamRating = -400;
         for (Player player : startingEleven) {
             teamRating += player.getRating();
         }

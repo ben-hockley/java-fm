@@ -21,19 +21,21 @@ public class gameSimulator extends JFrame {
         //home advantage
         homeRating += 250;
 
-        int homeGoals = (int)(homeRating * Math.random() / 300);
-        int awayGoals = (int)(awayRating * Math.random() / 300);
+        int homeGoals = (int)(homeRating * Math.random() / 200);
+        int awayGoals = (int)(awayRating * Math.random() / 200);
 
         if (homeGoals > awayGoals) {
             //home win
-            homeTeam.addPoints(3);
+            homeTeam.addWin();
+            awayTeam.addLoss();
         } else if (awayGoals > homeGoals) {
             //away win
-            awayTeam.addPoints(3);
+            homeTeam.addLoss();
+            awayTeam.addWin();
         } else {
             //draw
-            homeTeam.addPoints(1);
-            awayTeam.addPoints(1);
+            homeTeam.addDraw();
+            awayTeam.addDraw();
         }
 
         ArrayList<String> homeGoalscorers = new ArrayList<>();
