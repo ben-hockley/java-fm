@@ -363,12 +363,29 @@ public class Team {
         return substitutes;
     }
 
-    public void makeSubstitution(Player playerIn, Player playerOut) {
-        for (Player player : startingEleven) {
-            if (player.equals(playerOut)) {
-                player = playerIn;
+    public void makeSubstitution(Player playerOut, Player playerIn) {
+        //replace playerOut with playerIn in the starting 11.
+        for (int i = 0; i < startingEleven.length; i++) {
+            if (startingEleven[i] == playerOut) {
+                startingEleven[i] = playerIn;
                 break;
             }
         }
+        //replace playerIn with playerOut in the substitutes.
+        for (int i = 0; i < substitutes.length; i++) {
+            if (substitutes[i] == playerIn) {
+                substitutes[i] = playerOut;
+                break;
+            }
+        }
+    }
+
+    public Player getPlayerByName(String playerName) {
+        for (Player player : players) {
+            if (player.getPlayerName().equals(playerName)) {
+                return player;
+            }
+        }
+        return null;
     }
 }
