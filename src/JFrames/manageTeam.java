@@ -69,9 +69,6 @@ public class manageTeam extends JFrame {
         substitutePlayer.setBackground(Color.BLUE);
         substitutePlayer.setForeground(Color.WHITE);
         substitutePlayer.addActionListener(e -> {
-            System.out.println("Player out: " + startingEleven.getSelection().getActionCommand());
-            System.out.println("Player in: " + substitutes.getSelection().getActionCommand());
-
             try {
                 if (userTeam.getPlayerByName(startingEleven.getSelection().getActionCommand()).getPosition().equals(userTeam.getPlayerByName(substitutes.getSelection().getActionCommand()).getPosition())){
                     userTeam.makeSubstitution(userTeam.getPlayerByName(startingEleven.getSelection().getActionCommand()), userTeam.getPlayerByName(substitutes.getSelection().getActionCommand()));
@@ -82,7 +79,6 @@ public class manageTeam extends JFrame {
                     throw new IllegalArgumentException("Players must be the same position to make a substitution.");
                 }
             } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
                 new JOptionPane().showMessageDialog(null, exception.getMessage());
             }
 

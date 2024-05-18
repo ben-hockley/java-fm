@@ -350,7 +350,6 @@ public class Team {
         Integer teamRating = -400;
         for (Player player : startingEleven) {
             teamRating += player.getRating();
-            System.out.println(player.getPlayerName() + " - " + player.getRating());
         }
         return teamRating;
     }

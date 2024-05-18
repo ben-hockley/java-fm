@@ -26,11 +26,6 @@ public class Main {
 
         JFrame userUI = new UI(userTeam);
         userUI.setTitle("Football Manager 2024");
-
-        //testing substitution
-        userTeam.makeSubstitution(userTeam.getStartingEleven()[0], userTeam.getSubstitutes()[0]);
-        System.out.println(userTeam.getStartingEleven()[0].getPlayerName());
-        System.out.println(userTeam.getSubstitutes()[0].getPlayerName());
     }
 }
 

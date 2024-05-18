@@ -49,7 +49,6 @@ public class HomeGameDisplay extends JPanel {
 
         manageTeamButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                System.out.println("Manage Team!");
                 manageTeamButton.removeMouseListener(this);
 
                 JFrame manageTeam = new manageTeam(userTeam);
@@ -70,7 +69,6 @@ public class HomeGameDisplay extends JPanel {
         JLabel playGameButton = new JLabel("Play Game");
         playGameButton.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                System.out.println("Game played!");
                 playGameButton.removeMouseListener(this);
 
                 JFrame gameSimulator = new gameSimulator(homeTeam, awayTeam);

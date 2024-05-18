@@ -46,18 +46,9 @@ public class gameSimulator extends JFrame {
             homeGoalscorers.add(scorer.getPlayerName() + "  '" + (int)(Math.random() * 90));
         }
 
-        for (String goal : homeGoalscorers) {
-            System.out.println(goal);
-        }
-        System.out.println();
-
         for (int i = 0; i < awayGoals; i++) {
             Player scorer = awayTeam.getStartingEleven()[(int)Math.floor(Math.random() * 10) + 1];
             awayGoalscorers.add(scorer.getPlayerName() + "  '" + (int)(Math.random() * 90));
-        }
-
-        for (String goal : awayGoalscorers) {
-            System.out.println(goal);
         }
 
 
