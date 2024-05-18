@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class gameSimulator extends JFrame {
 
     public gameSimulator(Team homeTeam, Team awayTeam) {
-        this.setSize(500,500);
+        this.setSize(500,800);
         JPanel pitch = new JPanel(new BorderLayout());
         pitch.setBackground(new Color(40, 140, 40));
         pitch.setOpaque(true);
@@ -42,7 +42,7 @@ public class gameSimulator extends JFrame {
         ArrayList<String> awayGoalscorers = new ArrayList<>();
 
         for (int i = 0; i < homeGoals; i++) {
-            Player scorer = homeTeam.bestStartingEleven()[(int)Math.floor(Math.random() * 10) + 1];
+            Player scorer = homeTeam.getStartingEleven()[(int)Math.floor(Math.random() * 10) + 1];
             homeGoalscorers.add(scorer.getPlayerName() + "  '" + (int)(Math.random() * 90));
         }
 
@@ -52,7 +52,7 @@ public class gameSimulator extends JFrame {
         System.out.println();
 
         for (int i = 0; i < awayGoals; i++) {
-            Player scorer = awayTeam.bestStartingEleven()[(int)Math.floor(Math.random() * 10) + 1];
+            Player scorer = awayTeam.getStartingEleven()[(int)Math.floor(Math.random() * 10) + 1];
             awayGoalscorers.add(scorer.getPlayerName() + "  '" + (int)(Math.random() * 90));
         }
 
@@ -70,9 +70,13 @@ public class gameSimulator extends JFrame {
         score.setOpaque(true);
         pitch.add(score, BorderLayout.NORTH);
 
+
+        JLabel homeTeamLabel = new JLabel();
+        homeTeamLabel.setLayout(new GridLayout(2,1));
+        homeTeamLabel.setPreferredSize(new Dimension(230, 500));
+
         JLabel homeGoalscorersLabel = new JLabel();
         homeGoalscorersLabel.setLayout(new GridLayout(homeGoals, 1));
-        homeGoalscorersLabel.setPreferredSize(new Dimension(200, homeGoals*100));
         homeGoalscorersLabel.setBackground(Color.WHITE);
         homeGoalscorersLabel.setForeground(Color.BLACK);
         homeGoalscorersLabel.setOpaque(true);
@@ -85,7 +89,31 @@ public class gameSimulator extends JFrame {
             homeGoalscorersLabel.add(goalLabel);
         }
 
-        pitch.add(homeGoalscorersLabel, BorderLayout.WEST);
+        JLabel homeLineupLabel = new JLabel();
+        homeLineupLabel.setLayout(new GridLayout(20, 1));
+        homeLineupLabel.setBackground(Color.WHITE);
+        homeLineupLabel.setForeground(Color.BLACK);
+        homeLineupLabel.setOpaque(true);
+        homeLineupLabel.add(new JLabel("Formation: " + homeTeam.getFormationInText()));
+        Player[] homeStarting11 = homeTeam.getStartingEleven();
+        for (Player player : homeStarting11) {
+            homeLineupLabel.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
+        }
+        Player[] homeSubs = homeTeam.getSubstitutes();
+        homeLineupLabel.add(new JLabel("Substitutes:"));
+        for (Player player : homeSubs) {
+            homeLineupLabel.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
+        }
+
+        homeTeamLabel.add(homeLineupLabel);
+        homeTeamLabel.add(homeGoalscorersLabel);
+
+        pitch.add(homeTeamLabel, BorderLayout.WEST);
+
+
+        JLabel awayTeamLabel = new JLabel();
+        awayTeamLabel.setLayout(new GridLayout(2,1));
+        awayTeamLabel.setPreferredSize(new Dimension(230, 500));
 
         JLabel awayGoalscorersLabel = new JLabel();
         awayGoalscorersLabel.setLayout(new GridLayout(awayGoals, 1));
@@ -93,7 +121,6 @@ public class gameSimulator extends JFrame {
         awayGoalscorersLabel.setBackground(Color.WHITE);
         awayGoalscorersLabel.setForeground(Color.BLACK);
         awayGoalscorersLabel.setOpaque(true);
-        pitch.add(awayGoalscorersLabel, BorderLayout.EAST);
 
         for (String goal : awayGoalscorers) {
             JLabel goalLabel = new JLabel(goal);
@@ -102,7 +129,26 @@ public class gameSimulator extends JFrame {
             awayGoalscorersLabel.add(goalLabel);
         }
 
-        pitch.add(awayGoalscorersLabel, BorderLayout.EAST);
+        JLabel awayLineupLabel = new JLabel();
+        awayLineupLabel.setLayout(new GridLayout(20, 1));
+        awayLineupLabel.setBackground(Color.WHITE);
+        awayLineupLabel.setForeground(Color.BLACK);
+        awayLineupLabel.setOpaque(true);
+        awayLineupLabel.add(new JLabel("Formation: " + awayTeam.getFormationInText()));
+        Player[] awayStarting11 = awayTeam.getStartingEleven();
+        for (Player player : awayStarting11) {
+            awayLineupLabel.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
+        }
+        Player[] awaySubs = awayTeam.getSubstitutes();
+        awayLineupLabel.add(new JLabel("Substitutes:"));
+        for (Player player : awaySubs) {
+            awayLineupLabel.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
+        }
+
+        awayTeamLabel.add(awayLineupLabel);
+        awayTeamLabel.add(awayGoalscorersLabel);
+
+        pitch.add(awayTeamLabel, BorderLayout.EAST);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setVisible(true);

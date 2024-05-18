@@ -16,13 +16,20 @@ public class Main {
         //so the player can choose which leagues to load.
         Data.setPremierLeague();
 
+        for (Team team : Data.england.getLeagueByTier(1).getAllTeams()) {
+            System.out.println(team.getTeamName());
 
+            team.setDefaultStartingElevenandSubs();
+        }
         //User Interface
-        Team userTeam = Data.england.getLeagueByTier(1).getTeamByName(
-                "Arsenal");
+        Team userTeam = Data.england.getLeagueByTier(1).getTeamByName("Arsenal");
 
         JFrame userUI = new UI(userTeam);
         userUI.setTitle("Football Manager 2024");
+
+        //testing
+
+        userTeam.makeSubstitution(userTeam.getStartingEleven()[0], userTeam.getSubstitutes()[0]);
     }
 }
 

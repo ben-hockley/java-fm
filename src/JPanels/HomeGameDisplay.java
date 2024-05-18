@@ -1,6 +1,7 @@
 package JPanels;
 
 import JFrames.gameSimulator;
+import JFrames.manageTeam;
 import Objects.Player;
 import Objects.Team;
 import Objects.dateTime;
@@ -35,7 +36,7 @@ public class HomeGameDisplay extends JPanel {
         centerPanel.setBackground(Color.BLUE);
 
         JLabel playGameButton = getPlayGameButton(userTeam, clock, ui, homeTeam, awayTeam);
-        JLabel manageTeamButton = getManageTeamButton();
+        JLabel manageTeamButton = getManageTeamButton(userTeam);
 
         centerPanel.add(playGameButton);
         centerPanel.add(manageTeamButton);
@@ -43,14 +44,16 @@ public class HomeGameDisplay extends JPanel {
         this.add(centerPanel, BorderLayout.CENTER);
     }
 
-    private JLabel getManageTeamButton() {
+    private JLabel getManageTeamButton(Team userTeam) {
         JLabel manageTeamButton = new JLabel("Manage Team");
 
         manageTeamButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 System.out.println("Manage Team!");
-                //need to add functionality to manage team.
                 manageTeamButton.removeMouseListener(this);
+
+                JFrame manageTeam = new manageTeam(userTeam);
+
             }
         });
         manageTeamButton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -69,7 +72,6 @@ public class HomeGameDisplay extends JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 System.out.println("Game played!");
                 playGameButton.removeMouseListener(this);
-
 
                 JFrame gameSimulator = new gameSimulator(homeTeam, awayTeam);
 
@@ -111,7 +113,6 @@ public class HomeGameDisplay extends JPanel {
         return playGameButton;
     }
 
-
     //Game Title (NORTH)
     private JLabel gameTitle(Team homeTeam, Team awayTeam) {
         JLabel northLabel = new JLabel(homeTeam.getTeamName() + " vs " + awayTeam.getTeamName());
@@ -130,7 +131,7 @@ public class HomeGameDisplay extends JPanel {
         opponentsLineup.add(new JLabel("Opponent: " + opponent.getTeamName()));
         opponentsLineup.add(new JLabel("Formation: " + opponent.getFormationInText()));
 
-        Player[] opponentStarting11 = opponent.bestStartingEleven();
+        Player[] opponentStarting11 = opponent.getStartingEleven();
         for (Player player : opponentStarting11) {
             opponentsLineup.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
         }

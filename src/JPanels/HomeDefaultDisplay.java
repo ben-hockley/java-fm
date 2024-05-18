@@ -103,10 +103,6 @@ public class HomeDefaultDisplay extends JPanel {
             teamStats.add(new JLabel(String.valueOf(leagueStanding.getPoints())));
         }
 
-
-
-
-
         westLabel.add(teamNames);
         westLabel.add(teamStats);
 

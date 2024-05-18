@@ -19,6 +19,10 @@ public class Team {
     private Integer losses;
     private Integer[] formation; //e.g. 4-4-2 would be [4,4,2], should always be 3 numbers.
 
+    private Player[] startingEleven;
+
+    private Player[] substitutes;
+
 
     public ArrayList<Player> players;
 
@@ -92,11 +96,23 @@ public class Team {
         return playersInPosition;
     }
 
+    public void setDefaultStartingElevenandSubs() {
+        startingEleven = bestStartingEleven();
+
+        Player[] bestSubsList = new Player[7];
+
+        for (int i=0; i<7; i++){
+            bestSubsList[i] = bestSubs().get(i);
+        }
+
+        substitutes = bestSubsList;
+    }
+
     //gets the best starting 11 for the team.
     //finds the best combination of goalkeepers, defenders, midfielders and forwards based on the formation.
     //sorts players by player rating and puts the highest rated players in the starting 11.
     //this function could be used to pick the starting lineup for an CPU controlled team.
-    public Player[] bestStartingEleven(){
+    private Player[] bestStartingEleven(){
         Player[] startingEleven = new Player[11];
 
         Integer numberGoalkeepers = 1;
@@ -128,23 +144,28 @@ public class Team {
         return startingEleven;
     }
 
-    public ArrayList<Player> bestSubs() {
-    ArrayList<Player> subs = players;
-    for (Player player : bestStartingEleven()){
-        subs.remove(player);
-    }
-    while (subs.size() > 7) {
-        Integer lowestRating = 100;
-        Player lowestRatedPlayer = null;
-        for (Player player : subs) {
-            if (player.getRating() < lowestRating) {
-                lowestRating = player.getRating();
-                lowestRatedPlayer = player;
-            }
+    private ArrayList<Player> bestSubs() {
+        ArrayList<Player> subs = new ArrayList<>();
+
+        for (Player player : players) {
+            subs.add(player);
         }
-        subs.remove(lowestRatedPlayer);
-    }
-return subs;
+
+        for (Player player : getStartingEleven()) {
+            subs.remove(player);
+        }
+        while (subs.size() > 7) {
+            Integer lowestRating = 100;
+            Player lowestRatedPlayer = null;
+            for (Player player : subs) {
+                if (player.getRating() < lowestRating) {
+                    lowestRating = player.getRating();
+                    lowestRatedPlayer = player;
+                }
+            }
+            subs.remove(lowestRatedPlayer);
+        }
+        return subs;
     }
 
     public String getFormationInText() {
@@ -325,12 +346,29 @@ return subs;
     }
 
     public Integer getRating() {
-        Player[] startingEleven = bestStartingEleven();
+        Player[] startingEleven = getStartingEleven();
         Integer teamRating = -400;
         for (Player player : startingEleven) {
             teamRating += player.getRating();
+            System.out.println(player.getPlayerName() + " - " + player.getRating());
         }
         return teamRating;
     }
 
+    public Player[] getStartingEleven() {
+        return startingEleven;
+    }
+
+    public Player[] getSubstitutes() {
+        return substitutes;
+    }
+
+    public void makeSubstitution(Player playerIn, Player playerOut) {
+        for (Player player : startingEleven) {
+            if (player.equals(playerOut)) {
+                player = playerIn;
+                break;
+            }
+        }
+    }
 }
