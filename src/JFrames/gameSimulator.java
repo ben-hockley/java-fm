@@ -9,9 +9,15 @@ import java.util.ArrayList;
 
 public class gameSimulator extends JFrame {
 
+    /**
+     * Simulates a game the user is involved in and displays the match report in a new JFrame.
+     *
+     * @param homeTeam the home team in the game simulated.
+     * @param awayTeam the away team in the game simulated.
+     */
     public gameSimulator(Team homeTeam, Team awayTeam) {
         this.setSize(500,800);
-        this.setTitle(homeTeam.getTeamName() + " vs " + awayTeam.getTeamName());
+        this.setTitle("Match report: " + homeTeam.getTeamName() + " vs " + awayTeam.getTeamName());
         JPanel pitch = new JPanel(new BorderLayout());
         pitch.setBackground(new Color(40, 140, 40));
         pitch.setOpaque(true);
@@ -57,18 +63,22 @@ public class gameSimulator extends JFrame {
             } else if (scorerGenerator >= 0.4) {
                 scorer = homeTeam.getStartingEleven()[8]; //FWD 3
             } else if (scorerGenerator >= 0.3) {
+                // 30% chance the scorer is a midfielder (10% chance for each midfielder)
                 scorer = homeTeam.getStartingEleven()[7]; //MID 1
             } else if (scorerGenerator >= 0.2) {
                 scorer = homeTeam.getStartingEleven()[6]; //MID 2
             } else if (scorerGenerator >= 0.1) {
                 scorer = homeTeam.getStartingEleven()[5]; //MID 3
             } else {
+                // 10% chance the scorer is a defender (2.5% chance for each defender)
                 int randomIntBetween1And4 = (int)Math.floor(Math.random()*4) + 1;
                 scorer = homeTeam.getStartingEleven()[randomIntBetween1And4]; //DEFENDER
             }
-            // 30% chance the scorer is a midfielder (10% chance for each midfielder)
 
-            // 10% chance the scorer is a defender (2.5% chance for each defender)
+            //add a goal to the goalscorer's tally
+            scorer.addGoal();
+
+            //add scorer and random minute to the list of goalscorers printed on the match report.
             homeGoalscorers.add(scorer.getPlayerName() + "  '" + (int)(Math.random() * 98 + 1));
         }
 
@@ -84,17 +94,21 @@ public class gameSimulator extends JFrame {
             } else if (scorerGenerator >= 0.4) {
                 scorer = awayTeam.getStartingEleven()[8]; //FWD 3
             } else if (scorerGenerator >= 0.3) {
+                // 30% chance the scorer is a midfielder (10% chance for each midfielder)
                 scorer = awayTeam.getStartingEleven()[7]; //MID 1
             } else if (scorerGenerator >= 0.2) {
                 scorer = awayTeam.getStartingEleven()[6]; //MID 2
             } else if (scorerGenerator >= 0.1) {
                 scorer = awayTeam.getStartingEleven()[5]; //MID 3
             } else {
+                // 10% chance the scorer is a defender (2.5% chance for each defender)
                 scorer = awayTeam.getStartingEleven()[(int)Math.floor(Math.random())*4 + 1]; //DEFENDER
             }
-            // 30% chance the scorer is a midfielder (10% chance for each midfielder)
 
-            // 10% chance the scorer is a defender (2.5% chance for each defender)
+            //add a goal to the goalscorer's stats.
+            scorer.addGoal();
+
+            //add scorer and random minute to the list of goalscorers printed on the match report.
             awayGoalscorers.add(scorer.getPlayerName() + "  '" + (int)(Math.random() * 99));
         }
 
@@ -141,11 +155,17 @@ public class gameSimulator extends JFrame {
         homeLineupLabel.add(new JLabel("Formation: " + homeTeam.getFormationInText()));
         Player[] homeStarting11 = homeTeam.getStartingEleven();
         for (Player player : homeStarting11) {
+            //add an appearance to the player's stats
+            player.addAppearance();
+
+            //add the players name to the list of players printed on the starting 11 on the match report.
             homeLineupLabel.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
         }
         Player[] homeSubs = homeTeam.getSubstitutes();
         homeLineupLabel.add(new JLabel("Substitutes:"));
         for (Player player : homeSubs) {
+
+            //add the players name to the list of players printed on the substitutes on the match report.
             homeLineupLabel.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
         }
 
@@ -186,11 +206,18 @@ public class gameSimulator extends JFrame {
         awayLineupLabel.add(new JLabel("Formation: " + awayTeam.getFormationInText()));
         Player[] awayStarting11 = awayTeam.getStartingEleven();
         for (Player player : awayStarting11) {
+
+            //add an appearance to the player's stats
+            player.addAppearance();
+
+            //add the players name to the list of players printed on the starting 11 on the match report.
             awayLineupLabel.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
         }
         Player[] awaySubs = awayTeam.getSubstitutes();
         awayLineupLabel.add(new JLabel("Substitutes:"));
         for (Player player : awaySubs) {
+
+            //add the players name to the list of players printed on the substitutes on the match report.
             awayLineupLabel.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
         }
 

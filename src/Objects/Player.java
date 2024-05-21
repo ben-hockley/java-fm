@@ -6,8 +6,11 @@ public class Player {
     private final String position;
     private Team team;
     private Nation nationality;
-
     private Integer rating;
+
+    //in season stats.
+    private Integer appearances;
+    private Integer goals;
 
     public Player(String firstName, String lastName, String position,
                   Team team, Nation nationality, Integer rating) {
@@ -20,6 +23,10 @@ public class Player {
 
         team.addPlayer(this); // After creating a player, add them to their team.
         nationality.addPlayer(this); // After creating a player, add them to their nation.
+
+        //in season stats. (set to zero by default)
+        this.appearances = 0;
+        this.goals = 0;
     }
 
     public String getPlayerName() {
@@ -32,5 +39,24 @@ public class Player {
 
     public Integer getRating() {
         return rating;
+    }
+
+    public void addAppearance() {
+        this.appearances++;
+    }
+    public void addGoal() {
+        this.goals++;
+    }
+
+    public Integer getAppearances() {
+        return appearances;
+    }
+
+    public Integer getGoals() {
+        return goals;
+    }
+
+    public Team getTeam() {
+        return team;
     }
 }

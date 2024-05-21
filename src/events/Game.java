@@ -1,6 +1,4 @@
 package events;
-
-import Objects.Player;
 import Objects.Team;
 
 public class Game extends Event {

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class fixtureGen {
-
     public static ArrayList<ArrayList<Game>> generateFixtureSchedule(List<Team> teams) {
         int numberOfTeams = teams.size();
 
@@ -38,28 +37,6 @@ public class fixtureGen {
         }
 
         return schedule;
-    }
-
-    public static void generateFixtures() {
-
-        Data.setPremierLeague();
-
-        List<Team> teams = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            teams.add(Data.england.getLeagueByTier(1).getAllTeams().get(i));
-        }
-
-        ArrayList<ArrayList<Game>> schedule = generateFixtureSchedule(teams);
-
-        for (int i = 0; i < schedule.size(); i++) {
-            System.out.println("Round " + (i + 1) + ":");
-            for (Game match : schedule.get(i)) {
-                //System.out.println(match);
-
-                System.out.println(match.getHomeTeam().getTeamName() + " vs " + match.getAwayTeam().getTeamName() + " on " + match.getDayOfMonth() + "/" + match.getMonth());
-            }
-            System.out.println();  // Blank line between rounds
-        }
     }
 }
 

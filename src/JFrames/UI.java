@@ -30,9 +30,6 @@ public class UI extends JFrame {
      */
     private final JPanel topPanel; //JPanel to hold the calendar. (North)
     private final Button progressDateButton; //Button to progress the date. (South)
-
-    private final String myTeamName;
-
     private JPanel homeDefaultDisplay;
 
     private int weekNumber; //0 indexed (so, for example: week 20 == 19)
@@ -42,7 +39,6 @@ public class UI extends JFrame {
     //String[] testStandings = {"1. Sheffield Wednesday", "2. Manchester United", "3. Liverpool", "4. Chelsea", "5. Arsenal"};
     //constructor to initialize homepage.
     public UI(Team userTeam) {
-        this.myTeamName = userTeam.getTeamName();
 
         weekNumber = -1; //adds 1 to weekNumber for each set of results, so first index queried is 0.
         allGameFixtures = Data.england.getLeagueByTier(1).generateFixtures();
@@ -51,9 +47,11 @@ public class UI extends JFrame {
         events.addAll(fixtures); //add the fixtures to the events list.
 
         //set basic properties of the JFrame.
-        this.setSize(1000, 500);
+        this.setSize(1000, 600);
+        this.pack();
+        this.setMinimumSize(new Dimension(1000, 600));
         this.setLayout(new BorderLayout());
-        this.setResizable(false);
+        //this.setResizable(false);
 
 
         // Add calendar JPanel to the North of the BorderLayout.
@@ -94,7 +92,7 @@ public class UI extends JFrame {
 
             ArrayList<Team> actualStandings = userTeam.getLeague().getStandings();
 
-            homeDefaultDisplay = new HomeDefaultDisplay(myTeamName, actualStandings);
+            homeDefaultDisplay = new HomeDefaultDisplay(actualStandings, userTeam);
             this.add(homeDefaultDisplay, BorderLayout.CENTER);
             homeDisplaySet = true;
         }

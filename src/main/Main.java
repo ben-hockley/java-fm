@@ -3,10 +3,8 @@ package main;
 import data.Data;
 import JFrames.UI;
 import Objects.Team;
-import events.Game;
 
 import javax.swing.JFrame;
-import java.util.ArrayList;
 
 public class Main {
     /**
@@ -22,7 +20,7 @@ public class Main {
             team.setDefaultStartingElevenandSubs();
         }
         //User Interface
-        Team userTeam = Data.england.getLeagueByTier(1).getTeamByName("Arsenal");
+        Team userTeam = Data.england.getLeagueByTier(1).getTeamByName("Aston Villa");
 
         JFrame userUI = new UI(userTeam);
         userUI.setTitle("Football Manager 2024");

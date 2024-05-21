@@ -1,6 +1,5 @@
 package Objects;
 
-import data.Data;
 import events.Game;
 import main.fixtureGen;
 
@@ -10,11 +9,11 @@ public class League {
     private final Integer tier;
 
     private final ArrayList<Team> teams;
-
-    private ArrayList<ArrayList<Game>> fixtures;
+    private final String name;
 
     public League(String leagueName, String leagueLogo, Integer tier, Nation nation) {
         this.tier = tier;
+        this.name = leagueName;
 
         this.teams = new ArrayList<>(); // Initialize an empty list of teams.
 
@@ -59,12 +58,16 @@ public class League {
         return standings;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Integer getNumberOfTeams(){
         return teams.size();
     }
 
     public ArrayList<ArrayList<Game>> generateFixtures() {
-        fixtures = fixtureGen.generateFixtureSchedule(teams);
+        ArrayList<ArrayList<Game>> fixtures = fixtureGen.generateFixtureSchedule(teams);
 
         int weekNumber = 1;
 
@@ -78,5 +81,16 @@ public class League {
             weekNumber++;
         }
         return fixtures;
+    }
+
+    public ArrayList<Player> getTopGoalscorers(){
+        ArrayList<Player> topGoalscorers = new ArrayList<>();
+        for (Team team : teams) {
+            for (Player player : team.getAllPlayers()) {
+                topGoalscorers.add(player);
+            }
+        }
+        topGoalscorers.sort((o1, o2) -> o2.getGoals().compareTo(o1.getGoals()));
+        return topGoalscorers;
     }
 }

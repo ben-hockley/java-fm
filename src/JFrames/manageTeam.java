@@ -79,7 +79,7 @@ public class manageTeam extends JFrame {
                     throw new IllegalArgumentException("Players must be the same position to make a substitution.");
                 }
             } catch (IllegalArgumentException exception) {
-                new JOptionPane().showMessageDialog(null, exception.getMessage());
+                JOptionPane.showMessageDialog(null, exception.getMessage());
             }
 
         });
