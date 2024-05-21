@@ -6,20 +6,58 @@ import Objects.Player;
 import Objects.Team;
 import Objects.dateTime;
 import JFrames.UI;
+import events.Game;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import static JPanels.HomeDefaultDisplay.getTitleBanner;
 
 public class HomeGameDisplay extends JPanel {
-    public HomeGameDisplay(Team homeTeam, Team awayTeam, Team userTeam, dateTime clock, UI ui) {
+    public HomeGameDisplay(Team homeTeam, Team awayTeam, Team userTeam, dateTime clock, UI ui, ArrayList<Game> week1allGames) {
         this.removeAll();
         this.setPreferredSize(new Dimension(1000,350));
         this.setBackground(Color.GREEN);
         this.setLayout(new BorderLayout());
+
+        for (Game game : week1allGames){
+            if (game.getHomeTeam() == userTeam || game.getAwayTeam() == userTeam) {
+                //don't add result.
+            } else {
+
+                //add win to favourite, loss to underdog, draw if evenly matched.
+                //will replace with better system. (as underdogs will sometimes win)
+
+                if (game.getHomeTeam().getRating() > game.getAwayTeam().getRating()){
+                    game.getHomeTeam().addWin();
+                    game.getAwayTeam().addLoss();
+                } else if (game.getHomeTeam().getRating() == game.getAwayTeam().getRating()){
+                    game.getHomeTeam().addDraw();
+                    game.getAwayTeam().addDraw();
+                } else {
+                    game.getAwayTeam().addWin();
+                    game.getHomeTeam().addLoss();
+                }
+
+
+                //game.getHomeTeam().addWin();
+                //game.getAwayTeam().addLoss();
+            }
+        }
+
+
+
+
+
+
+
+
+        //end of new code
 
         ArrayList<Team> leagueStandings = userTeam.getLeague().getStandings();
 
@@ -71,6 +109,7 @@ public class HomeGameDisplay extends JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 playGameButton.removeMouseListener(this);
 
+
                 JFrame gameSimulator = new gameSimulator(homeTeam, awayTeam);
 
                 //add points for none user teams
@@ -83,6 +122,7 @@ public class HomeGameDisplay extends JPanel {
                 allTeams.remove(homeTeam);
                 allTeams.remove(awayTeam);
 
+                /*
                 for (int i = 0; i < numberOfDraws; i++) {
                     allTeams.get(i).addDraw();
                 }
@@ -93,6 +133,7 @@ public class HomeGameDisplay extends JPanel {
                     allTeams.get(i).addLoss();
                 }
 
+                 */
                 allTeams.add(homeTeam);
                 allTeams.add(awayTeam);
 

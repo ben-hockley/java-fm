@@ -3,8 +3,10 @@ package main;
 import data.Data;
 import JFrames.UI;
 import Objects.Team;
+import events.Game;
 
 import javax.swing.JFrame;
+import java.util.ArrayList;
 
 public class Main {
     /**
@@ -17,8 +19,6 @@ public class Main {
         Data.setPremierLeague();
 
         for (Team team : Data.england.getLeagueByTier(1).getAllTeams()) {
-            System.out.println(team.getTeamName());
-
             team.setDefaultStartingElevenandSubs();
         }
         //User Interface

@@ -11,6 +11,7 @@ public class gameSimulator extends JFrame {
 
     public gameSimulator(Team homeTeam, Team awayTeam) {
         this.setSize(500,800);
+        this.setTitle(homeTeam.getTeamName() + " vs " + awayTeam.getTeamName());
         JPanel pitch = new JPanel(new BorderLayout());
         pitch.setBackground(new Color(40, 140, 40));
         pitch.setOpaque(true);
@@ -19,10 +20,13 @@ public class gameSimulator extends JFrame {
         Integer homeRating = homeTeam.getRating();
         Integer awayRating = awayTeam.getRating();
         //home advantage
-        homeRating += 250;
+        homeRating += 40;
 
-        int homeGoals = (int)(homeRating * Math.random() / 200);
-        int awayGoals = (int)(awayRating * Math.random() / 200);
+        double homeRandomValue = Math.random();
+        double awayRandomValue = Math.random();
+
+        int homeGoals = (int)Math.round(homeRating * homeRandomValue / 75);
+        int awayGoals = (int)Math.round(awayRating * awayRandomValue / 75);
 
         if (homeGoals > awayGoals) {
             //home win
@@ -42,13 +46,56 @@ public class gameSimulator extends JFrame {
         ArrayList<String> awayGoalscorers = new ArrayList<>();
 
         for (int i = 0; i < homeGoals; i++) {
-            Player scorer = homeTeam.getStartingEleven()[(int)Math.floor(Math.random() * 10) + 1];
-            homeGoalscorers.add(scorer.getPlayerName() + "  '" + (int)(Math.random() * 90));
+            Player scorer;
+
+            double scorerGenerator = Math.random();
+            // 60% chance the scorer is a forward (20% chance for each forward)
+            if (scorerGenerator >= 0.8) {
+                scorer = homeTeam.getStartingEleven()[10]; //FWD 1
+            } else if (scorerGenerator >= 0.6) {
+                scorer = homeTeam.getStartingEleven()[9]; //FWD 2
+            } else if (scorerGenerator >= 0.4) {
+                scorer = homeTeam.getStartingEleven()[8]; //FWD 3
+            } else if (scorerGenerator >= 0.3) {
+                scorer = homeTeam.getStartingEleven()[7]; //MID 1
+            } else if (scorerGenerator >= 0.2) {
+                scorer = homeTeam.getStartingEleven()[6]; //MID 2
+            } else if (scorerGenerator >= 0.1) {
+                scorer = homeTeam.getStartingEleven()[5]; //MID 3
+            } else {
+                int randomIntBetween1And4 = (int)Math.floor(Math.random()*4) + 1;
+                scorer = homeTeam.getStartingEleven()[randomIntBetween1And4]; //DEFENDER
+            }
+            // 30% chance the scorer is a midfielder (10% chance for each midfielder)
+
+            // 10% chance the scorer is a defender (2.5% chance for each defender)
+            homeGoalscorers.add(scorer.getPlayerName() + "  '" + (int)(Math.random() * 98 + 1));
         }
 
         for (int i = 0; i < awayGoals; i++) {
-            Player scorer = awayTeam.getStartingEleven()[(int)Math.floor(Math.random() * 10) + 1];
-            awayGoalscorers.add(scorer.getPlayerName() + "  '" + (int)(Math.random() * 90));
+            Player scorer;
+
+            double scorerGenerator = Math.random();
+            // 60% chance the scorer is a forward (20% chance for each forward)
+            if (scorerGenerator >= 0.8) {
+                scorer = awayTeam.getStartingEleven()[10]; //FWD 1
+            } else if (scorerGenerator >= 0.6) {
+                scorer = awayTeam.getStartingEleven()[9]; //FWD 2
+            } else if (scorerGenerator >= 0.4) {
+                scorer = awayTeam.getStartingEleven()[8]; //FWD 3
+            } else if (scorerGenerator >= 0.3) {
+                scorer = awayTeam.getStartingEleven()[7]; //MID 1
+            } else if (scorerGenerator >= 0.2) {
+                scorer = awayTeam.getStartingEleven()[6]; //MID 2
+            } else if (scorerGenerator >= 0.1) {
+                scorer = awayTeam.getStartingEleven()[5]; //MID 3
+            } else {
+                scorer = awayTeam.getStartingEleven()[(int)Math.floor(Math.random())*4 + 1]; //DEFENDER
+            }
+            // 30% chance the scorer is a midfielder (10% chance for each midfielder)
+
+            // 10% chance the scorer is a defender (2.5% chance for each defender)
+            awayGoalscorers.add(scorer.getPlayerName() + "  '" + (int)(Math.random() * 99));
         }
 
 
@@ -63,7 +110,7 @@ public class gameSimulator extends JFrame {
 
 
         JLabel homeTeamLabel = new JLabel();
-        homeTeamLabel.setLayout(new GridLayout(2,1));
+        homeTeamLabel.setLayout(new GridLayout(1,1));
         homeTeamLabel.setPreferredSize(new Dimension(230, 500));
 
         JLabel homeGoalscorersLabel = new JLabel();
@@ -71,6 +118,12 @@ public class gameSimulator extends JFrame {
         homeGoalscorersLabel.setBackground(Color.WHITE);
         homeGoalscorersLabel.setForeground(Color.BLACK);
         homeGoalscorersLabel.setOpaque(true);
+
+        homeGoalscorers.sort((a, b) -> {
+            String[] aSplit = a.split("'");
+            String[] bSplit = b.split("'");
+            return Integer.parseInt(aSplit[1]) - Integer.parseInt(bSplit[1]);
+        });
 
         for (String goal : homeGoalscorers) {
             JLabel goalLabel = new JLabel(goal);
@@ -97,13 +150,12 @@ public class gameSimulator extends JFrame {
         }
 
         homeTeamLabel.add(homeLineupLabel);
-        homeTeamLabel.add(homeGoalscorersLabel);
 
         pitch.add(homeTeamLabel, BorderLayout.WEST);
 
 
         JLabel awayTeamLabel = new JLabel();
-        awayTeamLabel.setLayout(new GridLayout(2,1));
+        awayTeamLabel.setLayout(new GridLayout(1,1));
         awayTeamLabel.setPreferredSize(new Dimension(230, 500));
 
         JLabel awayGoalscorersLabel = new JLabel();
@@ -112,6 +164,12 @@ public class gameSimulator extends JFrame {
         awayGoalscorersLabel.setBackground(Color.WHITE);
         awayGoalscorersLabel.setForeground(Color.BLACK);
         awayGoalscorersLabel.setOpaque(true);
+
+        awayGoalscorers.sort((a, b) -> {
+            String[] aSplit = a.split("'");
+            String[] bSplit = b.split("'");
+            return Integer.parseInt(aSplit[1]) - Integer.parseInt(bSplit[1]);
+        });
 
         for (String goal : awayGoalscorers) {
             JLabel goalLabel = new JLabel(goal);
@@ -137,9 +195,17 @@ public class gameSimulator extends JFrame {
         }
 
         awayTeamLabel.add(awayLineupLabel);
-        awayTeamLabel.add(awayGoalscorersLabel);
 
         pitch.add(awayTeamLabel, BorderLayout.EAST);
+
+        JLabel goalScorersLabel = new JLabel();
+        goalScorersLabel.setLayout(new GridLayout(1,2));
+        goalScorersLabel.setPreferredSize(new Dimension(500, 100));
+        goalScorersLabel.add(homeGoalscorersLabel);
+        goalScorersLabel.add(awayGoalscorersLabel);
+
+        goalScorersLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        pitch.add(goalScorersLabel, BorderLayout.SOUTH);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setVisible(true);

@@ -1,11 +1,17 @@
 package Objects;
 
+import data.Data;
+import events.Game;
+import main.fixtureGen;
+
 import java.util.ArrayList;
 
 public class League {
     private final Integer tier;
 
     private final ArrayList<Team> teams;
+
+    private ArrayList<ArrayList<Game>> fixtures;
 
     public League(String leagueName, String leagueLogo, Integer tier, Nation nation) {
         this.tier = tier;
@@ -55,5 +61,22 @@ public class League {
 
     public Integer getNumberOfTeams(){
         return teams.size();
+    }
+
+    public ArrayList<ArrayList<Game>> generateFixtures() {
+        fixtures = fixtureGen.generateFixtureSchedule(teams);
+
+        int weekNumber = 1;
+
+        for (ArrayList<Game> week : fixtures) {
+            for (Game game : week){
+                //System.out.println(game.getHomeTeam().getTeamName() + " vs " + game.getAwayTeam().getTeamName() + " on " + game.getDayOfMonth() + "/" + game.getMonth());
+
+                game.getHomeTeam().addFixture(game);
+                game.getAwayTeam().addFixture(game);
+            }
+            weekNumber++;
+        }
+        return fixtures;
     }
 }

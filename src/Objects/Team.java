@@ -2,7 +2,9 @@ package Objects;
 
 import events.Game;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Team {
     //Team details, these will not change.
@@ -23,6 +25,8 @@ public class Team {
 
     private Player[] substitutes;
 
+    private ArrayList<Game> fixtures;
+
 
     public ArrayList<Player> players;
 
@@ -35,6 +39,8 @@ public class Team {
         this.formation = formation;
 
         this.players = new ArrayList<>();
+
+        this.fixtures = new ArrayList<>();
 
         this.matchesPlayed = 0;
         this.wins = 0;
@@ -249,6 +255,8 @@ public class Team {
         ArrayList<Team> teams = league.getAllTeams();
         teams.remove(this);
 
+        Collections.shuffle(teams);
+
         //starting date is based on the PL's starting date (Saturday 6th August)
         Integer[] date = new Integer[]{6, 8};
 
@@ -347,7 +355,7 @@ public class Team {
 
     public Integer getRating() {
         Player[] startingEleven = getStartingEleven();
-        Integer teamRating = -400;
+        Integer teamRating = -700;
         for (Player player : startingEleven) {
             teamRating += player.getRating();
         }
@@ -386,5 +394,13 @@ public class Team {
             }
         }
         return null;
+    }
+
+    public void addFixture(Game game) {
+        this.fixtures.add(game);
+    }
+
+    public ArrayList<Game> getFixtures() {
+        return fixtures;
     }
 }

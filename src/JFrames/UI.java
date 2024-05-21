@@ -1,5 +1,6 @@
 package JFrames;
 
+import data.Data;
 import events.Game;
 import JPanels.CalendarPanel;
 import JPanels.HomeDefaultDisplay;
@@ -18,6 +19,8 @@ public class UI extends JFrame {
     //ArrayList to store all events. Events can be added and removed.
     ArrayList<Event> events = new ArrayList<>();
 
+    ArrayList<Game> cpuGames;
+
     /**
      * The clock object used to track date and month to update the calendar.
      */
@@ -32,12 +35,19 @@ public class UI extends JFrame {
 
     private JPanel homeDefaultDisplay;
 
+    private int weekNumber; //0 indexed (so, for example: week 20 == 19)
+
+    ArrayList<ArrayList<Game>> allGameFixtures;
+
     //String[] testStandings = {"1. Sheffield Wednesday", "2. Manchester United", "3. Liverpool", "4. Chelsea", "5. Arsenal"};
     //constructor to initialize homepage.
     public UI(Team userTeam) {
         this.myTeamName = userTeam.getTeamName();
 
-        ArrayList<Game> fixtures = userTeam.generateFixtures(); //generate league fixtures for the user's team.
+        weekNumber = -1; //adds 1 to weekNumber for each set of results, so first index queried is 0.
+        allGameFixtures = Data.england.getLeagueByTier(1).generateFixtures();
+
+        ArrayList<Game> fixtures = userTeam.getFixtures();
         events.addAll(fixtures); //add the fixtures to the events list.
 
         //set basic properties of the JFrame.
@@ -147,7 +157,9 @@ public class UI extends JFrame {
                     progressDateButton.setEnabled(false);
                     if (event instanceof Game) {
                         homeDefaultDisplay.setVisible(false); // Hide the default display
-                        this.add(new HomeGameDisplay(((Game) event).getHomeTeam(),((Game) event).getAwayTeam(), userTeam, clock, this), BorderLayout.CENTER);
+                        weekNumber += 1;
+                        cpuGames = allGameFixtures.get(weekNumber);
+                        this.add(new HomeGameDisplay(((Game) event).getHomeTeam(),((Game) event).getAwayTeam(), userTeam, clock, this, cpuGames), BorderLayout.CENTER);
                         this.revalidate();
                     }
                 }

@@ -58,6 +58,51 @@ public class Data {
     public static Nation albania = new Nation("Albania", "Albania.png", 50, "Europe");
     public static Nation ivoryCoast = new Nation("Ivory Coast", "IvoryCoast.png", 43, "Africa");
 
+    public static Integer[][] listOfDates = {
+            {6, 8},
+            {13, 8},
+            {20, 8},
+            {27, 8},
+            {3, 9},
+            {10, 9},
+            {17, 9},
+            {24, 9},
+            {1, 10},
+            {8, 10},
+            {15, 10},
+            {22, 10},
+            {29, 10},
+            {5, 11},
+            {12, 11},
+            {19, 11},
+            {26, 11},
+            {3, 12},
+            {10, 12},
+            {17, 12},
+            {24, 12},
+            {31, 12},
+            {7, 1},
+            {14, 1},
+            {21, 1},
+            {28, 1},
+            {4, 2},
+            {11, 2},
+            {18, 2},
+            {25, 2},
+            {4, 3},
+            {11, 3},
+            {18, 3},
+            {25, 3},
+            {1, 4},
+            {8, 4},
+            {15, 4},
+            {22, 4},
+            {29, 4},
+            {6, 5},
+            {13, 5},
+            {20, 5},
+            {27, 5}
+    };
     public static void setPremierLeague() {
         //League : Premier League
         League premierLeague = new League("Premier League", "PremierLeague.png", 1, england);
@@ -65,24 +110,24 @@ public class Data {
         //Team : Manchester City
         Team manCity = new Team("Manchester City", "Man City", "manchesterCity.png", premierLeague, new Integer[]{4, 3, 3});
         new Player("Ederson", "", "GK", manCity, brazil, 90);
-        new Player("Stefan", "Ortega", "GK", manCity, germany, 83);
+        new Player("Stefan", "Ortega", "GK", manCity, germany, 80);
 
-        new Player("Kyle", "Walker", "DEF", manCity, england, 89);
-        new Player("Ruben", "Dias", "DEF", manCity, portugal, 88);
-        new Player("John", "Stones", "DEF", manCity, england, 86);
-        new Player("Josko", "Gvardiol", "DEF", manCity, croatia, 83);
+        new Player("Kyle", "Walker", "DEF", manCity, england, 90);
+        new Player("Ruben", "Dias", "DEF", manCity, portugal, 90);
+        new Player("John", "Stones", "DEF", manCity, england, 88);
+        new Player("Josko", "Gvardiol", "DEF", manCity, croatia, 85);
         new Player("Nathan", "Ake", "DEF", manCity, netherlands, 82);
         new Player("Manuel", "Akanji", "DEF", manCity, switzerland, 79);
 
-        new Player("Kevin", "De Bruyne", "MID", manCity, belgium, 94);
-        new Player("Rodri", "", "MID", manCity, spain, 93);
+        new Player("Kevin", "De Bruyne", "MID", manCity, belgium, 97);
+        new Player("Rodri", "", "MID", manCity, spain, 95);
         new Player("Bernardo", "Silva", "MID", manCity, portugal, 87);
         new Player("Mateo", "Kovacic", "MID", manCity, croatia, 83);
         new Player("Matheus", "Nunes", "MID", manCity, portugal, 77);
 
-        new Player("Phil", "Foden", "FWD", manCity, england, 93);
+        new Player("Phil", "Foden", "FWD", manCity, england, 95);
         new Player("Erling", "Haaland", "FWD", manCity, norway, 95);
-        new Player("Jeremy", "Doku", "FWD", manCity, belgium, 85);
+        new Player("Jeremy", "Doku", "FWD", manCity, belgium, 88);
         new Player("Julian", "Alvarez", "FWD", manCity, argentina, 84);
         new Player("Jack", "Grealish", "FWD", manCity, england, 82);
 
@@ -91,22 +136,22 @@ public class Data {
         new Player("David", "Raya", "GK", arsenal, spain, 85);
         new Player("Aaron", "Ramsdale", "GK", arsenal, england, 84);
 
-        new Player("William", "Saliba", "DEF", arsenal, france, 90);
-        new Player("Ben", "White", "DEF", arsenal, england, 86);
-        new Player("Gabriel", "", "DEF", arsenal, brazil, 85);
-        new Player("Takehiro", "Tomiyasu", "DEF", arsenal, japan, 82);
+        new Player("William", "Saliba", "DEF", arsenal, france, 93);
+        new Player("Ben", "White", "DEF", arsenal, england, 88);
+        new Player("Gabriel", "", "DEF", arsenal, brazil, 88);
+        new Player("Takehiro", "Tomiyasu", "DEF", arsenal, japan, 84);
         new Player("Oleksandr", "Zinchenko", "DEF", arsenal, ukraine, 79);
         new Player("Kieran", "Tierney", "DEF", arsenal, scotland, 77);
 
-        new Player("Declan", "Rice", "MID", arsenal, england, 90);
-        new Player("Martin", "Odegaard", "MID", arsenal, norway, 88);
-        new Player("Jorginho", "", "MID", arsenal, italy, 83);
+        new Player("Declan", "Rice", "MID", arsenal, england, 94);
+        new Player("Martin", "Odegaard", "MID", arsenal, norway, 92);
+        new Player("Jorginho", "", "MID", arsenal, italy, 85);
         new Player("Emile", "Smith-Rowe", "MID", arsenal, england, 82);
         new Player("Thomas", "Partey", "MID", arsenal, ghana, 76);
 
-        new Player("Bukayo", "Saka", "FWD", arsenal, england, 90);
+        new Player("Bukayo", "Saka", "FWD", arsenal, england, 94);
+        new Player("Kai", "Havertz", "FWD", arsenal, germany, 89);
         new Player("Gabriel", "Martinelli", "FWD", arsenal, brazil, 86);
-        new Player("Kai", "Havertz", "FWD", arsenal, germany, 85);
         new Player("Gabriel", "Jesus", "FWD", arsenal, brazil, 83);
         new Player("Leandro", "Trossard", "FWD", arsenal, belgium, 82);
 
