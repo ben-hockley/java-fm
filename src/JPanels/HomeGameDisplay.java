@@ -33,15 +33,29 @@ public class HomeGameDisplay extends JPanel {
                 //add win to favourite, loss to underdog, draw if evenly matched.
                 //will replace with better system. (as underdogs will sometimes win)
 
-                if (game.getHomeTeam().getRating() > game.getAwayTeam().getRating()){
+                Integer homeRating = game.getHomeTeam().getRating();
+                Integer awayRating = game.getAwayTeam().getRating();
+                //home advantage
+                homeRating += 40;
+
+                double homeRandomValue = Math.random();
+                double awayRandomValue = Math.random();
+
+                int homeGoals = (int)Math.round(homeRating * homeRandomValue / 75);
+                int awayGoals = (int)Math.round(awayRating * awayRandomValue / 75);
+
+                if (homeGoals > awayGoals) {
+                    //home win
                     game.getHomeTeam().addWin();
                     game.getAwayTeam().addLoss();
-                } else if (game.getHomeTeam().getRating() == game.getAwayTeam().getRating()){
+                } else if (awayGoals > homeGoals) {
+                    //away win
+                    game.getHomeTeam().addLoss();
+                    game.getAwayTeam().addWin();
+                } else {
+                    //draw
                     game.getHomeTeam().addDraw();
                     game.getAwayTeam().addDraw();
-                } else {
-                    game.getAwayTeam().addWin();
-                    game.getHomeTeam().addLoss();
                 }
 
 
