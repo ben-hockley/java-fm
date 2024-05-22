@@ -26,18 +26,27 @@ public class HomeDefaultDisplay extends JPanel {
 
         JLabel leagueTopGoalscorers = getLeagueTopGoalscorers(userTeam);
 
-        JLabel BlueLabel = new JLabel();
-        BlueLabel.setBackground(Color.BLUE);
-        BlueLabel.setOpaque(true);
+        /*
+        JLabel transferMarket = new JLabel();
+        transferMarket.setBackground(Color.BLUE);
+        transferMarket.setOpaque(true);
 
+
+         */
         JLabel RedLabel = new JLabel();
         RedLabel.setBackground(Color.RED);
         RedLabel.setOpaque(true);
 
+        JLabel transferMarketButton = new JLabel("Transfer Market");
+        transferMarketButton.setHorizontalAlignment(SwingConstants.CENTER);
+        transferMarketButton.setVerticalAlignment(SwingConstants.CENTER);
+        transferMarketButton.setFont(new Font("Arial", Font.PLAIN, 20));
+
+        transferMarketButton.setOpaque(true);
 
         centerLabel.add(teamTopGoalscorers);
         centerLabel.add(leagueTopGoalscorers);
-        centerLabel.add(BlueLabel);
+        centerLabel.add(transferMarketButton);
         centerLabel.add(RedLabel);
 
         this.add(centerLabel, BorderLayout.CENTER);

@@ -222,7 +222,7 @@ public class Team {
 
     public Integer getRating() {
         Player[] startingEleven = getStartingEleven();
-        Integer teamRating = -700;
+        Integer teamRating = -800;
         for (Player player : startingEleven) {
             teamRating += player.getRating();
         }

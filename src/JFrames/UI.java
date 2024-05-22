@@ -53,7 +53,6 @@ public class UI extends JFrame {
         this.setLayout(new BorderLayout());
         //this.setResizable(false);
 
-
         // Add calendar JPanel to the North of the BorderLayout.
         topPanel = new CalendarPanel();
         clock = new dateTime(new Integer[]{1,8}); //pass starting date as args.
