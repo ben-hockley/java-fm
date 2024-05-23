@@ -75,9 +75,6 @@ public class UI extends JFrame {
      */
     private int weekNumber; //0 indexed (so, for example: week 20 == 19)
 
-    private JLabel leagueTopGoalscorers;
-    private JLabel teamTopGoalscorers;
-
     /**
      * 2D ArrayList containing all the seasons fixtures.
      * Each inner ArrayList contains a week's fixtures (10 games).
@@ -128,35 +125,37 @@ public class UI extends JFrame {
         this.setVisible(true);
     }
 
-    private Boolean homeDisplaySet;
+    /**
+     * Updates the calendar to the NORTH of the UI with the current date.
+     * @param dateNumber the current date in the month, for the calendar.
+     * @param userTeam the Team the user is managing.
+     */
+    public void updateCalendar(final Integer dateNumber, final Team userTeam) {
+        if (progressDateButton != null) {
+            progressDateButton.setEnabled(true);
+        }
 
-    public void updateCalendar(final Integer dateNumber, Team userTeam) {
-        if(progressDateButton != null) progressDateButton.setEnabled(true);
-
-        //if (leagueTopGoalscorers!= null) leagueTopGoalscorers.setVisible(true);
-
-        if(transferMarketButton != null) {
+        if (transferMarketButton != null) {
             transferMarketButton.setEnabled(true);
             transferMarketButton.setVisible(true);
         }
 
         topPanel.removeAll();
-        topPanel.add(new JLabel(clock.getMonthName())); //month name to the left of the calendar.
-        homeDisplaySet = false;
+
+        //print name of month to the left of the calendar.
+        topPanel.add(new JLabel(clock.getMonthName()));
 
 
         for (int i = dateNumber - 2; i <= dateNumber + 2; i++) {
             topPanel.add(label(i, userTeam));
         }
         topPanel.revalidate();
-        if (!homeDisplaySet) {
 
-            ArrayList<Team> actualStandings = userTeam.getLeague().getStandings();
+        ArrayList<Team> actualStandings = userTeam.getLeague().getStandings();
 
-            homeDefaultDisplay = HomeDefaultDisplay(actualStandings, userTeam);
-            this.add(homeDefaultDisplay, BorderLayout.CENTER);
-            homeDisplaySet = true;
-        }
+        homeDefaultDisplay = HomeDefaultDisplay(actualStandings, userTeam);
+        this.add(homeDefaultDisplay, BorderLayout.CENTER);
+        this.revalidate();
     }
 
     /**
@@ -166,9 +165,11 @@ public class UI extends JFrame {
      * If the dateNumber is not in the current month, the background is black.
      *
      * @param dateNumber The date to display.
+     * @param userTeam The team the user is managing.
+     *
      * @return The JLabel with the dateNumber as text.
      */
-    public JLabel label(final Integer dateNumber, Team userTeam) {
+    public JLabel label(final Integer dateNumber, final Team userTeam) {
         JLabel label = new JLabel();
         label.setFont(new Font("Arial", Font.PLAIN, 10));
         label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -180,12 +181,18 @@ public class UI extends JFrame {
         JLabel subLabel2 = new JLabel();
 
         if (dateNumber > 0 && dateNumber <= clock.getMonthLength()) {
-            label.setText(dateNumber.toString()); //add the date to the label if in the current month.
+
+            //add the date to the label if in the current month.
+            label.setText(dateNumber.toString());
             if (dateNumber.equals(clock.getDateNumber())) {
-                label.setBackground(Color.BLUE); //set the label to blue when the date is the current date.
+
+                //set the label to blue when the date is the current date.
+                label.setBackground(Color.BLUE);
             }
         } else {
-            label.setBackground(Color.BLACK); // If the date is not in the current month, set the background to black.
+
+            // If date is not in the current month, set the background to black.
+            label.setBackground(Color.BLACK);
         }
 
 
@@ -216,14 +223,9 @@ public class UI extends JFrame {
                 if (dateNumber.equals(clock.getDateNumber())) {
                     this.remove(homeDefaultDisplay);
                     label.setBackground(Color.BLUE);
-                    homeDisplaySet = true;
                     progressDateButton.setEnabled(false);
                     transferMarketButton.setEnabled(false);
                     transferMarketButton.setVisible(false);
-
-                    leagueTopGoalscorers.setVisible(false);
-
-                    //transferMarketButton.removeMouseListener(transferMarketButton.getMouseListeners()[0]);
 
                     if (event instanceof Game) {
                         homeDefaultDisplay.setVisible(false); // Hide the default display
@@ -231,7 +233,7 @@ public class UI extends JFrame {
 
                         JPanel matchdayPanel = HomeGameDisplay(((Game) event).getHomeTeam(), ((Game) event).getAwayTeam(), userTeam, clock, allGameFixtures.get(weekNumber));
 
-                        this.add(matchdayPanel, BorderLayout.CENTER);
+                        this.add(matchdayPanel, BorderLayout.SOUTH);
                         this.setComponentZOrder(matchdayPanel, 0);
                         this.revalidate();
                     }
@@ -258,34 +260,8 @@ public class UI extends JFrame {
         centerLabel.setBackground(Color.BLUE);
         centerLabel.setLayout(new GridLayout(2, 1));
 
-        teamTopGoalscorers = getTeamTopGoalscorers(userTeam);
-
-        leagueTopGoalscorers = getLeagueTopGoalscorers(userTeam);
-
-        JLabel RedLabel = new JLabel();
-        RedLabel.setBackground(Color.RED);
-        RedLabel.setOpaque(true);
-
-        //transferMarketButton = new Button("Transfer Market");
-        //transferMarketButton.setHorizontalAlignment(SwingConstants.CENTER);
-        //transferMarketButton.setVerticalAlignment(SwingConstants.CENTER);
-        //transferMarketButton.setFont(new Font("Arial", Font.PLAIN, 20));
-        //transferMarketButton.setOpaque(true);
-
-        /*
-        transferMarketButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-              new transferMarket();
-            }
-        });
-
-
-
-        transferMarketButton.addActionListener(e -> {
-            new transferMarket();
-        });
-
-         */
+        JLabel teamTopGoalscorers = getTeamTopGoalscorers(userTeam);
+        JLabel leagueTopGoalscorers = getLeagueTopGoalscorers(userTeam);
 
         centerLabel.add(teamTopGoalscorers);
         centerLabel.add(leagueTopGoalscorers);
@@ -618,16 +594,16 @@ public class UI extends JFrame {
         playGameButton.setBackground(Color.BLUE);
         playGameButton.setForeground(Color.WHITE);
 
-        JLabel simulateGameButton = new JLabel("Simulate Game");
-        simulateGameButton.setHorizontalAlignment(SwingConstants.CENTER);
-        simulateGameButton.setVerticalAlignment(SwingConstants.CENTER);
-        simulateGameButton.setFont(new Font("Arial", Font.PLAIN, 20));
-        simulateGameButton.setOpaque(true);
-        simulateGameButton.setBackground(Color.RED);
-        simulateGameButton.setForeground(Color.WHITE);
-        simulateGameButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        JLabel manageTeamButton = new JLabel("Manage Team");
+        manageTeamButton.setHorizontalAlignment(SwingConstants.CENTER);
+        manageTeamButton.setVerticalAlignment(SwingConstants.CENTER);
+        manageTeamButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        manageTeamButton.setOpaque(true);
+        manageTeamButton.setBackground(Color.RED);
+        manageTeamButton.setForeground(Color.WHITE);
+        manageTeamButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                //simulate the game
+                //Open the manageTeam window to make lineup adjustments pre-game.
                 new manageTeam(userTeam);
             }
 
@@ -636,10 +612,10 @@ public class UI extends JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 //simulate the game
                 playGameButton.setEnabled(false);
-                simulateGameButton.setEnabled(false);
+                manageTeamButton.setEnabled(false);
 
                 playGameButton.setVisible(false);
-                simulateGameButton.setVisible(false);
+                manageTeamButton.setVisible(false);
 
                 homeGameDisplayPanel.setVisible(false);
 
@@ -652,7 +628,7 @@ public class UI extends JFrame {
         });
 
         matchdayCenterPanel.add(playGameButton);
-        matchdayCenterPanel.add(simulateGameButton);
+        matchdayCenterPanel.add(manageTeamButton);
         homeGameDisplayPanel.add(matchdayCenterPanel,BorderLayout.CENTER);
 
         //simulate CPU matches
