@@ -1,4 +1,4 @@
-package JFrames;
+package jframes;
 
 import Objects.Player;
 import Objects.Team;

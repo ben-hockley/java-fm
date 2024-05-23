@@ -62,10 +62,6 @@ public class League {
         return name;
     }
 
-    public Integer getNumberOfTeams(){
-        return teams.size();
-    }
-
     public ArrayList<ArrayList<Game>> generateFixtures() {
         ArrayList<ArrayList<Game>> fixtures = fixtureGen.generateFixtureSchedule(teams);
 

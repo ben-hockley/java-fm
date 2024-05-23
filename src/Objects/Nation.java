@@ -2,6 +2,8 @@ package Objects;
 
 import java.util.ArrayList;
 
+import static Objects.Team.getPlayers;
+
 public class Nation {
     private final String nationName;
     private final String nationFlag;
@@ -34,27 +36,7 @@ public class Nation {
     }
 
     public ArrayList<Player> getPlayersByPosition(String position, Integer numberOfPlayers){
-        ArrayList<Player> playersInPosition = new ArrayList<>();
-        for (Player player : players) {
-            if (player.getPosition().equals(position)) {
-                playersInPosition.add(player);
-            }
-        }
-
-        while (playersInPosition.size() > numberOfPlayers) {
-            Integer lowestRating = 100;
-            Player lowestRatedPlayer = null;
-            for (Player player : playersInPosition) {
-
-                if (player.getRating() < lowestRating) {
-                    lowestRating = player.getRating();
-                    lowestRatedPlayer = player;
-                }
-            }
-            playersInPosition.remove(lowestRatedPlayer);
-        }
-
-        return playersInPosition;
+        return getPlayers(position, numberOfPlayers, players);
     }
 
     public Player[] bestStartingEleven(){

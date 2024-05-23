@@ -4,22 +4,25 @@ public class Player {
     private final String firstName;
     private final String lastName;
     private final String position;
-    private Team team;
-    private Nation nationality;
+    private final Team team;
+    private final Nation nationality;
     private Integer rating;
+    private Integer age;
 
     //in season stats.
     private Integer appearances;
     private Integer goals;
 
     public Player(String firstName, String lastName, String position,
-                  Team team, Nation nationality, Integer rating) {
+                  Team team, Nation nationality, Integer rating, Integer age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
         this.team = team;
         this.nationality = nationality;
+
         this.rating = rating;
+        this.age = age;
 
         team.addPlayer(this); // After creating a player, add them to their team.
         nationality.addPlayer(this); // After creating a player, add them to their nation.

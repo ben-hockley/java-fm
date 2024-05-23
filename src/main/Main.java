@@ -1,7 +1,7 @@
 package main;
 
 import data.Data;
-import JFrames.UI;
+import jframes.UI;
 import Objects.Team;
 
 import javax.swing.JFrame;

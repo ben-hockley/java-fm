@@ -3,9 +3,7 @@ package Objects;
 import events.Game;
 
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Team {
     //Team details, these will not change.
@@ -14,13 +12,13 @@ public class Team {
     private final String teamLogo;
 
     //Team properties that can change.
-    private League league;
+    private final League league;
     private Integer points;
     private Integer matchesPlayed;
     private Integer wins;
     private Integer draws;
     private Integer losses;
-    private Integer[] formation; //e.g. 4-4-2 would be [4,4,2], should always be 3 numbers.
+    private final Integer[] formation; //e.g. 4-4-2 would be [4,4,2], should always be 3 numbers.
 
     private Player[] startingEleven;
 
@@ -28,7 +26,7 @@ public class Team {
 
     private ArrayList<Game> fixtures;
 
-    private Color teamColor;
+    private final Color teamColor;
 
 
     public ArrayList<Player> players;
@@ -76,6 +74,10 @@ public class Team {
     //e.g. the CPU could play 4-4-2 and would call getPlayersByPosition("DEF", 4) to get the top 4 defenders.
     //I could advance this function by adding more parameters to players and eliminating injured/suspended players.
     public ArrayList<Player> getPlayersByPosition(String position, Integer numberOfPlayers){
+        return getPlayers(position, numberOfPlayers, players);
+    }
+
+    static ArrayList<Player> getPlayers(String position, Integer numberOfPlayers, ArrayList<Player> players) {
         ArrayList<Player> playersInPosition = new ArrayList<>();
         for (Player player : players) {
             if (player.getPosition().equals(position)) {
@@ -148,11 +150,8 @@ public class Team {
     }
 
     private ArrayList<Player> bestSubs() {
-        ArrayList<Player> subs = new ArrayList<>();
 
-        for (Player player : players) {
-            subs.add(player);
-        }
+        ArrayList<Player> subs = new ArrayList<>(players);
 
         for (Player player : getStartingEleven()) {
             subs.remove(player);
@@ -234,11 +233,8 @@ public class Team {
     }
 
     public ArrayList<Player> getTopGoalscorers(){
-        ArrayList<Player> topGoalscorers = new ArrayList<>();
-        for (Player player : players) {
-            topGoalscorers.add(player);
-        }
-        Collections.sort(topGoalscorers, (o1, o2) -> o2.getGoals().compareTo(o1.getGoals()));
+        ArrayList<Player> topGoalscorers = new ArrayList<>(players);
+        topGoalscorers.sort((o1, o2) -> o2.getGoals().compareTo(o1.getGoals()));
         return topGoalscorers;
     }
 
