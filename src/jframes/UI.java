@@ -99,8 +99,13 @@ public class UI extends JFrame {
 
         // Add calendar JPanel to the NORTH of the BorderLayout.
         topPanel = new CalendarPanel();
-        clock = new dateTime(new Integer[]{1, 8});
+
+
+        int STARTING_DAY = 1;
+        int STARTING_MONTH = 8;
+        clock = new dateTime(new Integer[]{STARTING_DAY, STARTING_MONTH});
         updateCalendar(clock.getDateNumber(), userTeam);
+
         this.add(topPanel, BorderLayout.NORTH);
 
         // Add progressDate Button to the SOUTH of the BorderLayout.
@@ -248,7 +253,6 @@ public class UI extends JFrame {
         JPanel homeDefaultDisplay = new JPanel();
         homeDefaultDisplay.setPreferredSize(new Dimension(1000, 350));
         homeDefaultDisplay.setLayout(new BorderLayout());
-        homeDefaultDisplay.removeAll();
 
         //Title of the team (NORTH)
         homeDefaultDisplay.add(teamTitle(userTeam), BorderLayout.NORTH);
@@ -544,7 +548,7 @@ public class UI extends JFrame {
         homeGameDisplayPanel.setLayout(new BorderLayout());
 
         JLabel teamTitle = new JLabel(homeTeam.getTeamName() + " vs " + awayTeam.getTeamName());
-        homeGameDisplayPanel.add(getTitleBanner(teamTitle), BorderLayout.NORTH);
+        //homeGameDisplayPanel.add(topPanel, BorderLayout.NORTH);
         homeGameDisplayPanel.add(leagueTable(userTeam.getLeague().getStandings()), BorderLayout.WEST);
 
         Team opponent;
