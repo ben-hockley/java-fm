@@ -76,7 +76,7 @@ public class Player {
 
     public void setTeam(Team team) {
         this.team.removePlayer(this); //remove player from current team
-        //this.team.setDefaultStartingElevenandSubs(); //update the current team's lineup to reflect the player leaving.
+        this.team.setDefaultStartingElevenandSubs(); //update the current team's lineup to reflect the player leaving.
 
         this.team = team; //set player's team to new team
 

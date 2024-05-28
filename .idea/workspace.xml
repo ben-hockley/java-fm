@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="transfer market lists all players sorted by value">
+    <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="Player transfers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JFrames/gameSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/gameSimulator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JFrames/transferMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/transferMarket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/League.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/League.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Objects/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Objects/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Data.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +173,7 @@
       <workItem from="1716194618653" duration="20896000" />
       <workItem from="1716290670658" duration="13257000" />
       <workItem from="1716320069929" duration="7333000" />
-      <workItem from="1716913392132" duration="12849000" />
+      <workItem from="1716913392132" duration="15167000" />
     </task>
     <task id="LOCAL-00001" summary="calendar and event types to add to calendar">
       <created>1715611792284</created>
@@ -377,7 +376,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716923946991</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Player transfers">
+      <option name="closed" value="true" />
+      <created>1716930490600</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1716930490600</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -395,7 +402,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updates main JPanel based on the action landed on through the calendar" />
     <MESSAGE value="Scroll panel for league standings on default homepage" />
     <MESSAGE value="new frames when homescreen options selected" />
     <MESSAGE value="Objects Team, Player, Nation, and League designed." />
@@ -420,7 +426,8 @@
     <MESSAGE value="new branch (reset to before UI problems)" />
     <MESSAGE value="re added player ages from main branch and adjusted player object to match" />
     <MESSAGE value="transfer market lists all players sorted by value" />
-    <option name="LAST_COMMIT_MESSAGE" value="transfer market lists all players sorted by value" />
+    <MESSAGE value="Player transfers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Player transfers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

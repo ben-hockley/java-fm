@@ -24,8 +24,7 @@ public class Team {
 
     private Player[] startingEleven;
 
-    private Player[] substitutes;
-    private ArrayList<Player> reserves;
+    private ArrayList<Player> substitutes;
 
     private ArrayList<Game> fixtures;
 
@@ -103,18 +102,7 @@ public class Team {
     public void setDefaultStartingElevenandSubs() {
         startingEleven = bestStartingEleven();
 
-        Player[] bestSubsList = new Player[7];
-
-        for (int i=0; i<7; i++){
-            bestSubsList[i] = bestSubs().get(i);
-        }
-
-        substitutes = bestSubsList;
-
-        this.reserves = bestReserves();
-        for (Player player : reserves) {
-            System.out.println(player.getPlayerName());
-        }
+        substitutes = bestSubs();
     }
 
     //gets the best starting 11 for the team.
@@ -156,43 +144,12 @@ public class Team {
     private ArrayList<Player> bestSubs() {
         ArrayList<Player> subs = new ArrayList<>();
 
-        for (Player player : players) {
-            subs.add(player);
-        }
+        subs.addAll(players);
 
         for (Player player : getStartingEleven()) {
             subs.remove(player);
         }
-        while (subs.size() > 7) {
-            Integer lowestRating = 100;
-            Player lowestRatedPlayer = null;
-            for (Player player : subs) {
-                if (player.getRating() < lowestRating) {
-                    lowestRating = player.getRating();
-                    lowestRatedPlayer = player;
-                }
-            }
-            subs.remove(lowestRatedPlayer);
-        }
         return subs;
-    }
-
-    public ArrayList<Player> bestReserves() {
-        ArrayList<Player> reserves = new ArrayList<>();
-
-        for (Player player : players) {
-            reserves.add(player);
-        }
-
-        for (Player player : getStartingEleven()) {
-            reserves.remove(player);
-        }
-
-        for (Player player : getSubstitutes()) {
-            reserves.remove(player);
-        }
-
-        return reserves;
     }
 
     public String getFormationInText() {
@@ -266,7 +223,7 @@ public class Team {
         return topGoalscorers;
     }
 
-    public Player[] getSubstitutes() {
+    public ArrayList<Player> getSubstitutes() {
         return substitutes;
     }
 
@@ -279,9 +236,9 @@ public class Team {
             }
         }
         //replace playerIn with playerOut in the substitutes.
-        for (int i = 0; i < substitutes.length; i++) {
-            if (substitutes[i] == playerIn) {
-                substitutes[i] = playerOut;
+        for (int i = 0; i < substitutes.size(); i++) {
+            if (substitutes.get(i) == playerIn) {
+                substitutes.set(i, playerOut);
                 break;
             }
         }
@@ -311,12 +268,4 @@ public class Team {
     public void removePlayer(Player player) {
         this.players.remove(player);
     }
-
-    public ArrayList<Player> getReserves() {
-        return reserves;
-    }
-
-    public void setReserves(ArrayList<Player> reserves) {
-        this.reserves = reserves;
-    };
 }

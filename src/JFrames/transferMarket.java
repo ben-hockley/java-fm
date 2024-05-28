@@ -53,8 +53,15 @@ public class transferMarket extends JFrame {
                 int choice = JOptionPane.showConfirmDialog(null, "Buy " + getValueAt(row, 0) + " for " + getValueAt(row, 5) + "?",
                         "Confirmation", JOptionPane.YES_NO_CANCEL_OPTION);
 
+                //sign player for user team
                 if (choice == JOptionPane.YES_OPTION) {
-                    userTeam.getLeague().getPlayerByName((String) getValueAt(row, 0)).setTeam(userTeam);
+                    if (userTeam.getAllPlayers().size() < 23 && userTeam.getLeague().getPlayerByName((String) getValueAt(row, 0)).getTeam().getAllPlayers().size() > 16) {
+                        userTeam.getLeague().getPlayerByName((String) getValueAt(row, 0)).setTeam(userTeam);
+                    } else if (userTeam.getAllPlayers().size() == 23){
+                        JOptionPane.showMessageDialog(null, "You have too many players in your squad. Maximum squad size is 23. You must sell a player before you can buy another.");
+                    } else if (userTeam.getLeague().getPlayerByName((String) getValueAt(row, 0)).getTeam().getAllPlayers().size() <= 16) {
+                        JOptionPane.showMessageDialog(null, "This player is not for sale, their team has too few players.");
+                    }
                 }
 
 

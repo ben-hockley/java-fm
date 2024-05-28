@@ -161,7 +161,7 @@ public class gameSimulator extends JFrame {
             //add the players name to the list of players printed on the starting 11 on the match report.
             homeLineupLabel.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
         }
-        Player[] homeSubs = homeTeam.getSubstitutes();
+        ArrayList<Player> homeSubs = homeTeam.getSubstitutes();
         homeLineupLabel.add(new JLabel("Substitutes:"));
         for (Player player : homeSubs) {
 
@@ -213,7 +213,7 @@ public class gameSimulator extends JFrame {
             //add the players name to the list of players printed on the starting 11 on the match report.
             awayLineupLabel.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
         }
-        Player[] awaySubs = awayTeam.getSubstitutes();
+        ArrayList<Player> awaySubs = awayTeam.getSubstitutes();
         awayLineupLabel.add(new JLabel("Substitutes:"));
         for (Player player : awaySubs) {
 
