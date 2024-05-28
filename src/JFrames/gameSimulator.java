@@ -148,7 +148,7 @@ public class gameSimulator extends JFrame {
         }
 
         JLabel homeLineupLabel = new JLabel();
-        homeLineupLabel.setLayout(new GridLayout(20, 1));
+        homeLineupLabel.setLayout(new GridLayout(25, 1)); // set up the layout so there is space for all players and the formation and substitutes labels.
         homeLineupLabel.setBackground(Color.WHITE);
         homeLineupLabel.setForeground(Color.BLACK);
         homeLineupLabel.setOpaque(true);
@@ -199,7 +199,7 @@ public class gameSimulator extends JFrame {
         }
 
         JLabel awayLineupLabel = new JLabel();
-        awayLineupLabel.setLayout(new GridLayout(20, 1));
+        awayLineupLabel.setLayout(new GridLayout(25, 1)); // set up the layout so there is space for all players and the formation and substitutes labels.
         awayLineupLabel.setBackground(Color.WHITE);
         awayLineupLabel.setForeground(Color.BLACK);
         awayLineupLabel.setOpaque(true);
