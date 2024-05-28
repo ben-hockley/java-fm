@@ -1,5 +1,6 @@
 package JPanels;
 
+import JFrames.manageTeam;
 import JFrames.transferMarket;
 import Objects.Team;
 
@@ -30,20 +31,44 @@ public class HomeDefaultDisplay extends JPanel {
         JLabel leagueTopGoalscorers = getLeagueTopGoalscorers(userTeam);
 
         JLabel BlueLabel = new JLabel();
+        BlueLabel.setLayout(new GridLayout(5, 1));
         BlueLabel.setBackground(Color.BLUE);
         BlueLabel.setForeground(Color.WHITE);
 
-        BlueLabel.setText("press T for transfer market");
+        JLabel tranferMarketPrompt = new JLabel("Press 'T' to open Transfer Market");
+        tranferMarketPrompt.setHorizontalAlignment(SwingConstants.CENTER);
+        tranferMarketPrompt.setVerticalAlignment(SwingConstants.CENTER);
+        tranferMarketPrompt.setFont(new Font("Arial", Font.PLAIN, 20));
+        tranferMarketPrompt.setForeground(Color.WHITE);
+        BlueLabel.add(tranferMarketPrompt);
+
+        JLabel manageTeamPrompt = new JLabel("Press 'M' to manage your team");
+        manageTeamPrompt.setHorizontalAlignment(SwingConstants.CENTER);
+        manageTeamPrompt.setVerticalAlignment(SwingConstants.CENTER);
+        manageTeamPrompt.setFont(new Font("Arial", Font.PLAIN, 20));
+        manageTeamPrompt.setForeground(Color.WHITE);
+        BlueLabel.add(manageTeamPrompt);
         BlueLabel.setFocusable(true);
+
         BlueLabel.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_T) {
-                    System.out.println("Transfer Market");
                     JFrame transferMarket = new transferMarket(userTeam);
                 }
             }
         });
+
+        BlueLabel.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_M) {
+                    System.out.println("Transfer Market");
+                    JFrame manageTeam = new manageTeam(userTeam);
+                }
+            }
+        });
+
         BlueLabel.setOpaque(true);
 
         JLabel RedLabel = new JLabel();
