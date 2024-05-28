@@ -222,7 +222,6 @@ public class Data {
         new Player("Pape", "Sarr", "MID", spurs, senegal, 84, 21);
         new Player("Yves", "Bissouma", "MID", spurs, mali, 84, 27);
         new Player("Sergio", "Bentancur", "MID", spurs, uruguay, 83, 26);
-        new Player("Oliver", "Skipp", "MID", spurs, england, 79, 23);
         new Player("Pierre", "Hojbjerg", "MID", spurs, denmark, 78, 28);
 
         new Player("Hueng-Min", "Son", "FWD", spurs, southKorea, 92, 31);

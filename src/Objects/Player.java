@@ -74,4 +74,14 @@ public class Player {
         return Math.max(actualValue, 1);
     }
 
+    public void setTeam(Team team) {
+        this.team.removePlayer(this); //remove player from current team
+        //this.team.setDefaultStartingElevenandSubs(); //update the current team's lineup to reflect the player leaving.
+
+        this.team = team; //set player's team to new team
+
+        team.addPlayer(this); //add player to new team
+        team.setDefaultStartingElevenandSubs(); //update the new team's lineup to reflect the new signing.
+    }
+
 }

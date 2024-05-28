@@ -100,4 +100,12 @@ public class League {
         playersByValue.sort((o1, o2) -> o2.getValue().compareTo(o1.getValue()));
         return playersByValue;
     }
+    public Player getPlayerByName(String playerName){
+        for (Player player : getAllPlayers()) {
+            if (player.getPlayerName().equals(playerName)){
+                return player;
+            }
+        }
+        return null;
+    }
 }

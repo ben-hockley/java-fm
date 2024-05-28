@@ -1,12 +1,12 @@
 package JFrames;
 
+import Objects.Player;
 import Objects.Team;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.text.NumberFormat;
 import java.util.Locale;
-
 public class transferMarket extends JFrame {
     public transferMarket(Team userTeam) {
         setTitle("Transfer Market");
@@ -24,21 +24,24 @@ public class transferMarket extends JFrame {
         this.add(headingLabel, BorderLayout.NORTH);
 
         //JTable
-        String[] columnNames = {"Name", "Position", "Rating", "Age", "Value"};
+        String[] columnNames = {"Name", "Team", "Position", "Rating", "Age", "Value"};
 
-        String[][] playerDataList = new String[userTeam.getLeague().getAllPlayers().size()][5];
+        String[][] playerDataList = new String[userTeam.getLeague().getAllPlayers().size()][6];
         for (int i=0; i< userTeam.getLeague().getAllPlayers().size(); i++) {
-            String[] playerData = new String[5];
-            playerData[0] = userTeam.getLeague().getPlayersByValue().get(i).getPlayerName();
-            playerData[1] = userTeam.getLeague().getPlayersByValue().get(i).getPosition();
-            playerData[2] = String.valueOf(userTeam.getLeague().getPlayersByValue().get(i).getRating());
-            playerData[3] = String.valueOf(userTeam.getLeague().getPlayersByValue().get(i).getAge());
-            playerData[4] = "£" + NumberFormat.getInstance(Locale.US).format(userTeam.getLeague().getPlayersByValue().get(i).getValue());
+            String[] playerData = new String[6];
+
+            Player player = userTeam.getLeague().getPlayersByValue().get(i);
+            playerData[0] = player.getPlayerName();
+            playerData[1] = player.getTeam().getTeamName();
+
+            playerData[2] = player.getPosition();
+
+            playerData[3] = String.valueOf(player.getRating());
+            playerData[4] = String.valueOf(player.getAge());
+            playerData[5] = "£" + NumberFormat.getInstance(Locale.US).format(player.getValue());
 
             playerDataList[i] = playerData;
         }
-
-        JTable allPlayers = new JTable();
 
         //make the table not editable
         DefaultTableModel tableModel = new DefaultTableModel(playerDataList, columnNames) {
@@ -46,11 +49,21 @@ public class transferMarket extends JFrame {
             @Override
             public boolean isCellEditable(int row, int column) {
                 //all cells false
-                return false;
+                System.out.println(getValueAt(row, 0));
+                int choice = JOptionPane.showConfirmDialog(null, "Buy " + getValueAt(row, 0) + " for " + getValueAt(row, 5) + "?",
+                        "Confirmation", JOptionPane.YES_NO_CANCEL_OPTION);
+
+                if (choice == JOptionPane.YES_OPTION) {
+                    userTeam.getLeague().getPlayerByName((String) getValueAt(row, 0)).setTeam(userTeam);
+                }
+
+
+                return false; //makes cell uneditable
             }
+
         };
 
-        allPlayers.setModel(tableModel);
+        JTable allPlayers = new JTable(tableModel);
         JScrollPane sp = new JScrollPane(allPlayers);
         this.add(sp, BorderLayout.CENTER);
     }

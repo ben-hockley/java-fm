@@ -25,6 +25,7 @@ public class Team {
     private Player[] startingEleven;
 
     private Player[] substitutes;
+    private ArrayList<Player> reserves;
 
     private ArrayList<Game> fixtures;
 
@@ -109,6 +110,11 @@ public class Team {
         }
 
         substitutes = bestSubsList;
+
+        this.reserves = bestReserves();
+        for (Player player : reserves) {
+            System.out.println(player.getPlayerName());
+        }
     }
 
     //gets the best starting 11 for the team.
@@ -169,6 +175,24 @@ public class Team {
             subs.remove(lowestRatedPlayer);
         }
         return subs;
+    }
+
+    public ArrayList<Player> bestReserves() {
+        ArrayList<Player> reserves = new ArrayList<>();
+
+        for (Player player : players) {
+            reserves.add(player);
+        }
+
+        for (Player player : getStartingEleven()) {
+            reserves.remove(player);
+        }
+
+        for (Player player : getSubstitutes()) {
+            reserves.remove(player);
+        }
+
+        return reserves;
     }
 
     public String getFormationInText() {
@@ -283,4 +307,16 @@ public class Team {
     public Color getTeamColor() {
         return teamColor;
     }
+
+    public void removePlayer(Player player) {
+        this.players.remove(player);
+    }
+
+    public ArrayList<Player> getReserves() {
+        return reserves;
+    }
+
+    public void setReserves(ArrayList<Player> reserves) {
+        this.reserves = reserves;
+    };
 }
