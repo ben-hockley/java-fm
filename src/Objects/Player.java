@@ -62,4 +62,16 @@ public class Player {
     public Team getTeam() {
         return team;
     }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public Integer getValue() {
+        int actualValue = ((rating - 70) * (35 - age)) * 500000;
+
+        // Ensure that the player's value is at least 1.
+        return Math.max(actualValue, 1);
+    }
+
 }

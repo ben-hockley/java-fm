@@ -83,14 +83,21 @@ public class League {
         return fixtures;
     }
 
-    public ArrayList<Player> getTopGoalscorers(){
-        ArrayList<Player> topGoalscorers = new ArrayList<>();
+    public ArrayList<Player> getAllPlayers(){
+        ArrayList<Player> allPlayers = new ArrayList<>();
         for (Team team : teams) {
-            for (Player player : team.getAllPlayers()) {
-                topGoalscorers.add(player);
-            }
+            allPlayers.addAll(team.getAllPlayers());
         }
+        return allPlayers;
+    }
+    public ArrayList<Player> getTopGoalscorers(){
+        ArrayList<Player> topGoalscorers = getAllPlayers();
         topGoalscorers.sort((o1, o2) -> o2.getGoals().compareTo(o1.getGoals()));
         return topGoalscorers;
+    }
+    public ArrayList<Player> getPlayersByValue(){
+        ArrayList<Player> playersByValue = getAllPlayers();
+        playersByValue.sort((o1, o2) -> o2.getValue().compareTo(o1.getValue()));
+        return playersByValue;
     }
 }

@@ -1,9 +1,12 @@
 package JPanels;
 
+import JFrames.transferMarket;
 import Objects.Team;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class HomeDefaultDisplay extends JPanel {
@@ -28,6 +31,19 @@ public class HomeDefaultDisplay extends JPanel {
 
         JLabel BlueLabel = new JLabel();
         BlueLabel.setBackground(Color.BLUE);
+        BlueLabel.setForeground(Color.WHITE);
+
+        BlueLabel.setText("press T for transfer market");
+        BlueLabel.setFocusable(true);
+        BlueLabel.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_T) {
+                    System.out.println("Transfer Market");
+                    JFrame transferMarket = new transferMarket(userTeam);
+                }
+            }
+        });
         BlueLabel.setOpaque(true);
 
         JLabel RedLabel = new JLabel();
