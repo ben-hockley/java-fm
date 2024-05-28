@@ -69,7 +69,7 @@ public class League {
     public ArrayList<ArrayList<Game>> generateFixtures() {
         ArrayList<ArrayList<Game>> fixtures = fixtureGen.generateFixtureSchedule(teams);
 
-        int weekNumber = 1;
+
 
         for (ArrayList<Game> week : fixtures) {
             for (Game game : week){
@@ -78,7 +78,6 @@ public class League {
                 game.getHomeTeam().addFixture(game);
                 game.getAwayTeam().addFixture(game);
             }
-            weekNumber++;
         }
         return fixtures;
     }
