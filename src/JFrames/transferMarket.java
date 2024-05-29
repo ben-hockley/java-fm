@@ -54,23 +54,48 @@ public class transferMarket extends JFrame {
             public boolean isCellEditable(int row, int column) {
                 //clicking on a cell offers the option to buy the player.
 
-                //blocks user from buying their own player.
+                //if the player is not in the user team, offer to buy the player.
                 if (getValueAt(row, 1) != userTeam.getTeamName()) {
-                    int confirmPlayerPurchase = JOptionPane.showConfirmDialog(null, "Buy " + getValueAt(row, 0) + " for " + getValueAt(row, 5) + "?",
-                            "Confirm player purchase", JOptionPane.YES_NO_CANCEL_OPTION);
 
-                    //sign player for user team
-                    if (confirmPlayerPurchase == JOptionPane.YES_OPTION) {
-                        if (userTeam.getAllPlayers().size() < 23 && userTeam.getLeague().getPlayerByName((String) getValueAt(row, 0)).getTeam().getAllPlayers().size() > 16) {
-                            userTeam.getLeague().getPlayerByName((String) getValueAt(row, 0)).setTeam(userTeam);
-                            JOptionPane.showConfirmDialog(null,getValueAt(row, 0) + " to " + userTeam.getTeamName() + " from " + getValueAt(row,1) + " for " + getValueAt(row,5) + ", Here we go!" , "New Signing", JOptionPane.DEFAULT_OPTION);
-                        } else if (userTeam.getAllPlayers().size() == 23){
-                            JOptionPane.showMessageDialog(null, "You have too many players in your squad. Maximum squad size is 23. You must sell a player before you can buy another.");
-                        } else if (userTeam.getLeague().getPlayerByName((String) getValueAt(row, 0)).getTeam().getAllPlayers().size() <= 16) {
-                            JOptionPane.showMessageDialog(null, "This player is not for sale, their team has too few players.");
+                    Team sellingTeam = userTeam.getLeague().getTeamByName((String) getValueAt(row, 1));
+                    Player transferTarget = userTeam.getLeague().getPlayerByName((String) getValueAt(row, 0));
+
+                    if (sellingTeam.getNumberOfPlayers() <= 16) {
+                        //block transfer if the selling team has too few players.
+                        JOptionPane.showMessageDialog(null, "This player is not for sale, their team has too few players.");
+                    } else if (userTeam.getNumberOfPlayers() == 23){
+                        //block transfer if the user team has too many players.
+                        JOptionPane.showMessageDialog(null, "You have too many players in your squad. Maximum squad size is 23. You must sell a player before you can buy another.");
+                    } else if (transferTarget.getPosition().equals("GK") && sellingTeam.getNumberOfGoalkeepers() <= 2){
+                        //block transfer if the target is a goalkeeper, and selling team has too few goalkeepers
+                        JOptionPane.showMessageDialog(null, "This player is not for sale, their team has too few goalkeepers.");
+                    } else if (transferTarget.getPosition().equals("DEF") && sellingTeam.getNumberOfDefenders() <= 4){
+                        //block transfer if the target is a defender, and selling team has too few defenders
+                        JOptionPane.showMessageDialog(null, "This player is not for sale, their team has too few defenders.");
+                    } else if (transferTarget.getPosition().equals("MID") && sellingTeam.getNumberOfMidfielders() <= 3){
+                        //block transfer if the target is a midfielder, and the selling team has too few midfielders
+                        JOptionPane.showMessageDialog(null, "This player is not for sale, their team has too few midfielders.");
+                    } else if (transferTarget.getPosition().equals("FWD") && sellingTeam.getNumberOfForwards() <= 3){
+                        //block transfer if selling team has too few forwards
+                        JOptionPane.showMessageDialog(null, "This player is not for sale, their team has too few forwards.");
+                    }
+
+                    //if all conditions are met, ask the user to confirm the purchase.
+                    else {
+                        int confirmPlayerPurchase = JOptionPane.showConfirmDialog(null, "Buy " + transferTarget.getPlayerName() + " for " + transferTarget.getValue() + "?",
+                                "Confirm player purchase", JOptionPane.YES_NO_CANCEL_OPTION);
+
+                        //sign player for user team
+                        if (confirmPlayerPurchase == JOptionPane.YES_OPTION) {
+                            transferTarget.setTeam(userTeam);
+                            JOptionPane.showConfirmDialog(null,transferTarget.getPlayerName() + " to " + userTeam.getTeamName() + " from " + sellingTeam.getTeamName() + " for " + transferTarget.getValue() + ", Here we go!" , "New Signing", JOptionPane.DEFAULT_OPTION);
                         }
                     }
-                } else {
+                    sellingTeam = null;
+                }
+
+                //if the player is from the user team, offer to sell the player.
+                else {
                     int confirmPlayerTransferList = JOptionPane.showConfirmDialog(null, "Place " + getValueAt(row, 0) + " on the transfer list?" ,
                             "Confirm player transfer list", JOptionPane.YES_NO_CANCEL_OPTION);
 
@@ -79,8 +104,8 @@ public class transferMarket extends JFrame {
                         //generate random team to buy the player.
                         Team buyingTeam = userTeam.getLeague().getRandomTeam();
 
-                        //get new buying team if random team generated is the user team, or if the buying team has too many players.
-                        while (buyingTeam == userTeam || buyingTeam.getAllPlayers().size() >= 23) {
+                        //generate new buying team if random team generated is the user team, or if the buying team has too many players.
+                        while (buyingTeam == userTeam || buyingTeam.getNumberOfPlayers() >= 23) {
                             buyingTeam = userTeam.getLeague().getRandomTeam();
                         }
 
@@ -89,13 +114,27 @@ public class transferMarket extends JFrame {
 
                         //sell player
                         if (confirmPlayerSale == JOptionPane.YES_OPTION) {
-                            if (userTeam.getAllPlayers().size() <= 16) {
+                            Player playerForSale = userTeam.getLeague().getPlayerByName((String) getValueAt(row, 0));
+
+                            if (userTeam.getNumberOfPlayers() <= 16) {
                                 //block sale if player squad is too small.
                                 JOptionPane.showMessageDialog(null, "You must have at least 17 players in your squad to sell a player.");
+                            } else if (playerForSale.getPosition().equals("GK") && userTeam.getNumberOfGoalkeepers() <= 2){
+                                //block sale if player is a goalkeeper and user team has too few goalkeepers.
+                                JOptionPane.showMessageDialog(null, "Transfer blocked, not enough Goalkeepers, you must have at least 2 goalkeepers in your squad.");
+                            } else if (playerForSale.getPosition().equals("DEF") && userTeam.getNumberOfDefenders() <= 4){
+                                //block sale if player is a defender and user team has too few defenders.
+                                JOptionPane.showMessageDialog(null, "Transfer blocked, not enough Defenders, you must have at least 4 defenders in your squad.");
+                            } else if (playerForSale.getPosition().equals("MID") && userTeam.getNumberOfMidfielders() <= 3){
+                                //block sale if player is a midfielder and user team has too few midfielders.
+                                JOptionPane.showMessageDialog(null, "Transfer blocked, not enough Midfielders, you must have at least 3 midfielders in your squad.");
+                            } else if (playerForSale.getPosition().equals("FWD") && userTeam.getNumberOfForwards() <= 3){
+                                //block sale if player is a forward and user team has too few forwards.
+                                JOptionPane.showMessageDialog(null, "Transfer blocked, not enough Forwards, you must have at least 3 forwards in your squad.");
                             } else {
-                                //transfer player to the buying team.
-                                userTeam.getLeague().getPlayerByName((String) getValueAt(row, 0)).setTeam(buyingTeam);
-                                JOptionPane.showConfirmDialog(null,getValueAt(row, 0) + " to " + buyingTeam.getTeamName() + " from " + userTeam.getTeamName() + " for " + getValueAt(row,5) + ", Here we go!" , "Player Sold", JOptionPane.DEFAULT_OPTION);
+                                //transfer player to the buying team if all conditions are met.
+                                playerForSale.setTeam(buyingTeam);
+                                JOptionPane.showConfirmDialog(null,playerForSale.getPlayerName() + " to " + buyingTeam.getTeamName() + " from " + userTeam.getTeamName() + " for " + getValueAt(row,5) + ", Here we go!" , "Player Sold", JOptionPane.DEFAULT_OPTION);
                             }
                         }
 

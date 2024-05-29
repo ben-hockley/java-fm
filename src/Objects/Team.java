@@ -268,4 +268,48 @@ public class Team {
     public void removePlayer(Player player) {
         this.players.remove(player);
     }
+
+    public Integer getNumberOfPlayers() {
+        return players.size();
+    }
+
+    public Integer getNumberOfGoalkeepers() {
+        Integer numberOfGoalkeepers = 0;
+        for (Player player : players) {
+            if (player.getPosition().equals("GK")) {
+                numberOfGoalkeepers++;
+            }
+        }
+        return numberOfGoalkeepers;
+    }
+
+    public Integer getNumberOfDefenders() {
+        Integer numberOfDefenders = 0;
+        for (Player player : players) {
+            if (player.getPosition().equals("DEF")) {
+                numberOfDefenders++;
+            }
+        }
+        return numberOfDefenders;
+    }
+
+    public Integer getNumberOfMidfielders() {
+        Integer numberOfMidfielders = 0;
+        for (Player player : players) {
+            if (player.getPosition().equals("MID")) {
+                numberOfMidfielders++;
+            }
+        }
+        return numberOfMidfielders;
+    }
+
+    public Integer getNumberOfForwards() {
+        Integer numberOfForwards = 0;
+        for (Player player : players) {
+            if (player.getPosition().equals("FWD")) {
+                numberOfForwards++;
+            }
+        }
+        return numberOfForwards;
+    }
 }
