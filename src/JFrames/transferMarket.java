@@ -91,7 +91,6 @@ public class transferMarket extends JFrame {
                             JOptionPane.showConfirmDialog(null,transferTarget.getPlayerName() + " to " + userTeam.getTeamName() + " from " + sellingTeam.getTeamName() + " for " + transferTarget.getValue() + ", Here we go!" , "New Signing", JOptionPane.DEFAULT_OPTION);
                         }
                     }
-                    sellingTeam = null;
                 }
 
                 //if the player is from the user team, offer to sell the player.
