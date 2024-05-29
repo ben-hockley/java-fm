@@ -3,6 +3,7 @@ package JPanels;
 import JFrames.manageTeam;
 import JFrames.transferMarket;
 import Objects.Team;
+import Objects.dateTime;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class HomeDefaultDisplay extends JPanel {
-    public HomeDefaultDisplay(ArrayList<Team> leagueStandings, Team userTeam) {
+    public HomeDefaultDisplay(ArrayList<Team> leagueStandings, Team userTeam, dateTime clock) {
         this.setPreferredSize(new Dimension(1000,350));
         this.setLayout(new BorderLayout());
         this.removeAll();
@@ -54,7 +55,12 @@ public class HomeDefaultDisplay extends JPanel {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_T) {
-                    JFrame transferMarket = new transferMarket(userTeam);
+
+                    if (clock.getMonthNumber().equals(1) || clock.getMonthLength().equals(6) || clock.getMonthNumber().equals(7) || clock.getMonthNumber().equals(8)){
+                        JFrame transferMarket = new transferMarket(userTeam);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Transfer window shut, you can buy and sell players in January, June, July and August.");
+                    }
                 }
             }
         });
@@ -63,7 +69,6 @@ public class HomeDefaultDisplay extends JPanel {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_M) {
-                    System.out.println("Transfer Market");
                     JFrame manageTeam = new manageTeam(userTeam);
                 }
             }

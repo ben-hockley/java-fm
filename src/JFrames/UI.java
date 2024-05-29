@@ -92,7 +92,7 @@ public class UI extends JFrame {
 
             ArrayList<Team> actualStandings = userTeam.getLeague().getStandings();
 
-            homeDefaultDisplay = new HomeDefaultDisplay(actualStandings, userTeam);
+            homeDefaultDisplay = new HomeDefaultDisplay(actualStandings, userTeam, clock);
             this.add(homeDefaultDisplay, BorderLayout.CENTER);
             homeDisplaySet = true;
         }
