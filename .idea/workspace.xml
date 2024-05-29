@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="Changed match report so space for squads of different sizes">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="removed unneccesary variable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JPanels/HomeDefaultDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JPanels/HomeDefaultDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JFrames/manageTeam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/manageTeam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JFrames/transferMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/transferMarket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Objects/League.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/League.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,36 +57,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.Main.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.fixtureGen.executor": "Run",
-    "Application.main.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "redo-ui-branch",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/c23037255/IdeaProjects/IdeaProjects/BroCode/Panels",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.fixtureGen.executor&quot;: &quot;Run&quot;,
+    &quot;Application.main.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;redo-ui-branch&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/c23037255/IdeaProjects/IdeaProjects/BroCode/Panels&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
@@ -171,7 +172,8 @@
       <workItem from="1716194618653" duration="20896000" />
       <workItem from="1716290670658" duration="13257000" />
       <workItem from="1716320069929" duration="7333000" />
-      <workItem from="1716913392132" duration="16540000" />
+      <workItem from="1716913392132" duration="16833000" />
+      <workItem from="1716970075862" duration="3199000" />
     </task>
     <task id="LOCAL-00001" summary="calendar and event types to add to calendar">
       <created>1715611792284</created>
@@ -398,7 +400,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716933595713</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Key listeners to open transfer market and team managment from homepage">
+      <option name="closed" value="true" />
+      <created>1716934066956</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1716934066956</updated>
+    </task>
+    <task id="LOCAL-00031" summary="removed unneccesary variable">
+      <option name="closed" value="true" />
+      <created>1716934193943</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1716934193943</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -416,8 +434,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Objects Team, Player, Nation, and League designed." />
-    <MESSAGE value="static data class and search function to get best players available" />
     <MESSAGE value="Two home displays and various back-end object based changes" />
     <MESSAGE value="removed buttons from home and added data for all 20 premier league teams + their players" />
     <MESSAGE value="Fixture generator (League games only)" />
@@ -441,7 +457,9 @@
     <MESSAGE value="Player transfers" />
     <MESSAGE value="Added constraints and display all players in team management" />
     <MESSAGE value="Changed match report so space for squads of different sizes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed match report so space for squads of different sizes" />
+    <MESSAGE value="Key listeners to open transfer market and team managment from homepage" />
+    <MESSAGE value="removed unneccesary variable" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed unneccesary variable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -107,4 +107,7 @@ public class League {
         }
         return null;
     }
+    public Team getRandomTeam(){
+        return teams.get((int) (Math.random() * teams.size()));
+    }
 }

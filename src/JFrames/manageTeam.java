@@ -12,6 +12,7 @@ public class manageTeam extends JFrame {
     public manageTeam(Team userTeam) {
         this.setSize(500,800);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setTitle("Manage Team");
         this.setLayout(new GridLayout(1,2));
 
         JPanel startingElevenPanel = new JPanel();
