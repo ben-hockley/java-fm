@@ -312,4 +312,12 @@ public class Team {
         }
         return numberOfForwards;
     }
+
+
+    //can be used for promotion, relegation.
+    public void setNewLeague(League newLeague){
+        league.removeTeam(this);
+        this.league = newLeague;
+        newLeague.addTeam(this);
+    }
 }

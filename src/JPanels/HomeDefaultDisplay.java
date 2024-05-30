@@ -64,7 +64,6 @@ public class HomeDefaultDisplay extends JPanel {
                 }
             }
         });
-
         BlueLabel.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {

@@ -15,7 +15,7 @@ public class gameSimulator extends JFrame {
      * @param homeTeam the home team in the game simulated.
      * @param awayTeam the away team in the game simulated.
      */
-    public gameSimulator(Team homeTeam, Team awayTeam) {
+    public gameSimulator(Team homeTeam, Team awayTeam, Team userTeam) {
         this.setSize(500,800);
         this.setTitle("Match report: " + homeTeam.getTeamName() + " vs " + awayTeam.getTeamName());
         JPanel pitch = new JPanel(new BorderLayout());
@@ -236,5 +236,10 @@ public class gameSimulator extends JFrame {
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setVisible(true);
+
+        if (userTeam.getMatchesPlayed() == 38) {
+            //End of season
+            JFrame endOfSeasonSummary = new endOfSeasonSummary(userTeam);
+        }
     }
 }

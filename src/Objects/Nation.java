@@ -106,4 +106,8 @@ public class Nation {
         }
         return null;
     }
+
+    public void removePlayer(Player player){
+        this.players.remove(player);
+    }
 }

@@ -196,7 +196,7 @@ public class HomeGameDisplay extends JPanel {
                 manageTeamButton.removeMouseListener(manageTeamButton.getMouseListeners()[0]);
 
                 //open a game simulator, to simulate the game and display the match report.
-                JFrame gameSimulator = new gameSimulator(homeTeam, awayTeam);
+                JFrame gameSimulator = new gameSimulator(homeTeam, awayTeam, userTeam);
 
                 clock.progressDate();
                 ui.updateCalendar(clock.getDateNumber(), userTeam);

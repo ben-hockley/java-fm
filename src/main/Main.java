@@ -1,5 +1,6 @@
 package main;
 
+import JFrames.endOfSeasonSummary;
 import data.Data;
 import JFrames.UI;
 import Objects.Team;
@@ -24,6 +25,8 @@ public class Main {
 
         JFrame userUI = new UI(userTeam);
         userUI.setTitle("Football Manager 2024");
+
+        new endOfSeasonSummary(userTeam);
     }
 }
 

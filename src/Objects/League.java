@@ -110,4 +110,8 @@ public class League {
     public Team getRandomTeam(){
         return teams.get((int) (Math.random() * teams.size()));
     }
+
+    public void removeTeam(Team team){
+        this.teams.remove(team);
+    }
 }

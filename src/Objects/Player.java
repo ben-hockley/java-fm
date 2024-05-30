@@ -1,5 +1,7 @@
 package Objects;
 
+import data.Data;
+
 public class Player {
     private final String firstName;
     private final String lastName;
@@ -82,6 +84,23 @@ public class Player {
 
         team.addPlayer(this); //add player to new team
         team.setDefaultStartingElevenandSubs(); //update the new team's lineup to reflect the new signing.
+    }
+
+    public void increaseAge(Integer years){
+        this.age += years;
+    }
+
+    public void retirePlayer(){
+        //create regen to replace retired player
+        String regenFirstName = Data.listOfFirstNames[(int) (Math.random() * Data.listOfFirstNames.length)];
+        String regenLastName = Data.listOfLastNames[(int) (Math.random() * Data.listOfLastNames.length)];
+
+        Player regen = new Player(regenFirstName, regenLastName, position, team, nationality, 75, 18);
+
+
+        this.team.removePlayer(this);
+        this.team.setDefaultStartingElevenandSubs();
+        this.nationality.removePlayer(this);
     }
 
 }

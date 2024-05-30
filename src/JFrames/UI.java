@@ -8,6 +8,8 @@ import JPanels.HomeGameDisplay;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import Objects.*;
@@ -68,6 +70,28 @@ public class UI extends JFrame {
             clock.progressDate();
             updateCalendar(clock.getDateNumber(), userTeam);
         });
+        progressDateButton.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_T) {
+
+                    if (clock.getMonthNumber().equals(1) || clock.getMonthLength().equals(6) || clock.getMonthNumber().equals(7) || clock.getMonthNumber().equals(8)){
+                        JFrame transferMarket = new transferMarket(userTeam);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Transfer window shut, you can buy and sell players in January, June, July and August.");
+                    }
+                }
+            }
+        });
+        progressDateButton.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_M) {
+                    JFrame manageTeam = new manageTeam(userTeam);
+                }
+            }
+        });
+        progressDateButton.setFocusable(true);
         this.add(progressDateButton, BorderLayout.SOUTH);
 
 
