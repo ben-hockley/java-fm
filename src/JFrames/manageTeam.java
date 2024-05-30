@@ -23,7 +23,7 @@ public class manageTeam extends JFrame {
         ButtonGroup startingEleven = new ButtonGroup();
 
         for (Player player : userTeam.getStartingEleven()) {
-            JRadioButton playerButton = new JRadioButton(player.getPlayerName());
+            JRadioButton playerButton = new JRadioButton(player.getPlayerName() + " - " + player.getRating() + " (" + player.getAge() + "YRS)");
 
             if (Objects.equals(player.getPosition(), "GK")){
                 playerButton.setBackground(Color.ORANGE);
@@ -49,7 +49,7 @@ public class manageTeam extends JFrame {
         ButtonGroup substitutes = new ButtonGroup();
 
         for (Player player : userTeam.getSubstitutes()) {
-            JRadioButton playerButton = new JRadioButton(player.getPlayerName());
+            JRadioButton playerButton = new JRadioButton(player.getPlayerName() + " - " + player.getRating() + " (" + player.getAge() + "YRS)");
 
             if (Objects.equals(player.getPosition(), "GK")){
                 playerButton.setBackground(Color.ORANGE);

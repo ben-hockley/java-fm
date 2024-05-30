@@ -23,6 +23,16 @@ public class endOfSeasonSummary extends JFrame {
         for (Player player : userTeam.getLeague().getAllPlayers()){
             player.increaseAge(1);
 
+            //increase rating for young players
+            if (player.getAge() <= 24){
+                player.increaseRating((int) (Math.random() * 4));
+            }
+
+            //decrease rating for old players
+            if (player.getAge() >= 30){
+                player.decreaseRating((int) (Math.random() * 4));
+            }
+
             //if player is 35 or above, 50% chance the player retires
             if (player.getAge() >= 35){
                 int retirementChance = (int) Math.round(Math.random());
@@ -30,6 +40,8 @@ public class endOfSeasonSummary extends JFrame {
                 if (retirementChance == 1){
                     System.out.println(player.getPlayerName() + " retires, aged " + player.getAge());
                     retiringPlayers.add(player);
+
+                    //removes the player and replaces them with a regen
                     player.retirePlayer();
                 }
             }

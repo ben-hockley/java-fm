@@ -103,4 +103,12 @@ public class Player {
         this.nationality.removePlayer(this);
     }
 
+    public void increaseRating(Integer rating){
+        this.rating += rating;
+    }
+
+    public void decreaseRating(Integer rating){
+        this.rating -= rating;
+    }
+
 }
