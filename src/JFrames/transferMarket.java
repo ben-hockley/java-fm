@@ -82,13 +82,13 @@ public class transferMarket extends JFrame {
 
                     //if all conditions are met, ask the user to confirm the purchase.
                     else {
-                        int confirmPlayerPurchase = JOptionPane.showConfirmDialog(null, "Buy " + transferTarget.getPlayerName() + " for " + transferTarget.getValue() + "?",
+                        int confirmPlayerPurchase = JOptionPane.showConfirmDialog(null, "Buy " + transferTarget.getPlayerName() + " for  £" + NumberFormat.getInstance(Locale.US).format(transferTarget.getValue()) + "?",
                                 "Confirm player purchase", JOptionPane.YES_NO_CANCEL_OPTION);
 
                         //sign player for user team
                         if (confirmPlayerPurchase == JOptionPane.YES_OPTION) {
                             transferTarget.setTeam(userTeam);
-                            JOptionPane.showConfirmDialog(null,transferTarget.getPlayerName() + " to " + userTeam.getTeamName() + " from " + sellingTeam.getTeamName() + " for " + transferTarget.getValue() + ", Here we go!" , "New Signing", JOptionPane.DEFAULT_OPTION);
+                            JOptionPane.showConfirmDialog(null,transferTarget.getPlayerName() + " to " + userTeam.getTeamName() + " from " + sellingTeam.getTeamName() + " for  £" + NumberFormat.getInstance(Locale.US).format(transferTarget.getValue()) + ", Here we go!" , "New Signing", JOptionPane.DEFAULT_OPTION);
                         }
                     }
                 }

@@ -56,7 +56,7 @@ public class HomeDefaultDisplay extends JPanel {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_T) {
 
-                    if (clock.getMonthNumber().equals(1) || clock.getMonthLength().equals(6) || clock.getMonthNumber().equals(7) || clock.getMonthNumber().equals(8)){
+                    if (clock.getMonthNumber().equals(1) || clock.getMonthNumber().equals(6) || clock.getMonthNumber().equals(7) || clock.getMonthNumber().equals(8)){
                         JFrame transferMarket = new transferMarket(userTeam);
                     } else {
                         JOptionPane.showMessageDialog(null, "Transfer window shut, you can buy and sell players in January, June, July and August.");

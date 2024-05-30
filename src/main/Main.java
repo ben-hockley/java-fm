@@ -25,8 +25,6 @@ public class Main {
 
         JFrame userUI = new UI(userTeam);
         userUI.setTitle("Football Manager 2024");
-
-        new endOfSeasonSummary(userTeam);
     }
 }
 

@@ -745,7 +745,7 @@ public class Data {
 
         new Player("Teden", "Mengi", "DEF", luton, england, 82, 22);
         new Player("Tom", "Lockyer", "DEF", luton, wales, 78, 29);
-        new Player("Amari'i", "Bell", "DEF", luton, jamaica, 75, 30);
+        new Player("Amari i", "Bell", "DEF", luton, jamaica, 75, 30);
         new Player("Mads", "Andersen", "DEF", luton, denmark, 74, 26);
         new Player("Gabriel", "Osho", "DEF", luton, nigeria, 74, 25);
         new Player("Dan", "Potts", "DEF", luton, england, 72, 30);

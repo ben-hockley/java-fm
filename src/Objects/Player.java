@@ -111,4 +111,9 @@ public class Player {
         this.rating -= rating;
     }
 
+    public void resetStats(){
+        this.appearances = 0;
+        this.goals = 0;
+    }
+
 }

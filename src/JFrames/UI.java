@@ -34,15 +34,10 @@ public class UI extends JFrame {
     private final Button progressDateButton; //Button to progress the date. (South)
     private JPanel homeDefaultDisplay;
 
-    private int weekNumber; //0 indexed (so, for example: week 20 == 19)
-
     ArrayList<ArrayList<Game>> allGameFixtures;
-
-    //String[] testStandings = {"1. Sheffield Wednesday", "2. Manchester United", "3. Liverpool", "4. Chelsea", "5. Arsenal"};
     //constructor to initialize homepage.
     public UI(Team userTeam) {
 
-        weekNumber = -1; //adds 1 to weekNumber for each set of results, so first index queried is 0.
         allGameFixtures = Data.england.getLeagueByTier(1).generateFixtures();
 
         ArrayList<Game> fixtures = userTeam.getFixtures();
@@ -179,8 +174,7 @@ public class UI extends JFrame {
                     progressDateButton.setEnabled(false);
                     if (event instanceof Game) {
                         homeDefaultDisplay.setVisible(false); // Hide the default display
-                        weekNumber += 1;
-                        cpuGames = allGameFixtures.get(weekNumber);
+                        cpuGames = allGameFixtures.get(userTeam.getMatchesPlayed());
                         this.add(new HomeGameDisplay(((Game) event).getHomeTeam(),((Game) event).getAwayTeam(), userTeam, clock, this, cpuGames), BorderLayout.CENTER);
                         this.revalidate();
                     }
