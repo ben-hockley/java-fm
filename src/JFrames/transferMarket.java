@@ -2,6 +2,8 @@ package JFrames;
 
 import Objects.Player;
 import Objects.Team;
+import data.Data;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -28,13 +30,13 @@ public class transferMarket extends JFrame {
         String[] columnNames = {"Name", "Team", "Position", "Rating", "Age", "Value"};
 
         //2D array to store player data for the table.
-        String[][] playerDataList = new String[userTeam.getLeague().getAllPlayers().size()][6];
+        String[][] playerDataList = new String[Data.world.getAllPlayers().size()][6];
 
         //add all players from the league to playerDataList, which stores player data for the table.
-        for (int i=0; i< userTeam.getLeague().getAllPlayers().size(); i++) {
+        for (int i=0; i< Data.world.getAllPlayers().size(); i++) {
             String[] playerData = new String[6];
 
-            Player player = userTeam.getLeague().getPlayersByValue().get(i);
+            Player player = Data.world.getPlayersByValue().get(i);
             playerData[0] = player.getPlayerName();
             playerData[1] = player.getTeam().getTeamName();
 
@@ -57,8 +59,8 @@ public class transferMarket extends JFrame {
                 //if the player is not in the user team, offer to buy the player.
                 if (getValueAt(row, 1) != userTeam.getTeamName()) {
 
-                    Team sellingTeam = userTeam.getLeague().getTeamByName((String) getValueAt(row, 1));
-                    Player transferTarget = userTeam.getLeague().getPlayerByName((String) getValueAt(row, 0));
+                    Team sellingTeam = Data.world.getTeamByName((String) getValueAt(row, 1));
+                    Player transferTarget = Data.world.getPlayerByName((String) getValueAt(row, 0));
 
                     if (sellingTeam.getNumberOfPlayers() <= 16) {
                         //block transfer if the selling team has too few players.
@@ -101,11 +103,11 @@ public class transferMarket extends JFrame {
                     //sell the player
                     if (confirmPlayerTransferList == JOptionPane.YES_OPTION) {
                         //generate random team to buy the player.
-                        Team buyingTeam = userTeam.getLeague().getRandomTeam();
+                        Team buyingTeam = Data.world.getRandomTeam();
 
                         //generate new buying team if random team generated is the user team, or if the buying team has too many players.
                         while (buyingTeam == userTeam || buyingTeam.getNumberOfPlayers() >= 23) {
-                            buyingTeam = userTeam.getLeague().getRandomTeam();
+                            buyingTeam = Data.world.getRandomTeam();
                         }
 
                         int confirmPlayerSale = JOptionPane.showConfirmDialog(null, "Sell " + getValueAt(row, 0) + " to " + buyingTeam.getTeamName() + " for " + getValueAt(row, 5) + "?",
@@ -113,7 +115,7 @@ public class transferMarket extends JFrame {
 
                         //sell player
                         if (confirmPlayerSale == JOptionPane.YES_OPTION) {
-                            Player playerForSale = userTeam.getLeague().getPlayerByName((String) getValueAt(row, 0));
+                            Player playerForSale = Data.world.getPlayerByName((String) getValueAt(row, 0));
 
                             if (userTeam.getNumberOfPlayers() <= 16) {
                                 //block sale if player squad is too small.

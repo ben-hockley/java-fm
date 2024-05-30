@@ -16,6 +16,7 @@ public class Main {
         //have multiple leagues in separate functions ,
         //so the player can choose which leagues to load.
         Data.setPremierLeague();
+        Data.setChampionsLeague();
 
         for (Team team : Data.england.getLeagueByTier(1).getAllTeams()) {
             team.setDefaultStartingElevenandSubs();

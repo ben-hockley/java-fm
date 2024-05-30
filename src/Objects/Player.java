@@ -94,8 +94,10 @@ public class Player {
         //create regen to replace retired player
         String regenFirstName = Data.listOfFirstNames[(int) (Math.random() * Data.listOfFirstNames.length)];
         String regenLastName = Data.listOfLastNames[(int) (Math.random() * Data.listOfLastNames.length)];
+        Integer regenRating = 70 + (int) (Math.random() * 10);
+        Integer regenAge = 16 + (int) (Math.random() * 5);
 
-        Player regen = new Player(regenFirstName, regenLastName, position, team, nationality, 75, 18);
+        Player regen = new Player(regenFirstName, regenLastName, position, team, nationality, regenRating, regenAge);
 
 
         this.team.removePlayer(this);
