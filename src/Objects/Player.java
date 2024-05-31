@@ -20,13 +20,17 @@ public class Player {
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
-        this.team = team;
+
+        //added players with team = null to fill national teams, these are not available on the transfer market.
+        if (team != null){
+            this.team = team;
+            team.addPlayer(this); // After creating a player, add them to their team.
+        }
         this.nationality = nationality;
 
         this.rating = rating;
         this.age = age;
 
-        team.addPlayer(this); // After creating a player, add them to their team.
         nationality.addPlayer(this); // After creating a player, add them to their nation.
 
         //in season stats. (set to zero by default)
