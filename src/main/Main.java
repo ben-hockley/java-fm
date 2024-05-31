@@ -1,6 +1,7 @@
 package main;
 
 import JFrames.endOfSeasonSummary;
+import Objects.Player;
 import data.Data;
 import JFrames.UI;
 import Objects.Team;
@@ -18,7 +19,7 @@ public class Main {
         Data.setPremierLeague();
         Data.setChampionsLeague();
 
-        for (Team team : Data.england.getLeagueByTier(1).getAllTeams()) {
+        for (Team team : Data.world.getAllTeams()) {
             team.setDefaultStartingElevenandSubs();
         }
         //User Interface
@@ -26,6 +27,8 @@ public class Main {
 
         JFrame userUI = new UI(userTeam);
         userUI.setTitle("Football Manager 2024");
+
+        new endOfSeasonSummary(userTeam);
     }
 }
 

@@ -65,6 +65,15 @@ public class Data {
     public static Nation slovenia = new Nation("Slovenia", "Slovenia.png", 52, "Europe");
     public static Nation montenegro = new Nation("Montenegro", "Montenegro.png", 53, "Europe");
     public static Nation venezuela = new Nation("Venezuela", "Venezuela.png", 54, "South America");
+    public static Nation finland = new Nation("Finland", "Finland.png", 55, "Europe");
+    public static Nation burkinaFaso = new Nation("Burkina Faso", "BurkinaFaso.png", 56, "Africa");
+    public static Nation northMacedonia = new Nation("North Macedonia", "NorthMacedonia.png", 57, "Europe");
+    public static Nation iceland = new Nation("Iceland", "Iceland.png", 58, "Europe");
+    public static Nation armenia = new Nation("Armenia", "Armenia.png", 58, "Europe");
+    public static Nation serbia = new Nation("Serbia", "Serbia.png", 59, "Europe");
+    public static Nation georgia = new Nation("Georgia", "Georgia.png", 60, "Europe");
+    public static Nation bosniaHerzegovina = new Nation("Bosnia and Herzegovina", "BosniaHerzegovina.png", 61, "Europe");
+    public static Nation canada = new Nation("Canada", "Canada.png", 55, "North America");
     public static Integer[][] listOfDates = {
             {6, 8},
             {13, 8},
@@ -335,7 +344,7 @@ public class Data {
         //Team : Manchester City
         Team manCity = new Team("Manchester City", "Man City", "manchesterCity.png", premierLeague, new Integer[]{4, 3, 3}, new Color(108, 171, 221));
         new Player("Ederson", "", "GK", manCity, brazil, 90, 30);
-        new Player("Stefan", "Ortega", "GK", manCity, germany, 80,31);
+        new Player("Stefan", "Ortega", "GK", manCity, germany, 80, 31);
 
         new Player("Kyle", "Walker", "DEF", manCity, england, 90, 33);
         new Player("Ruben", "Dias", "DEF", manCity, portugal, 90, 27);
@@ -405,7 +414,7 @@ public class Data {
         new Player("Cody", "Gakpo", "FWD", liverpool, netherlands, 81, 25);
 
         //Team : Aston Villa
-        Team astonVilla = new Team("Aston Villa", "Aston Villa", "AstonVilla.png", premierLeague, new Integer[]{4, 3, 3}, new Color(103,14,54));
+        Team astonVilla = new Team("Aston Villa", "Aston Villa", "AstonVilla.png", premierLeague, new Integer[]{4, 3, 3}, new Color(103, 14, 54));
         new Player("Emiliano", "Martinez", "GK", astonVilla, argentina, 88, 31);
         new Player("Robin", "Olsen", "GK", astonVilla, sweden, 72, 34);
 
@@ -621,7 +630,7 @@ public class Data {
         new Player("Jordan", "Ayew", "FWD", crystalPalace, ghana, 80, 32);
 
         //Team : Wolverhampton Wanderers
-        Team wolves = new Team("Wolverhampton Wanderers", "Wolves", "Wolves.png", premierLeague, new Integer[]{4, 3, 3}, new Color(253,185,19));
+        Team wolves = new Team("Wolverhampton Wanderers", "Wolves", "Wolves.png", premierLeague, new Integer[]{4, 3, 3}, new Color(253, 185, 19));
         new Player("Jose", "Sa", "GK", wolves, portugal, 81, 31);
         new Player("Daniel", "Bentley", "GK", wolves, england, 72, 30);
 
@@ -669,7 +678,7 @@ public class Data {
         new Player("Harry", "Wilson", "FWD", fulham, wales, 75, 27);
 
         //Team : Everton
-        Team everton = new Team("Everton", "Everton", "Everton.png", premierLeague, new Integer[]{4, 3, 3}, new Color(39,68,136));
+        Team everton = new Team("Everton", "Everton", "Everton.png", premierLeague, new Integer[]{4, 3, 3}, new Color(39, 68, 136));
         new Player("Jordan", "Pickford", "GK", everton, england, 85, 30);
         new Player("Joao", "Virginia", "GK", everton, portugal, 80, 24);
 
@@ -765,7 +774,7 @@ public class Data {
         new Player("Chiedoze", "Ogbene", "FWD", luton, ireland, 75, 27);
 
         //Team: Burnley
-        Team burnley = new Team("Burnley", "Burnley", "Burnley.png", premierLeague, new Integer[]{4, 3, 3}, new Color(108,29,69));
+        Team burnley = new Team("Burnley", "Burnley", "Burnley.png", premierLeague, new Integer[]{4, 3, 3}, new Color(108, 29, 69));
         new Player("James", "Trafford", "GK", burnley, england, 80, 21);
         new Player("Arijanet", "Muric", "GK", burnley, kosovo, 80, 25);
 
@@ -888,7 +897,7 @@ public class Data {
         new Player("Angel", "Correa", "FWD", atleticoMadrid, argentina, 82, 29);
         new Player("Rodrigo", "Riquelme", "FWD", atleticoMadrid, spain, 80, 24);
 
-        Team Girona = new Team("Girona", "Girona", "Girona.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0));
+        Team Girona = new Team("Girona", "Girona", "Girona.png", laLiga, new Integer[]{4, 3, 3}, new Color(205, 57, 32));
         new Player("Paulo", "Gazzaniga", "GK", Girona, argentina, 80, 32);
         new Player("Juan", "Carlos", "GK", Girona, spain, 72, 36);
 
@@ -914,7 +923,505 @@ public class Data {
         world.addLeague(laLiga);
 
         League bundesliga = new League("Bundesliga", "Bundesliga.png", 1, germany);
+
+        Team bayernMunich = new Team("Bayern Munich", "Bayern Munich", "BayernMunich.png", bundesliga, new Integer[]{4, 3, 3}, new Color(227, 6, 19));
+        new Player("Manuel", "Neuer", "GK", bayernMunich, germany, 92, 38);
+        new Player("Sven", "Ulreich", "GK", bayernMunich, germany, 80, 35);
+
+        new Player("Matthijs", "de Ligt", "DEF", bayernMunich, netherlands, 90, 24);
+        new Player("Alphonso", "Davies", "DEF", bayernMunich, canada, 88, 23);
+        new Player("Dayot", "Upamecano", "DEF", bayernMunich, france, 86, 25);
+        new Player("Raphael", "Guerrero", "DEF", bayernMunich, portugal, 83, 30);
+        new Player("Kim", "Min-Jae", "DEF", bayernMunich, southKorea, 82, 27);
+        new Player("Noussair", "Mazraoui", "DEF", bayernMunich, morocco, 80, 26);
+
+        new Player("Joshua", "Kimmich", "MID", bayernMunich, germany, 92, 29);
+        new Player("Jamal", "Musiala", "MID", bayernMunich, germany, 88, 21);
+        new Player("Konrad", "Laimer", "MID", bayernMunich, austria, 86, 29);
+        new Player("Alexsandr", "Pavlović", "MID", bayernMunich, germany, 83, 20);
+        new Player("Leon", "Goretzka", "MID", bayernMunich, germany, 82, 27);
+
+        new Player("Harry", "Kane", "FWD", bayernMunich, england, 96, 30);
+        new Player("Leroy", "Sane", "FWD", bayernMunich, germany, 90, 28);
+        new Player("Kingsley", "Coman", "FWD", bayernMunich, france, 88, 27);
+        new Player("Serge", "Gnabry", "FWD", bayernMunich, germany, 87, 28);
+        new Player("Mathys", "Tel", "FWD", bayernMunich, france, 82, 19);
+
+        Team borussiaDortmund = new Team("Borussia Dortmund", "Dortmund", "BorussiaDortmund.png", bundesliga, new Integer[]{4, 3, 3}, new Color(253,225,0));
+        new Player("Gregor", "Kobel", "GK", borussiaDortmund, switzerland, 85, 26);
+        new Player("Marcel", "Lotka", "GK", borussiaDortmund, germany, 75, 23);
+
+        new Player("Mats", "Hummels", "DEF", borussiaDortmund, germany, 88, 35);
+        new Player("Nico", "Schlotterbeck", "DEF", borussiaDortmund, germany, 85, 24);
+        new Player("Ian", "Maatsen", "DEF", borussiaDortmund, netherlands, 84, 22);
+        new Player("Julian", "Ryerson", "DEF", borussiaDortmund, norway, 82, 26);
+        new Player("Niklas", "Sule", "DEF", borussiaDortmund, germany, 80, 28);
+        new Player("Marius", "Wolf", "DEF", borussiaDortmund, germany, 78, 29);
+
+        new Player("Marcel", "Sabitzer", "MID", borussiaDortmund, austria, 88, 30);
+        new Player("Julian", "Brandt", "MID", borussiaDortmund, germany, 87, 28);
+        new Player("Emre", "Can", "MID", borussiaDortmund, germany, 86, 30);
+        new Player("Marco", "Reus", "MID", borussiaDortmund, germany, 85, 34);
+        new Player("Felix", "Nmencha", "MID", borussiaDortmund, germany, 84, 23);
+
+        new Player("Jadon", "Sancho", "FWD", borussiaDortmund, england, 90, 24);
+        new Player("Donyell", "Malen", "FWD", borussiaDortmund, netherlands, 88, 25);
+        new Player("Karim", "Adeyemi", "FWD", borussiaDortmund, germany, 86, 22);
+        new Player("Niclas", "Fullkrug", "FWD", borussiaDortmund, germany, 84, 31);
+        new Player("Youssoufa", "Moukoko", "FWD", borussiaDortmund, germany, 82, 19);
+
+        Team bayerLeverkusen = new Team("Bayer Leverkusen", "Leverkusen", "BayerLeverkusen.png", bundesliga, new Integer[]{4, 3, 3}, new Color(227, 34, 33));
+        new Player("Matej", "Kovar", "GK", bayerLeverkusen, czechRepublic, 80, 24);
+        new Player("Lukas", "Hradecky", "GK", bayerLeverkusen, finland, 80, 34);
+
+        new Player("Jonathan", "Tah", "DEF", bayerLeverkusen, germany, 88, 28);
+        new Player("Edmond", "Tapsoba", "DEF", bayerLeverkusen, burkinaFaso, 86, 25);
+        new Player("Odilon", "Kossounou", "DEF", bayerLeverkusen, ivoryCoast, 84, 23);
+        new Player("Piero", "Hincapie", "DEF", bayerLeverkusen, ecuador, 82, 22);
+        new Player("Josip", "Stanisic", "DEF", bayerLeverkusen, croatia, 80, 21);
+        new Player("Arthur", "", "DEF", bayerLeverkusen, brazil, 78, 21);
+
+        new Player("Alejandro", "Grimaldo", "MID", bayerLeverkusen, spain, 88, 28);
+        new Player("Granit", "Xhaka", "MID", bayerLeverkusen, switzerland, 87, 29);
+        new Player("Jeremie", "Frimpong", "MID", bayerLeverkusen, netherlands, 85, 23);
+        new Player("Robert", "Andrich", "MID", bayerLeverkusen, germany, 84, 29);
+        new Player("Exequiel", "Palacios", "MID", bayerLeverkusen, argentina, 83, 25);
+
+        new Player("Florian", "Wirtz", "FWD", bayerLeverkusen, germany, 90, 21);
+        new Player("Victor", "Boniface", "FWD", bayerLeverkusen, nigeria, 88, 23);
+        new Player("Patrik", "Schick", "FWD", bayerLeverkusen, czechRepublic, 88, 28);
+        new Player("Amine", "Adli", "FWD", bayerLeverkusen, morocco, 84, 24);
+        new Player("Jonas", "Hofmann", "FWD", bayerLeverkusen, germany, 82, 31);
+
+        Team rbLeipzig = new Team("RB Leipzig", "Leipzig", "RBLeipzig.png", bundesliga, new Integer[]{4, 3, 3}, new Color(12, 32, 67));
+        new Player("Peter", "Gulacsi", "GK", rbLeipzig, hungary, 88, 34);
+        new Player("Janis", "Blaswich", "GK", rbLeipzig, germany, 74, 33);
+
+        new Player("Willi", "Orban", "DEF", rbLeipzig, germany, 86, 31);
+        new Player("David", "Raum", "DEF", rbLeipzig, germany, 85, 26);
+        new Player("Castello", "Lukeba", "DEF", rbLeipzig, germany, 84, 21);
+        new Player("Benjamin", "Henrichs", "DEF", rbLeipzig, germany, 83, 27);
+        new Player("Mohamed", "Simakan", "DEF", rbLeipzig, france, 82, 24);
+        new Player("El Chadaille", "Bitshiabu", "DEF", rbLeipzig, germany, 80, 19);
+
+        new Player("Dani", "Olmo", "MID", rbLeipzig, spain, 88, 24);
+        new Player("Xaver", "Schlager", "MID", rbLeipzig, austria, 84, 26);
+        new Player("Amadou", "Haidara", "MID", rbLeipzig, mali, 84, 26);
+        new Player("Nicolas", "Seiwald", "MID", rbLeipzig, austria, 83, 23);
+        new Player("Christoph", "Baumgartner", "MID", rbLeipzig, austria, 82, 24);
+
+        new Player("Lois", "Openda", "FWD", rbLeipzig, belgium, 89, 24);
+        new Player("Xavi", "Simons", "FWD", rbLeipzig, netherlands, 89, 21);
+        new Player("Benjamin", "Sesko", "FWD", rbLeipzig, austria, 85, 20);
+        new Player("Eljif", "Elmas", "FWD", rbLeipzig, northMacedonia, 79, 24);
+        new Player("Yussuf", "Poulsen", "FWD", rbLeipzig, denmark, 76, 29);
+
+        world.addLeague(bundesliga);
+
         League serieA = new League("Serie A", "SerieA.png", 1, italy);
+
+        Team interMilan = new Team("Inter Milan", "Inter", "InterMilan.png", serieA, new Integer[]{4, 3, 3}, new Color(1, 14, 128));
+        new Player("Yann", "Sommer", "GK", interMilan, switzerland, 88, 33);
+        new Player("Emil", "Audero", "GK", interMilan, italy, 80, 25);
+
+        new Player("Allessandro", "Bastoni", "DEF", interMilan, italy, 88, 25);
+        new Player("Benjamin", "Pavard", "DEF", interMilan, france, 87, 28);
+        new Player("Federico", "Dimarco", "DEF", interMilan, italy, 86, 26);
+        new Player("Denzel", "Dumfries", "DEF", interMilan, netherlands, 85, 28);
+        new Player("Matteo", "Darmian", "DEF", interMilan, italy, 84, 34);
+        new Player("Stefan", "de Vrij", "DEF", interMilan, netherlands, 82, 32);
+
+        new Player("Nicolo", "Barella", "MID", interMilan, italy, 90, 27);
+        new Player("Hakan", "Calhanoglu", "MID", interMilan, turkey, 88, 30);
+        new Player("Davide", "Frattesi", "MID", interMilan, italy, 86, 24);
+        new Player("Carlos", "Augusto", "MID", interMilan, brazil, 80, 25);
+        new Player("Kristjan", "Asllani", "MID", interMilan, albania, 79, 22);
+
+        new Player("Lautaro", "Martinez", "FWD", interMilan, argentina, 90, 26);
+        new Player("Marcus", "Thuram", "FWD", interMilan, france, 88, 26);
+        new Player("Henrikh", "Mkhitaryan", "FWD", interMilan, armenia, 86, 35);
+        new Player("Alexis", "Sanchez", "FWD", interMilan, chile, 80, 35);
+        new Player("Marko", "Arnautovic", "FWD", interMilan, austria, 79, 35);
+
+        Team acMilan = new Team("AC Milan", "AC Milan", "ACMilan.png", serieA, new Integer[]{4, 3, 3}, new Color(251,9,11));
+        new Player("Mike", "Maignan", "GK", acMilan, france, 88, 28);
+        new Player("Marco", "Sportiello", "GK", acMilan, italy, 80, 32);
+
+        new Player("Theo", "Hernandez", "DEF", acMilan, france, 88, 26);
+        new Player("Fikayo", "Tomori", "DEF", acMilan, england, 87, 24);
+        new Player("Davide", "Calabria", "DEF", acMilan, italy, 84, 27);
+        new Player("Malik", "Thiaw", "DEF", acMilan, germany, 84, 22);
+        new Player("Pierre", "Kalulu", "DEF", acMilan, france, 83, 23);
+        new Player("Matteo", "Gabbia", "DEF", acMilan, italy, 82, 24);
+
+        new Player("Ismael", "Bennacer", "MID", acMilan, algeria, 88, 26);
+        new Player("Tijjani", "Reijnders", "MID", acMilan, netherlands, 86, 23);
+        new Player("Ruben", "Loftus-Cheek", "MID", acMilan, england, 85, 28);
+        new Player("Yunus", "Musah", "MID", acMilan, usa, 84, 21);
+        new Player("Yacine", "Adli", "MID", acMilan, france, 83, 23);
+
+        new Player("Rafael", "Leao", "FWD", acMilan, portugal, 88, 24);
+        new Player("Christian", "Pulisic", "FWD", acMilan, usa, 84, 25);
+        new Player("Olivier", "Giroud", "FWD", acMilan, france, 84, 37);
+        new Player("Noah", "Okafor", "FWD", acMilan, switzerland, 82, 24);
+        new Player("Samuel", "Chukwueze", "FWD", acMilan, nigeria, 80, 25);
+
+        Team juventus = new Team("Juventus", "Juventus", "Juventus.png", serieA, new Integer[]{4, 3, 3}, new Color(0, 0, 0));
+        new Player("Wojciech", "Szczesny", "GK", juventus, poland, 88, 34);
+        new Player("Mattia", "Perin", "GK", juventus, italy, 80, 31);
+
+        new Player("Bremer", "", "DEF", juventus, brazil, 83, 27);
+        new Player("Tiago", "Djalo", "DEF", juventus, portugal, 81, 24);
+        new Player("Andrea", "Cambiasso", "DEF", juventus, italy, 80, 24);
+        new Player("Alex", "Sandro", "DEF", juventus, brazil, 80, 33);
+        new Player("Federico", "Gatti", "DEF", juventus, italy, 79, 25);
+        new Player("Danilo", "", "DEF", juventus, brazil, 79, 32);
+
+        new Player("Adrien", "Rabiot", "MID", juventus, france, 88, 29);
+        new Player("Manuel", "Locatelli", "MID", juventus, italy, 83, 24);
+        new Player("Weston", "McKennie", "MID", juventus, usa, 82, 23);
+        new Player("Fabio", "Miretti", "MID", juventus, italy, 80, 20);
+        new Player("Carlos", "Alcaraz", "MID", juventus, spain, 80, 21);
+
+        new Player("Dusan", "Vlahovic", "FWD", juventus, serbia, 88, 21);
+        new Player("Federico", "Chiesa", "FWD", juventus, italy, 85, 26);
+        new Player("Moise", "Kean", "FWD", juventus, italy, 83, 24);
+        new Player("Samuel", "Iling-Junior", "FWD", juventus, england, 80, 20);
+        new Player("Timothy", "Weah", "FWD", juventus, usa, 80, 24);
+
+        Team napoli = new Team("Napoli", "Napoli", "Napoli.png", serieA, new Integer[]{4, 3, 3}, new Color(0, 70, 147));
+        new Player("Alex", "Meret", "GK", napoli, italy, 85, 27);
+        new Player("Pierluigi", "Gollini", "GK", napoli, italy, 80, 29);
+
+        new Player("Amir", "Rrahmani", "DEF", napoli, kosovo, 85, 30);
+        new Player("Mathias", "Olivera", "DEF", napoli, uruguay, 83, 26);
+        new Player("Giovanni", "Di Lorenzo", "DEF", napoli, italy, 80, 30);
+        new Player("Natan", "Silva", "DEF", napoli, brazil, 79, 23);
+        new Player("Mario", "Rui", "DEF", napoli, portugal, 78, 33);
+        new Player("Leo", "Ostigard", "DEF", napoli, norway, 76, 24);
+
+        new Player("Frank", "Anguissa", "MID", napoli, cameroon, 86, 28);
+        new Player("Piotr", "Zielinski", "MID", napoli, poland, 85, 30);
+        new Player("Stanislav", "Lobotka", "MID", napoli, slovakia, 84, 27);
+        new Player("Jesper", "Lindstrom", "MID", napoli, denmark, 79, 24);
+        new Player("Leander", "Dendoncker", "MID", napoli, belgium, 78, 29);
+
+        new Player("Victor", "Osimhen", "FWD", napoli, nigeria, 88, 25);
+        new Player("Khvicha", "Kvaratskhelia", "FWD", napoli, georgia, 88, 23);
+        new Player("Giacamo", "Raspadori", "FWD", napoli, italy, 83, 24);
+        new Player("Matteo", "Politano", "FWD", napoli, italy, 80, 30);
+        new Player("Cyril", "Ngonge", "FWD", napoli, belgium, 79, 24);
+
+        world.addLeague(serieA);
+
         League ligue1 = new League("Ligue 1", "Ligue1.png", 1, france);
+
+        Team psg = new Team("Paris Saint-Germain", "PSG", "ParisSaintGermain.png", ligue1, new Integer[]{4, 3, 3}, new Color(1, 66, 106));
+        new Player("Gianluigi", "Donnarumma", "GK", psg, italy, 90, 25);
+        new Player("Arnau", "Tenas", "GK", psg, spain, 76, 23);
+
+        new Player("Marquinhos", "", "DEF", psg, brazil, 90, 30);
+        new Player("Milan", "Skriniar", "DEF", psg, slovakia, 88, 29);
+        new Player("Achraf", "Hakimi", "DEF", psg, morocco, 86, 25);
+        new Player("Nuno", "Mendes", "DEF", psg, portugal, 85, 21);
+        new Player("Lucas", "Hernandez", "DEF", psg, france, 85, 28);
+        new Player("Lucas", "Beraldo", "DEF", psg, brazil, 84, 20);
+
+        new Player("Vitinha", "", "MID", psg, portugal, 88, 24);
+        new Player("Manuel", "Ugarte", "MID", psg, uruguay, 86, 23);
+        new Player("Warren", "Zaire-Emery", "MID", psg, france, 85, 18);
+        new Player("Kang-In", "Lee", "MID", psg, southKorea, 83, 21);
+        new Player("Danilo", "Pereira", "MID", psg, portugal, 80, 32);
+
+        new Player("Kylian", "Mbappe", "FWD", psg, france, 98, 25);
+        new Player("Randal", "Kolo", "FWD", psg, france, 88, 25);
+        new Player("Ousmane", "Dembele", "FWD", psg, france, 87, 27);
+        new Player("Goncalo", "Ramos", "FWD", psg, portugal, 85, 22);
+        new Player("Bradley", "Barcola", "FWD", psg, france, 80, 21);
+
+        Team monaco = new Team("AS Monaco", "Monaco", "ASMonaco.png", ligue1, new Integer[]{4, 3, 3}, new Color(229, 27, 34));
+        new Player("Philipp", "Kohn", "GK", monaco, switzerland, 77, 26);
+        new Player("Radoslaw", "Majewski", "GK", monaco, poland, 75, 24);
+
+        new Player("Caio", "Henrique", "DEF", monaco, brazil, 80, 26);
+        new Player("Mohammed", "Salisu", "DEF", monaco, ghana, 78, 25);
+        new Player("Thilo", "Kehrer", "DEF", monaco, germany, 77, 27);
+        new Player("Wilfried", "Singo", "DEF", monaco, ivoryCoast, 76, 24);
+        new Player("Vanderson", "", "DEF", monaco, brazil, 75, 22);
+        new Player("Soungoutou", "Magassa", "DEF", monaco, france, 74, 20);
+
+        new Player("Youssouf", "Fofana", "MID", monaco, france, 80, 25);
+        new Player("Denis", "Zakaria", "MID", monaco, switzerland, 78, 27);
+        new Player("Mohamed", "Camara", "MID", monaco, mali, 77, 24);
+        new Player("Eliesse", "Ben Seghir", "MID", monaco, france, 76, 19);
+        new Player("Maghnes", "Akliouche", "MID", monaco, france, 75, 19);
+
+        new Player("Folarin", "Balogun", "FWD", monaco, usa, 85, 22);
+        new Player("Wissam", "Ben Yedder", "FWD", monaco, france, 84, 31);
+        new Player("Takumi", "Minamino", "FWD", monaco, japan, 80, 29);
+        new Player("Breel", "Embolo", "FWD", monaco, switzerland, 79, 27);
+        new Player("Krepin", "Diatta", "FWD", monaco, senegal, 78, 25);
+
+        Team lyon = new Team("Olympique Lyon", "Lyon", "OlympiqueLyon.png", ligue1, new Integer[]{4, 3, 3}, new Color(20, 56, 127));
+        new Player("Anthony", "Lopes", "GK", lyon, portugal, 85, 33);
+        new Player("Lucas", "Perri", "GK", lyon, brazil, 75, 26);
+
+        new Player("Nicolas", "Tagliafico", "DEF", lyon, argentina, 86, 31);
+        new Player("Duje", "Caleta-Car", "DEF", lyon, croatia, 83, 27);
+        new Player("Jake", "O'Brien", "DEF", lyon, ireland, 82, 23);
+        new Player("Sael", "Kumbedi", "DEF", lyon, france, 77, 19);
+        new Player("Dejan", "Lovren", "DEF", lyon, croatia, 76, 34);
+        new Player("Sinaly", "Diomande", "DEF", lyon, ivoryCoast, 75, 23);
+
+        new Player("Orel", "Mangala", "MID", lyon, belgium, 84, 26);
+        new Player("Maxence", "Caqueret", "MID", lyon, france, 83, 24);
+        new Player("Johann", "Lepenant", "MID", lyon, france, 82, 19);
+        new Player("Paul", "Akouokou", "MID", lyon, ivoryCoast, 80, 20);
+        new Player("Malick", "Fofana", "MID", lyon, belgium, 79, 19);
+
+        new Player("Said", "Benrahma", "FWD", lyon, algeria, 82, 28);
+        new Player("Alexandre", "Lacazette", "FWD", lyon, france, 82, 33);
+        new Player("Rayan", "Cherki", "FWD", lyon, france, 80, 20);
+        new Player("Gift", "Orban", "FWD", lyon, nigeria, 76, 21);
+        new Player("Ernest", "Nuamah", "FWD", lyon, ghana, 75, 20);
+
+        Team lille = new Team("LOSC Lille", "Lille", "Lille.png", ligue1, new Integer[]{4, 3, 3}, new Color(224, 30, 19));
+        new Player("Lucas", "Chevalier", "GK", lille, france, 80, 22);
+        new Player("Vito", "Mannone", "GK", lille, italy, 75, 36);
+
+        new Player("Lenny", "Yoro", "DEF", lille, france, 82, 18);
+        new Player("Alexsandro", "", "DEF", lille, brazil, 81, 24);
+        new Player("Bafode", "Diakite", "DEF", lille, france, 80, 24);
+        new Player("Tiago", "Santos", "DEF", lille, portugal, 79, 21);
+        new Player("Samuel", "Umtiti", "DEF", lille, france, 78, 30);
+        new Player("Rafael", "Fernandes", "DEF", lille, portugal, 77, 21);
+
+        new Player("Angel", "Gomes", "MID", lille, england, 84, 23);
+        new Player("Nabil", "Bentaleb", "MID", lille, algeria, 83, 29);
+        new Player("Yusuf", "Yazici", "MID", lille, turkey, 82, 27);
+        new Player("Ignacio", "Miramon", "MID", lille, argentina, 80, 20);
+        new Player("Ayyoub", "Bouaddi", "MID", lille, france, 79, 16);
+
+        new Player("Jonathan", "David", "FWD", lille, canada, 86, 22);
+        new Player("Edon", "Zhegrova", "FWD", lille, kosovo, 84, 25);
+        new Player("Adam", "Ounas", "FWD", lille, algeria, 82, 27);
+        new Player("Hakon", "Arnar Haraldsson", "FWD", lille, iceland, 80, 21);
+        new Player("Tiago", "Morais", "FWD", lille, portugal, 78, 20);
+
+        world.addLeague(ligue1);
+
+        League eredivisie = new League("Eredivisie", "Eredivisie.png", 1, netherlands);
+
+        Team ajax = new Team("Ajax", "Ajax", "Ajax.png", eredivisie, new Integer[]{4, 3, 3}, new Color(210, 18, 46));
+        new Player("Diant", "Ramaj", "GK", ajax, germany, 78, 22);
+        new Player("Geronimo", "Rulli", "GK", ajax, argentina, 78, 32);
+
+        new Player("Josip", "Sutalo", "DEF", ajax, croatia, 82, 24);
+        new Player("Borna", "Sosa", "DEF", ajax, croatia, 81, 26);
+        new Player("Jorrel", "Hato", "DEF", ajax, netherlands, 80, 18);
+        new Player("Devyne", "Rensch", "DEF", ajax, netherlands, 79, 21);
+        new Player("Ahmetcan", "Kaplan", "DEF", ajax, turkey, 75, 21);
+        new Player("Anton", "Gaaei", "DEF", ajax, denmark, 74, 20);
+
+        new Player("Branco", "van den Boomen", "MID", ajax, netherlands, 82, 28);
+        new Player("Jordan", "Henderson", "MID", ajax, england, 81, 33);
+        new Player("Kenneth", "Taylor", "MID", ajax, netherlands, 80, 22);
+        new Player("Sivert", "Mannsverk", "MID", ajax, norway, 76, 22);
+        new Player("Silvano", "Vos", "MID", ajax, netherlands, 75, 19);
+
+        new Player("Steven", "Bergwijn", "FWD", ajax, netherlands, 86, 26);
+        new Player("Brian", "Brobbey", "FWD", ajax, netherlands, 83, 20);
+        new Player("Steven", "Berghuis", "FWD", ajax, netherlands, 80, 30);
+        new Player("Chuba", "Akpom", "FWD", ajax, nigeria, 80, 26);
+        new Player("Carlos", "Forbs", "FWD", ajax, portugal, 76, 20);
+
+        Team psv = new Team("PSV", "PSV", "PSV.png", eredivisie, new Integer[]{4, 3, 3}, new Color(240, 0, 0));
+        new Player("Walter", "Benitez", "GK", psv, argentina, 85, 31);
+        new Player("Joel", "Drommel", "GK", psv, netherlands, 76, 27);
+
+        new Player("Olivier", "Boscagli", "DEF", psv, france, 82, 27);
+        new Player("Armel", "Bella-Kotchap", "DEF", psv, germany, 81, 22);
+        new Player("Sergino", "Dest", "DEF", psv, usa, 80, 23);
+        new Player("Jordan", "Teze", "DEF", psv, netherlands, 79, 24);
+        new Player("Patrick", "van Aanholt", "DEF", psv, netherlands, 74, 33);
+        new Player("Armando", "Obispo", "DEF", psv, netherlands, 73, 25);
+
+        new Player("Jerdy", "Schouten", "MID", psv, netherlands, 82, 27);
+        new Player("Joey", "Veerman", "MID", psv, netherlands, 81, 25);
+        new Player("Malik", "Tillman", "MID", psv, usa, 80, 22);
+        new Player("Ismael", "Saibari", "MID", psv, morocco, 79, 23);
+        new Player("Richard", "Ledezma", "MID", psv, usa, 74, 23);
+
+        new Player("Johan", "Bakayoko", "FWD", psv, belgium, 84, 22);
+        new Player("Hirving", "Lozano", "FWD", psv, mexico, 83, 28);
+        new Player("Ricardo", "Pepi", "FWD", psv, usa, 82, 21);
+        new Player("Luuk", "de Jong", "FWD", psv, netherlands, 80, 33);
+        new Player("Noa", "Lang", "FWD", psv, netherlands, 79, 24);
+
+        world.addLeague(eredivisie);
+
+        League primeraDivision = new League("Primera Division", "PrimeraDivision.png", 1, portugal);
+
+        Team benfica = new Team("Benfica", "Benfica", "Benfica.png", primeraDivision, new Integer[]{4, 3, 3}, new Color(232, 48, 48));
+        new Player("Anatoliy", "Trubin", "GK", benfica, ukraine, 84, 22);
+        new Player("Samuel", "Soares", "GK", benfica, portugal, 75, 21);
+
+        new Player("Antonio", "Silva", "DEF", benfica, portugal, 85, 20);
+        new Player("Nicolas", "Otamendi", "DEF", benfica, argentina, 82, 36);
+        new Player("Juan", "Bernat", "DEF", benfica, spain, 81, 31);
+        new Player("Alexander", "Bah", "DEF", benfica, denmark, 78, 26);
+        new Player("Morato", "", "DEF", benfica, brazil, 77, 22);
+        new Player("Alvaro", "Carreras", "DEF", benfica, spain, 76, 21);
+
+        new Player("Joao", "Neves", "MID", benfica, portugal, 84, 19);
+        new Player("Florentino", "Luis", "MID", benfica, portugal, 83, 24);
+        new Player("Orkun", "Kokcu", "MID", benfica, turkey, 82, 23);
+        new Player("Frederik", "Aursenes", "MID", benfica, norway, 78, 28);
+        new Player("Joao", "Mario", "MID", benfica, portugal, 77, 31);
+
+        new Player("David", "Neres", "FWD", benfica, brazil, 86, 27);
+        new Player("Angel", "Di Maria", "FWD", benfica, argentina, 85, 36);
+        new Player("Arthur", "Cabral", "FWD", benfica, brazil, 82, 26);
+        new Player("Marcos", "Leonardo", "FWD", benfica, brazil, 80, 21);
+        new Player("Casper", "Tengstedt", "FWD", benfica, denmark, 76, 23);
+
+        Team sportingCP = new Team("Sporting Lisbon", "Sporting CP", "SportingCP.png", primeraDivision, new Integer[]{4, 3, 3}, new Color(0, 128, 87));
+        new Player("Antonio", "Adan", "GK", sportingCP, spain, 80, 37);
+        new Player("Franco", "Israel", "GK", sportingCP, uruguay, 75, 24);
+
+        new Player("Goncalo", "Inacio", "DEF", sportingCP, portugal, 85, 22);
+        new Player("Ousmane", "Diomande", "DEF", sportingCP, ivoryCoast, 83, 20);
+        new Player("Ivan", "Frasneda", "DEF", sportingCP, spain, 78, 19);
+        new Player("Nuno", "Santos", "DEF", sportingCP, portugal, 77, 29);
+        new Player("Sebastian", "Coates", "DEF", sportingCP, uruguay, 76, 33);
+        new Player("Jerry", "St Juste", "DEF", sportingCP, netherlands, 75, 27);
+
+        new Player("Morten", "Hjulmand", "MID", sportingCP, denmark, 82, 24);
+        new Player("Pedro", "Goncalves", "MID", sportingCP, portugal, 81, 25);
+        new Player("Hidemasa", "Morita", "MID", sportingCP, japan, 75, 29);
+        new Player("Daniel", "Braganca", "MID", sportingCP, portugal, 74, 25);
+        new Player("Koba", "Koindredi", "MID", sportingCP, france, 73, 22);
+
+        new Player("Viktor", "Gyokeres", "FWD", sportingCP, sweden, 84, 25);
+        new Player("Marcus", "Edwards", "FWD", sportingCP, england, 83, 25);
+        new Player("Trincao", "", "FWD", sportingCP, portugal, 80, 24);
+        new Player("Paulinho", "", "FWD", sportingCP, portugal, 77, 31);
+        new Player("Rafael", "Camacho", "FWD", sportingCP, portugal, 72, 24);
+
+        world.addLeague(primeraDivision);
+
+
+
+
+
+        League proLeague = new League("Pro League", "ProLeague.png", 1, belgium);
+
+        Team anderlecht = new Team("RSC Anderlecht", "Anderlecht", "RSCAnderlecht.png", proLeague, new Integer[]{4, 3, 3}, new Color(81, 46, 143));
+        new Player("Kasper", "Schmeichel", "GK", anderlecht, denmark, 82, 37);
+        new Player("Mads", "Kikkenborg", "GK", anderlecht, denmark, 73, 24);
+
+        new Player("Zeno", "Debast", "DEF", anderlecht, belgium, 80, 20);
+        new Player("Jan", "Vertonghen", "DEF", anderlecht, belgium, 80, 37);
+        new Player("Ludwig", "Augustinsson", "DEF", anderlecht, sweden, 77, 30);
+        new Player("Killian", "Sardella", "DEF", anderlecht, belgium, 76, 22);
+        new Player("Federico", "Gattoni", "DEF", anderlecht, argentina, 75, 25);
+        new Player("Moussa", "N'Diaye", "DEF", anderlecht, cameroon, 74, 21);
+
+        new Player("Yani", "Verschaeren", "MID", anderlecht, belgium, 82, 22);
+        new Player("Thomas", "Delaney", "MID", anderlecht, denmark, 81, 32);
+        new Player("Majeed", "Ashimeru", "MID", anderlecht, ghana, 76, 26);
+        new Player("Mario", "Stroeykens", "MID", anderlecht, belgium, 75, 19);
+        new Player("Kristian", "Arnstad", "MID", anderlecht, norway, 75, 20);
+
+        new Player("Kasper", "Dolberg", "FWD", anderlecht, denmark, 84, 26);
+        new Player("Anders", "Dreyer", "FWD", anderlecht, denmark, 82, 26);
+        new Player("Thorgan", "Hazard", "FWD", anderlecht, belgium, 81, 31);
+        new Player("Nilson", "Angulo", "FWD", anderlecht, ecuador, 75, 21);
+        new Player("Francis", "Amuzu", "FWD", anderlecht, belgium, 74, 24);
+
+        world.addLeague(proLeague);
+
+        League superLig = new League("Super Lig", "SuperLig.png", 1, turkey);
+
+        Team galatasaray = new Team("Galatasaray", "Galatasaray", "Galatasaray.png", superLig, new Integer[]{4, 3, 3}, new Color(253, 185, 18));
+        new Player("Fernando", "Muslera", "GK", galatasaray, uruguay, 77, 37);
+        new Player("Gunay", "Guvenc", "GK", galatasaray, turkey, 72, 32);
+
+        new Player("Davinson", "Sanchez", "DEF", galatasaray, colombia, 82, 27);
+        new Player("Victor", "Nelsson", "DEF", galatasaray, denmark, 80, 25);
+        new Player("Serge", "Aurier", "DEF", galatasaray, ivoryCoast, 79, 31);
+        new Player("Abdulkerim", "Bardakci", "DEF", galatasaray, turkey, 77, 29);
+        new Player("Kaan", "Ayhan", "DEF", galatasaray, turkey, 75, 29);
+        new Player("Ali", "Turap Bulbul", "DEF", galatasaray, turkey, 71, 19);
+
+        new Player("Lucas", "Torreira", "MID", galatasaray, uruguay, 82, 28);
+        new Player("Tanguy", "Ndombele", "MID", galatasaray, france, 81, 27);
+        new Player("Berkan", "Kutlu", "MID", galatasaray, turkey, 76, 26);
+        new Player("Eyup", "Aydin", "MID", galatasaray, turkey, 74, 19);
+        new Player("Efe", "Akman", "MID", galatasaray, turkey, 73, 18);
+
+        new Player("Mauro", "Icardi", "FWD", galatasaray, argentina, 85, 31);
+        new Player("Wilfried", "Zaha", "FWD", galatasaray, ivoryCoast, 84, 31);
+        new Player("Hakim", "Ziyech", "FWD", galatasaray, morocco, 81, 31);
+        new Player("Kerem", "Akturkoglu", "FWD", galatasaray, turkey, 81, 25);
+        new Player("Baris Alper", "Yilmaz", "FWD", galatasaray, turkey, 79, 24);
+
+        world.addLeague(superLig);
+
+        League scottishPremiership = new League("Scottish Premiership", "ScottishPremiership.png", 1, scotland);
+
+        Team celtic = new Team("Celtic", "Celtic", "Celtic.png", scottishPremiership, new Integer[]{4, 3, 3}, new Color(1, 135, 73));
+        new Player("Joe", "Hart", "GK", celtic, england, 80, 37);
+        new Player("Scott", "Bain", "GK", celtic, scotland, 74, 32);
+
+        new Player("Cameron", "Carter-Vickers", "DEF", celtic, usa, 82, 26);
+        new Player("Alistair", "Johnston", "DEF", celtic, canada, 80, 25);
+        new Player("Greg", "Taylor", "DEF", celtic, scotland, 79, 26);
+        new Player("Liam", "Scales", "DEF", celtic, ireland, 78, 25);
+        new Player("Stephen", "Welsh", "DEF", celtic, scotland, 77, 24);
+        new Player("Adam", "Montgomery", "DEF", celtic, scotland, 76, 21);
+
+        new Player("Callum", "McGregor", "MID", celtic, scotland, 82, 30);
+        new Player("Matt", "O'Riley", "MID", celtic, denmark, 81, 23);
+        new Player("Reo", "Hatate", "MID", celtic, japan, 79, 26);
+        new Player("James", "McCarthy", "MID", celtic, ireland, 75, 33);
+        new Player("Odin Thiago", "Holm", "MID", celtic, norway, 74, 21);
+        new Player("Mikey", "Johnston", "MID", celtic, ireland, 74, 25);
+
+        new Player("Kyogo", "Furuhashi", "FWD", celtic, japan, 84, 29);
+        new Player("Daizen", "Maeda", "FWD", celtic, japan, 82, 26);
+        new Player("Adam", "Idah", "FWD", celtic, ireland, 80, 23);
+        new Player("James", "Forrest", "FWD", celtic, scotland, 79, 32);
+        new Player("Hyun-Jun", "Yang", "FWD", celtic, southKorea, 75, 22);
+
+        world.addLeague(scottishPremiership);
+
+        League austriaBundesliga = new League("Austria Bundesliga", "AustriaBundesliga.png", 1, austria);
+
+        Team rbSalzburg = new Team("Red Bull Salzburg", "RB Salzburg", "RBSalzburg.png", austriaBundesliga, new Integer[]{4, 3, 3}, new Color(219, 0, 0));
+        new Player("Alexander", "Schlager", "GK", rbSalzburg, austria, 82, 28);
+        new Player("Timo", "Horn", "GK", rbSalzburg, germany, 76, 31);
+
+        new Player("Strahinja", "Pavlovic", "DEF", rbSalzburg, serbia, 82, 23);
+        new Player("Samson", "Baidoo", "DEF", rbSalzburg, austria, 80, 20);
+        new Player("Amar", "Dedic", "DEF", rbSalzburg, bosniaHerzegovina, 79, 21);
+        new Player("Daouda", "Guindo", "DEF", rbSalzburg, mali, 78, 21);
+        new Player("Flavius", "Daniliuc", "DEF", rbSalzburg, austria, 79, 23);
+        new Player("Andreas", "Ulmer", "DEF", rbSalzburg, austria, 78, 38);
+
+        new Player("Luka", "Sucic", "MID", rbSalzburg, croatia, 82, 21);
+        new Player("Nicolas", "Capaldo", "MID", rbSalzburg, argentina, 81, 23);
+        new Player("Maurits", "Kjaergaard", "MID", rbSalzburg, denmark, 80, 20);
+        new Player("Mads", "Bidstrup", "MID", rbSalzburg, denmark, 79, 23);
+        new Player("Amankwah", "Forson", "MID", rbSalzburg, ghana, 78, 21);
+
+        new Player("Karim", "Konate", "FWD", rbSalzburg, ivoryCoast, 78, 20);
+        new Player("Roko", "Simic", "FWD", rbSalzburg, croatia, 76, 20);
+        new Player("Petar", "Ratkovica", "FWD", rbSalzburg, serbia, 75, 20);
+        new Player("Fernando", "", "FWD", rbSalzburg, brazil, 74, 25);
+        new Player("Dijon", "Kameri", "FWD", rbSalzburg, austria, 73, 20);
+
+
+
     }
 }

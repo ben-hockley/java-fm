@@ -50,4 +50,12 @@ public class World {
     public Team getRandomTeam() {
         return leagues.get((int) (Math.random() * leagues.size())).getRandomTeam();
     }
+
+    public ArrayList<Team> getAllTeams() {
+        ArrayList<Team> allTeams = new ArrayList<>();
+        for (League league : leagues) {
+            allTeams.addAll(league.getAllTeams());
+        }
+        return allTeams;
+    }
 }

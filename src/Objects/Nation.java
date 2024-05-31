@@ -110,4 +110,47 @@ public class Nation {
     public void removePlayer(Player player){
         this.players.remove(player);
     }
+
+    public ArrayList<Player> getBestSquad() {
+        ArrayList<Player> bestSquad = new ArrayList<>();
+        ArrayList<Player> goalkeepers = getPlayersByPosition("GK", 1);
+        ArrayList<Player> defenders = getPlayersByPosition("DEF", 4);
+        ArrayList<Player> midfielders = getPlayersByPosition("MID", 3);
+        ArrayList<Player> forwards = getPlayersByPosition("FWD", 3);
+
+        bestSquad.addAll(goalkeepers);
+        bestSquad.addAll(defenders);
+        bestSquad.addAll(midfielders);
+        bestSquad.addAll(forwards);
+
+        ArrayList<Player> subs = new ArrayList<>();
+        subs.addAll(players);
+        subs.removeAll(bestSquad);
+
+        while (subs.size() > 12) {
+            Integer lowestRating = 100;
+            Player lowestRatedPlayer = null;
+            for (Player player : subs) {
+                if (player.getRating() < lowestRating) {
+                    lowestRating = player.getRating();
+                    lowestRatedPlayer = player;
+                }
+            }
+            subs.remove(lowestRatedPlayer);
+        }
+
+        bestSquad.addAll(subs);
+
+        return bestSquad;
+    }
+
+    public Integer getNumberOfPlayersByPosition(String position) {
+        Integer numberOfPlayers = 0;
+        for (Player player : players) {
+            if (player.getPosition().equals(position)) {
+                numberOfPlayers++;
+            }
+        }
+        return numberOfPlayers;
+    }
 }

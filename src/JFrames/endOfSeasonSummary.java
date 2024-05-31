@@ -21,17 +21,23 @@ public class endOfSeasonSummary extends JFrame {
         ArrayList<Player> retiringPlayers = new ArrayList<>();
 
         //age all players by one year
-        for (Player player : userTeam.getLeague().getAllPlayers()){
+        for (Player player : Data.world.getAllPlayers()){
             player.increaseAge(1);
 
             //increase rating for young players
-            if (player.getAge() <= 24){
+            if (player.getAge() <= 25){
                 player.increaseRating((int) (Math.random() * 4));
+                //player rating increases by random int between 0 and 3.
+                if (player.getRating() > 99){
+                    player.setRating(99);
+                    //if player rating is greater than 99, set it to 99, the maximum rating.
+                }
             }
 
             //decrease rating for old players
-            if (player.getAge() >= 30){
+            if (player.getAge() >= 31){
                 player.decreaseRating((int) (Math.random() * 4));
+                //player rating decreases by random int between 0 and 3
             }
 
             //if player is 35 or above, 50% chance the player retires
