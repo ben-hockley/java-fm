@@ -17,13 +17,23 @@ public class transferMarket extends JFrame {
         setLayout(new BorderLayout());
         setVisible(true);
 
+        JPanel topPanel = new JPanel(new GridLayout(1, 2));
+
         String heading = "Transfer Market";
         JLabel headingLabel = new JLabel(heading);
         headingLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        headingLabel.setPreferredSize(new Dimension(800, 50));
         headingLabel.setHorizontalAlignment(SwingConstants.CENTER);
         headingLabel.setVerticalAlignment(SwingConstants.CENTER);
-        this.add(headingLabel, BorderLayout.NORTH);
+        topPanel.add(headingLabel);
+
+        String transferBudget = "Transfer Budget: £" + NumberFormat.getInstance(Locale.US).format(userTeam.getTransferBudget());
+        JLabel transferBudgetLabel = new JLabel(transferBudget);
+        transferBudgetLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        transferBudgetLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        transferBudgetLabel.setVerticalAlignment(SwingConstants.CENTER);
+        topPanel.add(transferBudgetLabel);
+
+        this.add(topPanel, BorderLayout.NORTH);
 
         //JTable
         //column names for the table.
@@ -56,13 +66,17 @@ public class transferMarket extends JFrame {
             public boolean isCellEditable(int row, int column) {
                 //clicking on a cell offers the option to buy the player.
 
-                //if the player is not in the user team, offer to buy the player.
+                //if the player is not in the user team, offer to BUY the player.
                 if (getValueAt(row, 1) != userTeam.getTeamName()) {
 
                     Team sellingTeam = Data.world.getTeamByName((String) getValueAt(row, 1));
                     Player transferTarget = Data.world.getPlayerByName((String) getValueAt(row, 0));
 
-                    if (sellingTeam.getNumberOfPlayers() <= 16) {
+
+                    if (userTeam.getTransferBudget() < transferTarget.getValue()) {
+                        //block transfer if the user team does not have enough money.
+                        JOptionPane.showMessageDialog(null, "You do not have enough money to buy this player.");
+                    } else if (sellingTeam.getNumberOfPlayers() <= 16) {
                         //block transfer if the selling team has too few players.
                         JOptionPane.showMessageDialog(null, "This player is not for sale, their team has too few players.");
                     } else if (userTeam.getNumberOfPlayers() == 23){
@@ -89,8 +103,19 @@ public class transferMarket extends JFrame {
 
                         //sign player for user team
                         if (confirmPlayerPurchase == JOptionPane.YES_OPTION) {
+
+                            //increase transfer budget of selling team.
+                            transferTarget.getTeam().increaseTransferBudget(transferTarget.getValue());
+
+                            //reduce transfer budget of buying team (user).
+                            userTeam.reduceTransferBudget(transferTarget.getValue());
+
                             transferTarget.setTeam(userTeam);
                             JOptionPane.showConfirmDialog(null,transferTarget.getPlayerName() + " to " + userTeam.getTeamName() + " from " + sellingTeam.getTeamName() + " for  £" + NumberFormat.getInstance(Locale.US).format(transferTarget.getValue()) + ", Here we go!" , "New Signing", JOptionPane.DEFAULT_OPTION);
+
+                            //refresh the transfer market window.
+                            transferMarket.this.dispose();
+                            new transferMarket(userTeam);
                         }
                     }
                 }
@@ -104,9 +129,10 @@ public class transferMarket extends JFrame {
                     if (confirmPlayerTransferList == JOptionPane.YES_OPTION) {
                         //generate random team to buy the player.
                         Team buyingTeam = Data.world.getRandomTeam();
+                        Player playerForSale = Data.world.getPlayerByName((String) getValueAt(row, 0));
 
-                        //generate new buying team if random team generated is the user team, or if the buying team has too many players.
-                        while (buyingTeam == userTeam || buyingTeam.getNumberOfPlayers() >= 23) {
+                        //generate new buying team if random team generated is the user team, or if the buying team has too many players, or if buying team doesn't have enough money in their transfer budget.
+                        while (buyingTeam == userTeam || buyingTeam.getNumberOfPlayers() >= 23 || buyingTeam.getTransferBudget() < playerForSale.getValue()) {
                             buyingTeam = Data.world.getRandomTeam();
                         }
 
@@ -115,7 +141,6 @@ public class transferMarket extends JFrame {
 
                         //sell player
                         if (confirmPlayerSale == JOptionPane.YES_OPTION) {
-                            Player playerForSale = Data.world.getPlayerByName((String) getValueAt(row, 0));
 
                             if (userTeam.getNumberOfPlayers() <= 16) {
                                 //block sale if player squad is too small.
@@ -134,8 +159,19 @@ public class transferMarket extends JFrame {
                                 JOptionPane.showMessageDialog(null, "Transfer blocked, not enough Forwards, you must have at least 3 forwards in your squad.");
                             } else {
                                 //transfer player to the buying team if all conditions are met.
+
+                                //increase transfer budget of the selling team (user).
+                                playerForSale.getTeam().increaseTransferBudget(playerForSale.getValue());
+
+                                //reduce transfer budget of the buying team.
+                                buyingTeam.reduceTransferBudget(playerForSale.getValue());
+
                                 playerForSale.setTeam(buyingTeam);
                                 JOptionPane.showConfirmDialog(null,playerForSale.getPlayerName() + " to " + buyingTeam.getTeamName() + " from " + userTeam.getTeamName() + " for " + getValueAt(row,5) + ", Here we go!" , "Player Sold", JOptionPane.DEFAULT_OPTION);
+
+                                //refresh the transfer market window.
+                                transferMarket.this.dispose();
+                                new transferMarket(userTeam);
                             }
                         }
 

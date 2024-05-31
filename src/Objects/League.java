@@ -69,8 +69,6 @@ public class League {
     public ArrayList<ArrayList<Game>> generateFixtures() {
         ArrayList<ArrayList<Game>> fixtures = fixtureGen.generateFixtureSchedule(teams);
 
-
-
         for (ArrayList<Game> week : fixtures) {
             for (Game game : week){
                 //System.out.println(game.getHomeTeam().getTeamName() + " vs " + game.getAwayTeam().getTeamName() + " on " + game.getDayOfMonth() + "/" + game.getMonth());

@@ -38,7 +38,7 @@ public class UI extends JFrame {
     //constructor to initialize homepage.
     public UI(Team userTeam) {
 
-        allGameFixtures = Data.england.getLeagueByTier(1).generateFixtures();
+        allGameFixtures = userTeam.getLeague().generateFixtures();
 
         ArrayList<Game> fixtures = userTeam.getFixtures();
         events.addAll(fixtures); //add the fixtures to the events list.

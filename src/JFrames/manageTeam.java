@@ -81,6 +81,8 @@ public class manageTeam extends JFrame {
                 }
             } catch (IllegalArgumentException exception) {
                 JOptionPane.showMessageDialog(null, exception.getMessage());
+            } catch (NullPointerException exception) {
+                JOptionPane.showMessageDialog(null, "Please select a player to substitute.");
             }
 
         });

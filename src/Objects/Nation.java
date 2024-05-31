@@ -161,4 +161,8 @@ public class Nation {
         }
         return numberOfPlayers;
     }
+
+    public String getNationFlag() {
+        return nationFlag;
+    }
 }

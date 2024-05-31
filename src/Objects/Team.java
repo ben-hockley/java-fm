@@ -1,5 +1,6 @@
 package Objects;
 
+import data.Data;
 import events.Game;
 
 import java.awt.*;
@@ -30,10 +31,12 @@ public class Team {
 
     private Color teamColor;
 
+    private Integer transferBudget;
+
 
     public ArrayList<Player> players;
 
-    public Team(String teamName,String shortName ,String teamLogo, League league, Integer[] formation, Color teamColor) {
+    public Team(String teamName,String shortName ,String teamLogo, League league, Integer[] formation, Color teamColor, Integer transferBudget_millions) {
         this.teamName = teamName;
         this.shortName = shortName;
         this.teamLogo = teamLogo;
@@ -52,7 +55,33 @@ public class Team {
         this.losses = 0;
         this.points = 0;
 
+        this.transferBudget = transferBudget_millions * 1000000;
+
         league.addTeam(this); //after creating a team, add them to their league.
+    }
+
+    public Team(Nation nationalTeam){
+        this.teamName = nationalTeam.getNationName();
+        this.shortName = nationalTeam.getNationName();
+        this.teamLogo = nationalTeam.getNationFlag();
+        this.teamColor = Color.BLUE;
+
+        this.league = Data.england.getLeagueByTier(1);
+        this.formation = new Integer[]{4,3,3};
+
+        this.players = nationalTeam.getBestSquad();
+
+        this.fixtures = new ArrayList<>();
+
+        this.matchesPlayed = 0;
+        this.wins = 0;
+        this.draws = 0;
+        this.losses = 0;
+        this.points = 0;
+
+        this.transferBudget = 0;
+
+        Data.international.getLeagueByTier(1).addTeam(this);
     }
 
     public void addPlayer(Player player) {
@@ -327,5 +356,17 @@ public class Team {
         this.draws = 0;
         this.losses = 0;
         this.points = 0;
+    }
+
+    public Integer getTransferBudget() {
+        return transferBudget;
+    }
+
+    public void reduceTransferBudget(Integer amount) {
+        this.transferBudget -= amount;
+    }
+
+    public void increaseTransferBudget(Integer amount){
+        this.transferBudget += amount;
     }
 }
