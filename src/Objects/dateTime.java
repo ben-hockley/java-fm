@@ -4,6 +4,7 @@ public class dateTime {
     //contains functions for updating the in-game calendar.
     private Integer dateNumber;
     private Integer monthNumber;
+    private Integer yearNumber;
 
     private Integer monthLength;
     private String monthName;
@@ -11,6 +12,8 @@ public class dateTime {
     public dateTime(Integer[] startingDate){
         this.dateNumber = startingDate[0];
         this.monthNumber = startingDate[1];
+        this.yearNumber = startingDate[2];
+
         this.monthLength = setMonthLength(monthNumber);
         this.monthName = setMonthName(monthNumber);
     }
@@ -64,6 +67,7 @@ public class dateTime {
         }
         if (monthNumber > 12){
             this.monthNumber = 1;
+            this.yearNumber += 1;
         }
     }
 
@@ -73,6 +77,10 @@ public class dateTime {
     public Integer getMonthNumber(){
         return monthNumber;
     }
+    public Integer getYearNumber(){
+        return yearNumber;
+    }
+
     public Integer getMonthLength(){
         return monthLength;
     }
