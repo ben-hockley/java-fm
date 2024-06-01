@@ -4,9 +4,7 @@ import data.Data;
 import events.Game;
 
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Team {
     //Team details, these will not change.
@@ -21,21 +19,22 @@ public class Team {
     private Integer wins;
     private Integer draws;
     private Integer losses;
-    private Integer[] formation; //e.g. 4-4-2 would be [4,4,2], should always be 3 numbers.
+    private final Integer[] formation; //e.g. 4-4-2 would be [4,4,2], should always be 3 numbers.
 
     private Player[] startingEleven;
 
     private ArrayList<Player> substitutes;
 
-    private ArrayList<Game> fixtures;
+    private final ArrayList<Game> fixtures;
 
-    private Color teamColor;
+    private final Color teamColor;
 
     private Integer transferBudget;
 
 
     public ArrayList<Player> players;
 
+    //constructor to create club teams.
     public Team(String teamName,String shortName ,String teamLogo, League league, Integer[] formation, Color teamColor, Integer transferBudget_millions) {
         this.teamName = teamName;
         this.shortName = shortName;
@@ -60,6 +59,8 @@ public class Team {
         league.addTeam(this); //after creating a team, add them to their league.
     }
 
+
+    //constructor to create national teams.
     public Team(Nation nationalTeam){
         this.teamName = nationalTeam.getNationName();
         this.shortName = nationalTeam.getNationName();
@@ -171,9 +172,8 @@ public class Team {
     }
 
     private ArrayList<Player> bestSubs() {
-        ArrayList<Player> subs = new ArrayList<>();
 
-        subs.addAll(players);
+        ArrayList<Player> subs = new ArrayList<>(players);
 
         for (Player player : getStartingEleven()) {
             subs.remove(player);
@@ -244,11 +244,8 @@ public class Team {
     }
 
     public ArrayList<Player> getTopGoalscorers(){
-        ArrayList<Player> topGoalscorers = new ArrayList<>();
-        for (Player player : players) {
-            topGoalscorers.add(player);
-        }
-        Collections.sort(topGoalscorers, (o1, o2) -> o2.getGoals().compareTo(o1.getGoals()));
+        ArrayList<Player> topGoalscorers = new ArrayList<>(players);
+        topGoalscorers.sort((o1, o2) -> o2.getGoals().compareTo(o1.getGoals()));
         return topGoalscorers;
     }
 

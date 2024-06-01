@@ -239,7 +239,7 @@ public class gameSimulator extends JFrame {
 
         if (userTeam.getMatchesPlayed() == 38) {
             //End of season
-            JFrame endOfSeasonSummary = new endOfSeasonSummary(userTeam);
+            new endOfSeasonSummary(userTeam);
         }
     }
 }

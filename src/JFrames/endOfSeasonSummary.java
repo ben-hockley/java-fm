@@ -83,13 +83,7 @@ public class endOfSeasonSummary extends JFrame {
         retiringPlayersPanel.add(retiringPlayersTitleLabel);
 
         for (Player player : retiringPlayers){
-            JLabel retiringPlayerLabel = new JLabel(player.getPlayerName() + ", " + player.getAge() + ", " + player.getPosition() + ", " + player.getTeam().getShortName());
-            retiringPlayerLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-            retiringPlayerLabel.setHorizontalAlignment(SwingConstants.LEFT);
-            retiringPlayerLabel.setVerticalAlignment(SwingConstants.CENTER);
-            retiringPlayerLabel.setBackground(player.getTeam().getTeamColor());
-            retiringPlayerLabel.setForeground(Color.WHITE);
-            retiringPlayerLabel.setOpaque(true);
+            JLabel retiringPlayerLabel = getRetiringPlayerLabel(player);
             retiringPlayersPanel.add(retiringPlayerLabel);
         }
 
@@ -97,11 +91,26 @@ public class endOfSeasonSummary extends JFrame {
         retiringPlayersScrollPane.setPreferredSize(new Dimension(200, 800));
         this.add(retiringPlayersScrollPane, BorderLayout.WEST);
 
+        JPanel mainPanel = getMainPanel(userTeam);
+
+
+        this.add(mainPanel, BorderLayout.CENTER);
+        this.setVisible(true);
+
+        // MORE BACK-END FUNCTIONS, executed after the JFrame is displayed so last seasons stats are displayed before stats are reset.
+        for (Team team : userTeam.getLeague().getAllTeams()){
+            team.resetStats();
+        }
+
+        for (Player player : userTeam.getLeague().getAllPlayers()){
+            player.resetStats();
+        }
+    }
+
+    private static JPanel getMainPanel(Team userTeam) {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(6, 2));
         mainPanel.setBackground(Color.GRAY);
-
-
 
 
         // Champions
@@ -117,6 +126,12 @@ public class endOfSeasonSummary extends JFrame {
         championsLabel.setOpaque(true);
         mainPanel.add(championsLabel);
 
+        JLabel topGoalScorerLabel = getTopGoalScorerLabel(TopGoalscorer);
+        mainPanel.add(topGoalScorerLabel);
+        return mainPanel;
+    }
+
+    private static JLabel getTopGoalScorerLabel(Player TopGoalscorer) {
         JLabel topGoalScorerLabel = new JLabel("Top Goal Scorer: " + TopGoalscorer.getPlayerName() + ", " + TopGoalscorer.getGoals() + " goals");
         topGoalScorerLabel.setFont(new Font("Arial", Font.BOLD, 18));
         topGoalScorerLabel.setHorizontalAlignment(SwingConstants.LEFT);
@@ -124,20 +139,17 @@ public class endOfSeasonSummary extends JFrame {
         topGoalScorerLabel.setBackground(TopGoalscorer.getTeam().getTeamColor());
         topGoalScorerLabel.setForeground(Color.WHITE);
         topGoalScorerLabel.setOpaque(true);
-        mainPanel.add(topGoalScorerLabel);
+        return topGoalScorerLabel;
+    }
 
-
-
-        this.add(mainPanel, BorderLayout.CENTER);
-        this.setVisible(true);
-
-        // MORE BACK-END FUNCTIONS, executed after the JFrame is displayed so last seasons stats are displayed before stats are reset.
-        for (Team team : userTeam.getLeague().getAllTeams()){
-            team.resetStats();
-        }
-
-        for (Player player : userTeam.getLeague().getAllPlayers()){
-            player.resetStats();
-        }
+    private static JLabel getRetiringPlayerLabel(Player player) {
+        JLabel retiringPlayerLabel = new JLabel(player.getPlayerName() + ", " + player.getAge() + ", " + player.getPosition() + ", " + player.getTeam().getShortName());
+        retiringPlayerLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+        retiringPlayerLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        retiringPlayerLabel.setVerticalAlignment(SwingConstants.CENTER);
+        retiringPlayerLabel.setBackground(player.getTeam().getTeamColor());
+        retiringPlayerLabel.setForeground(Color.WHITE);
+        retiringPlayerLabel.setOpaque(true);
+        return retiringPlayerLabel;
     }
 }

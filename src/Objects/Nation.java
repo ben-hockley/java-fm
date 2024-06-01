@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Nation {
     private final String nationName;
     private final String nationFlag;
-    private Integer worldRanking;
+    private final Integer worldRanking;
     private final String Continent;
 
     private ArrayList<Player> players;

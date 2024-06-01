@@ -7,7 +7,7 @@ public class Player {
     private final String lastName;
     private final String position;
     private Team team;
-    private Nation nationality;
+    private final Nation nationality;
     private Integer rating;
     private Integer age;
 
@@ -101,7 +101,8 @@ public class Player {
         Integer regenRating = 70 + (int) (Math.random() * 10);
         Integer regenAge = 16 + (int) (Math.random() * 5);
 
-        Player regen = new Player(regenFirstName, regenLastName, position, team, nationality, regenRating, regenAge);
+        //create regen with same position, team, nationality as retired player.
+        new Player(regenFirstName, regenLastName, position, team, nationality, regenRating, regenAge);
 
 
         this.team.removePlayer(this);

@@ -1,8 +1,5 @@
 package main;
 
-import JFrames.endOfSeasonSummary;
-import Objects.Player;
-import Objects.World;
 import data.Data;
 import JFrames.UI;
 import Objects.Team;
@@ -33,7 +30,7 @@ public class Main {
         //User Interface
 
         //testing international teams
-        Team userTeam = Data.world.getTeamByName("Manchester City");
+        Team userTeam = Data.international.getLeagueByTier(1).getTeamByName("England");
 
         JFrame userUI = new UI(userTeam);
         userUI.setTitle("Football Manager 2024");

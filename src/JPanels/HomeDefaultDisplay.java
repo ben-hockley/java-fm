@@ -57,7 +57,7 @@ public class HomeDefaultDisplay extends JPanel {
                 if (e.getKeyCode() == KeyEvent.VK_T) {
 
                     if (clock.getMonthNumber().equals(1) || clock.getMonthNumber().equals(6) || clock.getMonthNumber().equals(7) || clock.getMonthNumber().equals(8)){
-                        JFrame transferMarket = new transferMarket(userTeam);
+                        new transferMarket(userTeam);
                     } else {
                         JOptionPane.showMessageDialog(null, "Transfer window shut, you can buy and sell players in January, June, July and August.");
                     }
@@ -68,7 +68,7 @@ public class HomeDefaultDisplay extends JPanel {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_M) {
-                    JFrame manageTeam = new manageTeam(userTeam);
+                    new manageTeam(userTeam);
                 }
             }
         });
@@ -136,22 +136,7 @@ public class HomeDefaultDisplay extends JPanel {
 
         int tablePosition = 1;
         for (Team leagueStanding : leagueStandings) {
-            JLabel team = new JLabel(tablePosition + "." + leagueStanding.getShortName());
-            team.setHorizontalAlignment(SwingConstants.CENTER);
-            team.setVerticalAlignment(SwingConstants.CENTER);
-            team.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-            if (tablePosition <= 4) {
-                team.setBackground(Color.BLUE);
-            } else if (tablePosition <= 6) {
-                team.setBackground(Color.GREEN);
-            } else if (tablePosition <= 17) {
-                team.setBackground(Color.ORANGE);
-            } else {
-                team.setBackground(Color.RED);
-            }
-            team.setOpaque(true);
-            team.setForeground(Color.WHITE);
+            JLabel team = getTeam(leagueStanding, tablePosition);
             teamNames.add(team);
             tablePosition++;
         }
@@ -180,6 +165,26 @@ public class HomeDefaultDisplay extends JPanel {
         westScrollPane.setPreferredSize(new Dimension(300, 300));
         westScrollPane.setFocusable(false);
         return westScrollPane;
+    }
+
+    private static JLabel getTeam(Team leagueStanding, int tablePosition) {
+        JLabel team = new JLabel(tablePosition + "." + leagueStanding.getShortName());
+        team.setHorizontalAlignment(SwingConstants.CENTER);
+        team.setVerticalAlignment(SwingConstants.CENTER);
+        team.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        if (tablePosition <= 4) {
+            team.setBackground(Color.BLUE);
+        } else if (tablePosition <= 6) {
+            team.setBackground(Color.GREEN);
+        } else if (tablePosition <= 17) {
+            team.setBackground(Color.ORANGE);
+        } else {
+            team.setBackground(Color.RED);
+        }
+        team.setOpaque(true);
+        team.setForeground(Color.WHITE);
+        return team;
     }
 
     private JLabel getTeamTopGoalscorers(Team userTeam){

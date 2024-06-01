@@ -62,10 +62,6 @@ public class League {
         return name;
     }
 
-    public Integer getNumberOfTeams(){
-        return teams.size();
-    }
-
     public ArrayList<ArrayList<Game>> generateFixtures() {
         ArrayList<ArrayList<Game>> fixtures = fixtureGen.generateFixtureSchedule(teams);
 
@@ -91,11 +87,6 @@ public class League {
         ArrayList<Player> topGoalscorers = getAllPlayers();
         topGoalscorers.sort((o1, o2) -> o2.getGoals().compareTo(o1.getGoals()));
         return topGoalscorers;
-    }
-    public ArrayList<Player> getPlayersByValue(){
-        ArrayList<Player> playersByValue = getAllPlayers();
-        playersByValue.sort((o1, o2) -> o2.getValue().compareTo(o1.getValue()));
-        return playersByValue;
     }
     public Player getPlayerByName(String playerName){
         for (Player player : getAllPlayers()) {

@@ -23,7 +23,7 @@ public class World {
 
     public ArrayList<Player> getPlayersByValue() {
         ArrayList<Player> allPlayers = getAllPlayers();
-        allPlayers.sort((p1, p2) -> (int) (p2.getValue() - p1.getValue()));
+        allPlayers.sort((p1, p2) -> (p2.getValue() - p1.getValue()));
         return allPlayers;
     }
 

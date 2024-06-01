@@ -1422,19 +1422,9 @@ public class Data {
         new Player("Dijon", "Kameri", "FWD", rbSalzburg, austria, 73, 20);
     }
 
-    public static void setNationsLeague(){
+    public static void setNationsLeague() {
         League nationsLeague = new League("Nations League", "NationsLeague.png", 1, international);
 
         Team englandNationalTeam = new Team(england);
-        Team franceNationalTeam = new Team(france);
-        Team germanyNationalTeam = new Team(germany);
-        Team italyNationalTeam = new Team(italy);
-        Team spainNationalTeam = new Team(spain);
-        Team portugalNationalTeam = new Team(portugal);
-        Team belgiumNationalTeam = new Team(belgium);
-        Team netherlandsNationalTeam = new Team(netherlands);
-        Team brazilNationalTeam = new Team(brazil);
-        Team argentinaNationalTeam = new Team(argentina);
-        Team usaNationalTeam = new Team(usa);
-    }
+}
 }
