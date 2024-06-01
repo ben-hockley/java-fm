@@ -2,6 +2,7 @@ package Objects;
 
 import data.Data;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Nation {
@@ -13,6 +14,8 @@ public class Nation {
     private ArrayList<Player> players;
     private final ArrayList<League> leagues;
 
+    private final Color nationColor;
+
     public Nation(String nationName, String nationFlag, Integer worldRanking, String Continent) {
         this.nationName = nationName;
         this.nationFlag = nationFlag;
@@ -21,6 +24,9 @@ public class Nation {
 
         this.players = new ArrayList<>();
         this.leagues = new ArrayList<>();
+
+        //change this later
+        this.nationColor = Color.BLUE;
     }
 
     public void addPlayer(Player player) {
@@ -164,5 +170,9 @@ public class Nation {
 
     public String getNationFlag() {
         return nationFlag;
+    }
+
+    public Color getNationColor() {
+        return nationColor;
     }
 }

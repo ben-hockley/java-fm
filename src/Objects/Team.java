@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Team {
     //Team details, these will not change.
+    private final String teamType;
     private final String teamName;
     private final String shortName;
     private final String teamLogo;
@@ -36,6 +37,8 @@ public class Team {
 
     //constructor to create club teams.
     public Team(String teamName,String shortName ,String teamLogo, League league, Integer[] formation, Color teamColor, Integer transferBudget_millions) {
+        this.teamType = "Club";
+
         this.teamName = teamName;
         this.shortName = shortName;
         this.teamLogo = teamLogo;
@@ -62,12 +65,14 @@ public class Team {
 
     //constructor to create national teams.
     public Team(Nation nationalTeam){
+        this.teamType = "International";
+
         this.teamName = nationalTeam.getNationName();
         this.shortName = nationalTeam.getNationName();
         this.teamLogo = nationalTeam.getNationFlag();
         this.teamColor = Color.BLUE;
 
-        this.league = Data.england.getLeagueByTier(1);
+        this.league = Data.international.getLeagueByTier(1); //world cup
         this.formation = new Integer[]{4,3,3};
 
         this.players = nationalTeam.getBestSquad();
@@ -365,5 +370,9 @@ public class Team {
 
     public void increaseTransferBudget(Integer amount){
         this.transferBudget += amount;
+    }
+
+    public String getTeamType() {
+        return teamType;
     }
 }

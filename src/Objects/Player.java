@@ -127,4 +127,8 @@ public class Player {
         this.goals = 0;
     }
 
+    public Nation getNationality() {
+        return nationality;
+    };
+
 }

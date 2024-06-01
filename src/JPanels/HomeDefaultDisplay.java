@@ -56,10 +56,14 @@ public class HomeDefaultDisplay extends JPanel {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_T) {
 
-                    if (clock.getMonthNumber().equals(1) || clock.getMonthNumber().equals(6) || clock.getMonthNumber().equals(7) || clock.getMonthNumber().equals(8)){
-                        new transferMarket(userTeam);
+                    if (userTeam.getTeamType().equals("International")){
+                        JOptionPane.showMessageDialog(null, "You are managing a national Team, so you cannot buy and sell players.");
                     } else {
-                        JOptionPane.showMessageDialog(null, "Transfer window shut, you can buy and sell players in January, June, July and August.");
+                        if (clock.getMonthNumber().equals(1) || clock.getMonthNumber().equals(6) || clock.getMonthNumber().equals(7) || clock.getMonthNumber().equals(8)){
+                            new transferMarket(userTeam);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Transfer window shut, you can buy and sell players in January, June, July and August.");
+                        }
                     }
                 }
             }
@@ -310,12 +314,23 @@ public class HomeDefaultDisplay extends JPanel {
         teamStatsLabel.add(new JLabel("Apps"));
         teamStatsLabel.add(new JLabel("Goals"));
 
+
+
+
         for (int i=0; i<5; i++) {
-            JLabel team = new JLabel(userTeam.getLeague().getTopGoalscorers().get(i).getTeam().getShortName());
+            JLabel team;
+
+            if (userTeam.getTeamType().equals("International")){
+                team = new JLabel(userTeam.getLeague().getTopGoalscorers().get(i).getNationality().getNationName());
+                team.setBackground(userTeam.getLeague().getTopGoalscorers().get(i).getNationality().getNationColor());
+            } else {
+                team = new JLabel(userTeam.getLeague().getTopGoalscorers().get(i).getTeam().getShortName());
+                team.setBackground(userTeam.getLeague().getTopGoalscorers().get(i).getTeam().getTeamColor());
+            }
+
             team.setHorizontalAlignment(SwingConstants.CENTER);
             team.setVerticalAlignment(SwingConstants.CENTER);
 
-            team.setBackground(userTeam.getLeague().getTopGoalscorers().get(i).getTeam().getTeamColor());
             team.setForeground(Color.WHITE);
             team.setOpaque(true);
             team.setBorder(BorderFactory.createLineBorder(Color.BLACK));

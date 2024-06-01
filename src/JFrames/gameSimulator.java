@@ -25,6 +25,11 @@ public class gameSimulator extends JFrame {
 
         Integer homeRating = homeTeam.getRating();
         Integer awayRating = awayTeam.getRating();
+
+        System.out.println(homeTeam.getTeamName() + " rating: " + homeRating);
+        System.out.println(awayTeam.getTeamName() + " rating: " + awayRating);
+
+
         //home advantage
         homeRating += 40;
 
@@ -237,7 +242,9 @@ public class gameSimulator extends JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setVisible(true);
 
-        if (userTeam.getMatchesPlayed() == 38) {
+        Integer numberOfLeagueGamesInSeason = userTeam.getLeague().getNumberOfGamesInSeason();
+
+        if (userTeam.getMatchesPlayed().equals(numberOfLeagueGamesInSeason)) {
             //End of season
             new endOfSeasonSummary(userTeam);
         }

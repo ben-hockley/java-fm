@@ -1,5 +1,6 @@
 package JFrames;
 
+import data.Data;
 import events.Game;
 import JPanels.CalendarPanel;
 import JPanels.HomeDefaultDisplay;
@@ -40,6 +41,7 @@ public class UI extends JFrame {
         allGameFixtures = userTeam.getLeague().generateFixtures();
 
         ArrayList<Game> fixtures = userTeam.getFixtures();
+
         events.addAll(fixtures); //add the fixtures to the events list.
 
         //set basic properties of the JFrame.
@@ -69,10 +71,14 @@ public class UI extends JFrame {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_T) {
 
-                    if (clock.getMonthNumber().equals(1) || clock.getMonthNumber().equals(6) || clock.getMonthNumber().equals(7) || clock.getMonthNumber().equals(8)){
-                        new transferMarket(userTeam);
+                    if (userTeam.getTeamType().equals("International")){
+                        JOptionPane.showMessageDialog(null, "You are managing a national Team, so you cannot buy and sell players.");
                     } else {
-                        JOptionPane.showMessageDialog(null, "Transfer window shut, you can buy and sell players in January, June, July and August.");
+                        if (clock.getMonthNumber().equals(1) || clock.getMonthNumber().equals(6) || clock.getMonthNumber().equals(7) || clock.getMonthNumber().equals(8)){
+                            new transferMarket(userTeam);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Transfer window shut, you can buy and sell players in January, June, July and August.");
+                        }
                     }
                 }
             }

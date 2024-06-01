@@ -16,7 +16,7 @@ public class Main {
         //so the player can choose which leagues to load.
         Data.setPremierLeague();
         Data.setChampionsLeague();
-        Data.setNationsLeague();
+        Data.setWorldCup();
 
         //set default starting 11 and subs for all club teams.
         for (Team team : Data.world.getAllTeams()) {
@@ -34,6 +34,9 @@ public class Main {
 
         JFrame userUI = new UI(userTeam);
         userUI.setTitle("Football Manager 2024");
+
+
+        System.out.println(userTeam.getTeamName());
     }
 }
 

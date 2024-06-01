@@ -117,7 +117,16 @@ public class Data {
             {6, 5},
             {13, 5},
             {20, 5},
-            {27, 5}
+            {27, 5},
+            {3, 6},
+            {10, 6},
+            {17, 6},
+            {24, 6},
+            {1, 7},
+            {8, 7},
+            {15, 7},
+            {22, 7},
+            {29, 7}
     };
 
     public static String[] listOfFirstNames = {
@@ -1422,9 +1431,55 @@ public class Data {
         new Player("Dijon", "Kameri", "FWD", rbSalzburg, austria, 73, 20);
     }
 
-    public static void setNationsLeague() {
-        League nationsLeague = new League("Nations League", "NationsLeague.png", 1, international);
+    public static void setWorldCup() {
+        League worldCup = new League("World Cup", "WorldCup.png", 1, international);
 
+        //world cup teams
+
+        //Europe (14)
         Team englandNationalTeam = new Team(england);
-}
+        Team franceNationalTeam = new Team(france);
+        Team germanyNationalTeam = new Team(germany);
+        Team italyNationalTeam = new Team(italy);
+        Team netherlandsNationalTeam = new Team(netherlands);
+        Team portugalNationalTeam = new Team(portugal);
+        Team spainNationalTeam = new Team(spain);
+        Team belgiumNationalTeam = new Team(belgium);
+        Team croatiaNationalTeam = new Team(croatia);
+        Team denmarkNationalTeam = new Team(denmark);
+        Team swedenNationalTeam = new Team(sweden);
+        Team switzerlandNationalTeam = new Team(switzerland);
+        Team turkeyNationalTeam = new Team(turkey);
+        Team austriaNationalTeam = new Team(austria);
+
+        //South America (5)
+        Team argentinaNationalTeam = new Team(argentina);
+        Team brazilNationalTeam = new Team(brazil);
+        Team chileNationalTeam = new Team(chile);
+        Team colombiaNationalTeam = new Team(colombia);
+        Team uruguayNationalTeam = new Team(uruguay);
+
+        //North America (3)
+        Team canadaNationalTeam = new Team(canada);
+        Team usaNationalTeam = new Team(usa);
+        Team mexicoNationalTeam = new Team(mexico);
+
+        //Asia (2)
+        Team japanNationalTeam = new Team(japan);
+        Team southKoreaNationalTeam = new Team(southKorea);
+
+        //Africa (8)
+        Team nigeriaNationalTeam = new Team(nigeria);
+        Team ghanaNationalTeam = new Team(ghana);
+        Team ivoryCoastNationalTeam = new Team(ivoryCoast);
+        Team cameroonNationalTeam = new Team(cameroon);
+        Team algeriaNationalTeam = new Team(algeria);
+        Team moroccoNationalTeam = new Team(morocco);
+        Team senegalNationalTeam = new Team(senegal);
+        Team maliNationalTeam = new Team(mali);
+
+
+
+
+    }
 }

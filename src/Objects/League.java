@@ -103,4 +103,10 @@ public class League {
     public void removeTeam(Team team){
         this.teams.remove(team);
     }
+
+    public Integer getNumberOfGamesInSeason(){
+        return (teams.size() - 1) * 2;
+    }
+
+
 }

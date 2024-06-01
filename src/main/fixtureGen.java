@@ -15,6 +15,10 @@ public class fixtureGen {
         int totalRounds = (numberOfTeams - 1) * 2; //38 for a 20 team league
         int matchesPerRound = numberOfTeams / 2; //10 for a 20 team league
 
+        if (numberOfTeams > 20){
+            totalRounds /= 2;
+        }
+
         for (int round = 0; round < totalRounds; round++) {
             ArrayList<Game> roundMatches = new ArrayList<>();
 
