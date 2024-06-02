@@ -154,11 +154,11 @@ public class HomeDefaultDisplay extends JPanel {
         teamStats.add(new JLabel("PTS"));
 
         for (Team leagueStanding : leagueStandings) {
-            teamStats.add(new JLabel(String.valueOf(leagueStanding.getMatchesPlayed())));
-            teamStats.add(new JLabel(String.valueOf(leagueStanding.getWins())));
-            teamStats.add(new JLabel(String.valueOf(leagueStanding.getDraws())));
-            teamStats.add(new JLabel(String.valueOf(leagueStanding.getLosses())));
-            teamStats.add(new JLabel(String.valueOf(leagueStanding.getPoints())));
+            teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeagueMatchesPlayed())));
+            teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeagueWins())));
+            teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeagueDraws())));
+            teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeagueLosses())));
+            teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeaguePoints())));
         }
 
         westLabel.add(teamNames);
@@ -250,14 +250,14 @@ public class HomeDefaultDisplay extends JPanel {
             position.setFont(new Font("Arial", Font.PLAIN, 10));
             position.setForeground(Color.WHITE);
 
-            JLabel appearances = new JLabel(String.valueOf(userTeam.getTopGoalscorers().get(i).getAppearances()));
+            JLabel appearances = new JLabel(String.valueOf(userTeam.getTopGoalscorers().get(i).getLeagueAppearances()));
             appearances.setHorizontalAlignment(SwingConstants.CENTER);
             appearances.setVerticalAlignment(SwingConstants.CENTER);
             appearances.setBorder(BorderFactory.createLineBorder(Color.WHITE));
             appearances.setFont(new Font("Arial", Font.PLAIN, 10));
             appearances.setForeground(Color.WHITE);
 
-            JLabel goals = new JLabel(String.valueOf(userTeam.getTopGoalscorers().get(i).getGoals()));
+            JLabel goals = new JLabel(String.valueOf(userTeam.getTopGoalscorers().get(i).getLeagueGoals()));
             goals.setHorizontalAlignment(SwingConstants.CENTER);
             goals.setVerticalAlignment(SwingConstants.CENTER);
             goals.setBorder(BorderFactory.createLineBorder(Color.WHITE));
@@ -336,13 +336,13 @@ public class HomeDefaultDisplay extends JPanel {
             team.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             team.setFont(new Font("Arial", Font.PLAIN, 10));
 
-            JLabel appearances = new JLabel(String.valueOf(userTeam.getLeague().getTopGoalscorers().get(i).getAppearances()));
+            JLabel appearances = new JLabel(String.valueOf(userTeam.getLeague().getTopGoalscorers().get(i).getLeagueAppearances()));
             appearances.setHorizontalAlignment(SwingConstants.CENTER);
             appearances.setVerticalAlignment(SwingConstants.CENTER);
             appearances.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             appearances.setFont(new Font("Arial", Font.PLAIN, 10));
 
-            JLabel goals = new JLabel(String.valueOf(userTeam.getLeague().getTopGoalscorers().get(i).getGoals()));
+            JLabel goals = new JLabel(String.valueOf(userTeam.getLeague().getTopGoalscorers().get(i).getLeagueGoals()));
             goals.setHorizontalAlignment(SwingConstants.CENTER);
             goals.setVerticalAlignment(SwingConstants.CENTER);
             goals.setBorder(BorderFactory.createLineBorder(Color.BLACK));

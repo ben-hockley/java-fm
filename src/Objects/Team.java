@@ -18,11 +18,14 @@ public class Team {
 
 
     //League stats.
-    private Integer points;
-    private Integer matchesPlayed;
-    private Integer wins;
-    private Integer draws;
-    private Integer losses;
+    private Integer leaguePoints;
+    private Integer leagueMatchesPlayed;
+    private Integer leagueWins;
+    private Integer leagueDraws;
+    private Integer leagueLosses;
+
+    //Cup stats
+    private Integer cupMatchesPlayed;
 
 
     private final Integer[] formation; //e.g. 4-4-2 would be [4,4,2], should always be 3 numbers.
@@ -56,11 +59,15 @@ public class Team {
 
         this.fixtures = new ArrayList<>();
 
-        this.matchesPlayed = 0;
-        this.wins = 0;
-        this.draws = 0;
-        this.losses = 0;
-        this.points = 0;
+        //League stats
+        this.leagueMatchesPlayed = 0;
+        this.leagueWins = 0;
+        this.leagueDraws = 0;
+        this.leagueLosses = 0;
+        this.leaguePoints = 0;
+
+        //Cup stats
+        this.cupMatchesPlayed = 0;
 
         this.transferBudget = transferBudget_millions * 1000000;
 
@@ -84,11 +91,15 @@ public class Team {
 
         this.fixtures = new ArrayList<>();
 
-        this.matchesPlayed = 0;
-        this.wins = 0;
-        this.draws = 0;
-        this.losses = 0;
-        this.points = 0;
+        //League stats
+        this.leagueMatchesPlayed = 0;
+        this.leagueWins = 0;
+        this.leagueDraws = 0;
+        this.leagueLosses = 0;
+        this.leaguePoints = 0;
+
+        //Cup stats
+        this.cupMatchesPlayed = 0;
 
         this.transferBudget = 0;
 
@@ -199,41 +210,41 @@ public class Team {
         return league;
     }
 
-    public Integer getMatchesPlayed() {
-        return matchesPlayed;
+    public Integer getLeagueMatchesPlayed() {
+        return leagueMatchesPlayed;
     }
 
-    public Integer getWins() {
-        return wins;
+    public Integer getLeagueWins() {
+        return leagueWins;
     }
 
-    public Integer getDraws() {
-        return draws;
+    public Integer getLeagueDraws() {
+        return leagueDraws;
     }
 
-    public Integer getLosses() {
-        return losses;
+    public Integer getLeagueLosses() {
+        return leagueLosses;
     }
 
-    public Integer getPoints() {
-        return points;
+    public Integer getLeaguePoints() {
+        return leaguePoints;
     }
 
-    public void addWin() {
-        this.matchesPlayed += 1;
-        this.wins += 1;
-        this.points += 3;
+    public void addLeagueWin() {
+        this.leagueMatchesPlayed += 1;
+        this.leagueWins += 1;
+        this.leaguePoints += 3;
     }
 
-    public void addDraw() {
-        this.matchesPlayed += 1;
-        this.draws += 1;
-        this.points += 1;
+    public void addLeagueDraw() {
+        this.leagueMatchesPlayed += 1;
+        this.leagueDraws += 1;
+        this.leaguePoints += 1;
     }
 
-    public void addLoss() {
-        this.matchesPlayed += 1;
-        this.losses += 1;
+    public void addLeagueLoss() {
+        this.leagueMatchesPlayed += 1;
+        this.leagueLosses += 1;
     }
 
     public ArrayList<Player> getAllPlayers() {
@@ -255,7 +266,7 @@ public class Team {
 
     public ArrayList<Player> getTopGoalscorers(){
         ArrayList<Player> topGoalscorers = new ArrayList<>(players);
-        topGoalscorers.sort((o1, o2) -> o2.getGoals().compareTo(o1.getGoals()));
+        topGoalscorers.sort((o1, o2) -> o2.getLeagueGoals().compareTo(o1.getLeagueGoals()));
         return topGoalscorers;
     }
 
@@ -357,12 +368,12 @@ public class Team {
         newLeague.addTeam(this);
     }
 
-    public void resetStats() {
-        this.matchesPlayed = 0;
-        this.wins = 0;
-        this.draws = 0;
-        this.losses = 0;
-        this.points = 0;
+    public void resetLeagueStats() {
+        this.leagueMatchesPlayed = 0;
+        this.leagueWins = 0;
+        this.leagueDraws = 0;
+        this.leagueLosses = 0;
+        this.leaguePoints = 0;
     }
 
     public Integer getTransferBudget() {
@@ -379,5 +390,13 @@ public class Team {
 
     public String getTeamType() {
         return teamType;
+    }
+
+    public void addCupMatchPlayed() {
+        this.cupMatchesPlayed += 1;
+    }
+
+    public Integer getCupMatchesPlayed(){
+        return cupMatchesPlayed;
     }
 }

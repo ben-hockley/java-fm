@@ -3,6 +3,7 @@ package data;
 import Objects.*;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Data {
     //Nations
@@ -71,10 +72,11 @@ public class Data {
     public static Nation iceland = new Nation("Iceland", "Iceland.png", 58, "Europe");
     public static Nation armenia = new Nation("Armenia", "Armenia.png", 58, "Europe");
     public static Nation serbia = new Nation("Serbia", "Serbia.png", 59, "Europe");
+    public static Nation guinea = new Nation("Guinea", "Guinea.png", 59, "Africa");
     public static Nation georgia = new Nation("Georgia", "Georgia.png", 60, "Europe");
     public static Nation bosniaHerzegovina = new Nation("Bosnia and Herzegovina", "BosniaHerzegovina.png", 61, "Europe");
     public static Nation canada = new Nation("Canada", "Canada.png", 55, "North America");
-    public static Integer[][] listOfDates = {
+    public static Integer[][] listOfLeagueDates = {
             {6, 8},
             {13, 8},
             {20, 8},
@@ -128,6 +130,62 @@ public class Data {
             {22, 7},
             {29, 7}
     };
+
+    public static Integer[][] listOfCupDates = {
+            {9, 8},
+            {16, 8},
+            {23, 8},
+            {30, 8},
+            {6, 9},
+            {13, 9},
+            {20, 9},
+            {27, 9},
+            {4, 10},
+            {11, 10},
+            {18, 10},
+            {25, 10},
+            {1, 11},
+            {8, 11},
+            {15, 11},
+            {22, 11},
+            {29, 11},
+            {6, 12},
+            {13, 12},
+            {20, 12},
+            {27, 12},
+            {3, 1},
+            {10, 1},
+            {17, 1},
+            {24, 1},
+            {31, 1},
+            {7, 2},
+            {14, 2},
+            {21, 2},
+            {28, 2},
+            {7, 3},
+            {14, 3},
+            {21, 3},
+            {28, 3},
+            {4, 4},
+            {11, 4},
+            {18, 4},
+            {25, 4},
+            {2, 5},
+            {9, 5},
+            {16, 5},
+            {23, 5},
+            {30, 5},
+            {6, 6},
+            {13, 6},
+            {20, 6},
+            {27, 6},
+            {4, 7},
+            {11, 7},
+            {18, 7},
+            {25, 7}
+    };
+
+
 
     public static String[] listOfFirstNames = {
             "James",
@@ -955,7 +1013,7 @@ public class Data {
         new Player("Serge", "Gnabry", "FWD", bayernMunich, germany, 87, 28);
         new Player("Mathys", "Tel", "FWD", bayernMunich, france, 82, 19);
 
-        Team borussiaDortmund = new Team("Borussia Dortmund", "Dortmund", "BorussiaDortmund.png", bundesliga, new Integer[]{4, 3, 3}, new Color(253,225,0), 100);
+        Team borussiaDortmund = new Team("Borussia Dortmund", "Dortmund", "BorussiaDortmund.png", bundesliga, new Integer[]{4, 3, 3}, new Color(253, 225, 0), 100);
         new Player("Gregor", "Kobel", "GK", borussiaDortmund, switzerland, 85, 26);
         new Player("Marcel", "Lotka", "GK", borussiaDortmund, germany, 75, 23);
 
@@ -1051,7 +1109,7 @@ public class Data {
         new Player("Alexis", "Sanchez", "FWD", interMilan, chile, 80, 35);
         new Player("Marko", "Arnautovic", "FWD", interMilan, austria, 79, 35);
 
-        Team acMilan = new Team("AC Milan", "AC Milan", "ACMilan.png", serieA, new Integer[]{4, 3, 3}, new Color(251,9,11), 100);
+        Team acMilan = new Team("AC Milan", "AC Milan", "ACMilan.png", serieA, new Integer[]{4, 3, 3}, new Color(251, 9, 11), 100);
         new Player("Mike", "Maignan", "GK", acMilan, france, 88, 28);
         new Player("Marco", "Sportiello", "GK", acMilan, italy, 80, 32);
 
@@ -1370,6 +1428,28 @@ public class Data {
         new Player("Kerem", "Akturkoglu", "FWD", galatasaray, turkey, 81, 25);
         new Player("Baris Alper", "Yilmaz", "FWD", galatasaray, turkey, 79, 24);
 
+        Team fenerbahce = new Team("Fenerbahce", "Fenerbahce", "Fenerbahce.png", superLig, new Integer[]{4, 3, 3}, new Color(0, 65, 127), 100);
+        new Player("Dominik", "Livakovic", "GK", fenerbahce, croatia, 82, 29);
+        new Player("Irfan", "Can", "GK", fenerbahce, turkey, 75, 25);
+
+        new Player("Caglar", "Soyuncu", "DEF", fenerbahce, turkey, 84, 28);
+        new Player("Leonardo", "Bonucci", "DEF", fenerbahce, italy, 81, 37);
+        new Player("Bright", "Osayi Samuel", "DEF", fenerbahce, nigeria, 80, 26);
+        new Player("Ferdi", "Kadioglu", "DEF", fenerbahce, turkey, 78, 24);
+        new Player("Alexander", "Dijku", "DEF", fenerbahce, ghana, 75, 29);
+        new Player("Mert", "Mulder", "DEF", fenerbahce, turkey, 74, 25);
+
+        new Player("Fred", "", "MID", fenerbahce, brazil, 84, 31);
+        new Player("Sebastian", "Szymanski", "MID", fenerbahce, poland, 82, 25);
+        new Player("Ismail", "Yuksek", "MID", fenerbahce, turkey, 78, 25);
+        new Player("Mert", "Hakan Yandas", "MID", fenerbahce, turkey, 77, 29);
+        new Player("Rade", "Krunic", "MID", fenerbahce, bosniaHerzegovina, 76, 30);
+
+        new Player("Edin", "Dzeko", "FWD", fenerbahce, bosniaHerzegovina, 85, 38);
+        new Player("Dusan", "Tadic", "FWD", fenerbahce, serbia, 82, 35);
+        new Player("Irfan", "Can Kahveci", "FWD", fenerbahce, turkey, 81, 28);
+        new Player("Cengiz", "Under", "FWD", fenerbahce, turkey, 80, 26);
+        new Player("Joshua", "King", "FWD", fenerbahce, norway, 79, 32);
         world.addLeague(superLig);
 
         League scottishPremiership = new League("Scottish Premiership", "ScottishPremiership.png", 1, scotland);
@@ -1398,6 +1478,29 @@ public class Data {
         new Player("James", "Forrest", "FWD", celtic, scotland, 79, 32);
         new Player("Hyun-Jun", "Yang", "FWD", celtic, southKorea, 75, 22);
 
+        Team rangers = new Team("Rangers", "Rangers", "Rangers.png", scottishPremiership, new Integer[]{4, 3, 3}, new Color(27, 69, 143), 60);
+        new Player("Jack", "Butland", "GK", rangers, england, 80, 31);
+        new Player("Robbie", "McCrorie", "GK", rangers, scotland, 74, 26);
+
+        new Player("James", "Tavernier", "DEF", rangers, england, 85, 32);
+        new Player("Connor", "Goldson", "DEF", rangers, england, 78, 31);
+        new Player("Borna", "Barisic", "DEF", rangers, croatia, 77, 31);
+        new Player("John", "Souttar", "DEF", rangers, scotland, 76, 27);
+        new Player("Leon", "Balogun", "DEF", rangers, nigeria, 75, 35);
+        new Player("Ridvan", "Yilmaz", "DEF", rangers, turkey, 74, 23);
+
+        new Player("John", "Lundstram", "MID", rangers, england, 77, 30);
+        new Player("Todd", "Cantwell", "MID", rangers, england, 77, 26);
+        new Player("Nicholas", "Raskin", "MID", rangers, belgium, 76, 23);
+        new Player("Mohamed", "Diomande", "MID", rangers, ivoryCoast, 76, 22);
+        new Player("Ryan", "Jack", "MID", rangers, scotland, 75, 32);
+
+        new Player("Fabio", "Silva", "FWD", rangers, portugal, 82, 21);
+        new Player("Cyril", "Dessers", "FWD", rangers, nigeria, 79, 29);
+        new Player("Tom", "Lawrence", "FWD", rangers, wales, 78, 30);
+        new Player("Rabbi", "Motondo", "FWD", rangers, wales, 77, 23);
+        new Player("Scott", "Wright", "FWD", rangers, scotland, 75, 26);
+
         world.addLeague(scottishPremiership);
 
         League austriaBundesliga = new League("Austria Bundesliga", "AustriaBundesliga.png", 1, austria);
@@ -1424,8 +1527,53 @@ public class Data {
         new Player("Petar", "Ratkovica", "FWD", rbSalzburg, serbia, 75, 20);
         new Player("Fernando", "", "FWD", rbSalzburg, brazil, 74, 25);
         new Player("Dijon", "Kameri", "FWD", rbSalzburg, austria, 73, 20);
-    }
 
+        world.addLeague(austriaBundesliga);
+
+        League greekSuperLeague = new League("Greek Super League", "GreekSuperLeague.png", 1, greece);
+
+        Team olympiacos = new Team("Olympiacos", "Olympiacos", "Olympiacos.png", greekSuperLeague, new Integer[]{4, 3, 3}, new Color(208, 6, 31), 60);
+        new Player("Konstantinos", "Tzolakis", "GK", olympiacos, greece, 75, 21);
+        new Player("Alexandros", "Paschalakis", "GK", olympiacos, greece, 74, 34);
+
+        new Player("David", "Carmo", "DEF", olympiacos, portugal, 79, 24);
+        new Player("Rodinei", "", "DEF", olympiacos, brazil, 78, 32);
+        new Player("Francisco", "Ortega", "DEF", olympiacos, argentina, 77, 25);
+        new Player("Panagiotis", "Retsos", "DEF", olympiacos, greece, 76, 25);
+        new Player("Omar", "Richards", "DEF", olympiacos, jamaica, 75, 26);
+        new Player("Andreas", "Ndoj", "DEF", olympiacos, greece, 74, 21);
+
+        new Player("Santiago", "Hezze", "MID", olympiacos, argentina, 82, 22);
+        new Player("Konstantinos", "Fourtonis", "MID", olympiacos, greece, 81, 31);
+        new Player("Vincent", "Iborra", "MID", olympiacos, spain, 80, 34);
+        new Player("Mady", "Camara", "MID", olympiacos, guinea, 74, 24);
+        new Player("Sotiris", "Alexandropoulos", "MID", olympiacos, greece, 73, 22);
+
+        new Player("Daniel", "Podence", "FWD", olympiacos, portugal, 84, 28);
+        new Player("Ayoub", "El Kaabi", "FWD", olympiacos, morocco, 80, 30);
+        new Player("Youssef", "El Arabi", "FWD", olympiacos, morocco, 75, 37);
+        new Player("Georgios", "Masouras", "FWD", olympiacos, greece, 74, 30);
+        new Player("Algassime", "Bah", "FWD", olympiacos, guinea, 73, 21);
+
+        world.addLeague(greekSuperLeague);
+
+        Cup championsLeague = new Cup("UEFA Champions League", 32);
+        championsLeague.addTeams(england.getLeagueByTier(1).getStandings().subList(0, 5));
+        championsLeague.addTeams(spain.getLeagueByTier(1).getStandings().subList(0, 4));
+        championsLeague.addTeams(italy.getLeagueByTier(1).getStandings().subList(0, 4));
+        championsLeague.addTeams(germany.getLeagueByTier(1).getStandings().subList(0, 4));
+        championsLeague.addTeams(france.getLeagueByTier(1).getStandings().subList(0, 4));
+        championsLeague.addTeams(portugal.getLeagueByTier(1).getStandings().subList(0, 2));
+        championsLeague.addTeams(netherlands.getLeagueByTier(1).getStandings().subList(0, 2));
+        championsLeague.addTeams(scotland.getLeagueByTier(1).getStandings().subList(0, 2));
+        championsLeague.addTeams(turkey.getLeagueByTier(1).getStandings().subList(0, 2));
+        championsLeague.addTeams(austria.getLeagueByTier(1).getStandings().subList(0, 1));
+        championsLeague.addTeams(greece.getLeagueByTier(1).getStandings().subList(0, 1));
+        championsLeague.addTeams(belgium.getLeagueByTier(1).getStandings().subList(0, 1));
+
+
+        world.addCup(championsLeague);
+    }
     public static void setWorldCup() {
         League worldCup = new League("World Cup", "WorldCup.png", 1, international);
 

@@ -6,6 +6,7 @@ import Objects.Player;
 import Objects.Team;
 import Objects.dateTime;
 import JFrames.UI;
+import data.Data;
 import events.Game;
 
 import javax.swing.*;
@@ -46,31 +47,39 @@ public class HomeGameDisplay extends JPanel {
                 int awayGoals = (int)Math.round(awayRating * awayRandomValue / 75);
 
                 //compare number of goals scored by each team to determine result.
-                if (homeGoals > awayGoals) {
-                    //home win
-                    game.getHomeTeam().addWin();
-                    game.getAwayTeam().addLoss();
-                } else if (awayGoals > homeGoals) {
-                    //away win
-                    game.getHomeTeam().addLoss();
-                    game.getAwayTeam().addWin();
-                } else {
-                    //draw
-                    game.getHomeTeam().addDraw();
-                    game.getAwayTeam().addDraw();
+                if (game.getGameType().equals("League")){
+                    if (homeGoals > awayGoals) {
+                        //home win
+                        game.getHomeTeam().addLeagueWin();
+                        game.getAwayTeam().addLeagueLoss();
+                    } else if (awayGoals > homeGoals) {
+                        //away win
+                        game.getHomeTeam().addLeagueLoss();
+                        game.getAwayTeam().addLeagueWin();
+                    } else {
+                        //draw
+                        game.getHomeTeam().addLeagueDraw();
+                        game.getAwayTeam().addLeagueDraw();
+                    }
                 }
 
 
                 //add appearances to all players in the game.
                 Player[] homeStartingEleven = game.getHomeTeam().getStartingEleven();
 
-                for (Player player : homeStartingEleven) {
-                    player.addAppearance();
+                if (game.getGameType().equals("League")){
+                    for (Player player : homeStartingEleven) {
+                        player.addLeagueAppearance();
+                    }
                 }
+
+
                 Player[] awayStartingEleven = game.getAwayTeam().getStartingEleven();
 
-                for (Player player : awayStartingEleven) {
-                    player.addAppearance();
+                if (game.getGameType().equals("League")){
+                    for (Player player : awayStartingEleven) {
+                        player.addLeagueAppearance();
+                    }
                 }
 
                 //add goals to the goalscorers.
@@ -99,7 +108,10 @@ public class HomeGameDisplay extends JPanel {
                     }
 
                     //add a goal to the goalscorer's tally
-                    scorer.addGoal();
+
+                    if (game.getGameType().equals("League")){
+                        scorer.addLeagueGoal();
+                    }
                 }
 
                 for (int i = 0; i < awayGoals; i++) {
@@ -127,12 +139,20 @@ public class HomeGameDisplay extends JPanel {
                     }
 
                     //add a goal to the goalscorer's tally
-                    scorer.addGoal();
+                    if (game.getGameType().equals("League")){
+                        scorer.addLeagueGoal();
+                    }
                 }
             }
         }
 
-        ArrayList<Team> leagueStandings = userTeam.getLeague().getStandings();
+        ArrayList<Team> leagueStandings = new ArrayList<>();
+        if (userGame.getGameType().equals("League")){
+            leagueStandings = userTeam.getLeague().getStandings();
+
+        } else {
+            Data.spain.getLeagueByTier(1).getStandings();
+        }
 
 
         //USER GAME.

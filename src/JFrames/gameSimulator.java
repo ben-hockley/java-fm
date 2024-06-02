@@ -49,17 +49,20 @@ public class gameSimulator extends JFrame {
             //add results to teams' league stats for the league table.
             if (homeGoals > awayGoals) {
                 //home win
-                homeTeam.addWin();
-                awayTeam.addLoss();
+                homeTeam.addLeagueWin();
+                awayTeam.addLeagueLoss();
             } else if (awayGoals > homeGoals) {
                 //away win
-                homeTeam.addLoss();
-                awayTeam.addWin();
+                homeTeam.addLeagueLoss();
+                awayTeam.addLeagueWin();
             } else {
                 //draw
-                homeTeam.addDraw();
-                awayTeam.addDraw();
+                homeTeam.addLeagueDraw();
+                awayTeam.addLeagueDraw();
             }
+        } else {
+            homeTeam.addCupMatchPlayed();
+            awayTeam.addCupMatchPlayed();
         }
 
 
@@ -92,7 +95,7 @@ public class gameSimulator extends JFrame {
 
             //add a goal to the goalscorer's league goals tally
             if (simulatedGame.getGameType().equals("League")) {
-                scorer.addGoal();
+                scorer.addLeagueGoal();
             }
 
             //add scorer and random minute to the list of goalscorers printed on the match report.
@@ -124,7 +127,7 @@ public class gameSimulator extends JFrame {
 
             //add a goal to the goalscorer's league goals tally
             if (simulatedGame.getGameType().equals("League")) {
-                scorer.addGoal();
+                scorer.addLeagueGoal();
             }
 
             //add scorer and random minute to the list of goalscorers printed on the match report.
@@ -177,7 +180,7 @@ public class gameSimulator extends JFrame {
 
             //add a league appearance to the player's stats
             if (simulatedGame.getGameType().equals("League")) {
-                player.addAppearance();
+                player.addLeagueAppearance();
             }
 
             //add the players name to the list of players printed on the starting 11 on the match report.
@@ -231,7 +234,7 @@ public class gameSimulator extends JFrame {
 
             //add a league appearance to the player's stats.
             if (simulatedGame.getGameType().equals("League")) {
-                player.addAppearance();
+                player.addLeagueAppearance();
             }
 
             //add the players name to the list of players printed on the starting 11 on the match report.
@@ -263,7 +266,7 @@ public class gameSimulator extends JFrame {
 
         Integer numberOfLeagueGamesInSeason = userTeam.getLeague().getNumberOfGamesInSeason();
 
-        if (userTeam.getMatchesPlayed().equals(numberOfLeagueGamesInSeason)) {
+        if (userTeam.getLeagueMatchesPlayed().equals(numberOfLeagueGamesInSeason)) {
             //End of season, load season summary JFrame, and trigger end of season events.
             new endOfSeasonSummary(userTeam);
         }

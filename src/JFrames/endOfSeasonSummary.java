@@ -99,7 +99,7 @@ public class endOfSeasonSummary extends JFrame {
 
         // MORE BACK-END FUNCTIONS, executed after the JFrame is displayed so last seasons stats are displayed before stats are reset.
         for (Team team : userTeam.getLeague().getAllTeams()){
-            team.resetStats();
+            team.resetLeagueStats();
         }
 
         for (Player player : userTeam.getLeague().getAllPlayers()){
@@ -132,7 +132,7 @@ public class endOfSeasonSummary extends JFrame {
     }
 
     private static JLabel getTopGoalScorerLabel(Player TopGoalscorer) {
-        JLabel topGoalScorerLabel = new JLabel("Top Goal Scorer: " + TopGoalscorer.getPlayerName() + ", " + TopGoalscorer.getGoals() + " goals");
+        JLabel topGoalScorerLabel = new JLabel("Top Goal Scorer: " + TopGoalscorer.getPlayerName() + ", " + TopGoalscorer.getLeagueGoals() + " goals");
         topGoalScorerLabel.setFont(new Font("Arial", Font.BOLD, 18));
         topGoalScorerLabel.setHorizontalAlignment(SwingConstants.LEFT);
         topGoalScorerLabel.setVerticalAlignment(SwingConstants.CENTER);

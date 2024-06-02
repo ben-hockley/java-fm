@@ -4,13 +4,29 @@ import java.util.ArrayList;
 
 public class World {
     public ArrayList<League> leagues;
+    public ArrayList<Cup> cups;
+
 
     public World() {
         leagues = new ArrayList<>();
+        cups = new ArrayList<>();
     }
 
     public void addLeague(League league) {
         leagues.add(league);
+    }
+
+    public void addCup(Cup cup) {
+        cups.add(cup);
+    }
+
+    public Cup getCupByName(String cupName) {
+        for (Cup cup : cups) {
+            if (cup.getName().equals(cupName)) {
+                return cup;
+            }
+        }
+        return null;
     }
 
     public ArrayList<Player> getAllPlayers() {

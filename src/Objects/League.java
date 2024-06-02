@@ -1,5 +1,6 @@
 package Objects;
 
+import data.Data;
 import events.Game;
 import main.fixtureGen;
 
@@ -53,7 +54,7 @@ public class League {
 
     public ArrayList<Team> getStandings() {
         ArrayList<Team> standings = getAllTeams();
-        standings.sort((team1, team2) -> team2.getPoints().compareTo(team1.getPoints()));
+        standings.sort((team1, team2) -> team2.getLeaguePoints().compareTo(team1.getLeaguePoints()));
 
         return standings;
     }
@@ -62,13 +63,11 @@ public class League {
         return name;
     }
 
-    public ArrayList<ArrayList<Game>> generateFixtures() {
-        ArrayList<ArrayList<Game>> fixtures = fixtureGen.generateLeagueFixtureSchedule(teams);
+    public ArrayList<ArrayList<Game>> generateLeagueFixtures() {
+        ArrayList<ArrayList<Game>> fixtures = fixtureGen.generateLeagueFixtureSchedule(teams, Data.listOfLeagueDates, "League");
 
         for (ArrayList<Game> week : fixtures) {
             for (Game game : week){
-                //System.out.println(game.getHomeTeam().getTeamName() + " vs " + game.getAwayTeam().getTeamName() + " on " + game.getDayOfMonth() + "/" + game.getMonth());
-
                 game.getHomeTeam().addFixture(game);
                 game.getAwayTeam().addFixture(game);
             }
@@ -85,7 +84,7 @@ public class League {
     }
     public ArrayList<Player> getTopGoalscorers(){
         ArrayList<Player> topGoalscorers = getAllPlayers();
-        topGoalscorers.sort((o1, o2) -> o2.getGoals().compareTo(o1.getGoals()));
+        topGoalscorers.sort((o1, o2) -> o2.getLeagueGoals().compareTo(o1.getLeagueGoals()));
         return topGoalscorers;
     }
     public Player getPlayerByName(String playerName){

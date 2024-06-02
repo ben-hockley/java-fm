@@ -3,8 +3,10 @@ package main;
 import data.Data;
 import JFrames.UI;
 import Objects.Team;
+import events.Game;
 
 import javax.swing.JFrame;
+import java.util.ArrayList;
 
 public class Main {
     /**
@@ -28,7 +30,7 @@ public class Main {
             team.setDefaultStartingElevenandSubs();
         }
 
-        Team userTeam = Data.world.getRandomTeam();
+        Team userTeam = Data.england.getLeagueByTier(1).getRandomTeam();
 
         JFrame userUI = new UI(userTeam);
         userUI.setTitle("Football Manager 2024");

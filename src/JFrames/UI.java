@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import Objects.*;
 import events.Event;
+import main.fixtureGen;
 
 //JAVA swing to create the user interface.
 public class UI extends JFrame {
@@ -35,31 +36,49 @@ public class UI extends JFrame {
     private JPanel homeDefaultDisplay;
 
     ArrayList<ArrayList<Game>> allGameFixtures;
+
+    ArrayList<ArrayList<Game>> championsLeagueFixtures;
     //constructor to initialize homepage.
     public UI(Team userTeam) {
 
-        allGameFixtures = userTeam.getLeague().generateFixtures();
 
+        // generates all league fixtures for the league,
+        // and adds each fixture to the fixture schedule for both the home and away teams.
+        allGameFixtures = userTeam.getLeague().generateLeagueFixtures();
+
+        //testing
+        championsLeagueFixtures = fixtureGen.generateChampionsLeagueFixtureSchedule();
+
+        for (ArrayList<Game> fixtureWeek : championsLeagueFixtures){
+            for (Game game : fixtureWeek){
+                game.getHomeTeam().addFixture(game);
+                game.getAwayTeam().addFixture(game);
+            }
+        }
+
+
+
+        //end of testing
+
+        // get the fixture schedule for the user's team, and add it to the events list.
+        // so that it appears on the calendar.
         ArrayList<Game> fixtures = userTeam.getFixtures();
-
-        events.addAll(fixtures); //add the fixtures to the events list.
+        events.addAll(fixtures);
 
         //set basic properties of the JFrame.
         this.setSize(1000, 600);
         this.pack();
         this.setMinimumSize(new Dimension(1000, 600));
         this.setLayout(new BorderLayout());
-        //this.setResizable(false);
 
 
-        // Add calendar JPanel to the North of the BorderLayout.
+        // Add calendar JPanel to the NORTH of the BorderLayout.
         topPanel = new CalendarPanel();
         clock = new dateTime(new Integer[]{1, 8, 2023}); //pass starting date as args.
         updateCalendar(clock.getDateNumber(), userTeam); //set calendar to default date.
         this.add(topPanel, BorderLayout.NORTH);
 
-        // Add a button to progress the date to the South of the BorderLayout.
-        //Button to progress the date. (South)
+        // Add a button to progress the date to the SOUTH of the BorderLayout.
         progressDateButton = new Button("Progress Date");
         progressDateButton.setPreferredSize(new Dimension(100, 50));
         progressDateButton.addActionListener(e -> {
@@ -179,7 +198,11 @@ public class UI extends JFrame {
                     progressDateButton.setEnabled(false);
                     if (event instanceof Game) {
                         homeDefaultDisplay.setVisible(false); // Hide the default display
-                        cpuGames = allGameFixtures.get(userTeam.getMatchesPlayed());
+                        if (((Game) event).getGameType().equals("League")){
+                            cpuGames = allGameFixtures.get(userTeam.getLeagueMatchesPlayed());
+                        } else {
+                            cpuGames = championsLeagueFixtures.get(userTeam.getCupMatchesPlayed());
+                        }
                         this.add(new HomeGameDisplay((Game) event, userTeam, clock, this, cpuGames), BorderLayout.CENTER);
                         this.revalidate();
                     }
