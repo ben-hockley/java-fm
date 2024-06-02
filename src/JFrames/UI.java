@@ -180,7 +180,7 @@ public class UI extends JFrame {
                     if (event instanceof Game) {
                         homeDefaultDisplay.setVisible(false); // Hide the default display
                         cpuGames = allGameFixtures.get(userTeam.getMatchesPlayed());
-                        this.add(new HomeGameDisplay(((Game) event).getHomeTeam(),((Game) event).getAwayTeam(), userTeam, clock, this, cpuGames), BorderLayout.CENTER);
+                        this.add(new HomeGameDisplay((Game) event, userTeam, clock, this, cpuGames), BorderLayout.CENTER);
                         this.revalidate();
                     }
                 }

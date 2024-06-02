@@ -2,6 +2,9 @@ package events;
 import Objects.Team;
 
 public class Game extends Event {
+
+    private String type;
+
     /**
      * The home team in the game.
      */
@@ -18,10 +21,11 @@ public class Game extends Event {
      * @param awayTeam The away team in the game.
      * @param date     The date of the game.
      */
-    public Game(final Team homeTeam, final Team awayTeam, final Integer[] date) {
+    public Game(final Team homeTeam, final Team awayTeam, final Integer[] date, final String gameType) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.date = date;
+        this.type = gameType;
     }
 
     public Team getHomeTeam() {
@@ -32,5 +36,8 @@ public class Game extends Event {
         return awayTeam;
     }
 
+    public String getGameType() {
+        return type;
+    }
 
 }

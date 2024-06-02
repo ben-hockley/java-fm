@@ -27,16 +27,11 @@ public class Main {
         for (Team team : Data.international.getLeagueByTier(1).getAllTeams()) {
             team.setDefaultStartingElevenandSubs();
         }
-        //User Interface
 
-        //testing international teams
-        Team userTeam = Data.international.getLeagueByTier(1).getTeamByName("England");
+        Team userTeam = Data.world.getRandomTeam();
 
         JFrame userUI = new UI(userTeam);
         userUI.setTitle("Football Manager 2024");
-
-
-        System.out.println(userTeam.getTeamName());
     }
 }
 

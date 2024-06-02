@@ -15,11 +15,16 @@ public class Team {
 
     //Team properties that can change.
     private League league;
+
+
+    //League stats.
     private Integer points;
     private Integer matchesPlayed;
     private Integer wins;
     private Integer draws;
     private Integer losses;
+
+
     private final Integer[] formation; //e.g. 4-4-2 would be [4,4,2], should always be 3 numbers.
 
     private Player[] startingEleven;

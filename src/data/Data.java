@@ -859,7 +859,6 @@ public class Data {
         new Player("Joselu", "", "FWD", realMadrid, spain, 85, 34);
         new Player("Nico", "Paz", "FWD", realMadrid, argentina, 77, 19);
 
-
         Team Barcelona = new Team("Barcelona", "Barca", "Barcelona.png", laLiga, new Integer[]{4, 3, 3}, new Color(168, 19, 62), 200);
         new Player("Marc-Andre", "ter Stegen", "GK", Barcelona, germany, 90, 32);
         new Player("Inaki", "Pena", "GK", Barcelona, spain, 80, 25);
@@ -1318,10 +1317,6 @@ public class Data {
         new Player("Rafael", "Camacho", "FWD", sportingCP, portugal, 72, 24);
 
         world.addLeague(primeraDivision);
-
-
-
-
 
         League proLeague = new League("Pro League", "ProLeague.png", 1, belgium);
 

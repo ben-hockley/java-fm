@@ -8,7 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class fixtureGen {
-    public static ArrayList<ArrayList<Game>> generateFixtureSchedule(List<Team> teams) {
+
+    /**
+     * Generates a double round-robin fixture schedule for a league.
+     *
+     * @param teams The teams in the league.
+     *
+     * @return 2d arrayList of games representing the fixture schedule,
+     * with each inner arrayList representing a round of fixtures.
+     */
+    public static ArrayList<ArrayList<Game>> generateLeagueFixtureSchedule(List<Team> teams) {
         int numberOfTeams = teams.size();
 
         ArrayList<ArrayList<Game>> schedule = new ArrayList<>();
@@ -31,9 +40,9 @@ public class fixtureGen {
                 }
 
                 if (round % 2 == 0) {
-                    roundMatches.add(new Game(teams.get(home), teams.get(away), Data.listOfDates[round]));
+                    roundMatches.add(new Game(teams.get(home), teams.get(away), Data.listOfDates[round], "League"));
                 } else {
-                    roundMatches.add(new Game(teams.get(away), teams.get(home), Data.listOfDates[round]));
+                    roundMatches.add(new Game(teams.get(away), teams.get(home), Data.listOfDates[round], "League"));
                 }
             }
 

@@ -63,7 +63,7 @@ public class League {
     }
 
     public ArrayList<ArrayList<Game>> generateFixtures() {
-        ArrayList<ArrayList<Game>> fixtures = fixtureGen.generateFixtureSchedule(teams);
+        ArrayList<ArrayList<Game>> fixtures = fixtureGen.generateLeagueFixtureSchedule(teams);
 
         for (ArrayList<Game> week : fixtures) {
             for (Game game : week){

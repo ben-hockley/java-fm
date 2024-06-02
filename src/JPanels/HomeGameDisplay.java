@@ -17,16 +17,14 @@ import static JPanels.HomeDefaultDisplay.getTitleBanner;
 public class HomeGameDisplay extends JPanel {
     private JLabel playGameButton;
     private JLabel manageTeamButton;
-    public HomeGameDisplay(Team homeTeam, Team awayTeam, Team userTeam, dateTime clock, UI ui, ArrayList<Game> allGames) {
+    public HomeGameDisplay(Game userGame, Team userTeam, dateTime clock, UI ui, ArrayList<Game> allGames) {
         this.removeAll();
         this.setPreferredSize(new Dimension(1000,350));
         this.setBackground(Color.GREEN);
         this.setLayout(new BorderLayout());
 
-        //take mouse listeners off buttons, so that they can't be clicked on matchdays.
 
-
-
+        //simulate NON-USER games.
         for (Game game : allGames){
             if (game.getHomeTeam() == userTeam || game.getAwayTeam() == userTeam) {
                 //don't add result. (games involving the user team are simulated in the gameSimulator class)
@@ -134,30 +132,33 @@ public class HomeGameDisplay extends JPanel {
             }
         }
 
-
-
-
-
-
-
-
-        //end of new code
-
         ArrayList<Team> leagueStandings = userTeam.getLeague().getStandings();
+
+
+        //USER GAME.
+
+        //add the game title to the panel. (NORTH)
+        this.add(getGameTitle(userGame), BorderLayout.NORTH);
+
+
+        //add the opponents lineup to the panel. (EAST)
+        Team homeTeam = userGame.getHomeTeam();
+        Team awayTeam = userGame.getAwayTeam();
 
         Team opponent;
         if (homeTeam == userTeam) opponent = awayTeam ; else opponent = homeTeam;
 
-        this.add(gameTitle(homeTeam, awayTeam), BorderLayout.NORTH); //Game Title (NORTH)
-        this.add(opponentsLineup(opponent),BorderLayout.EAST); //Opponents Lineup (EAST)
-        this.add(HomeDefaultDisplay.leagueTable(leagueStandings), BorderLayout.WEST); //League Standings (WEST)
+        this.add(getOpponentsLineup(opponent),BorderLayout.EAST);
+
+        //add the league table to the panel. (WEST)
+        this.add(HomeDefaultDisplay.leagueTable(leagueStandings), BorderLayout.WEST);
 
         //Game Options (CENTER)
         JPanel centerPanel = new JPanel(new GridLayout(2,1));
         centerPanel.setPreferredSize(new Dimension(750,300));
         centerPanel.setBackground(Color.BLUE);
 
-        JLabel playGameButton = getPlayGameButton(userTeam, clock, ui, homeTeam, awayTeam);
+        JLabel playGameButton = getPlayGameButton(userTeam, clock, ui, userGame);
         JLabel manageTeamButton = getManageTeamButton(userTeam);
 
         centerPanel.add(playGameButton);
@@ -186,7 +187,7 @@ public class HomeGameDisplay extends JPanel {
         return manageTeamButton;
     }
 
-    private JLabel getPlayGameButton(Team userTeam, dateTime clock, UI ui, Team homeTeam, Team awayTeam) {
+    private JLabel getPlayGameButton(Team userTeam, dateTime clock, UI ui, Game simulatedGame) {
         playGameButton = new JLabel("Play Game");
         playGameButton.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -196,7 +197,7 @@ public class HomeGameDisplay extends JPanel {
                 manageTeamButton.removeMouseListener(manageTeamButton.getMouseListeners()[0]);
 
                 //open a game simulator, to simulate the game and display the match report.
-                new gameSimulator(homeTeam, awayTeam, userTeam);
+                new gameSimulator(simulatedGame, userTeam);
 
                 clock.progressDate();
                 ui.updateCalendar(clock.getDateNumber(), userTeam);
@@ -214,13 +215,17 @@ public class HomeGameDisplay extends JPanel {
     }
 
     //Game Title (NORTH)
-    private JLabel gameTitle(Team homeTeam, Team awayTeam) {
+    private JLabel getGameTitle(Game game) {
+
+        Team homeTeam = game.getHomeTeam();
+        Team awayTeam = game.getAwayTeam();
+
         JLabel northLabel = new JLabel(homeTeam.getTeamName() + " vs " + awayTeam.getTeamName());
         return getTitleBanner(northLabel);
     }
 
     //Opponents Lineup (EAST)
-    private JLabel opponentsLineup(Team opponent) {
+    private JLabel getOpponentsLineup(Team opponent) {
         JLabel opponentsLineup = new JLabel();
         opponentsLineup.setLayout(new GridLayout(13, 1));
         opponentsLineup.setPreferredSize(new Dimension(300, 300));

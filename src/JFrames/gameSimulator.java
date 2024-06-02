@@ -2,6 +2,7 @@ package JFrames;
 
 import Objects.Player;
 import Objects.Team;
+import events.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,12 +11,16 @@ import java.util.ArrayList;
 public class gameSimulator extends JFrame {
 
     /**
-     * Simulates a game the user is involved in and displays the match report in a new JFrame.
-     *
-     * @param homeTeam the home team in the game simulated.
-     * @param awayTeam the away team in the game simulated.
+     * Constructor for the game simulator JFrame.
+     * @param simulatedGame the game to be simulated.
+     * @param userTeam the team the user is managing in the simulated game.
      */
-    public gameSimulator(Team homeTeam, Team awayTeam, Team userTeam) {
+    public gameSimulator(Game simulatedGame, Team userTeam) {
+
+        Team homeTeam = simulatedGame.getHomeTeam();
+        Team awayTeam = simulatedGame.getAwayTeam();
+
+
         this.setSize(500,800);
         this.setTitle("Match report: " + homeTeam.getTeamName() + " vs " + awayTeam.getTeamName());
         JPanel pitch = new JPanel(new BorderLayout());
@@ -39,19 +44,24 @@ public class gameSimulator extends JFrame {
         int homeGoals = (int)Math.round(homeRating * homeRandomValue / 75);
         int awayGoals = (int)Math.round(awayRating * awayRandomValue / 75);
 
-        if (homeGoals > awayGoals) {
-            //home win
-            homeTeam.addWin();
-            awayTeam.addLoss();
-        } else if (awayGoals > homeGoals) {
-            //away win
-            homeTeam.addLoss();
-            awayTeam.addWin();
-        } else {
-            //draw
-            homeTeam.addDraw();
-            awayTeam.addDraw();
+
+        if (simulatedGame.getGameType().equals("League")) {
+            //add results to teams' league stats for the league table.
+            if (homeGoals > awayGoals) {
+                //home win
+                homeTeam.addWin();
+                awayTeam.addLoss();
+            } else if (awayGoals > homeGoals) {
+                //away win
+                homeTeam.addLoss();
+                awayTeam.addWin();
+            } else {
+                //draw
+                homeTeam.addDraw();
+                awayTeam.addDraw();
+            }
         }
+
 
         ArrayList<String> homeGoalscorers = new ArrayList<>();
         ArrayList<String> awayGoalscorers = new ArrayList<>();
@@ -80,8 +90,10 @@ public class gameSimulator extends JFrame {
                 scorer = homeTeam.getStartingEleven()[randomIntBetween1And4]; //DEFENDER
             }
 
-            //add a goal to the goalscorer's tally
-            scorer.addGoal();
+            //add a goal to the goalscorer's league goals tally
+            if (simulatedGame.getGameType().equals("League")) {
+                scorer.addGoal();
+            }
 
             //add scorer and random minute to the list of goalscorers printed on the match report.
             homeGoalscorers.add(scorer.getPlayerName() + "  '" + (int)(Math.random() * 98 + 1));
@@ -110,8 +122,10 @@ public class gameSimulator extends JFrame {
                 scorer = awayTeam.getStartingEleven()[(int)Math.floor(Math.random())*4 + 1]; //DEFENDER
             }
 
-            //add a goal to the goalscorer's stats.
-            scorer.addGoal();
+            //add a goal to the goalscorer's league goals tally
+            if (simulatedGame.getGameType().equals("League")) {
+                scorer.addGoal();
+            }
 
             //add scorer and random minute to the list of goalscorers printed on the match report.
             awayGoalscorers.add(scorer.getPlayerName() + "  '" + (int)(Math.random() * 99));
@@ -160,8 +174,11 @@ public class gameSimulator extends JFrame {
         homeLineupLabel.add(new JLabel("Formation: " + homeTeam.getFormationInText()));
         Player[] homeStarting11 = homeTeam.getStartingEleven();
         for (Player player : homeStarting11) {
-            //add an appearance to the player's stats
-            player.addAppearance();
+
+            //add a league appearance to the player's stats
+            if (simulatedGame.getGameType().equals("League")) {
+                player.addAppearance();
+            }
 
             //add the players name to the list of players printed on the starting 11 on the match report.
             homeLineupLabel.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
@@ -212,8 +229,10 @@ public class gameSimulator extends JFrame {
         Player[] awayStarting11 = awayTeam.getStartingEleven();
         for (Player player : awayStarting11) {
 
-            //add an appearance to the player's stats
-            player.addAppearance();
+            //add a league appearance to the player's stats.
+            if (simulatedGame.getGameType().equals("League")) {
+                player.addAppearance();
+            }
 
             //add the players name to the list of players printed on the starting 11 on the match report.
             awayLineupLabel.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
@@ -245,7 +264,7 @@ public class gameSimulator extends JFrame {
         Integer numberOfLeagueGamesInSeason = userTeam.getLeague().getNumberOfGamesInSeason();
 
         if (userTeam.getMatchesPlayed().equals(numberOfLeagueGamesInSeason)) {
-            //End of season
+            //End of season, load season summary JFrame, and trigger end of season events.
             new endOfSeasonSummary(userTeam);
         }
     }
