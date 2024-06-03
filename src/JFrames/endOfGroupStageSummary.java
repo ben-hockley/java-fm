@@ -3,25 +3,20 @@ package JFrames;
 import Objects.Cup;
 import Objects.Team;
 import data.Data;
+import events.Game;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class endOfGroupStageSummary extends JFrame {
 
-    public endOfGroupStageSummary(Team userTeam){
+    public endOfGroupStageSummary(Team userTeam, UI mainMenu){
         setTitle("UCL: End of Group Stage Summary");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
-
-        //END OF GROUP STAGE BACK-END FUNCTIONS.
-
-        for (Team team : Data.world.getCupByName("UEFA Champions League").getTeams()){
-            team.resetCupStats();
-        }
-
 
         //get arrayList of all the teams that finished 1st or 2nd in their group, so qualify for the knockout stage.
         ArrayList<Team> teamsAdvancingToKnockouts = new ArrayList<>();
@@ -45,6 +40,31 @@ public class endOfGroupStageSummary extends JFrame {
                 return 0;
             }
         });
+
+        ArrayList<Game> roundOf16HomeFixtures = new ArrayList<Game>();
+        ArrayList<Game> roundOf16AwayFixtures = new ArrayList<Game>();
+
+        for (int i=0; i<8; i++){
+            Team fixtureHomeTeam = teamsAdvancingToKnockouts.get(i);
+            Team fixtureAwayTeam = teamsAdvancingToKnockouts.get(15 - i);
+
+            Game homeFixture = new Game(fixtureHomeTeam, fixtureAwayTeam, Data.listOfCupDates[6], "Cup");
+            Game awayFixture = new Game(fixtureAwayTeam, fixtureHomeTeam, Data.listOfCupDates[7], "Cup");
+
+            //add all round of 16 fixtures to all games 2d array
+            roundOf16HomeFixtures.add(homeFixture);
+            roundOf16AwayFixtures.add(awayFixture);
+
+            //if the fixture involves the user team, add it to the events array so that  it appears in the calendar.
+            if (fixtureHomeTeam == userTeam || fixtureAwayTeam == userTeam){
+                mainMenu.addUserGame(homeFixture);
+                mainMenu.addUserGame(awayFixture);
+            }
+        }
+
+        mainMenu.addRoundOfChampionsLeagueFixtures(roundOf16HomeFixtures);
+        mainMenu.addRoundOfChampionsLeagueFixtures(roundOf16AwayFixtures);
+
 
         JLabel titleLabel = new JLabel();
         titleLabel.setPreferredSize(new Dimension(800, 100));
@@ -96,7 +116,7 @@ public class endOfGroupStageSummary extends JFrame {
         add(scrollableTeamsAdvancingPanel, BorderLayout.WEST);
 
         JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(6, 1));
+        mainPanel.setLayout(new GridLayout(10, 1));
         mainPanel.setBackground(new Color(14,32,80));
 
         JLabel topScorerLabel = new JLabel();
@@ -130,9 +150,37 @@ public class endOfGroupStageSummary extends JFrame {
         scrollableTopScorerLabel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 
         mainPanel.add(scrollableTopScorerLabel);
+
+        JLabel roundOf16FixturesTitleLabel = new JLabel("Round of 16 Fixtures");
+        roundOf16FixturesTitleLabel.setVerticalAlignment(SwingConstants.CENTER);
+        roundOf16FixturesTitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        roundOf16FixturesTitleLabel.setForeground(Color.WHITE);
+
+        mainPanel.add(roundOf16FixturesTitleLabel);
+
+        for (Game roundOf16Fixture : roundOf16HomeFixtures){
+
+            Team homeTeam = roundOf16Fixture.getHomeTeam();
+            Team awayTeam = roundOf16Fixture.getAwayTeam();
+
+            JLabel roundOf16FixtureLabel = new JLabel(homeTeam.getTeamName() + " vs " + awayTeam.getTeamName());
+            roundOf16FixtureLabel.setVerticalAlignment(SwingConstants.CENTER);
+            roundOf16FixtureLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            roundOf16FixtureLabel.setForeground(Color.WHITE);
+
+            mainPanel.add(roundOf16FixtureLabel);
+        }
+
         //add mainPanel to the JFrame
         add(mainPanel, BorderLayout.CENTER);
 
         setVisible(true);
+
+        //END OF GROUP STAGE BACK-END FUNCTIONS.
+        for (Team championsLeagueTeam : Data.world.getCupByName("UEFA Champions League").getTeams()){
+
+            //wipes cup games, wins, draws, losses, points but not matches played
+            championsLeagueTeam.resetCupRoundStats();
+        }
     }
 }

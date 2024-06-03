@@ -45,7 +45,6 @@ public class UI extends JFrame {
         // and adds each fixture to the fixture schedule for both the home and away teams.
         allGameFixtures = userTeam.getLeague().generateLeagueFixtures();
 
-        //testing
         championsLeagueFixtures = fixtureGen.generateChampionsLeagueFixtureSchedule();
 
         for (ArrayList<Game> fixtureWeek : championsLeagueFixtures){
@@ -147,7 +146,7 @@ public class UI extends JFrame {
      * @param dateNumber The date to display.
      * @return The JLabel with the dateNumber as text.
      */
-    public JLabel label(final Integer dateNumber, Team userTeam) {
+    private JLabel label(final Integer dateNumber, Team userTeam) {
         JLabel label = new JLabel();
         label.setFont(new Font("Arial", Font.PLAIN, 10));
         label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -208,7 +207,7 @@ public class UI extends JFrame {
                         homeDefaultDisplay.setVisible(false); // Hide the default display
                         if (((Game) event).getGameType().equals("League")){
                             cpuGames = allGameFixtures.get(userTeam.getLeagueMatchesPlayed());
-                        } else {
+                        } else if (((Game) event).getGameType().equals("Cup")){
                             cpuGames = championsLeagueFixtures.get(userTeam.getCupMatchesPlayed());
                         }
                         this.add(new HomeGameDisplay((Game) event, userTeam, clock, this, cpuGames), BorderLayout.CENTER);
@@ -218,5 +217,13 @@ public class UI extends JFrame {
             }
         }
         return label;
+    }
+
+    public void addUserGame(Event userGame) {
+        events.add(userGame);
+    }
+
+    public void addRoundOfChampionsLeagueFixtures(ArrayList<Game> roundOfChampionsLeagueFixtures) {
+        championsLeagueFixtures.add(roundOfChampionsLeagueFixtures);
     }
 }

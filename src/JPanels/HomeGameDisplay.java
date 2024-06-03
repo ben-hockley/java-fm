@@ -60,16 +60,16 @@ public class HomeGameDisplay extends JPanel {
                 } else if (game.getGameType().equals("Cup")){
                     if (homeGoals > awayGoals) {
                         //home win
-                        game.getHomeTeam().addCupWin();
-                        game.getAwayTeam().addCupLoss();
+                        game.getHomeTeam().addCupWin(homeGoals);
+                        game.getAwayTeam().addCupLoss(awayGoals);
                     } else if (awayGoals > homeGoals) {
                         //away win
-                        game.getHomeTeam().addCupLoss();
-                        game.getAwayTeam().addCupWin();
+                        game.getHomeTeam().addCupLoss(homeGoals);
+                        game.getAwayTeam().addCupWin(awayGoals);
                     } else {
                         //draw
-                        game.getHomeTeam().addCupDraw();
-                        game.getAwayTeam().addCupDraw();
+                        game.getHomeTeam().addCupDraw(homeGoals);
+                        game.getAwayTeam().addCupDraw(awayGoals);
                     }
                 }
 
@@ -172,8 +172,16 @@ public class HomeGameDisplay extends JPanel {
         if (userGame.getGameType().equals("League")){
             leagueStandings = userTeam.getLeague().getStandings();
         } else if (userGame.getGameType().equals("Cup")){
-            leagueStandings = userTeam.getChampionsLeagueGroupStandings();
-            //add the standings of the user team's champions league group to the panel.
+
+            //add the standings of the user team's champions league group stage to the panel.
+            if (userTeam.getCupMatchesPlayed() < 6){
+                leagueStandings = userTeam.getChampionsLeagueGroupStandings();
+            } else if (userTeam.getCupMatchesPlayed() < 8){
+                leagueStandings.add(userGame.getAwayTeam());
+                leagueStandings.add(userGame.getHomeTeam());
+
+                leagueStandings.sort((team1, team2) -> team2.getCupPoints().compareTo(team1.getCupPoints()));
+            }
         }
 
 
@@ -195,9 +203,9 @@ public class HomeGameDisplay extends JPanel {
         //add the league table to the panel. (WEST)
 
         if (userGame.getGameType().equals("League")){
-            this.add(HomeDefaultDisplay.leagueTable(leagueStandings, "League"), BorderLayout.WEST);
+            this.add(HomeDefaultDisplay.leagueTable(leagueStandings, "League", userTeam), BorderLayout.WEST);
         } else if (userGame.getGameType().equals("Cup")){
-            this.add(HomeDefaultDisplay.leagueTable(leagueStandings, "Cup"), BorderLayout.WEST);
+            this.add(HomeDefaultDisplay.leagueTable(leagueStandings, "Cup", userTeam), BorderLayout.WEST);
         }
 
         //Game Options (CENTER)
@@ -244,7 +252,7 @@ public class HomeGameDisplay extends JPanel {
                 manageTeamButton.removeMouseListener(manageTeamButton.getMouseListeners()[0]);
 
                 //open a game simulator, to simulate the game and display the match report.
-                new gameSimulator(simulatedGame, userTeam);
+                new gameSimulator(simulatedGame, userTeam, ui);
 
                 clock.progressDate();
                 ui.updateCalendar(clock.getDateNumber(), userTeam);

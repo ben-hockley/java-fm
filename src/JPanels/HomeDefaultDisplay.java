@@ -19,7 +19,7 @@ public class HomeDefaultDisplay extends JPanel {
 
         //Title of the team (NORTH)
         this.add(teamTitle(userTeam), BorderLayout.NORTH);
-        this.add(leagueTable(leagueStandings, "League"), BorderLayout.WEST);
+        this.add(leagueTable(leagueStandings, "League", userTeam), BorderLayout.WEST);
 
         //Game Options (CENTER)
         JLabel centerLabel = new JLabel();
@@ -102,7 +102,7 @@ public class HomeDefaultDisplay extends JPanel {
 
     //League Standings (WEST)
     //static variable , so it can be shown in the homeGameDisplay aswell.
-    static JScrollPane leagueTable(ArrayList<Team> leagueStandings, String tournamentType){
+    static JScrollPane leagueTable(ArrayList<Team> leagueStandings, String tournamentType, Team userTeam){
         JLabel westLabel = new JLabel();
         westLabel.setPreferredSize(new Dimension(250, 300));
         westLabel.setBackground(Color.YELLOW);
@@ -121,7 +121,13 @@ public class HomeDefaultDisplay extends JPanel {
             tableTitle.setText("League Standings");
             tableTitle.setBackground(new Color(61, 25, 91)); // Premier League Color
         } else if (tournamentType.equals("Cup")){
-            tableTitle.setText("UCL Group " + leagueStandings.get(0).getChampionsLeagueGroupLetter() + " Standings");
+
+            if (userTeam.getCupMatchesPlayed() < 6){
+                tableTitle.setText("UCL Group " + leagueStandings.get(0).getChampionsLeagueGroupLetter() + " Standings");
+            } else if (userTeam.getCupMatchesPlayed() < 8){
+                tableTitle.setText("UCL Round of 16");
+            }
+
             tableTitle.setBackground(new Color(14, 32, 80)); // Champions League Color
         } else {
             tableTitle.setBackground(Color.BLACK);
@@ -155,6 +161,7 @@ public class HomeDefaultDisplay extends JPanel {
         teamStats.add(new JLabel("PTS"));
 
         if (tournamentType.equals("League")){
+
             for (Team leagueStanding : leagueStandings) {
                 teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeagueMatchesPlayed())));
                 teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeagueWins())));
@@ -163,13 +170,31 @@ public class HomeDefaultDisplay extends JPanel {
                 teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeaguePoints())));
             }
         } else if (tournamentType.equals("Cup")){
-            for (Team leagueStanding : leagueStandings) {
-                teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupMatchesPlayed())));
-                teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupWins())));
-                teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupDraws())));
-                teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupLosses())));
-                teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupPoints())));
+            //add group stage stats
+            if (userTeam.getCupMatchesPlayed() < 6){
+                for (Team leagueStanding : leagueStandings) {
+                    teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupGames())));
+                    teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupWins())));
+                    teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupDraws())));
+                    teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupLosses())));
+                    teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupPoints())));
+                }
+            } else if (userTeam.getCupMatchesPlayed() < 8) {
+                for (Team leagueStanding : leagueStandings) {
+                    teamStats.removeAll();
+
+                    teamStats.setLayout(new GridLayout(leagueStandings.size() + 1, 2));
+
+                    teamStats.add(new JLabel("MP"));
+                    teamStats.add(new JLabel("Agg. Score"));
+
+                    for (Team roundOOf16Team : leagueStandings){
+                        teamStats.add(new JLabel(String.valueOf(roundOOf16Team.getCupGames())));
+                        teamStats.add(new JLabel(String.valueOf(roundOOf16Team.getCupGoalsScored())));
+                    }
+                }
             }
+
         }
 
 

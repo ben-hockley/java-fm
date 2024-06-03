@@ -27,9 +27,11 @@ public class Team {
     //Cup stats
     private Integer cupPoints;
     private Integer cupMatchesPlayed;
+    private Integer cupGames;
     private Integer cupWins;
     private Integer cupDraws;
     private Integer cupLosses;
+    private Integer cupGoalsScored;
 
     private ArrayList<Team> championsLeagueGroupStage; //list of other teams in the team's champions league group.
 
@@ -80,10 +82,14 @@ public class Team {
 
         //Cup stats
         this.cupMatchesPlayed = 0;
+
+        //Cup ROUND stats
+        this.cupGames = 0;
         this.cupWins = 0;
         this.cupDraws = 0;
         this.cupLosses = 0;
         this.cupPoints = 0;
+        this.cupGoalsScored = 0;
 
         this.championsLeagueGroupStage = new ArrayList<>();
 
@@ -119,10 +125,14 @@ public class Team {
 
         //Cup stats
         this.cupMatchesPlayed = 0;
+
+        //Cup ROUND stats
+        this.cupGames = 0;
         this.cupWins = 0;
         this.cupDraws = 0;
         this.cupLosses = 0;
         this.cupPoints = 0;
+        this.cupGoalsScored = 0;
 
         this.initialTransferBudget = 0;
         this.transferBudget = 0;
@@ -272,21 +282,33 @@ public class Team {
         this.leagueLosses += 1;
     }
 
-    public void addCupWin() {
+    public void addCupWin(Integer goalsScored) {
         this.cupMatchesPlayed += 1;
+
+        this.cupGames += 1;
         this.cupWins += 1;
         this.cupPoints += 3;
+
+        this.cupGoalsScored += goalsScored;
     }
 
-    public void addCupDraw() {
+    public void addCupDraw(Integer goalsScored) {
         this.cupMatchesPlayed += 1;
+
+        this.cupGames += 1;
         this.cupDraws += 1;
         this.cupPoints += 1;
+
+        this.cupGoalsScored += goalsScored;
     }
 
-    public void addCupLoss() {
+    public void addCupLoss(Integer goalsScored) {
         this.cupMatchesPlayed += 1;
+
+        this.cupGames += 1;
         this.cupLosses += 1;
+
+        this.cupGoalsScored += goalsScored;
     }
     public ArrayList<Player> getAllPlayers() {
         return players;
@@ -418,10 +440,22 @@ public class Team {
     }
     public void resetCupStats() {
         this.cupMatchesPlayed = 0;
+
+        this.cupGames = 0;
         this.cupWins = 0;
         this.cupDraws = 0;
         this.cupLosses = 0;
         this.cupPoints = 0;
+    }
+
+    public void resetCupRoundStats() {
+        this.cupGames = 0;
+        this.cupWins = 0;
+        this.cupDraws = 0;
+        this.cupLosses = 0;
+        this.cupPoints = 0;
+
+        this.cupGoalsScored = 0;
     }
 
     public Integer getTransferBudget() {
@@ -447,6 +481,8 @@ public class Team {
     public Integer getCupMatchesPlayed(){
         return cupMatchesPlayed;
     }
+
+    public Integer getCupGames(){ return cupGames; }
     public Integer getCupWins() {
         return cupWins;
     }
@@ -506,5 +542,9 @@ public class Team {
         ArrayList<Team> standings = new ArrayList<>(championsLeagueGroupStage);
         standings.sort((o1, o2) -> o2.getCupPoints().compareTo(o1.getCupPoints()));
         return standings;
+    }
+
+    public Integer getCupGoalsScored(){
+        return cupGoalsScored;
     }
 }

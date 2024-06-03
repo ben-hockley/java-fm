@@ -2,6 +2,7 @@ package JFrames;
 
 import Objects.Player;
 import Objects.Team;
+import data.Data;
 import events.Game;
 
 import javax.swing.*;
@@ -15,11 +16,10 @@ public class gameSimulator extends JFrame {
      * @param simulatedGame the game to be simulated.
      * @param userTeam the team the user is managing in the simulated game.
      */
-    public gameSimulator(Game simulatedGame, Team userTeam) {
+    public gameSimulator(Game simulatedGame, Team userTeam, UI mainMenu) {
 
         Team homeTeam = simulatedGame.getHomeTeam();
         Team awayTeam = simulatedGame.getAwayTeam();
-
 
         this.setSize(500,800);
         this.setTitle("Match report: " + homeTeam.getTeamName() + " vs " + awayTeam.getTeamName());
@@ -40,7 +40,6 @@ public class gameSimulator extends JFrame {
         int homeGoals = (int)Math.round(homeRating * homeRandomValue / 75);
         int awayGoals = (int)Math.round(awayRating * awayRandomValue / 75);
 
-
         if (simulatedGame.getGameType().equals("League")) {
             //add results to teams' league stats for the league table.
             if (homeGoals > awayGoals) {
@@ -60,16 +59,16 @@ public class gameSimulator extends JFrame {
             //add results to teams' cup stats for the cup table.
             if (homeGoals > awayGoals) {
                 //home win
-                homeTeam.addCupWin();
-                awayTeam.addCupLoss();
+                homeTeam.addCupWin(homeGoals);
+                awayTeam.addCupLoss(awayGoals);
             } else if (awayGoals > homeGoals) {
                 //away win
-                homeTeam.addCupLoss();
-                awayTeam.addCupWin();
+                homeTeam.addCupLoss(homeGoals);
+                awayTeam.addCupWin(awayGoals);
             } else {
                 //draw
-                homeTeam.addCupDraw();
-                awayTeam.addCupDraw();
+                homeTeam.addCupDraw(homeGoals);
+                awayTeam.addCupDraw(awayGoals);
             }
         }
 
@@ -282,10 +281,17 @@ public class gameSimulator extends JFrame {
 
         Integer numberOfGamesInChampionsLeagueGroupStage = 6;
 
+        //at the end of the champions league group stage.
         if (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage) && simulatedGame.getGameType().equals("Cup")) {
             //End of group stage, load group stage summary JFrame, and trigger end of group stage events. (generation of UCL knockout rounds)
-            new endOfGroupStageSummary(userTeam);
+            new endOfGroupStageSummary(userTeam, mainMenu);
         }
+
+        //after the champions league Round of 16.
+        if (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage + 2) && simulatedGame.getGameType().equals("Cup")) {
+            //new endOfRoundOf16Summary(userTeam, mainMenu);
+        }
+
 
         Integer numberOfLeagueGamesInSeason = userTeam.getLeague().getNumberOfGamesInSeason();
 

@@ -85,6 +85,7 @@ public class League {
     public ArrayList<Player> getTopGoalscorers(){
         ArrayList<Player> topGoalscorers = getAllPlayers();
         topGoalscorers.sort((o1, o2) -> o2.getLeagueGoals().compareTo(o1.getLeagueGoals()));
+        topGoalscorers.sort((o1, o2) -> o2.getLeagueGoals().compareTo(o1.getLeagueGoals()));
         return topGoalscorers;
     }
     public Player getPlayerByName(String playerName){
