@@ -61,15 +61,19 @@ public class fixtureGen {
         ArrayList<ArrayList<Team>> groups = new ArrayList<>();
 
         ArrayList<Team> group = new ArrayList<>();
-        for (int i = 0; i < teams.size(); i++) {
-            group.add(teams.get(i));
+
+        int groupNumber = 1;
+        for (Team championsLeagueTeam : teams) {
+            group.add(championsLeagueTeam);
             if (group.size() == 4) {
 
-                for (Team team: group){
-                    team.setChampionsLeagueGroup(group);
+                for (Team teamInGroup : group) {
+                    teamInGroup.setChampionsLeagueGroup(group);
+                    teamInGroup.setChampionsLeagueGroupNumber(groupNumber);
                 }
 
                 groups.add(group);
+                groupNumber += 1;
                 group = new ArrayList<>();
             }
         }

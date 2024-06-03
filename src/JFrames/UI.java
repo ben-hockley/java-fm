@@ -1,6 +1,5 @@
 package JFrames;
 
-import data.Data;
 import events.Game;
 import JPanels.CalendarPanel;
 import JPanels.HomeDefaultDisplay;

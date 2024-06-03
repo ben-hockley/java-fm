@@ -31,10 +31,6 @@ public class gameSimulator extends JFrame {
         Integer homeRating = homeTeam.getRating();
         Integer awayRating = awayTeam.getRating();
 
-        System.out.println(homeTeam.getTeamName() + " rating: " + homeRating);
-        System.out.println(awayTeam.getTeamName() + " rating: " + awayRating);
-
-
         //home advantage
         homeRating += 40;
 
@@ -284,21 +280,20 @@ public class gameSimulator extends JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setVisible(true);
 
-        Integer numberOfLeagueGamesInSeason = userTeam.getLeague().getNumberOfGamesInSeason();
+        Integer numberOfGamesInChampionsLeagueGroupStage = 6;
 
-        if (userTeam.getLeagueMatchesPlayed().equals(numberOfLeagueGamesInSeason)) {
-            //End of season, load season summary JFrame, and trigger end of season events.
-            new endOfSeasonSummary(userTeam);
+        if (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage) && simulatedGame.getGameType().equals("Cup")) {
+            //End of group stage, load group stage summary JFrame, and trigger end of group stage events. (generation of UCL knockout rounds)
+            new endOfGroupStageSummary(userTeam);
         }
 
-        System.out.println("Cup matches Played " + userTeam.getCupMatchesPlayed());
-        System.out.println("Cup Wins " + userTeam.getCupWins());
-        System.out.println("Cup Draws " + userTeam.getCupDraws());
-        System.out.println("Cup Losses " + userTeam.getCupLosses());
-        System.out.println("Cup points " + userTeam.getCupPoints());
+        Integer numberOfLeagueGamesInSeason = userTeam.getLeague().getNumberOfGamesInSeason();
 
-        for (Team team : userTeam.getChampionsLeagueGroup()){
-            System.out.println("Champions League Group: " + team.getTeamName());
+
+        //last game of the season must always be a league match, so end of season events are triggered.
+        if (userTeam.getLeagueMatchesPlayed().equals(numberOfLeagueGamesInSeason) && simulatedGame.getGameType().equals("League")) {
+            //End of season, load season summary JFrame, and trigger end of season events.
+            new endOfSeasonSummary(userTeam);
         }
     }
 }

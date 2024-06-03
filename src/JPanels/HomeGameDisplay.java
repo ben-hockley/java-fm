@@ -24,9 +24,8 @@ public class HomeGameDisplay extends JPanel {
 
         //simulate NON-USER games.
         for (Game game : allGames){
-            if (game.getHomeTeam() == userTeam || game.getAwayTeam() == userTeam) {
-                //don't add result. (games involving the user team are simulated in the gameSimulator class)
-            } else {
+            //if the game is not the user's game, simulate it. (user games are simulated in the gameSimulator class)
+            if (game.getHomeTeam() != userTeam && game.getAwayTeam() != userTeam) {
 
                 //gets the ratings of the teams to determine who has a better chance of winning.
                 Integer homeRating = game.getHomeTeam().getRating();
@@ -285,7 +284,7 @@ public class HomeGameDisplay extends JPanel {
         if (game.getGameType().equals("League")){
             northLabel.setBackground(new Color(61, 25, 91)); // Premier league Color
         } else if (game.getGameType().equals("Cup")){
-            northLabel.setBackground(new Color(14, 32, 80)); // Champions league Color
+            northLabel.setBackground(new Color(14,32,80)); // Champions league Color
         }
 
         return northLabel;

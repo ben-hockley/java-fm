@@ -846,7 +846,7 @@ public class Data {
         new Player("Arijanet", "Muric", "GK", burnley, kosovo, 80, 25);
 
         new Player("Jordan", "Beyer", "DEF", burnley, germany, 77, 24);
-        new Player("Dara", "O'Shea", "DEF", burnley, ireland, 76, 25);
+        new Player("Dara", "O Shea", "DEF", burnley, ireland, 76, 25);
         new Player("Ameen", "Al-Dakhil", "DEF", burnley, belgium, 75, 22);
         new Player("Charlie", "Taylor", "DEF", burnley, england, 74, 30);
         new Player("Maxime", "Esteve", "DEF", burnley, france, 74, 21);
@@ -1234,7 +1234,7 @@ public class Data {
 
         new Player("Nicolas", "Tagliafico", "DEF", lyon, argentina, 86, 31);
         new Player("Duje", "Caleta-Car", "DEF", lyon, croatia, 83, 27);
-        new Player("Jake", "O'Brien", "DEF", lyon, ireland, 82, 23);
+        new Player("Jake", "O Brien", "DEF", lyon, ireland, 82, 23);
         new Player("Sael", "Kumbedi", "DEF", lyon, france, 77, 19);
         new Player("Dejan", "Lovren", "DEF", lyon, croatia, 76, 34);
         new Player("Sinaly", "Diomande", "DEF", lyon, ivoryCoast, 75, 23);
@@ -1387,7 +1387,7 @@ public class Data {
         new Player("Ludwig", "Augustinsson", "DEF", anderlecht, sweden, 77, 30);
         new Player("Killian", "Sardella", "DEF", anderlecht, belgium, 76, 22);
         new Player("Federico", "Gattoni", "DEF", anderlecht, argentina, 75, 25);
-        new Player("Moussa", "N'Diaye", "DEF", anderlecht, cameroon, 74, 21);
+        new Player("Moussa", "N Diaye", "DEF", anderlecht, cameroon, 74, 21);
 
         new Player("Yani", "Verschaeren", "MID", anderlecht, belgium, 82, 22);
         new Player("Thomas", "Delaney", "MID", anderlecht, denmark, 81, 32);
@@ -1466,7 +1466,7 @@ public class Data {
         new Player("Adam", "Montgomery", "DEF", celtic, scotland, 76, 21);
 
         new Player("Callum", "McGregor", "MID", celtic, scotland, 82, 30);
-        new Player("Matt", "O'Riley", "MID", celtic, denmark, 81, 23);
+        new Player("Matt", "O Riley", "MID", celtic, denmark, 81, 23);
         new Player("Reo", "Hatate", "MID", celtic, japan, 79, 26);
         new Player("James", "McCarthy", "MID", celtic, ireland, 75, 33);
         new Player("Odin Thiago", "Holm", "MID", celtic, norway, 74, 21);

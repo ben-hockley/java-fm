@@ -31,7 +31,11 @@ public class Team {
     private Integer cupDraws;
     private Integer cupLosses;
 
-    private ArrayList<Team> championsLeagueGroupStage;
+    private ArrayList<Team> championsLeagueGroupStage; //list of other teams in the team's champions league group.
+
+    private Integer championsLeagueGroupNumber; //the group number of the team's champions league group.
+
+    private Character championsLeagueGroupLetter; //the group letter of the team's champions league group.
 
 
 
@@ -466,6 +470,32 @@ public class Team {
 
     public void setChampionsLeagueGroup(ArrayList<Team> teams){
         championsLeagueGroupStage.addAll(teams);
+    }
+
+    public void setChampionsLeagueGroupNumber(Integer groupNumber){
+        this.championsLeagueGroupNumber = groupNumber;
+
+        if (groupNumber == 1){
+            this.championsLeagueGroupLetter = 'A';
+        } else if (groupNumber == 2){
+            this.championsLeagueGroupLetter = 'B';
+        } else if (groupNumber == 3){
+            this.championsLeagueGroupLetter = 'C';
+        } else if (groupNumber == 4){
+            this.championsLeagueGroupLetter = 'D';
+        } else if (groupNumber == 5){
+            this.championsLeagueGroupLetter = 'E';
+        } else if (groupNumber == 6){
+            this.championsLeagueGroupLetter = 'F';
+        } else if (groupNumber == 7){
+            this.championsLeagueGroupLetter = 'G';
+        } else if (groupNumber == 8){
+            this.championsLeagueGroupLetter = 'H';
+        }
+    };
+
+    public Character getChampionsLeagueGroupLetter(){
+        return championsLeagueGroupLetter;
     }
 
     public ArrayList<Team> getChampionsLeagueGroup(){
