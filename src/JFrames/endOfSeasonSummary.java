@@ -53,6 +53,12 @@ public class endOfSeasonSummary extends JFrame {
             }
         }
 
+        //reset every team's transfer budget to their initial transfer budget.
+        for (Team team : Data.world.getAllTeams()){
+            team.resetTransferBudget();
+            team.setCupMatchesPlayed(0);
+        }
+
 
         // CONTENTS OF JFRAME
         setLayout(new BorderLayout());

@@ -6,14 +6,11 @@ import Objects.Player;
 import Objects.Team;
 import Objects.dateTime;
 import JFrames.UI;
-import data.Data;
 import events.Game;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-
-import static JPanels.HomeDefaultDisplay.getTitleBanner;
 
 public class HomeGameDisplay extends JPanel {
     private JLabel playGameButton;
@@ -61,6 +58,20 @@ public class HomeGameDisplay extends JPanel {
                         game.getHomeTeam().addLeagueDraw();
                         game.getAwayTeam().addLeagueDraw();
                     }
+                } else if (game.getGameType().equals("Cup")){
+                    if (homeGoals > awayGoals) {
+                        //home win
+                        game.getHomeTeam().addCupWin();
+                        game.getAwayTeam().addCupLoss();
+                    } else if (awayGoals > homeGoals) {
+                        //away win
+                        game.getHomeTeam().addCupLoss();
+                        game.getAwayTeam().addCupWin();
+                    } else {
+                        //draw
+                        game.getHomeTeam().addCupDraw();
+                        game.getAwayTeam().addCupDraw();
+                    }
                 }
 
 
@@ -71,6 +82,10 @@ public class HomeGameDisplay extends JPanel {
                     for (Player player : homeStartingEleven) {
                         player.addLeagueAppearance();
                     }
+                } else if (game.getGameType().equals("Cup")){
+                    for (Player player : homeStartingEleven) {
+                        player.addCupAppearance();
+                    }
                 }
 
 
@@ -79,6 +94,10 @@ public class HomeGameDisplay extends JPanel {
                 if (game.getGameType().equals("League")){
                     for (Player player : awayStartingEleven) {
                         player.addLeagueAppearance();
+                    }
+                } else if (game.getGameType().equals("Cup")){
+                    for (Player player : awayStartingEleven) {
+                        player.addCupAppearance();
                     }
                 }
 
@@ -111,6 +130,8 @@ public class HomeGameDisplay extends JPanel {
 
                     if (game.getGameType().equals("League")){
                         scorer.addLeagueGoal();
+                    } else if (game.getGameType().equals("Cup")){
+                        scorer.addCupGoal();
                     }
                 }
 
@@ -141,6 +162,8 @@ public class HomeGameDisplay extends JPanel {
                     //add a goal to the goalscorer's tally
                     if (game.getGameType().equals("League")){
                         scorer.addLeagueGoal();
+                    } else if (game.getGameType().equals("Cup")){
+                        scorer.addCupGoal();
                     }
                 }
             }
@@ -149,9 +172,9 @@ public class HomeGameDisplay extends JPanel {
         ArrayList<Team> leagueStandings = new ArrayList<>();
         if (userGame.getGameType().equals("League")){
             leagueStandings = userTeam.getLeague().getStandings();
-
-        } else {
-            Data.spain.getLeagueByTier(1).getStandings();
+        } else if (userGame.getGameType().equals("Cup")){
+            leagueStandings = userTeam.getChampionsLeagueGroupStandings();
+            //add the standings of the user team's champions league group to the panel.
         }
 
 
@@ -171,7 +194,12 @@ public class HomeGameDisplay extends JPanel {
         this.add(getOpponentsLineup(opponent),BorderLayout.EAST);
 
         //add the league table to the panel. (WEST)
-        this.add(HomeDefaultDisplay.leagueTable(leagueStandings), BorderLayout.WEST);
+
+        if (userGame.getGameType().equals("League")){
+            this.add(HomeDefaultDisplay.leagueTable(leagueStandings, "League"), BorderLayout.WEST);
+        } else if (userGame.getGameType().equals("Cup")){
+            this.add(HomeDefaultDisplay.leagueTable(leagueStandings, "Cup"), BorderLayout.WEST);
+        }
 
         //Game Options (CENTER)
         JPanel centerPanel = new JPanel(new GridLayout(2,1));
@@ -228,7 +256,14 @@ public class HomeGameDisplay extends JPanel {
         playGameButton.setVerticalAlignment(SwingConstants.CENTER);
         playGameButton.setFont(new Font("Arial", Font.PLAIN, 20));
         playGameButton.setForeground(Color.WHITE);
-        playGameButton.setBackground(Color.BLUE);
+
+        if (simulatedGame.getGameType().equals("League")){
+            playGameButton.setBackground(new Color(61, 25, 91)); // Premier league Color
+        } else if (simulatedGame.getGameType().equals("Cup")){
+            playGameButton.setBackground(new Color(14, 32, 80)); // Champions league Color
+        }
+
+
         playGameButton.setOpaque(true);
         playGameButton.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         return playGameButton;
@@ -241,7 +276,19 @@ public class HomeGameDisplay extends JPanel {
         Team awayTeam = game.getAwayTeam();
 
         JLabel northLabel = new JLabel(homeTeam.getTeamName() + " vs " + awayTeam.getTeamName());
-        return getTitleBanner(northLabel);
+        northLabel.setVerticalAlignment(SwingConstants.CENTER);
+        northLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        northLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        northLabel.setForeground(Color.WHITE);
+        northLabel.setOpaque(true);
+
+        if (game.getGameType().equals("League")){
+            northLabel.setBackground(new Color(61, 25, 91)); // Premier league Color
+        } else if (game.getGameType().equals("Cup")){
+            northLabel.setBackground(new Color(14, 32, 80)); // Champions league Color
+        }
+
+        return northLabel;
     }
 
     //Opponents Lineup (EAST)

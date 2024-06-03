@@ -19,7 +19,7 @@ public class HomeDefaultDisplay extends JPanel {
 
         //Title of the team (NORTH)
         this.add(teamTitle(userTeam), BorderLayout.NORTH);
-        this.add(leagueTable(leagueStandings), BorderLayout.WEST);
+        this.add(leagueTable(leagueStandings, "League"), BorderLayout.WEST);
 
         //Game Options (CENTER)
         JLabel centerLabel = new JLabel();
@@ -100,23 +100,9 @@ public class HomeDefaultDisplay extends JPanel {
     }
 
 
-    //method to generate a title banner for the North of the home display.
-    //static so it can be used in homeGameDisplay aswell.
-    static JLabel getTitleBanner(JLabel teamTitle) {
-        teamTitle.setHorizontalAlignment(SwingConstants.CENTER);
-        teamTitle.setVerticalAlignment(SwingConstants.CENTER);
-        teamTitle.setFont(new Font("Arial", Font.PLAIN, 20));
-        teamTitle.setPreferredSize(new Dimension(1000,50));
-        teamTitle.setForeground(Color.WHITE);
-        teamTitle.setBackground(Color.BLUE);
-        teamTitle.setOpaque(true);
-        return teamTitle;
-    }
-
-
     //League Standings (WEST)
     //static variable , so it can be shown in the homeGameDisplay aswell.
-    static JScrollPane leagueTable(ArrayList<Team> leagueStandings){
+    static JScrollPane leagueTable(ArrayList<Team> leagueStandings, String tournamentType){
         JLabel westLabel = new JLabel();
         westLabel.setPreferredSize(new Dimension(250, 300));
         westLabel.setBackground(Color.YELLOW);
@@ -153,13 +139,24 @@ public class HomeDefaultDisplay extends JPanel {
         teamStats.add(new JLabel("L"));
         teamStats.add(new JLabel("PTS"));
 
-        for (Team leagueStanding : leagueStandings) {
-            teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeagueMatchesPlayed())));
-            teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeagueWins())));
-            teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeagueDraws())));
-            teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeagueLosses())));
-            teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeaguePoints())));
+        if (tournamentType.equals("League")){
+            for (Team leagueStanding : leagueStandings) {
+                teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeagueMatchesPlayed())));
+                teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeagueWins())));
+                teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeagueDraws())));
+                teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeagueLosses())));
+                teamStats.add(new JLabel(String.valueOf(leagueStanding.getLeaguePoints())));
+            }
+        } else if (tournamentType.equals("Cup")){
+            for (Team leagueStanding : leagueStandings) {
+                teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupMatchesPlayed())));
+                teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupMatchesPlayed())));
+                teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupDraws())));
+                teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupLosses())));
+                teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupPoints())));
+            }
         }
+
 
         westLabel.add(teamNames);
         westLabel.add(teamStats);

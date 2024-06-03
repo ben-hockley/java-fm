@@ -64,6 +64,11 @@ public class fixtureGen {
         for (int i = 0; i < teams.size(); i++) {
             group.add(teams.get(i));
             if (group.size() == 4) {
+
+                for (Team team: group){
+                    team.setChampionsLeagueGroup(group);
+                }
+
                 groups.add(group);
                 group = new ArrayList<>();
             }

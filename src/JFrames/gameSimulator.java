@@ -60,9 +60,21 @@ public class gameSimulator extends JFrame {
                 homeTeam.addLeagueDraw();
                 awayTeam.addLeagueDraw();
             }
-        } else {
-            homeTeam.addCupMatchPlayed();
-            awayTeam.addCupMatchPlayed();
+        } else if (simulatedGame.getGameType().equals("Cup")) {
+            //add results to teams' cup stats for the cup table.
+            if (homeGoals > awayGoals) {
+                //home win
+                homeTeam.addCupWin();
+                awayTeam.addCupLoss();
+            } else if (awayGoals > homeGoals) {
+                //away win
+                homeTeam.addCupLoss();
+                awayTeam.addCupWin();
+            } else {
+                //draw
+                homeTeam.addCupDraw();
+                awayTeam.addCupDraw();
+            }
         }
 
 
@@ -96,6 +108,8 @@ public class gameSimulator extends JFrame {
             //add a goal to the goalscorer's league goals tally
             if (simulatedGame.getGameType().equals("League")) {
                 scorer.addLeagueGoal();
+            } else if (simulatedGame.getGameType().equals("Cup")) {
+                scorer.addCupGoal();
             }
 
             //add scorer and random minute to the list of goalscorers printed on the match report.
@@ -128,6 +142,8 @@ public class gameSimulator extends JFrame {
             //add a goal to the goalscorer's league goals tally
             if (simulatedGame.getGameType().equals("League")) {
                 scorer.addLeagueGoal();
+            } else if (simulatedGame.getGameType().equals("Cup")) {
+                scorer.addCupGoal();
             }
 
             //add scorer and random minute to the list of goalscorers printed on the match report.
@@ -181,6 +197,8 @@ public class gameSimulator extends JFrame {
             //add a league appearance to the player's stats
             if (simulatedGame.getGameType().equals("League")) {
                 player.addLeagueAppearance();
+            } else if (simulatedGame.getGameType().equals("Cup")) {
+                player.addCupAppearance();
             }
 
             //add the players name to the list of players printed on the starting 11 on the match report.
@@ -235,6 +253,8 @@ public class gameSimulator extends JFrame {
             //add a league appearance to the player's stats.
             if (simulatedGame.getGameType().equals("League")) {
                 player.addLeagueAppearance();
+            } else if (simulatedGame.getGameType().equals("Cup")) {
+                player.addCupAppearance();
             }
 
             //add the players name to the list of players printed on the starting 11 on the match report.
@@ -269,6 +289,16 @@ public class gameSimulator extends JFrame {
         if (userTeam.getLeagueMatchesPlayed().equals(numberOfLeagueGamesInSeason)) {
             //End of season, load season summary JFrame, and trigger end of season events.
             new endOfSeasonSummary(userTeam);
+        }
+
+        System.out.println("Cup matches Played " + userTeam.getCupMatchesPlayed());
+        System.out.println("Cup Wins " + userTeam.getCupWins());
+        System.out.println("Cup Draws " + userTeam.getCupDraws());
+        System.out.println("Cup Losses " + userTeam.getCupLosses());
+        System.out.println("Cup points " + userTeam.getCupPoints());
+
+        for (Team team : userTeam.getChampionsLeagueGroup()){
+            System.out.println("Champions League Group: " + team.getTeamName());
         }
     }
 }

@@ -11,9 +11,13 @@ public class Player {
     private Integer rating;
     private Integer age;
 
-    //in season stats.
+    //League stats.
     private Integer leagueAppearances;
     private Integer leagueGoals;
+
+    //Cup stats
+    private Integer cupAppearances;
+    private Integer cupGoals;
 
     public Player(String firstName, String lastName, String position,
                   Team team, Nation nationality, Integer rating, Integer age) {
@@ -36,6 +40,10 @@ public class Player {
         //League stats (set to zero by default)
         this.leagueAppearances = 0;
         this.leagueGoals = 0;
+
+        //Cup stats (set to zero by default)
+        this.cupAppearances = 0;
+        this.cupGoals = 0;
     }
 
     public String getPlayerName() {
@@ -63,6 +71,20 @@ public class Player {
 
     public Integer getLeagueGoals() {
         return leagueGoals;
+    }
+
+    public void addCupAppearance() {
+        this.cupAppearances++;
+    }
+    public void addCupGoal() {
+        this.cupGoals++;
+    }
+
+    public Integer getCupAppearances() {
+        return cupAppearances;
+    }
+    public Integer getCupGoals() {
+        return cupGoals;
     }
 
     public Team getTeam() {

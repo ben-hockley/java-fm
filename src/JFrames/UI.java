@@ -175,14 +175,23 @@ public class UI extends JFrame {
                 label.setBackground(Color.yellow); //set the label to yellow when there is an event on this date.
                 if (event instanceof Game) {
 
+                    if (((Game) event).getGameType().equals("League")){
+                        label.setBackground(new Color(61, 25, 91)); // Premier league Color
+                    } else if (((Game) event).getGameType().equals("Cup")){
+                        label.setBackground(new Color(14, 32, 80)); // Champions league Color
+                    }
+
+
                     //add the home team's name and badge to the left of the label.
                     subLabel1.setText(((Game) event).getHomeTeam().getShortName());
+                    subLabel1.setForeground(Color.WHITE);
                     subLabel1.setIcon(new ImageIcon(new ImageIcon("teamImages/" + ((Game) event).getHomeTeam().getTeamLogo()).getImage().getScaledInstance(50,50, Image.SCALE_SMOOTH)));
                     subLabel1.setHorizontalTextPosition(JLabel.CENTER);
                     subLabel1.setVerticalTextPosition(JLabel.BOTTOM);
 
                     //add the away team's name and badge to the right of the label.
                     subLabel2.setText((((Game) event).getAwayTeam().getShortName()));
+                    subLabel2.setForeground(Color.WHITE);
                     subLabel2.setIcon(new ImageIcon(new ImageIcon("teamImages/" + ((Game) event).getAwayTeam().getTeamLogo()).getImage().getScaledInstance(50,50, Image.SCALE_SMOOTH)));
                     subLabel2.setHorizontalTextPosition(JLabel.CENTER);
                     subLabel2.setVerticalTextPosition(JLabel.BOTTOM);

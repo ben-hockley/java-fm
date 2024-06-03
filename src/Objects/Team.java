@@ -25,7 +25,14 @@ public class Team {
     private Integer leagueLosses;
 
     //Cup stats
+    private Integer cupPoints;
     private Integer cupMatchesPlayed;
+    private Integer cupWins;
+    private Integer cupDraws;
+    private Integer cupLosses;
+
+    private ArrayList<Team> championsLeagueGroupStage;
+
 
 
     private final Integer[] formation; //e.g. 4-4-2 would be [4,4,2], should always be 3 numbers.
@@ -38,6 +45,7 @@ public class Team {
 
     private final Color teamColor;
 
+    private final Integer initialTransferBudget;
     private Integer transferBudget;
 
 
@@ -68,7 +76,14 @@ public class Team {
 
         //Cup stats
         this.cupMatchesPlayed = 0;
+        this.cupWins = 0;
+        this.cupDraws = 0;
+        this.cupLosses = 0;
+        this.cupPoints = 0;
 
+        this.championsLeagueGroupStage = new ArrayList<>();
+
+        this.initialTransferBudget = transferBudget_millions * 1000000;
         this.transferBudget = transferBudget_millions * 1000000;
 
         league.addTeam(this); //after creating a team, add them to their league.
@@ -100,7 +115,12 @@ public class Team {
 
         //Cup stats
         this.cupMatchesPlayed = 0;
+        this.cupWins = 0;
+        this.cupDraws = 0;
+        this.cupLosses = 0;
+        this.cupPoints = 0;
 
+        this.initialTransferBudget = 0;
         this.transferBudget = 0;
 
         Data.international.getLeagueByTier(1).addTeam(this);
@@ -214,6 +234,7 @@ public class Team {
         return leagueMatchesPlayed;
     }
 
+
     public Integer getLeagueWins() {
         return leagueWins;
     }
@@ -247,6 +268,22 @@ public class Team {
         this.leagueLosses += 1;
     }
 
+    public void addCupWin() {
+        this.cupMatchesPlayed += 1;
+        this.cupWins += 1;
+        this.cupPoints += 3;
+    }
+
+    public void addCupDraw() {
+        this.cupMatchesPlayed += 1;
+        this.cupDraws += 1;
+        this.cupPoints += 1;
+    }
+
+    public void addCupLoss() {
+        this.cupMatchesPlayed += 1;
+        this.cupLosses += 1;
+    }
     public ArrayList<Player> getAllPlayers() {
         return players;
     }
@@ -375,6 +412,13 @@ public class Team {
         this.leagueLosses = 0;
         this.leaguePoints = 0;
     }
+    public void resetCupStats() {
+        this.cupMatchesPlayed = 0;
+        this.cupWins = 0;
+        this.cupDraws = 0;
+        this.cupLosses = 0;
+        this.cupPoints = 0;
+    }
 
     public Integer getTransferBudget() {
         return transferBudget;
@@ -398,5 +442,39 @@ public class Team {
 
     public Integer getCupMatchesPlayed(){
         return cupMatchesPlayed;
+    }
+    public Integer getCupWins() {
+        return cupWins;
+    }
+    public Integer getCupDraws() {
+        return cupDraws;
+    }
+    public Integer getCupLosses() {
+        return cupLosses;
+    }
+    public Integer getCupPoints() {
+        return cupPoints;
+    }
+
+    public void resetTransferBudget() {
+        this.transferBudget = initialTransferBudget;
+    }
+
+    public void setCupMatchesPlayed(Integer cupMatchesPlayed) {
+        this.cupMatchesPlayed = cupMatchesPlayed;
+    }
+
+    public void setChampionsLeagueGroup(ArrayList<Team> teams){
+        championsLeagueGroupStage.addAll(teams);
+    }
+
+    public ArrayList<Team> getChampionsLeagueGroup(){
+        return championsLeagueGroupStage;
+    }
+
+    public ArrayList<Team> getChampionsLeagueGroupStandings(){
+        ArrayList<Team> standings = new ArrayList<>(championsLeagueGroupStage);
+        standings.sort((o1, o2) -> o2.getCupPoints().compareTo(o1.getCupPoints()));
+        return standings;
     }
 }
