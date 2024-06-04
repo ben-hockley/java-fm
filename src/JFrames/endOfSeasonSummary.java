@@ -117,7 +117,7 @@ public class endOfSeasonSummary extends JFrame {
 
     private static JPanel getMainPanel(Team userTeam) {
         JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(6, 2));
+        mainPanel.setLayout(new GridLayout(6, 1));
         mainPanel.setBackground(Color.GRAY);
 
 
@@ -149,6 +149,26 @@ public class endOfSeasonSummary extends JFrame {
 
         JLabel topGoalScorerChampionsLeague = getTopGoalScorerLabel(Data.world.getCupByName("UEFA Champions League").getTopGoalscorer().get(0), "Cup");
         mainPanel.add(topGoalScorerChampionsLeague);
+
+        Player bestPlayerInWorld = Data.world.getHighestRatedPlayer();
+        JLabel ballonDorWinner = new JLabel("Ballon d'Or: " + bestPlayerInWorld.getPlayerName() + ", " + bestPlayerInWorld.getTeam().getTeamName() + "/" + bestPlayerInWorld.getNationality().getNationName());
+        ballonDorWinner.setHorizontalAlignment(SwingConstants.CENTER);
+        ballonDorWinner.setVerticalAlignment(SwingConstants.CENTER);
+        ballonDorWinner.setBackground(new Color(255,215,0)); //Gold
+        ballonDorWinner.setForeground(Color.BLACK);
+        ballonDorWinner.setFont(new Font("Arial", Font.BOLD, 18));
+        ballonDorWinner.setOpaque(true);
+        mainPanel.add(ballonDorWinner);
+
+        Player bestYoungPlayerInWorld = Data.world.getHighestRatedPlayerUnder21();
+        JLabel goldenBoyWinner = new JLabel("Golden Boy: " + bestYoungPlayerInWorld.getPlayerName() + ", " + bestYoungPlayerInWorld.getTeam().getTeamName() + "/" + bestYoungPlayerInWorld.getNationality().getNationName());
+        goldenBoyWinner.setHorizontalAlignment(SwingConstants.CENTER);
+        goldenBoyWinner.setVerticalAlignment(SwingConstants.CENTER);
+        goldenBoyWinner.setBackground(Color.BLACK);
+        goldenBoyWinner.setForeground(new Color(255, 215, 0)); //Gold
+        goldenBoyWinner.setFont(new Font("Arial", Font.BOLD, 18));
+        goldenBoyWinner.setOpaque(true);
+        mainPanel.add(goldenBoyWinner);
 
         return mainPanel;
     }

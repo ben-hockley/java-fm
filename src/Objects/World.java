@@ -43,6 +43,24 @@ public class World {
         return allPlayers;
     }
 
+    public Player getHighestRatedPlayer() {
+        ArrayList<Player> allPlayers = getAllPlayers();
+        allPlayers.sort((p1, p2) -> (p2.getRating() - p1.getRating()));
+        return allPlayers.get(0);
+    }
+
+    public Player getHighestRatedPlayerUnder21() {
+        ArrayList<Player> allPlayers = getAllPlayers();
+        allPlayers.sort((p1, p2) -> (p2.getRating() - p1.getRating()));
+
+        for (Player player : allPlayers){
+            if (player.getAge() < 22){
+                return player;
+            }
+        }
+        return null;
+    }
+
     public Team getTeamByName(String teamName) {
         for (League league : leagues) {
             Team team = league.getTeamByName(teamName);
