@@ -19,6 +19,8 @@ public class HomeDefaultDisplay extends JPanel {
 
         //Title of the team (NORTH)
         this.add(teamTitle(userTeam), BorderLayout.NORTH);
+
+        //add League Table of the LEAGUE of the usert team (WEST).
         this.add(leagueTable(leagueStandings, "League", userTeam), BorderLayout.WEST);
 
         //Game Options (CENTER)
@@ -126,6 +128,12 @@ public class HomeDefaultDisplay extends JPanel {
                 tableTitle.setText("UCL Group " + leagueStandings.get(0).getChampionsLeagueGroupLetter() + " Standings");
             } else if (userTeam.getCupMatchesPlayed() < 8){
                 tableTitle.setText("UCL Round of 16");
+            } else if (userTeam.getCupMatchesPlayed() < 10){
+                tableTitle.setText("UCL Quarter Finals");
+            } else if (userTeam.getCupMatchesPlayed() < 12){
+                tableTitle.setText("UCL Semi Finals");
+            } else if (userTeam.getCupMatchesPlayed() == 12){
+                tableTitle.setText("UCL FINAL");
             }
 
             tableTitle.setBackground(new Color(14, 32, 80)); // Champions League Color
@@ -179,22 +187,28 @@ public class HomeDefaultDisplay extends JPanel {
                     teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupLosses())));
                     teamStats.add(new JLabel(String.valueOf(leagueStanding.getCupPoints())));
                 }
-            } else if (userTeam.getCupMatchesPlayed() < 8) {
-                for (Team leagueStanding : leagueStandings) {
-                    teamStats.removeAll();
+            } else if (userTeam.getCupMatchesPlayed() < 12) {
+                //for round of 16, quarter-finals and semi-final fixtures (2 legs)
 
-                    teamStats.setLayout(new GridLayout(leagueStandings.size() + 1, 2));
+                //replace standard league stats with aggregate score.
+                teamStats.removeAll();
 
-                    teamStats.add(new JLabel("MP"));
-                    teamStats.add(new JLabel("Agg. Score"));
+                teamStats.setLayout(new GridLayout(leagueStandings.size() + 1, 2));
 
-                    for (Team roundOOf16Team : leagueStandings){
-                        teamStats.add(new JLabel(String.valueOf(roundOOf16Team.getCupGames())));
-                        teamStats.add(new JLabel(String.valueOf(roundOOf16Team.getCupGoalsScored())));
-                    }
+                //displays legs played in the tie and the current aggregate score.
+                teamStats.add(new JLabel("MP"));
+                teamStats.add(new JLabel("Agg. Score"));
+
+                for (Team knockoutStageTeam : leagueStandings){
+
+                    //displays the aggregate score, since these are 'round stats' so reset at the end of each knockout stage.
+                    teamStats.add(new JLabel(String.valueOf(knockoutStageTeam.getCupGames())));
+                    teamStats.add(new JLabel(String.valueOf(knockoutStageTeam.getCupGoalsScored())));
                 }
+            } else {
+                //for the final or otherwise, no need for stats.
+                teamStats.removeAll();
             }
-
         }
 
 

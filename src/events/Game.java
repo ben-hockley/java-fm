@@ -3,7 +3,7 @@ import Objects.Team;
 
 public class Game extends Event {
 
-    private String type;
+    private final String type;
 
     /**
      * The home team in the game.

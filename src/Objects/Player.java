@@ -140,9 +140,13 @@ public class Player {
         this.rating = rating;
     }
 
-    public void resetStats(){
+    public void resetLeagueStats(){
         this.leagueAppearances = 0;
         this.leagueGoals = 0;
+    }
+    public void resetCupStats(){
+        this.cupAppearances = 0;
+        this.cupGoals = 0;
     }
 
     public Nation getNationality() {

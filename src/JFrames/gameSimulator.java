@@ -29,6 +29,7 @@ public class gameSimulator extends JFrame {
         this.add(pitch);
 
         Integer homeRating = homeTeam.getRating();
+
         Integer awayRating = awayTeam.getRating();
 
         //home advantage
@@ -287,8 +288,12 @@ public class gameSimulator extends JFrame {
             new endOfGroupStageSummary(userTeam, mainMenu);
         }
 
-        //after the champions league Round of 16.
-        if (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage + 2) && simulatedGame.getGameType().equals("Cup")) {
+        //after the champions league Round of 16, Quarter Finals, Semi Finals.
+        if (
+                (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage + 2) && simulatedGame.getGameType().equals("Cup"))
+                || (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage + 4) && simulatedGame.getGameType().equals("Cup"))
+                || (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage + 6) && simulatedGame.getGameType().equals("Cup"))
+        ) {
 
             //get goals scored for both teams across the two legs of fixtures.
             Integer homeGoalsScored = simulatedGame.getHomeTeam().getCupGoalsScored();
@@ -297,9 +302,17 @@ public class gameSimulator extends JFrame {
             if (homeGoalsScored > awayGoalsScored){
                 //home team wins on aggregate
                 System.out.println(homeTeam.getTeamName() + " wins on aggregate.");
+
+                homeTeam.setAdvancingToNextRound(true);
+                awayTeam.setAdvancingToNextRound(false);
+
             } else if (awayGoalsScored > homeGoalsScored){
                 //away team wins on aggregate
                 System.out.println(awayTeam.getTeamName() + " wins on aggregate.");
+
+                awayTeam.setAdvancingToNextRound(true);
+                homeTeam.setAdvancingToNextRound(false);
+
             } else {
                 //draw on aggregate
                 System.out.println("Draw on aggregate.");
@@ -316,17 +329,62 @@ public class gameSimulator extends JFrame {
                 }
             }
 
+            if (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage + 2)){
+                ArrayList<Team> quarterFinalTeams = new ArrayList<>(8);
+                for (Team team : Data.world.getCupByName("UEFA Champions League").getTeams()){
+                    if (team.isAdvancingToNextRound()){
+                        System.out.println(team.getTeamName() + " advances to the next round.");
+                        quarterFinalTeams.add(team);
+                    }
+                }
 
-            ArrayList<Team> quarterFinalTeams = new ArrayList<>(8);
-            for (Team team : Data.world.getCupByName("UEFA Champions League").getTeams()){
-                if (team.isAdvancingToNextRound()){
-                    System.out.println(team.getTeamName() + " advances to the next round.");
-                    quarterFinalTeams.add(team);
+
+                new endOfRoundOf16Summary(quarterFinalTeams, mainMenu, userTeam);
+            } else if (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage + 4)){
+                ArrayList<Team> semiFinalTeams = new ArrayList<>(4);
+                for (Team team : Data.world.getCupByName("UEFA Champions League").getTeams()){
+                    if (team.isAdvancingToNextRound()){
+                        System.out.println(team.getTeamName() + " advances to the next round.");
+                        semiFinalTeams.add(team);
+                    }
+                }
+
+                new endOfQuarterFinalSummary(semiFinalTeams, mainMenu, userTeam);
+            } else if (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage + 6)){
+                ArrayList<Team> finalTeams = new ArrayList<>(2);
+                for (Team team : Data.world.getCupByName("UEFA Champions League").getTeams()){
+                    if (team.isAdvancingToNextRound()){
+                        System.out.println(team.getTeamName() + " advances to the next round.");
+                        finalTeams.add(team);
+                    }
+                }
+
+                new endOfSemiFinalsSummary(finalTeams, mainMenu, userTeam);
+            }
+        }
+
+        //champions league final
+        if (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage + 7) && simulatedGame.getGameType().equals("Cup")){
+            if (homeGoals > awayGoals){
+                Data.world.getCupByName("UEFA Champions League").setChampion(homeTeam);
+
+                JOptionPane.showMessageDialog(mainMenu,homeTeam.getTeamName() + " win the UEFA Champions League, beating " + awayTeam.getTeamName() + " " + homeGoals + " - " + awayGoals + " in the final.");
+            } else if (awayGoals > homeGoals){
+                Data.world.getCupByName("UEFA Champions League").setChampion(awayTeam);
+
+                JOptionPane.showMessageDialog(mainMenu,awayTeam.getTeamName() + " win the UEFA Champions League, beating " + homeTeam.getTeamName() + " " + awayGoals + " - " + homeGoals + " in the final.");
+            } else {
+                int randomNumber = (int)(Math.round(Math.random()));
+                if (randomNumber == 1){
+                    Data.world.getCupByName("UEFA Champions League").setChampion(homeTeam);
+
+                    JOptionPane.showMessageDialog(mainMenu,homeTeam.getTeamName() + " win the UEFA Champions League, beating " + awayTeam.getTeamName() + " on penalties in the final.");
+                } else {
+                    Data.world.getCupByName("UEFA Champions League").setChampion(awayTeam);
+
+                    JOptionPane.showMessageDialog(mainMenu,awayTeam.getTeamName() + " win the UEFA Champions League, beating " + homeTeam.getTeamName() + " on penalties in the final.");
                 }
             }
-
-
-            new endOfRoundOf16Summary(quarterFinalTeams, mainMenu, userTeam);
         }
 
 
@@ -337,6 +395,7 @@ public class gameSimulator extends JFrame {
         if (userTeam.getLeagueMatchesPlayed().equals(numberOfLeagueGamesInSeason) && simulatedGame.getGameType().equals("League")) {
             //End of season, load season summary JFrame, and trigger end of season events.
             new endOfSeasonSummary(userTeam);
+            mainMenu.regenerateFixtures(userTeam);
         }
     }
 }

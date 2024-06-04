@@ -48,7 +48,7 @@ public class Team {
 
     private ArrayList<Player> substitutes;
 
-    private final ArrayList<Game> fixtures;
+    private ArrayList<Game> fixtures;
 
     private final Color teamColor;
 
@@ -531,14 +531,10 @@ public class Team {
         } else if (groupNumber == 8){
             this.championsLeagueGroupLetter = 'H';
         }
-    };
+    }
 
     public Character getChampionsLeagueGroupLetter(){
         return championsLeagueGroupLetter;
-    }
-
-    public ArrayList<Team> getChampionsLeagueGroup(){
-        return championsLeagueGroupStage;
     }
 
     public ArrayList<Team> getChampionsLeagueGroupStandings(){
@@ -547,6 +543,11 @@ public class Team {
         return standings;
     }
 
+    public void resetChampionsLeagueGroupStage(){
+        this.championsLeagueGroupStage = new ArrayList<>();
+        this.championsLeagueGroupNumber = null;
+        this.championsLeagueGroupLetter = null;
+    }
     public Integer getCupGoalsScored(){
         return cupGoalsScored;
     }
@@ -557,5 +558,9 @@ public class Team {
 
     public Boolean isAdvancingToNextRound(){
         return advancingToNextRound;
+    }
+
+    public void wipeFixtures(){
+        this.fixtures = new ArrayList<>();
     }
 }

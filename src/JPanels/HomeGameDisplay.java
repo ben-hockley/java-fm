@@ -79,9 +79,9 @@ public class HomeGameDisplay extends JPanel {
                         awayTeam.addCupDraw(awayGoals);
                     }
 
-                    //end of champions league round of 16 fixtures.
-                    if (homeTeam.getCupMatchesPlayed() == 8){
-                        //assert the winner on aggregate of the champions league round of 16.
+                    //end of champions league RO16 / Quarter-Final / Semi-Final fixtures.
+                    if (homeTeam.getCupMatchesPlayed() == 8 || homeTeam.getCupMatchesPlayed() == 10 || homeTeam.getCupMatchesPlayed() == 12){
+                        //assert the winner on aggregate of the champions league round of the 2-leg knockout round fixture.
                         if (homeTeam.getCupGoalsScored() > awayTeam.getCupGoalsScored()){
                             homeTeam.setAdvancingToNextRound(true);
                             awayTeam.setAdvancingToNextRound(false);
@@ -89,8 +89,8 @@ public class HomeGameDisplay extends JPanel {
                             awayTeam.setAdvancingToNextRound(true);
                             homeTeam.setAdvancingToNextRound(false);
                         } else {
-
-                            //simulates penalty shootout (50 / 50 chance of either team winning)
+                            //if the aggregate score is a draw, simulate a penalty shootout.
+                            //(50 / 50 chance of either team winning)
                             int randomNumber = (int)Math.round(Math.random());
                             if (randomNumber == 1){
                                 homeTeam.setAdvancingToNextRound(true);
@@ -206,11 +206,12 @@ public class HomeGameDisplay extends JPanel {
             //add the standings of the user team's champions league group stage to the panel.
             if (userTeam.getCupMatchesPlayed() < 6){
                 leagueStandings = userTeam.getChampionsLeagueGroupStandings();
-            } else if (userTeam.getCupMatchesPlayed() < 8){
+            } else if (userTeam.getCupMatchesPlayed() < 12){
+                //knockout rounds with 2 legs
                 leagueStandings.add(userGame.getAwayTeam());
                 leagueStandings.add(userGame.getHomeTeam());
 
-                leagueStandings.sort((team1, team2) -> team2.getCupPoints().compareTo(team1.getCupPoints()));
+                leagueStandings.sort((team1, team2) -> team2.getCupGoalsScored().compareTo(team1.getCupGoalsScored()));
             }
         }
 

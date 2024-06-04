@@ -62,31 +62,28 @@ public class endOfRoundOf16Summary extends JFrame {
         JPanel topScorersPanel = new JPanel();
         topScorersPanel.setPreferredSize(new Dimension(200, 600));
         topScorersPanel.setLayout(new GridLayout(9, 1));
-        topScorersPanel.setForeground(Color.WHITE);
         topScorersPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
 
-        JLabel topScorersLabel = new JLabel("Top Scorers:");
+        JLabel topScorersTitleLabel = new JLabel("Top Scorers:");
 
 
-        topScorersLabel.setFont(new Font("Arial", Font.BOLD, 18));
-        topScorersLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        topScorersLabel.setVerticalAlignment(SwingConstants.CENTER);
-        topScorersLabel.setBackground(new Color(14,32,80));
-        topScorersLabel.setForeground(Color.WHITE);
-        topScorersLabel.setOpaque(true);
-        topScorersPanel.add(topScorersLabel);
+        topScorersTitleLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        topScorersTitleLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        topScorersTitleLabel.setVerticalAlignment(SwingConstants.CENTER);
+        topScorersTitleLabel.setBackground(new Color(14,32,80));
+        topScorersTitleLabel.setForeground(Color.WHITE);
+        topScorersTitleLabel.setOpaque(true);
+        topScorersPanel.add(topScorersTitleLabel);
 
         ArrayList<Player> topScorers = Data.world.getCupByName("UEFA Champions League").getPlayersByGoalsScored();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 8; i++) {
             JLabel topScorerLabel = new JLabel();
             topScorerLabel.setText(topScorers.get(i).getPlayerName() + " - " + topScorers.get(i).getCupGoals() + " Goals");
             topScorerLabel.setFont(new Font("Arial", Font.PLAIN, 16));
             topScorerLabel.setHorizontalAlignment(SwingConstants.LEFT);
             topScorerLabel.setVerticalAlignment(SwingConstants.CENTER);
-            topScorerLabel.setBackground(new Color(14,32,80));
-            topScorerLabel.setForeground(Color.WHITE);
-            topScorersLabel.setOpaque(true);
+            topScorersTitleLabel.setOpaque(true);
             topScorersPanel.add(topScorerLabel);
         }
         add(topScorersPanel, BorderLayout.EAST);
@@ -138,11 +135,16 @@ public class endOfRoundOf16Summary extends JFrame {
             nextRoundsFixturesPanel.add(fixtureLabel);
         }
 
-        mainMenu.addRoundOfChampionsLeagueFixtures(quarterFinalHomeFixtures);
-        mainMenu.addRoundOfChampionsLeagueFixtures(quarterFinalAwayFixtures);
+        //add quarter-final fixtures to back-end to simulate in the background
+        mainMenu.addRoundOfChampionsLeagueFixtures(quarterFinalHomeFixtures); //leg 1
+        mainMenu.addRoundOfChampionsLeagueFixtures(quarterFinalAwayFixtures); //leg 2
 
 
         add(nextRoundsFixturesPanel, BorderLayout.CENTER);
         setVisible(true);
+
+        for (Team team : Data.world.getCupByName("UEFA Champions League").getTeams()){
+            team.resetCupRoundStats();
+        }
     }
 }

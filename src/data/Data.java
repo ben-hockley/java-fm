@@ -1559,19 +1559,6 @@ public class Data {
         world.addLeague(greekSuperLeague);
 
         Cup championsLeague = new Cup("UEFA Champions League", 32);
-        championsLeague.addTeams(england.getLeagueByTier(1).getStandings().subList(0, 5));
-        championsLeague.addTeams(spain.getLeagueByTier(1).getStandings().subList(0, 4));
-        championsLeague.addTeams(italy.getLeagueByTier(1).getStandings().subList(0, 4));
-        championsLeague.addTeams(germany.getLeagueByTier(1).getStandings().subList(0, 4));
-        championsLeague.addTeams(france.getLeagueByTier(1).getStandings().subList(0, 4));
-        championsLeague.addTeams(portugal.getLeagueByTier(1).getStandings().subList(0, 2));
-        championsLeague.addTeams(netherlands.getLeagueByTier(1).getStandings().subList(0, 2));
-        championsLeague.addTeams(scotland.getLeagueByTier(1).getStandings().subList(0, 2));
-        championsLeague.addTeams(turkey.getLeagueByTier(1).getStandings().subList(0, 2));
-        championsLeague.addTeams(austria.getLeagueByTier(1).getStandings().subList(0, 1));
-        championsLeague.addTeams(greece.getLeagueByTier(1).getStandings().subList(0, 1));
-        championsLeague.addTeams(belgium.getLeagueByTier(1).getStandings().subList(0, 1));
-
 
         world.addCup(championsLeague);
     }

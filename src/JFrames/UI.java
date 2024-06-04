@@ -1,5 +1,6 @@
 package JFrames;
 
+import data.Data;
 import events.Game;
 import JPanels.CalendarPanel;
 import JPanels.HomeDefaultDisplay;
@@ -19,7 +20,7 @@ import main.fixtureGen;
 public class UI extends JFrame {
 
     //ArrayList to store all events. Events can be added and removed.
-    ArrayList<Event> events = new ArrayList<>();
+    ArrayList<Event> events;
 
     ArrayList<Game> cpuGames;
 
@@ -43,25 +44,7 @@ public class UI extends JFrame {
 
         // generates all league fixtures for the league,
         // and adds each fixture to the fixture schedule for both the home and away teams.
-        allGameFixtures = userTeam.getLeague().generateLeagueFixtures();
-
-        championsLeagueFixtures = fixtureGen.generateChampionsLeagueFixtureSchedule();
-
-        for (ArrayList<Game> fixtureWeek : championsLeagueFixtures){
-            for (Game game : fixtureWeek){
-                game.getHomeTeam().addFixture(game);
-                game.getAwayTeam().addFixture(game);
-            }
-        }
-
-
-
-        //end of testing
-
-        // get the fixture schedule for the user's team, and add it to the events list.
-        // so that it appears on the calendar.
-        ArrayList<Game> fixtures = userTeam.getFixtures();
-        events.addAll(fixtures);
+        regenerateFixtures(userTeam);
 
         //set basic properties of the JFrame.
         this.setSize(1000, 600);
@@ -225,5 +208,35 @@ public class UI extends JFrame {
 
     public void addRoundOfChampionsLeagueFixtures(ArrayList<Game> roundOfChampionsLeagueFixtures) {
         championsLeagueFixtures.add(roundOfChampionsLeagueFixtures);
+    }
+    public void regenerateFixtures(Team userTeam){
+
+        for (Team team : Data.world.getAllTeams()){
+            team.wipeFixtures();
+            team.resetChampionsLeagueGroupStage();
+        }
+
+        Data.world.getCupByName("UEFA Champions League").updateChampionsLeagueTeams();
+
+        events = new ArrayList<>();
+
+        allGameFixtures = userTeam.getLeague().generateLeagueFixtures();
+
+        championsLeagueFixtures = fixtureGen.generateChampionsLeagueFixtureSchedule();
+
+        for (ArrayList<Game> fixtureWeek : championsLeagueFixtures){
+            for (Game game : fixtureWeek){
+                game.getHomeTeam().addFixture(game);
+                game.getAwayTeam().addFixture(game);
+            }
+        }
+
+
+        for (Team uclTeam : Data.world.getCupByName("UEFA Champions League").getTeams()){
+            uclTeam.setAdvancingToNextRound(true);
+        }
+
+        ArrayList<Game> fixtures = userTeam.getFixtures();
+        events.addAll(fixtures);
     }
 }

@@ -104,12 +104,14 @@ public class endOfSeasonSummary extends JFrame {
         this.setVisible(true);
 
         // MORE BACK-END FUNCTIONS, executed after the JFrame is displayed so last seasons stats are displayed before stats are reset.
-        for (Team team : userTeam.getLeague().getAllTeams()){
+        for (Team team : Data.world.getAllTeams()){
             team.resetLeagueStats();
+            team.resetCupStats();
         }
 
-        for (Player player : userTeam.getLeague().getAllPlayers()){
-            player.resetStats();
+        for (Player player : Data.world.getAllPlayers()){
+            player.resetLeagueStats();
+            player.resetCupStats();
         }
     }
 
@@ -119,26 +121,51 @@ public class endOfSeasonSummary extends JFrame {
         mainPanel.setBackground(Color.GRAY);
 
 
-        // Champions
+        // League
+        String leagueName = userTeam.getLeague().getName();
         Team LeagueChampions = userTeam.getLeague().getStandings().get(0);
         Player TopGoalscorer = userTeam.getLeague().getTopGoalscorers().get(0);
 
-        JLabel championsLabel = new JLabel("Champions:" + LeagueChampions.getTeamName());
-        championsLabel.setFont(new Font("Arial", Font.BOLD, 18));
-        championsLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        championsLabel.setVerticalAlignment(SwingConstants.CENTER);
-        championsLabel.setBackground(LeagueChampions.getTeamColor());
-        championsLabel.setForeground(Color.WHITE);
-        championsLabel.setOpaque(true);
-        mainPanel.add(championsLabel);
+        JLabel leagueChampionsLabel = new JLabel(leagueName + " Champions:" + LeagueChampions.getTeamName());
+        leagueChampionsLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        leagueChampionsLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        leagueChampionsLabel.setVerticalAlignment(SwingConstants.CENTER);
+        leagueChampionsLabel.setBackground(LeagueChampions.getTeamColor());
+        leagueChampionsLabel.setForeground(Color.WHITE);
+        leagueChampionsLabel.setOpaque(true);
+        mainPanel.add(leagueChampionsLabel);
 
-        JLabel topGoalScorerLabel = getTopGoalScorerLabel(TopGoalscorer);
-        mainPanel.add(topGoalScorerLabel);
+        JLabel leagueTopGoalScorerLabel = getTopGoalScorerLabel(TopGoalscorer, "League");
+        mainPanel.add(leagueTopGoalScorerLabel);
+
+        JLabel championsLeagueWinner = new JLabel("Champions League Winner: " + Data.world.getCupByName("UEFA Champions League").getChampion().getTeamName());
+        championsLeagueWinner.setFont(new Font("Arial", Font.BOLD, 18));
+        championsLeagueWinner.setHorizontalAlignment(SwingConstants.LEFT);
+        championsLeagueWinner.setVerticalAlignment(SwingConstants.CENTER);
+        championsLeagueWinner.setBackground(Data.world.getCupByName("UEFA Champions League").getChampion().getTeamColor());
+        championsLeagueWinner.setForeground(Color.WHITE);
+        championsLeagueWinner.setOpaque(true);
+        mainPanel.add(championsLeagueWinner);
+
+        JLabel topGoalScorerChampionsLeague = getTopGoalScorerLabel(Data.world.getCupByName("UEFA Champions League").getTopGoalscorer().get(0), "Cup");
+        mainPanel.add(topGoalScorerChampionsLeague);
+
         return mainPanel;
     }
 
-    private static JLabel getTopGoalScorerLabel(Player TopGoalscorer) {
-        JLabel topGoalScorerLabel = new JLabel("Top Goal Scorer: " + TopGoalscorer.getPlayerName() + ", " + TopGoalscorer.getLeagueGoals() + " goals");
+    private static JLabel getTopGoalScorerLabel(Player TopGoalscorer, String tournamentType) {
+
+
+
+        JLabel topGoalScorerLabel;
+
+        if (tournamentType.equals("League")){
+            topGoalScorerLabel = new JLabel("Top Goal Scorer: " + TopGoalscorer.getPlayerName() + ", " + TopGoalscorer.getLeagueGoals() + " goals");
+        } else if (tournamentType.equals("Cup")){
+            topGoalScorerLabel = new JLabel("Top Goal Scorer: " + TopGoalscorer.getPlayerName() + ", " + TopGoalscorer.getCupGoals() + " goals");
+        } else {
+            topGoalScorerLabel = new JLabel("Unknown tournament type");
+        }
         topGoalScorerLabel.setFont(new Font("Arial", Font.BOLD, 18));
         topGoalScorerLabel.setHorizontalAlignment(SwingConstants.LEFT);
         topGoalScorerLabel.setVerticalAlignment(SwingConstants.CENTER);

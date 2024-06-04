@@ -23,6 +23,8 @@ public class endOfGroupStageSummary extends JFrame {
                 //advance team to knockout if they finished first or second in their group.
                 teamsAdvancingToKnockouts.add(team);
                 team.setAdvancingToNextRound(true);
+            } else {
+                team.setAdvancingToNextRound(false);
             }
         }
 
