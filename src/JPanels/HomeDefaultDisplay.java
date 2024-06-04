@@ -117,34 +117,7 @@ public class HomeDefaultDisplay extends JPanel {
 
         teamNames.setLayout(new GridLayout(leagueStandings.size() + 1, 1));
 
-        JLabel tableTitle = new JLabel();
-
-        if (tournamentType.equals("League")){
-            tableTitle.setText("League Standings");
-            tableTitle.setBackground(new Color(61, 25, 91)); // Premier League Color
-        } else if (tournamentType.equals("Cup")){
-
-            if (userTeam.getCupMatchesPlayed() < 6){
-                tableTitle.setText("UCL Group " + leagueStandings.get(0).getChampionsLeagueGroupLetter() + " Standings");
-            } else if (userTeam.getCupMatchesPlayed() < 8){
-                tableTitle.setText("UCL Round of 16");
-            } else if (userTeam.getCupMatchesPlayed() < 10){
-                tableTitle.setText("UCL Quarter Finals");
-            } else if (userTeam.getCupMatchesPlayed() < 12){
-                tableTitle.setText("UCL Semi Finals");
-            } else if (userTeam.getCupMatchesPlayed() == 12){
-                tableTitle.setText("UCL FINAL");
-            }
-
-            tableTitle.setBackground(new Color(14, 32, 80)); // Champions League Color
-        } else {
-            tableTitle.setBackground(Color.BLACK);
-        }
-        tableTitle.setHorizontalAlignment(SwingConstants.CENTER);
-        tableTitle.setVerticalAlignment(SwingConstants.CENTER);
-        tableTitle.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        tableTitle.setOpaque(true);
-        tableTitle.setForeground(Color.WHITE);
+        JLabel tableTitle = getTableTitle(leagueStandings, tournamentType, userTeam);
         teamNames.add(tableTitle);
 
         int tablePosition = 1;
@@ -220,6 +193,38 @@ public class HomeDefaultDisplay extends JPanel {
         westScrollPane.setPreferredSize(new Dimension(300, 300));
         westScrollPane.setFocusable(false);
         return westScrollPane;
+    }
+
+    private static JLabel getTableTitle(ArrayList<Team> leagueStandings, String tournamentType, Team userTeam) {
+        JLabel tableTitle = new JLabel();
+
+        if (tournamentType.equals("League")){
+            tableTitle.setText("League Standings");
+            tableTitle.setBackground(new Color(61, 25, 91)); // Premier League Color
+        } else if (tournamentType.equals("Cup")){
+
+            if (userTeam.getCupMatchesPlayed() < 6){
+                tableTitle.setText("UCL Group " + leagueStandings.get(0).getChampionsLeagueGroupLetter() + " Standings");
+            } else if (userTeam.getCupMatchesPlayed() < 8){
+                tableTitle.setText("UCL Round of 16");
+            } else if (userTeam.getCupMatchesPlayed() < 10){
+                tableTitle.setText("UCL Quarter Finals");
+            } else if (userTeam.getCupMatchesPlayed() < 12){
+                tableTitle.setText("UCL Semi Finals");
+            } else if (userTeam.getCupMatchesPlayed() == 12){
+                tableTitle.setText("UCL FINAL");
+            }
+
+            tableTitle.setBackground(new Color(14, 32, 80)); // Champions League Color
+        } else {
+            tableTitle.setBackground(Color.BLACK);
+        }
+        tableTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        tableTitle.setVerticalAlignment(SwingConstants.CENTER);
+        tableTitle.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        tableTitle.setOpaque(true);
+        tableTitle.setForeground(Color.WHITE);
+        return tableTitle;
     }
 
     private static JLabel getTeamPositionInLeague(Team leagueStanding, int tablePosition) {
@@ -387,23 +392,7 @@ public class HomeDefaultDisplay extends JPanel {
 
 
         for (int i=0; i<5; i++) {
-            JLabel team;
-
-            if (userTeam.getTeamType().equals("International")){
-                team = new JLabel(userTeam.getLeague().getTopGoalscorers().get(i).getNationality().getNationName());
-                team.setBackground(userTeam.getLeague().getTopGoalscorers().get(i).getNationality().getNationColor());
-            } else {
-                team = new JLabel(userTeam.getLeague().getTopGoalscorers().get(i).getTeam().getShortName());
-                team.setBackground(userTeam.getLeague().getTopGoalscorers().get(i).getTeam().getTeamColor());
-            }
-
-            team.setHorizontalAlignment(SwingConstants.CENTER);
-            team.setVerticalAlignment(SwingConstants.CENTER);
-
-            team.setForeground(Color.WHITE);
-            team.setOpaque(true);
-            team.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            team.setFont(new Font("Arial", Font.PLAIN, 10));
+            JLabel team = getTeam(userTeam, i);
 
             JLabel appearances = new JLabel(String.valueOf(userTeam.getLeague().getTopGoalscorers().get(i).getLeagueAppearances()));
             appearances.setHorizontalAlignment(SwingConstants.CENTER);
@@ -429,5 +418,26 @@ public class HomeDefaultDisplay extends JPanel {
         mainLable.add(topGoalScorersLabel, BorderLayout.CENTER);
 
         return mainLable;
+    }
+
+    private static JLabel getTeam(Team userTeam, int i) {
+        JLabel team;
+
+        if (userTeam.getTeamType().equals("International")){
+            team = new JLabel(userTeam.getLeague().getTopGoalscorers().get(i).getNationality().getNationName());
+            team.setBackground(userTeam.getLeague().getTopGoalscorers().get(i).getNationality().getNationColor());
+        } else {
+            team = new JLabel(userTeam.getLeague().getTopGoalscorers().get(i).getTeam().getShortName());
+            team.setBackground(userTeam.getLeague().getTopGoalscorers().get(i).getTeam().getTeamColor());
+        }
+
+        team.setHorizontalAlignment(SwingConstants.CENTER);
+        team.setVerticalAlignment(SwingConstants.CENTER);
+
+        team.setForeground(Color.WHITE);
+        team.setOpaque(true);
+        team.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        team.setFont(new Font("Arial", Font.PLAIN, 10));
+        return team;
     }
 }

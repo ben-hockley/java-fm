@@ -18,45 +18,10 @@ public class endOfRoundOf16Summary extends JFrame {
 
         setLayout(new BorderLayout());
 
-        JLabel roundOf16Label = new JLabel("Round of 16 Summary");
-        roundOf16Label.setHorizontalAlignment(SwingConstants.CENTER);
-        roundOf16Label.setVerticalAlignment(SwingConstants.CENTER);
-        roundOf16Label.setBackground(new Color(14,32,80)); // champions league color
-        roundOf16Label.setForeground(Color.WHITE);
-        roundOf16Label.setFont(new Font("Arial", Font.BOLD, 24));
-        roundOf16Label.setOpaque(true);
-        roundOf16Label.setPreferredSize(new Dimension(800, 100));
+        JLabel roundOf16Label = getRoundOf16Label();
         add(roundOf16Label, BorderLayout.NORTH);
 
-        JPanel advancingTeamsPanel = new JPanel();
-        advancingTeamsPanel.setPreferredSize(new Dimension(200, 600));
-        advancingTeamsPanel.setLayout(new GridLayout(9, 1));
-        advancingTeamsPanel.setForeground(Color.WHITE);
-        advancingTeamsPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-
-        JLabel advancingTeamsLabel = new JLabel("Teams Advancing to Quarter Finals:");
-        advancingTeamsLabel.setFont(new Font("Arial", Font.BOLD, 12));
-        advancingTeamsLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        advancingTeamsLabel.setVerticalAlignment(SwingConstants.CENTER);
-        advancingTeamsLabel.setBackground(new Color(14,32,80));
-        advancingTeamsLabel.setForeground(Color.WHITE);
-        advancingTeamsLabel.setOpaque(true);
-        advancingTeamsPanel.add(advancingTeamsLabel);
-
-
-        for (Team team : quarterFinalTeams) {
-            JLabel teamLabel = new JLabel();
-            teamLabel.setText(team.getShortName());
-            teamLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-            teamLabel.setHorizontalAlignment(SwingConstants.LEFT);
-            teamLabel.setVerticalAlignment(SwingConstants.CENTER);
-            teamLabel.setBackground(team.getTeamColor());
-            teamLabel.setForeground(Color.WHITE);
-            teamLabel.setOpaque(true);
-            advancingTeamsPanel.add(teamLabel);
-        }
-
-        advancingTeamsPanel.setPreferredSize(new Dimension(200, 600));
+        JPanel advancingTeamsPanel = getAdvancingTeamsPanel(quarterFinalTeams);
         add(advancingTeamsPanel, BorderLayout.WEST);
 
         JPanel topScorersPanel = new JPanel();
@@ -64,15 +29,7 @@ public class endOfRoundOf16Summary extends JFrame {
         topScorersPanel.setLayout(new GridLayout(9, 1));
         topScorersPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
 
-        JLabel topScorersTitleLabel = new JLabel("Top Scorers:");
-
-
-        topScorersTitleLabel.setFont(new Font("Arial", Font.BOLD, 18));
-        topScorersTitleLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        topScorersTitleLabel.setVerticalAlignment(SwingConstants.CENTER);
-        topScorersTitleLabel.setBackground(new Color(14,32,80));
-        topScorersTitleLabel.setForeground(Color.WHITE);
-        topScorersTitleLabel.setOpaque(true);
+        JLabel topScorersTitleLabel = getFixtureLabel("Top Scorers:", Font.BOLD, 18, SwingConstants.LEFT);
         topScorersPanel.add(topScorersTitleLabel);
 
         ArrayList<Player> topScorers = Data.world.getCupByName("UEFA Champions League").getPlayersByGoalsScored();
@@ -93,13 +50,7 @@ public class endOfRoundOf16Summary extends JFrame {
         nextRoundsFixturesPanel.setForeground(Color.WHITE);
         nextRoundsFixturesPanel.setBackground(new Color(14,32,80));
 
-        JLabel nextRoundsFixturesTitleLabel = new JLabel("Quarter Final Fixtures:");
-        nextRoundsFixturesTitleLabel.setFont(new Font("Arial", Font.BOLD, 12));
-        nextRoundsFixturesTitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        nextRoundsFixturesTitleLabel.setVerticalAlignment(SwingConstants.CENTER);
-        nextRoundsFixturesTitleLabel.setBackground(new Color(14,32,80));
-        nextRoundsFixturesTitleLabel.setForeground(Color.WHITE);
-        nextRoundsFixturesTitleLabel.setOpaque(true);
+        JLabel nextRoundsFixturesTitleLabel = getNextRoundsFixturesTitleLabel();
         nextRoundsFixturesPanel.add(nextRoundsFixturesTitleLabel);
 
         //BACK END, Adding fixtures to main menu so games are simulated.
@@ -125,13 +76,7 @@ public class endOfRoundOf16Summary extends JFrame {
 
 
             // BACK TO FORMATTING FRONT END
-            JLabel fixtureLabel = new JLabel(homeTeam.getShortName() + " vs " + awayTeam.getShortName());
-            fixtureLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-            fixtureLabel.setHorizontalAlignment(SwingConstants.CENTER);
-            fixtureLabel.setVerticalAlignment(SwingConstants.CENTER);
-            fixtureLabel.setBackground(new Color(14,32,80));
-            fixtureLabel.setForeground(Color.WHITE);
-            fixtureLabel.setOpaque(true);
+            JLabel fixtureLabel = getFixtureLabel(homeTeam.getShortName() + " vs " + awayTeam.getShortName(), Font.PLAIN, 12, SwingConstants.CENTER);
             nextRoundsFixturesPanel.add(fixtureLabel);
         }
 
@@ -146,5 +91,59 @@ public class endOfRoundOf16Summary extends JFrame {
         for (Team team : Data.world.getCupByName("UEFA Champions League").getTeams()){
             team.resetCupRoundStats();
         }
+    }
+
+    private static JLabel getFixtureLabel(String homeTeam, int plain, int size, int center) {
+        JLabel fixtureLabel = new JLabel(homeTeam);
+        fixtureLabel.setFont(new Font("Arial", plain, size));
+        fixtureLabel.setHorizontalAlignment(center);
+        fixtureLabel.setVerticalAlignment(SwingConstants.CENTER);
+        fixtureLabel.setBackground(new Color(14, 32, 80));
+        fixtureLabel.setForeground(Color.WHITE);
+        fixtureLabel.setOpaque(true);
+        return fixtureLabel;
+    }
+
+    private static JLabel getNextRoundsFixturesTitleLabel() {
+        return getFixtureLabel("Quarter Final Fixtures:", Font.BOLD, 12, SwingConstants.CENTER);
+    }
+
+    private static JLabel getRoundOf16Label() {
+        JLabel roundOf16Label = new JLabel("Round of 16 Summary");
+        roundOf16Label.setHorizontalAlignment(SwingConstants.CENTER);
+        roundOf16Label.setVerticalAlignment(SwingConstants.CENTER);
+        roundOf16Label.setBackground(new Color(14,32,80)); // champions league color
+        roundOf16Label.setForeground(Color.WHITE);
+        roundOf16Label.setFont(new Font("Arial", Font.BOLD, 24));
+        roundOf16Label.setOpaque(true);
+        roundOf16Label.setPreferredSize(new Dimension(800, 100));
+        return roundOf16Label;
+    }
+
+    private static JPanel getAdvancingTeamsPanel(ArrayList<Team> quarterFinalTeams) {
+        JPanel advancingTeamsPanel = new JPanel();
+        advancingTeamsPanel.setPreferredSize(new Dimension(200, 600));
+        advancingTeamsPanel.setLayout(new GridLayout(9, 1));
+        advancingTeamsPanel.setForeground(Color.WHITE);
+        advancingTeamsPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+
+        JLabel advancingTeamsLabel = getFixtureLabel("Teams Advancing to Quarter Finals:", Font.BOLD, 12, SwingConstants.LEFT);
+        advancingTeamsPanel.add(advancingTeamsLabel);
+
+
+        for (Team team : quarterFinalTeams) {
+            JLabel teamLabel = new JLabel();
+            teamLabel.setText(team.getShortName());
+            teamLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+            teamLabel.setHorizontalAlignment(SwingConstants.LEFT);
+            teamLabel.setVerticalAlignment(SwingConstants.CENTER);
+            teamLabel.setBackground(team.getTeamColor());
+            teamLabel.setForeground(Color.WHITE);
+            teamLabel.setOpaque(true);
+            advancingTeamsPanel.add(teamLabel);
+        }
+
+        advancingTeamsPanel.setPreferredSize(new Dimension(200, 600));
+        return advancingTeamsPanel;
     }
 }

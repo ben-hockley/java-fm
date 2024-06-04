@@ -3,8 +3,6 @@ package Objects;
 import data.Data;
 
 import java.util.ArrayList;
-import java.util.List;
-
 public class Cup {
     private final String name;
     private ArrayList<Team> teams;
@@ -15,10 +13,6 @@ public class Cup {
         this.teams = new ArrayList<>(numberOfTeams);
 
         this.champion = null;
-    }
-
-    public void addTeams(List<Team> teams){
-        this.teams.addAll(teams);
     }
 
     public String getName() {
@@ -75,9 +69,7 @@ public class Cup {
 
             int randomChampionIndex = (int) (Math.random() * possibleChampions.size());
 
-            Team randomChampion = possibleChampions.get(randomChampionIndex);
-
-            return randomChampion;
+            return possibleChampions.get(randomChampionIndex);
         }
     }
 

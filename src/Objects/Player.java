@@ -92,7 +92,7 @@ public class Player {
     }
 
     public Integer getValue() {
-        int actualValue = ((rating - 70) * (35 - age)) * 500000;
+        int actualValue = ((Math.max(rating, 70) - 70) * (35 - age)) * 500000;
 
         // Ensure that the player's value is at least 1.
         return Math.max(actualValue, 1);

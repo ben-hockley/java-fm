@@ -137,8 +137,7 @@ public class Nation {
         bestSquad.addAll(midfielders);
         bestSquad.addAll(forwards);
 
-        ArrayList<Player> subs = new ArrayList<>();
-        subs.addAll(players);
+        ArrayList<Player> subs = new ArrayList<>(players);
         subs.removeAll(bestSquad);
 
         while (subs.size() > 12) {
@@ -156,16 +155,6 @@ public class Nation {
         bestSquad.addAll(subs);
 
         return bestSquad;
-    }
-
-    public Integer getNumberOfPlayersByPosition(String position) {
-        Integer numberOfPlayers = 0;
-        for (Player player : players) {
-            if (player.getPosition().equals(position)) {
-                numberOfPlayers++;
-            }
-        }
-        return numberOfPlayers;
     }
 
     public String getNationFlag() {

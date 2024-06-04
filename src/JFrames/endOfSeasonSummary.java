@@ -63,13 +63,7 @@ public class endOfSeasonSummary extends JFrame {
         // CONTENTS OF JFRAME
         setLayout(new BorderLayout());
 
-        JLabel titleLabel = new JLabel("End of Season Summary");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        titleLabel.setVerticalAlignment(SwingConstants.CENTER);
-        titleLabel.setBackground(Color.BLUE);
-        titleLabel.setForeground(Color.WHITE);
-        titleLabel.setOpaque(true);
+        JLabel titleLabel = getLeagueChampionsLabel("End of Season Summary", Font.BOLD, 24, SwingConstants.CENTER, Color.BLUE);
 
         titleLabel.setPreferredSize(new Dimension(800, 50));
         this.add(titleLabel, BorderLayout.NORTH);
@@ -79,13 +73,7 @@ public class endOfSeasonSummary extends JFrame {
         retiringPlayersPanel.setBackground(Color.GRAY);
         retiringPlayersPanel.setForeground(Color.BLUE);
 
-        JLabel retiringPlayersTitleLabel = new JLabel("Retiring Players:");
-        retiringPlayersTitleLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-        retiringPlayersTitleLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        retiringPlayersTitleLabel.setVerticalAlignment(SwingConstants.CENTER);
-        retiringPlayersTitleLabel.setBackground(Color.BLUE);
-        retiringPlayersTitleLabel.setForeground(Color.WHITE);
-        retiringPlayersTitleLabel.setOpaque(true);
+        JLabel retiringPlayersTitleLabel = getLeagueChampionsLabel("Retiring Players:", Font.PLAIN, 18, SwingConstants.LEFT, Color.BLUE);
         retiringPlayersPanel.add(retiringPlayersTitleLabel);
 
         for (Player player : retiringPlayers){
@@ -126,40 +114,39 @@ public class endOfSeasonSummary extends JFrame {
         Team LeagueChampions = userTeam.getLeague().getStandings().get(0);
         Player TopGoalscorer = userTeam.getLeague().getTopGoalscorers().get(0);
 
-        JLabel leagueChampionsLabel = new JLabel(leagueName + " Champions:" + LeagueChampions.getTeamName());
-        leagueChampionsLabel.setFont(new Font("Arial", Font.BOLD, 18));
-        leagueChampionsLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        leagueChampionsLabel.setVerticalAlignment(SwingConstants.CENTER);
-        leagueChampionsLabel.setBackground(LeagueChampions.getTeamColor());
-        leagueChampionsLabel.setForeground(Color.WHITE);
-        leagueChampionsLabel.setOpaque(true);
+        JLabel leagueChampionsLabel = getLeagueChampionsLabel(leagueName + " Champions:" + LeagueChampions.getTeamName(), Font.BOLD, 18, SwingConstants.LEFT, LeagueChampions.getTeamColor());
         mainPanel.add(leagueChampionsLabel);
 
         JLabel leagueTopGoalScorerLabel = getTopGoalScorerLabel(TopGoalscorer, "League");
         mainPanel.add(leagueTopGoalScorerLabel);
 
-        JLabel championsLeagueWinner = new JLabel("Champions League Winner: " + Data.world.getCupByName("UEFA Champions League").getChampion().getTeamName());
-        championsLeagueWinner.setFont(new Font("Arial", Font.BOLD, 18));
-        championsLeagueWinner.setHorizontalAlignment(SwingConstants.LEFT);
-        championsLeagueWinner.setVerticalAlignment(SwingConstants.CENTER);
-        championsLeagueWinner.setBackground(Data.world.getCupByName("UEFA Champions League").getChampion().getTeamColor());
-        championsLeagueWinner.setForeground(Color.WHITE);
-        championsLeagueWinner.setOpaque(true);
+        JLabel championsLeagueWinner = getLeagueChampionsLabel("Champions League Winner: " + Data.world.getCupByName("UEFA Champions League").getChampion().getTeamName(), Font.BOLD, 18, SwingConstants.LEFT, Data.world.getCupByName("UEFA Champions League").getChampion().getTeamColor());
         mainPanel.add(championsLeagueWinner);
 
         JLabel topGoalScorerChampionsLeague = getTopGoalScorerLabel(Data.world.getCupByName("UEFA Champions League").getTopGoalscorer().get(0), "Cup");
         mainPanel.add(topGoalScorerChampionsLeague);
 
-        Player bestPlayerInWorld = Data.world.getHighestRatedPlayer();
-        JLabel ballonDorWinner = new JLabel("Ballon d'Or: " + bestPlayerInWorld.getPlayerName() + ", " + bestPlayerInWorld.getTeam().getTeamName() + "/" + bestPlayerInWorld.getNationality().getNationName());
-        ballonDorWinner.setHorizontalAlignment(SwingConstants.CENTER);
-        ballonDorWinner.setVerticalAlignment(SwingConstants.CENTER);
-        ballonDorWinner.setBackground(new Color(255,215,0)); //Gold
-        ballonDorWinner.setForeground(Color.BLACK);
-        ballonDorWinner.setFont(new Font("Arial", Font.BOLD, 18));
-        ballonDorWinner.setOpaque(true);
+        JLabel ballonDorWinner = getBallonDorWinner();
         mainPanel.add(ballonDorWinner);
 
+        JLabel goldenBoyWinner = getGoldenBoyWinner();
+        mainPanel.add(goldenBoyWinner);
+
+        return mainPanel;
+    }
+
+    private static JLabel getLeagueChampionsLabel(String leagueName, int bold, int size, int left, Color LeagueChampions) {
+        JLabel leagueChampionsLabel = new JLabel(leagueName);
+        leagueChampionsLabel.setFont(new Font("Arial", bold, size));
+        leagueChampionsLabel.setHorizontalAlignment(left);
+        leagueChampionsLabel.setVerticalAlignment(SwingConstants.CENTER);
+        leagueChampionsLabel.setBackground(LeagueChampions);
+        leagueChampionsLabel.setForeground(Color.WHITE);
+        leagueChampionsLabel.setOpaque(true);
+        return leagueChampionsLabel;
+    }
+
+    private static JLabel getGoldenBoyWinner() {
         Player bestYoungPlayerInWorld = Data.world.getHighestRatedPlayerUnder21();
         JLabel goldenBoyWinner = new JLabel("Golden Boy: " + bestYoungPlayerInWorld.getPlayerName() + ", " + bestYoungPlayerInWorld.getTeam().getTeamName() + "/" + bestYoungPlayerInWorld.getNationality().getNationName());
         goldenBoyWinner.setHorizontalAlignment(SwingConstants.CENTER);
@@ -168,24 +155,25 @@ public class endOfSeasonSummary extends JFrame {
         goldenBoyWinner.setForeground(new Color(255, 215, 0)); //Gold
         goldenBoyWinner.setFont(new Font("Arial", Font.BOLD, 18));
         goldenBoyWinner.setOpaque(true);
-        mainPanel.add(goldenBoyWinner);
+        return goldenBoyWinner;
+    }
 
-        return mainPanel;
+    private static JLabel getBallonDorWinner() {
+        Player bestPlayerInWorld = Data.world.getHighestRatedPlayer();
+        JLabel ballonDorWinner = new JLabel("Ballon d'Or: " + bestPlayerInWorld.getPlayerName() + ", " + bestPlayerInWorld.getTeam().getTeamName() + "/" + bestPlayerInWorld.getNationality().getNationName());
+        ballonDorWinner.setHorizontalAlignment(SwingConstants.CENTER);
+        ballonDorWinner.setVerticalAlignment(SwingConstants.CENTER);
+        ballonDorWinner.setBackground(new Color(255,215,0)); //Gold
+        ballonDorWinner.setForeground(Color.BLACK);
+        ballonDorWinner.setFont(new Font("Arial", Font.BOLD, 18));
+        ballonDorWinner.setOpaque(true);
+        return ballonDorWinner;
     }
 
     private static JLabel getTopGoalScorerLabel(Player TopGoalscorer, String tournamentType) {
 
 
-
-        JLabel topGoalScorerLabel;
-
-        if (tournamentType.equals("League")){
-            topGoalScorerLabel = new JLabel("Top Goal Scorer: " + TopGoalscorer.getPlayerName() + ", " + TopGoalscorer.getLeagueGoals() + " goals");
-        } else if (tournamentType.equals("Cup")){
-            topGoalScorerLabel = new JLabel("Top Goal Scorer: " + TopGoalscorer.getPlayerName() + ", " + TopGoalscorer.getCupGoals() + " goals");
-        } else {
-            topGoalScorerLabel = new JLabel("Unknown tournament type");
-        }
+        JLabel topGoalScorerLabel = getGoalScorerLabel(TopGoalscorer, tournamentType);
         topGoalScorerLabel.setFont(new Font("Arial", Font.BOLD, 18));
         topGoalScorerLabel.setHorizontalAlignment(SwingConstants.LEFT);
         topGoalScorerLabel.setVerticalAlignment(SwingConstants.CENTER);
@@ -195,14 +183,20 @@ public class endOfSeasonSummary extends JFrame {
         return topGoalScorerLabel;
     }
 
+    private static JLabel getGoalScorerLabel(Player TopGoalscorer, String tournamentType) {
+        JLabel topGoalScorerLabel;
+
+        if (tournamentType.equals("League")){
+            topGoalScorerLabel = new JLabel("Top Goal Scorer: " + TopGoalscorer.getPlayerName() + ", " + TopGoalscorer.getLeagueGoals() + " goals");
+        } else if (tournamentType.equals("Cup")){
+            topGoalScorerLabel = new JLabel("Top Goal Scorer: " + TopGoalscorer.getPlayerName() + ", " + TopGoalscorer.getCupGoals() + " goals");
+        } else {
+            topGoalScorerLabel = new JLabel("Unknown tournament type");
+        }
+        return topGoalScorerLabel;
+    }
+
     private static JLabel getRetiringPlayerLabel(Player player) {
-        JLabel retiringPlayerLabel = new JLabel(player.getPlayerName() + ", " + player.getAge() + ", " + player.getPosition() + ", " + player.getTeam().getShortName());
-        retiringPlayerLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-        retiringPlayerLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        retiringPlayerLabel.setVerticalAlignment(SwingConstants.CENTER);
-        retiringPlayerLabel.setBackground(player.getTeam().getTeamColor());
-        retiringPlayerLabel.setForeground(Color.WHITE);
-        retiringPlayerLabel.setOpaque(true);
-        return retiringPlayerLabel;
+        return getLeagueChampionsLabel(player.getPlayerName() + ", " + player.getAge() + ", " + player.getPosition() + ", " + player.getTeam().getShortName(), Font.PLAIN, 12, SwingConstants.LEFT, player.getTeam().getTeamColor());
     }
 }

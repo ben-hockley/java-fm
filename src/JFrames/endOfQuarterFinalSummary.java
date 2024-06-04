@@ -17,39 +17,11 @@ public class endOfQuarterFinalSummary extends JFrame {
         setTitle("UCL Quarter Final Summary");
         setSize(800, 600);
 
-        JLabel titleLabel = new JLabel("Quarter Final Summary");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        titleLabel.setVerticalAlignment(SwingConstants.CENTER);
-        titleLabel.setBackground(new Color(14, 32, 80));
-        titleLabel.setForeground(Color.WHITE);
-        titleLabel.setOpaque(true);
+        JLabel titleLabel = getSemiFinalFixturesTitleLabel("Quarter Final Summary");
         titleLabel.setPreferredSize(new Dimension(800, 100));
         add(titleLabel, BorderLayout.NORTH);
 
-        JPanel semiFinalTeamsPanel = new JPanel();
-        semiFinalTeamsPanel.setPreferredSize(new Dimension(200, 600));
-        semiFinalTeamsPanel.setLayout(new GridLayout(5, 1));
-
-        JLabel semiFinalTeamsLabel = new JLabel("Semi Final Teams:");
-        semiFinalTeamsLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        semiFinalTeamsLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        semiFinalTeamsLabel.setVerticalAlignment(SwingConstants.CENTER);
-        semiFinalTeamsLabel.setBackground(new Color(14, 32, 80));
-        semiFinalTeamsLabel.setForeground(Color.WHITE);
-        semiFinalTeamsLabel.setOpaque(true);
-        semiFinalTeamsPanel.add(semiFinalTeamsLabel);
-
-        for (Team team : semiFinalTeams) {
-            JLabel teamLabel = new JLabel();
-            teamLabel.setBackground(team.getTeamColor());
-            teamLabel.setForeground(Color.WHITE);
-            teamLabel.setHorizontalAlignment(SwingConstants.CENTER);
-            teamLabel.setVerticalAlignment(SwingConstants.CENTER);
-            teamLabel.setText(team.getShortName());
-            teamLabel.setOpaque(true);
-            semiFinalTeamsPanel.add(teamLabel);
-        }
+        JPanel semiFinalTeamsPanel = getSemiFinalTeamsPanel(semiFinalTeams);
 
         add(semiFinalTeamsPanel, BorderLayout.WEST);
 
@@ -57,13 +29,7 @@ public class endOfQuarterFinalSummary extends JFrame {
         topScorersPanel.setPreferredSize(new Dimension(200, 600));
         topScorersPanel.setLayout(new GridLayout(9, 1));
 
-        JLabel topScorersTitleLabel = new JLabel("Top Scorers:");
-        topScorersTitleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        topScorersTitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        topScorersTitleLabel.setVerticalAlignment(SwingConstants.CENTER);
-        topScorersTitleLabel.setBackground(new Color(14, 32, 80));
-        topScorersTitleLabel.setForeground(Color.WHITE);
-        topScorersTitleLabel.setOpaque(true);
+        JLabel topScorersTitleLabel = getSemiFinalFixturesTitleLabel("Top Scorers:");
         topScorersPanel.add(topScorersTitleLabel);
 
         ArrayList<Player> topScorers = Data.world.getCupByName("UEFA Champions League").getPlayersByGoalsScored();
@@ -86,13 +52,7 @@ public class endOfQuarterFinalSummary extends JFrame {
         semiFinalFixturesPanel.setPreferredSize(new Dimension(400, 500));
         semiFinalFixturesPanel.setLayout(new GridLayout(3, 1));
 
-        JLabel semiFinalFixturesTitleLabel = new JLabel("Semi Final Fixtures:");
-        semiFinalFixturesTitleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        semiFinalFixturesTitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        semiFinalFixturesTitleLabel.setVerticalAlignment(SwingConstants.CENTER);
-        semiFinalFixturesTitleLabel.setBackground(new Color(14, 32, 80));
-        semiFinalFixturesTitleLabel.setForeground(Color.WHITE);
-        semiFinalFixturesTitleLabel.setOpaque(true);
+        JLabel semiFinalFixturesTitleLabel = getSemiFinalFixturesTitleLabel("Semi Final Fixtures:");
         semiFinalFixturesPanel.add(semiFinalFixturesTitleLabel);
 
         ArrayList<Game> semiFinalHomeLegs = new ArrayList<>(2);
@@ -135,6 +95,38 @@ public class endOfQuarterFinalSummary extends JFrame {
         for (Team team : Data.world.getCupByName("UEFA Champions League").getTeams()){
             team.resetCupRoundStats();
         }
+    }
+
+    private static JLabel getSemiFinalFixturesTitleLabel(String text) {
+        JLabel semiFinalFixturesTitleLabel = new JLabel(text);
+        semiFinalFixturesTitleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        semiFinalFixturesTitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        semiFinalFixturesTitleLabel.setVerticalAlignment(SwingConstants.CENTER);
+        semiFinalFixturesTitleLabel.setBackground(new Color(14, 32, 80));
+        semiFinalFixturesTitleLabel.setForeground(Color.WHITE);
+        semiFinalFixturesTitleLabel.setOpaque(true);
+        return semiFinalFixturesTitleLabel;
+    }
+
+    private static JPanel getSemiFinalTeamsPanel(ArrayList<Team> semiFinalTeams) {
+        JPanel semiFinalTeamsPanel = new JPanel();
+        semiFinalTeamsPanel.setPreferredSize(new Dimension(200, 600));
+        semiFinalTeamsPanel.setLayout(new GridLayout(5, 1));
+
+        JLabel semiFinalTeamsLabel = getSemiFinalFixturesTitleLabel("Semi Final Teams:");
+        semiFinalTeamsPanel.add(semiFinalTeamsLabel);
+
+        for (Team team : semiFinalTeams) {
+            JLabel teamLabel = new JLabel();
+            teamLabel.setBackground(team.getTeamColor());
+            teamLabel.setForeground(Color.WHITE);
+            teamLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            teamLabel.setVerticalAlignment(SwingConstants.CENTER);
+            teamLabel.setText(team.getShortName());
+            teamLabel.setOpaque(true);
+            semiFinalTeamsPanel.add(teamLabel);
+        }
+        return semiFinalTeamsPanel;
     }
 
 }

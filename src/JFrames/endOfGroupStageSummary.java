@@ -64,16 +64,7 @@ public class endOfGroupStageSummary extends JFrame {
         mainMenu.addRoundOfChampionsLeagueFixtures(roundOf16AwayFixtures);
 
 
-        JLabel titleLabel = new JLabel();
-        titleLabel.setPreferredSize(new Dimension(800, 100));
-        titleLabel.setText("UCL: End of Group Stage Summary");
-        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        titleLabel.setVerticalAlignment(SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        titleLabel.setBackground(new Color(14,32,80));
-        titleLabel.setForeground(Color.WHITE);
-        titleLabel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-        titleLabel.setOpaque(true);
+        JLabel titleLabel = getTitleLabel();
         add(titleLabel, BorderLayout.NORTH);
 
         JPanel teamsAdvancingPanel = new JPanel();
@@ -83,14 +74,7 @@ public class endOfGroupStageSummary extends JFrame {
         teamsAdvancingPanel.setForeground(Color.WHITE);
         teamsAdvancingPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
 
-        JLabel teamsAdvancingTitleLabel = new JLabel();
-        teamsAdvancingTitleLabel.setText("Teams Advancing to Knockouts:");
-        teamsAdvancingTitleLabel.setFont(new Font("Arial", Font.BOLD, 18));
-        teamsAdvancingTitleLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        teamsAdvancingTitleLabel.setVerticalAlignment(SwingConstants.CENTER);
-        teamsAdvancingTitleLabel.setBackground(new Color(14,32,80));
-        teamsAdvancingTitleLabel.setForeground(Color.WHITE);
-        teamsAdvancingTitleLabel.setOpaque(true);
+        JLabel teamsAdvancingTitleLabel = getTeamsAdvancingTitleLabel();
         teamsAdvancingPanel.add(teamsAdvancingTitleLabel);
 
         for (Team team : teamsAdvancingToKnockouts){
@@ -180,5 +164,31 @@ public class endOfGroupStageSummary extends JFrame {
             //wipes cup games, wins, draws, losses, points but not matches played
             championsLeagueTeam.resetCupRoundStats();
         }
+    }
+
+    private static JLabel getTeamsAdvancingTitleLabel() {
+        JLabel teamsAdvancingTitleLabel = new JLabel();
+        teamsAdvancingTitleLabel.setText("Teams Advancing to Knockouts:");
+        teamsAdvancingTitleLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        teamsAdvancingTitleLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        teamsAdvancingTitleLabel.setVerticalAlignment(SwingConstants.CENTER);
+        teamsAdvancingTitleLabel.setBackground(new Color(14,32,80));
+        teamsAdvancingTitleLabel.setForeground(Color.WHITE);
+        teamsAdvancingTitleLabel.setOpaque(true);
+        return teamsAdvancingTitleLabel;
+    }
+
+    private static JLabel getTitleLabel() {
+        JLabel titleLabel = new JLabel();
+        titleLabel.setPreferredSize(new Dimension(800, 100));
+        titleLabel.setText("UCL: End of Group Stage Summary");
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        titleLabel.setVerticalAlignment(SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setBackground(new Color(14,32,80));
+        titleLabel.setForeground(Color.WHITE);
+        titleLabel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+        titleLabel.setOpaque(true);
+        return titleLabel;
     }
 }
