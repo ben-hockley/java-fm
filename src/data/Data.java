@@ -3,7 +3,6 @@ package data;
 import Objects.*;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Data {
     //Nations
@@ -416,9 +415,10 @@ public class Data {
         new Player("Kyle", "Walker", "DEF", manCity, england, 90, 33);
         new Player("Ruben", "Dias", "DEF", manCity, portugal, 90, 27);
         new Player("John", "Stones", "DEF", manCity, england, 88, 29);
-        new Player("Josko", "Gvardiol", "DEF", manCity, croatia, 85, 28);
+        new Player("Josko", "Gvardiol", "DEF", manCity, croatia, 85, 22);
         new Player("Nathan", "Ake", "DEF", manCity, netherlands, 82, 29);
         new Player("Manuel", "Akanji", "DEF", manCity, switzerland, 79, 31);
+        new Player("Rico", "Lewis", "DEF", manCity, england, 75, 19);
 
         new Player("Kevin", "De Bruyne", "MID", manCity, belgium, 97, 32);
         new Player("Rodri", "", "MID", manCity, spain, 95, 27);
@@ -431,6 +431,7 @@ public class Data {
         new Player("Jeremy", "Doku", "FWD", manCity, belgium, 88, 21);
         new Player("Julian", "Alvarez", "FWD", manCity, argentina, 84, 24);
         new Player("Jack", "Grealish", "FWD", manCity, england, 82, 28);
+        new Player("Oscar", "Bobb", "FWD", manCity, norway, 78, 20);
 
         //Team : Arsenal
         Team arsenal = new Team("Arsenal", "Arsenal", "Arsenal.png", premierLeague, new Integer[]{4, 3, 3}, new Color(239, 1, 7), 200);
@@ -447,7 +448,7 @@ public class Data {
         new Player("Declan", "Rice", "MID", arsenal, england, 94, 25);
         new Player("Martin", "Odegaard", "MID", arsenal, norway, 92, 25);
         new Player("Jorginho", "", "MID", arsenal, italy, 85, 32);
-        new Player("Emile", "Smith-Rowe", "MID", arsenal, england, 82, 23);
+        new Player("Emile", "Smith-Rowe", "MID", arsenal, england, 77, 23);
         new Player("Thomas", "Partey", "MID", arsenal, ghana, 76, 30);
 
         new Player("Bukayo", "Saka", "FWD", arsenal, england, 94, 22);
@@ -462,7 +463,7 @@ public class Data {
         new Player("Caoimhin", "Kelleher", "GK", liverpool, ireland, 80, 25);
 
         new Player("Virgil", "Van Dijk", "DEF", liverpool, netherlands, 92, 32);
-        new Player("Trent", "Alexander-Arnold", "DEF", liverpool, england, 89, 25);
+        new Player("Trent", "Alexander-Arnold", "DEF", liverpool, england, 88, 25);
         new Player("Andrew", "Robertson", "DEF", liverpool, scotland, 88, 30);
         new Player("Ibrahima", "Konate", "DEF", liverpool, france, 85, 24);
         new Player("Joe", "Gomez", "DEF", liverpool, england, 80, 26);

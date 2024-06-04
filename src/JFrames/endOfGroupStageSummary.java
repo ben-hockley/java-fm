@@ -8,8 +8,6 @@ import events.Game;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 public class endOfGroupStageSummary extends JFrame {
 
     public endOfGroupStageSummary(Team userTeam, UI mainMenu){
@@ -24,6 +22,7 @@ public class endOfGroupStageSummary extends JFrame {
             if (team.getChampionsLeagueGroupStandings().indexOf(team) < 2){
                 //advance team to knockout if they finished first or second in their group.
                 teamsAdvancingToKnockouts.add(team);
+                team.setAdvancingToNextRound(true);
             }
         }
 
@@ -32,17 +31,11 @@ public class endOfGroupStageSummary extends JFrame {
             int team1GroupPosition = team1.getChampionsLeagueGroupStandings().indexOf(team1);
             int team2GroupPosition = team2.getChampionsLeagueGroupStandings().indexOf(team2);
 
-            if (team1GroupPosition < team2GroupPosition){
-                return -1;
-            } else if (team1GroupPosition > team2GroupPosition){
-                return 1;
-            } else {
-                return 0;
-            }
+            return Integer.compare(team1GroupPosition, team2GroupPosition);
         });
 
-        ArrayList<Game> roundOf16HomeFixtures = new ArrayList<Game>();
-        ArrayList<Game> roundOf16AwayFixtures = new ArrayList<Game>();
+        ArrayList<Game> roundOf16HomeFixtures = new ArrayList<>();
+        ArrayList<Game> roundOf16AwayFixtures = new ArrayList<>();
 
         for (int i=0; i<8; i++){
             Team fixtureHomeTeam = teamsAdvancingToKnockouts.get(i);
@@ -62,6 +55,9 @@ public class endOfGroupStageSummary extends JFrame {
             }
         }
 
+
+        // adds non-user champions league fixtures to the fixture list so that
+        // they will be simulated in the background simultaneoulsy to the user's games.
         mainMenu.addRoundOfChampionsLeagueFixtures(roundOf16HomeFixtures);
         mainMenu.addRoundOfChampionsLeagueFixtures(roundOf16AwayFixtures);
 

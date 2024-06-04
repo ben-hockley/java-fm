@@ -32,6 +32,7 @@ public class Team {
     private Integer cupDraws;
     private Integer cupLosses;
     private Integer cupGoalsScored;
+    private Boolean advancingToNextRound;
 
     private ArrayList<Team> championsLeagueGroupStage; //list of other teams in the team's champions league group.
 
@@ -82,6 +83,7 @@ public class Team {
 
         //Cup stats
         this.cupMatchesPlayed = 0;
+        this.advancingToNextRound = false;
 
         //Cup ROUND stats
         this.cupGames = 0;
@@ -125,6 +127,7 @@ public class Team {
 
         //Cup stats
         this.cupMatchesPlayed = 0;
+        this.advancingToNextRound = false;
 
         //Cup ROUND stats
         this.cupGames = 0;
@@ -546,5 +549,13 @@ public class Team {
 
     public Integer getCupGoalsScored(){
         return cupGoalsScored;
+    }
+
+    public void setAdvancingToNextRound(Boolean advancingToNextRound){
+        this.advancingToNextRound = advancingToNextRound;
+    }
+
+    public Boolean isAdvancingToNextRound(){
+        return advancingToNextRound;
     }
 }

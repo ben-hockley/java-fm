@@ -1,6 +1,5 @@
 package main;
 
-import JFrames.endOfGroupStageSummary;
 import data.Data;
 import JFrames.UI;
 import Objects.Team;

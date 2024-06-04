@@ -79,10 +79,6 @@ public class Player {
     public void addCupGoal() {
         this.cupGoals++;
     }
-
-    public Integer getCupAppearances() {
-        return cupAppearances;
-    }
     public Integer getCupGoals() {
         return cupGoals;
     }
@@ -151,6 +147,5 @@ public class Player {
 
     public Nation getNationality() {
         return nationality;
-    };
-
+    }
 }

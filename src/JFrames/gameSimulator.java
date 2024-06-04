@@ -279,7 +279,7 @@ public class gameSimulator extends JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setVisible(true);
 
-        Integer numberOfGamesInChampionsLeagueGroupStage = 6;
+        int numberOfGamesInChampionsLeagueGroupStage = 6;
 
         //at the end of the champions league group stage.
         if (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage) && simulatedGame.getGameType().equals("Cup")) {
@@ -289,7 +289,44 @@ public class gameSimulator extends JFrame {
 
         //after the champions league Round of 16.
         if (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage + 2) && simulatedGame.getGameType().equals("Cup")) {
-            //new endOfRoundOf16Summary(userTeam, mainMenu);
+
+            //get goals scored for both teams across the two legs of fixtures.
+            Integer homeGoalsScored = simulatedGame.getHomeTeam().getCupGoalsScored();
+            Integer awayGoalsScored = simulatedGame.getAwayTeam().getCupGoalsScored();
+
+            if (homeGoalsScored > awayGoalsScored){
+                //home team wins on aggregate
+                System.out.println(homeTeam.getTeamName() + " wins on aggregate.");
+            } else if (awayGoalsScored > homeGoalsScored){
+                //away team wins on aggregate
+                System.out.println(awayTeam.getTeamName() + " wins on aggregate.");
+            } else {
+                //draw on aggregate
+                System.out.println("Draw on aggregate.");
+
+                //simulate penalty shootout (50/ 50 chance of winning for each team)
+                int randomNumber = (int)(Math.round(Math.random()));
+
+                if (randomNumber == 1){
+                    homeTeam.setAdvancingToNextRound(true);
+                    awayTeam.setAdvancingToNextRound(false);
+                } else {
+                    awayTeam.setAdvancingToNextRound(true);
+                    homeTeam.setAdvancingToNextRound(false);
+                }
+            }
+
+
+            ArrayList<Team> quarterFinalTeams = new ArrayList<>(8);
+            for (Team team : Data.world.getCupByName("UEFA Champions League").getTeams()){
+                if (team.isAdvancingToNextRound()){
+                    System.out.println(team.getTeamName() + " advances to the next round.");
+                    quarterFinalTeams.add(team);
+                }
+            }
+
+
+            new endOfRoundOf16Summary(quarterFinalTeams, mainMenu, userTeam);
         }
 
 

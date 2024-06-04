@@ -24,7 +24,9 @@ public class HomeGameDisplay extends JPanel {
 
         //simulate NON-USER games.
         for (Game game : allGames){
-            //if the game is not the user's game, simulate it. (user games are simulated in the gameSimulator class)
+
+            // if the game DOES NOT involve the user's team,
+            // simulate it. (user games are simulated in the gameSimulator class)
             if (game.getHomeTeam() != userTeam && game.getAwayTeam() != userTeam) {
 
                 //gets the ratings of the teams to determine who has a better chance of winning.
@@ -58,18 +60,46 @@ public class HomeGameDisplay extends JPanel {
                         game.getAwayTeam().addLeagueDraw();
                     }
                 } else if (game.getGameType().equals("Cup")){
+
+                    Team homeTeam = game.getHomeTeam();
+                    Team awayTeam = game.getAwayTeam();
+
+
                     if (homeGoals > awayGoals) {
                         //home win
-                        game.getHomeTeam().addCupWin(homeGoals);
-                        game.getAwayTeam().addCupLoss(awayGoals);
+                        homeTeam.addCupWin(homeGoals);
+                        awayTeam.addCupLoss(awayGoals);
                     } else if (awayGoals > homeGoals) {
                         //away win
-                        game.getHomeTeam().addCupLoss(homeGoals);
-                        game.getAwayTeam().addCupWin(awayGoals);
+                        homeTeam.addCupLoss(homeGoals);
+                        awayTeam.addCupWin(awayGoals);
                     } else {
                         //draw
-                        game.getHomeTeam().addCupDraw(homeGoals);
-                        game.getAwayTeam().addCupDraw(awayGoals);
+                        homeTeam.addCupDraw(homeGoals);
+                        awayTeam.addCupDraw(awayGoals);
+                    }
+
+                    //end of champions league round of 16 fixtures.
+                    if (homeTeam.getCupMatchesPlayed() == 8){
+                        //assert the winner on aggregate of the champions league round of 16.
+                        if (homeTeam.getCupGoalsScored() > awayTeam.getCupGoalsScored()){
+                            homeTeam.setAdvancingToNextRound(true);
+                            awayTeam.setAdvancingToNextRound(false);
+                        } else if (awayTeam.getCupGoalsScored() > homeTeam.getCupGoalsScored()){
+                            awayTeam.setAdvancingToNextRound(true);
+                            homeTeam.setAdvancingToNextRound(false);
+                        } else {
+
+                            //simulates penalty shootout (50 / 50 chance of either team winning)
+                            int randomNumber = (int)Math.round(Math.random());
+                            if (randomNumber == 1){
+                                homeTeam.setAdvancingToNextRound(true);
+                                awayTeam.setAdvancingToNextRound(false);
+                            } else {
+                                awayTeam.setAdvancingToNextRound(true);
+                                homeTeam.setAdvancingToNextRound(false);
+                            }
+                        }
                     }
                 }
 

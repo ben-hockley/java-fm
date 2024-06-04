@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cup {
-    private String name;
-    private Integer noOfTeams;
+    private final String name;
     private ArrayList<Team> teams;
 
-    public Cup(String name, Integer noOfTeams) {
+    public Cup(String name, int numberOfTeams) {
         this.name = name;
-        this.noOfTeams = noOfTeams;
-        this.teams = new ArrayList<>();
+        this.teams = new ArrayList<>(numberOfTeams);
     }
 
     public void addTeams(List<Team> teams){
@@ -20,10 +18,6 @@ public class Cup {
 
     public String getName() {
         return name;
-    }
-
-    public Integer getNoOfTeams() {
-        return teams.size();
     }
 
     public ArrayList<Team> getTeams() {
@@ -35,6 +29,12 @@ public class Cup {
         for (Team team : teams){
             players.addAll(team.getAllPlayers());
         }
+        return players;
+    }
+
+    public ArrayList<Player> getPlayersByGoalsScored(){
+        ArrayList<Player> players = getAllPlayers();
+        players.sort((player1, player2) -> Integer.compare(player2.getCupGoals(), player1.getCupGoals()));
         return players;
     }
 
