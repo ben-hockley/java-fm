@@ -101,6 +101,15 @@ public class UI extends JFrame {
 
     Boolean homeDisplaySet;
     public void updateCalendar(final Integer dateNumber, Team userTeam) {
+
+        if (clock.getMonthNumber().equals(1) || clock.getMonthNumber().equals(6) || clock.getMonthNumber().equals(7) || clock.getMonthNumber().equals(8)){
+            //if the transfer window is open, do between 0 and 2 random transfers per day.
+            int numberOfTransfers = (int) (Math.random() * 3);
+
+            for (int i = 0; i < numberOfTransfers; i++){
+                Data.world.doRandomTransfer(userTeam);
+            }
+        }
         if (progressDateButton!=null) progressDateButton.setEnabled(true);
 
         topPanel.removeAll();
