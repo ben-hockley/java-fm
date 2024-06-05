@@ -29,20 +29,23 @@ public class HomeGameDisplay extends JPanel {
             // simulate it. (user games are simulated in the gameSimulator class)
             if (game.getHomeTeam() != userTeam && game.getAwayTeam() != userTeam) {
 
-                //gets the ratings of the teams to determine who has a better chance of winning.
-                Integer homeRating = game.getHomeTeam().getRating();
-                Integer awayRating = game.getAwayTeam().getRating();
+                Integer homeOffensiveRating = game.getHomeTeam().getOffensiveRating();
+                Integer homeDefensiveRating = game.getHomeTeam().getDefensiveRating();
 
-                //home advantage, increases the home team's chance of winning.
-                homeRating += 40;
+                Integer awayOffensiveRating = game.getAwayTeam().getOffensiveRating();
+                Integer awayDefensiveRating = game.getAwayTeam().getDefensiveRating();
 
-                //generate random values between 0 and 1 for each team to simulate form/other factors.
-                double homeRandomValue = Math.random();
-                double awayRandomValue = Math.random();
+                int homeRating = Math.max(homeOffensiveRating - (awayDefensiveRating / 2), 1);
+                int awayRating = Math.max(awayOffensiveRating - (homeDefensiveRating / 2), 1);
 
-                //generate number of goals scored by each team.
-                int homeGoals = (int)Math.round(homeRating * homeRandomValue / 75);
-                int awayGoals = (int)Math.round(awayRating * awayRandomValue / 75);
+                //home advantage
+                homeRating += 2;
+
+                double homeRandomValue = Math.random() / 3;
+                double awayRandomValue = Math.random() / 3;
+
+                int homeGoals = (int)Math.round(homeRating * homeRandomValue);
+                int awayGoals = (int)Math.round(awayRating * awayRandomValue);
 
                 //compare number of goals scored by each team to determine result.
                 if (game.getGameType().equals("League")){

@@ -575,4 +575,25 @@ public class Team {
         }
         return lowestRatedPlayer;
     }
+    public Integer getDefensiveRating(){
+        int defensiveRating = 0;
+        for (Player player : startingEleven) {
+            if (player.getPosition().equals("GK") || player.getPosition().equals("DEF")) {
+                defensiveRating += (player.getRating()-70);
+            }
+        }
+        defensiveRating /= 5;
+        return defensiveRating;
+    }
+
+    public Integer getOffensiveRating(){
+        int offensiveRating = 0;
+        for (Player player : startingEleven) {
+            if (player.getPosition().equals("MID") || player.getPosition().equals("FWD")) {
+                offensiveRating += (player.getRating()-70);
+            }
+        }
+        offensiveRating /= 6;
+        return offensiveRating;
+    }
 }

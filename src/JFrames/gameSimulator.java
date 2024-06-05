@@ -28,18 +28,23 @@ public class gameSimulator extends JFrame {
         pitch.setOpaque(true);
         this.add(pitch);
 
-        Integer homeRating = homeTeam.getRating();
+        Integer homeOffensiveRating = homeTeam.getOffensiveRating();
+        Integer homeDefensiveRating = homeTeam.getDefensiveRating();
 
-        Integer awayRating = awayTeam.getRating();
+        Integer awayOffensiveRating = awayTeam.getOffensiveRating();
+        Integer awayDefensiveRating = awayTeam.getDefensiveRating();
+
+        int homeRating = Math.max(homeOffensiveRating - (awayDefensiveRating / 2), 1);
+        int awayRating = Math.max(awayOffensiveRating - (homeDefensiveRating / 2), 1);
 
         //home advantage
-        homeRating += 40;
+        homeRating += 2;
 
-        double homeRandomValue = Math.random();
-        double awayRandomValue = Math.random();
+        double homeRandomValue = Math.random() / 3;
+        double awayRandomValue = Math.random() / 3;
 
-        int homeGoals = (int)Math.round(homeRating * homeRandomValue / 75);
-        int awayGoals = (int)Math.round(awayRating * awayRandomValue / 75);
+        int homeGoals = (int)Math.round(homeRating * homeRandomValue);
+        int awayGoals = (int)Math.round(awayRating * awayRandomValue);
 
         if (simulatedGame.getGameType().equals("League")) {
             //add results to teams' league stats for the league table.
