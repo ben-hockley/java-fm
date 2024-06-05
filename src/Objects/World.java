@@ -156,6 +156,18 @@ public class World {
         return recentTransfers;
     }
 
+    public String convertToDateFormat(Integer digit){
+        if (digit == 1){
+            return "1st";
+        } else if (digit==2){
+            return "2nd";
+        } else if (digit==3){
+            return "3rd";
+        } else {
+            return digit + "th";
+        }
+    }
+
 
 
 }

@@ -334,22 +334,16 @@ public class gameSimulator extends JFrame {
 
                 if (homeGoalsScored > awayGoalsScored) {
                     //home team wins on aggregate
-                    System.out.println(homeTeam.getTeamName() + " wins on aggregate.");
-
                     homeTeam.setAdvancingToNextRound(true);
                     awayTeam.setAdvancingToNextRound(false);
 
                 } else if (awayGoalsScored > homeGoalsScored) {
                     //away team wins on aggregate
-                    System.out.println(awayTeam.getTeamName() + " wins on aggregate.");
-
                     awayTeam.setAdvancingToNextRound(true);
                     homeTeam.setAdvancingToNextRound(false);
 
                 } else {
-                    //draw on aggregate
-                    System.out.println("Draw on aggregate.");
-
+                    //draw on aggregate, so simulate a penalty shootout to decide the winner.
                     //simulate penalty shootout (50/ 50 chance of winning for each team)
                     int randomNumber = (int) (Math.round(Math.random()));
 
@@ -362,36 +356,62 @@ public class gameSimulator extends JFrame {
                     }
                 }
 
+
+                Team opponent;
+                if (homeTeam.equals(userTeam)){
+                    opponent = awayTeam;
+                } else {
+                    opponent = homeTeam;
+                }
+
                 if (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage + 2)) {
                     ArrayList<Team> quarterFinalTeams = new ArrayList<>(8);
                     for (Team team : Data.world.getCupByName("UEFA Champions League").getTeams()) {
                         if (team.isAdvancingToNextRound()) {
-                            System.out.println(team.getTeamName() + " advances to the next round.");
                             quarterFinalTeams.add(team);
                         }
                     }
 
-
+                    if (userTeam.isAdvancingToNextRound()){
+                        JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " advance to the quarter finals of the UEFA Champions League, after beating " + opponent.getTeamName() + " " + userTeam.getCupGoalsScored() + "-" + opponent.getCupGoalsScored() + " on aggregate");
+                    } else {
+                        JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " are eliminated from the UEFA Champions League, after losing to " + opponent.getTeamName() + " " + opponent.getCupGoalsScored() + "-" + userTeam.getCupGoalsScored() + " on aggregate");
+                    }
                     new endOfRoundOf16Summary(quarterFinalTeams, mainMenu, userTeam);
                 } else if (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage + 4)) {
                     ArrayList<Team> semiFinalTeams = new ArrayList<>(4);
                     for (Team team : Data.world.getCupByName("UEFA Champions League").getTeams()) {
                         if (team.isAdvancingToNextRound()) {
-                            System.out.println(team.getTeamName() + " advances to the next round.");
                             semiFinalTeams.add(team);
                         }
                     }
 
+                    if (userTeam.isAdvancingToNextRound()){
+                        JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " advance to the semi-finals of the UEFA Champions League, after beating " + opponent.getTeamName() + " " + userTeam.getCupGoalsScored() + "-" + opponent.getCupGoalsScored() + " on aggregate");
+                    } else {
+                        JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " are eliminated from the UEFA Champions League, after losing to " + opponent.getTeamName() + " " + opponent.getCupGoalsScored() + "-" + userTeam.getCupGoalsScored() + " on aggregate");
+                    }
                     new endOfQuarterFinalSummary(semiFinalTeams, mainMenu, userTeam);
                 } else if (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage + 6)) {
                     ArrayList<Team> finalTeams = new ArrayList<>(2);
                     for (Team team : Data.world.getCupByName("UEFA Champions League").getTeams()) {
                         if (team.isAdvancingToNextRound()) {
-                            System.out.println(team.getTeamName() + " advances to the next round.");
                             finalTeams.add(team);
                         }
                     }
 
+                    if (userTeam.isAdvancingToNextRound()){
+                        Team finalOpponent;
+                        if (finalTeams.get(0).equals(userTeam)) {
+                            finalOpponent = finalTeams.get(1);
+                        } else {
+                            finalOpponent = finalTeams.get(0);
+                        }
+
+                        JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " advance to the final of the UEFA Champions League, after beating " + opponent.getTeamName() + " " + userTeam.getCupGoalsScored() + "-" + opponent.getCupGoalsScored() + " on aggregate. They will face " + finalOpponent.getTeamName() + " in the final.");
+                    } else {
+                        JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " are eliminated from the UEFA Champions League, after losing to " + opponent.getTeamName() + " " + opponent.getCupGoalsScored() + "-" + userTeam.getCupGoalsScored() + " on aggregate. " + finalTeams.get(0).getTeamName() + " will face " + finalTeams.get(1).getTeamName() + " in the final.");
+                    }
                     new endOfSemiFinalsSummary(finalTeams, mainMenu, userTeam);
                 }
             }

@@ -579,10 +579,10 @@ public class Team {
         int defensiveRating = 0;
         for (Player player : startingEleven) {
             if (player.getPosition().equals("GK") || player.getPosition().equals("DEF")) {
-                defensiveRating += (player.getRating()-70);
+                defensiveRating += (player.getRating()-60);
             }
         }
-        defensiveRating /= 5;
+        defensiveRating /= 10;
         return defensiveRating;
     }
 
@@ -590,10 +590,10 @@ public class Team {
         int offensiveRating = 0;
         for (Player player : startingEleven) {
             if (player.getPosition().equals("MID") || player.getPosition().equals("FWD")) {
-                offensiveRating += (player.getRating()-70);
+                offensiveRating += (player.getRating()-60);
             }
         }
-        offensiveRating /= 6;
+        offensiveRating /= 10;
         return offensiveRating;
     }
 }

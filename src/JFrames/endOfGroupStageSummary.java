@@ -158,6 +158,14 @@ public class endOfGroupStageSummary extends JFrame {
 
         setVisible(true);
 
+        if (!userTeam.isAdvancingToNextRound()){
+            JOptionPane.showMessageDialog(mainMenu,"After finishing " + Data.world.convertToDateFormat(userTeam.getChampionsLeagueGroupStandings().indexOf(userTeam) + 1) + " place in Group " + userTeam.getChampionsLeagueGroupLetter() + ", " + userTeam.getTeamName() + " have been eliminated from the Champions League.");
+        } else {
+            JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " finished " + Data.world.convertToDateFormat(userTeam.getChampionsLeagueGroupStandings().indexOf(userTeam) + 1) + " place in Group " + userTeam.getChampionsLeagueGroupLetter() + " so advance to the Champions League round of 16.");
+        }
+
+
+
         //END OF GROUP STAGE BACK-END FUNCTIONS.
         for (Team championsLeagueTeam : Data.world.getCupByName("UEFA Champions League").getTeams()){
 
