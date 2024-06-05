@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="Award winners in end of season summary">
+    <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="Cleaned up code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JFrames/endOfGroupStageSummary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/endOfGroupStageSummary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JFrames/endOfQuarterFinalSummary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/endOfQuarterFinalSummary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JFrames/endOfRoundOf16Summary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/endOfRoundOf16Summary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JFrames/endOfSeasonSummary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/endOfSeasonSummary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JPanels/HomeDefaultDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JPanels/HomeDefaultDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Cup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Cup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Nation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Nation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JFrames/transferMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/transferMarket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Objects/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/World.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/events/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/events/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +190,8 @@
       <workItem from="1717400916170" duration="26812000" />
       <workItem from="1717449373311" duration="1756000" />
       <workItem from="1717493854702" duration="23728000" />
-      <workItem from="1717528887036" duration="9430000" />
+      <workItem from="1717528887036" duration="11396000" />
+      <workItem from="1717570500052" duration="4304000" />
     </task>
     <task id="LOCAL-00001" summary="calendar and event types to add to calendar">
       <created>1715611792284</created>
@@ -243,14 +241,6 @@
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
       <updated>1715807995417</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Functional league standings panel on homescreen">
-      <option name="closed" value="true" />
-      <created>1715942790262</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1715942790262</updated>
     </task>
     <task id="LOCAL-00011" summary="Cleaned up some code">
       <option name="closed" value="true" />
@@ -580,7 +570,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717536086291</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Cleaned up code">
+      <option name="closed" value="true" />
+      <created>1717539404144</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1717539404144</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -614,7 +612,6 @@
     <MESSAGE value="Placefiller players if national team is short on players" />
     <MESSAGE value="Added year number to dateTime" />
     <MESSAGE value="International Games etc." />
-    <MESSAGE value="Cleaned up code" />
     <MESSAGE value="validate matches as league matches before adding points to table" />
     <MESSAGE value="validate matches as league matches before adding stats to player stats" />
     <MESSAGE value="Working champions league group stage and style changes to reflect different game types." />
@@ -623,7 +620,8 @@
     <MESSAGE value="UI for end of round of 16" />
     <MESSAGE value="Basic Champions league simulation done, fixture regeneration for new season" />
     <MESSAGE value="Award winners in end of season summary" />
-    <option name="LAST_COMMIT_MESSAGE" value="Award winners in end of season summary" />
+    <MESSAGE value="Cleaned up code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

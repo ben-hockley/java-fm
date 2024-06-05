@@ -541,11 +541,11 @@ public class Data {
         new Player("Alex", "Disasi", "DEF", chelsea, france, 83, 26);
         new Player("Marc", "Cucurella", "DEF", chelsea, spain, 80, 25);
 
-        new Player("Conor", "Gallagher", "MID", chelsea, england, 86, 24);
-        new Player("Moises", "Caicedo", "MID", chelsea, ecuador, 81, 22);
-        new Player("Enzo", "Fernandez", "MID", chelsea, argentina, 81, 23);
-        new Player("Romeo", "Lavia", "MID", chelsea, belgium, 80, 20);
-        new Player("Carney", "Chukwuemenka", "MID", chelsea, england, 79, 20);
+        new Player("Enzo", "Fernandez", "MID", chelsea, argentina, 85, 23);
+        new Player("Moises", "Caicedo", "MID", chelsea, ecuador, 84, 22);
+        new Player("Conor", "Gallagher", "MID", chelsea, england, 83, 24);
+        new Player("Romeo", "Lavia", "MID", chelsea, belgium, 78, 20);
+        new Player("Carney", "Chukwuemenka", "MID", chelsea, england, 76, 20);
 
         new Player("Cole", "Palmer", "FWD", chelsea, england, 89, 22);
         new Player("Christopher", "Nkunku", "FWD", chelsea, france, 86, 26);
@@ -566,12 +566,12 @@ public class Data {
         new Player("Diogo", "Dalot", "DEF", manUtd, portugal, 78, 25);
 
         new Player("Bruno", "Fernandes", "MID", manUtd, portugal, 92, 29);
-        new Player("Casemiro", "", "MID", manUtd, brazil, 90, 32);
         new Player("Scott", "McTominay", "MID", manUtd, scotland, 85, 27);
+        new Player("Casemiro", "", "MID", manUtd, brazil, 83, 32);
         new Player("Kobbie", "Mainoo", "MID", manUtd, england, 80, 19);
         new Player("Mason", "Mount", "MID", manUtd, england, 78, 25);
 
-        new Player("Marcus", "Rashford", "FWD", manUtd, england, 90, 26);
+        new Player("Marcus", "Rashford", "FWD", manUtd, england, 85, 26);
         new Player("Rasmus", "Hojlund", "FWD", manUtd, denmark, 85, 21);
         new Player("Alejandro", "Garnacho", "FWD", manUtd, argentina, 84, 19);
         new Player("Antony", "", "FWD", manUtd, brazil, 77, 24);
@@ -592,7 +592,7 @@ public class Data {
         new Player("Bruno", "Guimaraes", "MID", newcastle, brazil, 86, 26);
         new Player("Sandro", "Tonali", "MID", newcastle, italy, 85, 24);
         new Player("Joelinton", "", "MID", newcastle, brazil, 83, 27);
-        new Player("Joe", "Willock", "MID", newcastle, england, 88, 24);
+        new Player("Joe", "Willock", "MID", newcastle, england, 78, 24);
         new Player("Lewis", "Miley", "MID", newcastle, england, 75, 18);
 
         new Player("Alexsander", "Isak", "FWD", newcastle, sweden, 86, 24);
@@ -901,8 +901,9 @@ public class Data {
 
         new Player("David", "Alaba", "DEF", realMadrid, austria, 90, 31);
         new Player("Antonio", "Rudiger", "DEF", realMadrid, germany, 88, 32);
-        new Player("Eder", "Militao", "DEF", realMadrid, brazil, 85, 26);
-        new Player("Dani", "Carvajal", "DEF", realMadrid, spain, 80, 32);
+        new Player("Eder", "Militao", "DEF", realMadrid, brazil, 84, 26);
+        new Player("Dani", "Carvajal", "DEF", realMadrid, spain, 83, 32);
+        new Player("Nacho", "Fernandez", "DEF", realMadrid, spain, 81, 34);
         new Player("Ferland", "Mendy", "DEF", realMadrid, france, 78, 28);
         new Player("Fran", "Garcia", "DEF", realMadrid, spain, 77, 24);
 
@@ -911,12 +912,14 @@ public class Data {
         new Player("Aurelien", "Tchouameni", "MID", realMadrid, france, 88, 24);
         new Player("Eduardo", "Camavinga", "MID", realMadrid, france, 87, 21);
         new Player("Luka", "Modric", "MID", realMadrid, croatia, 85, 38);
+        new Player("Arda", "Guler", "MID", realMadrid, turkey, 80, 19);
+        new Player("Nico", "Paz", "MID", realMadrid, argentina, 77, 19);
 
         new Player("Vinicius", "Junior", "FWD", realMadrid, brazil, 94, 23);
         new Player("Rodrygo", "Goes", "FWD", realMadrid, brazil, 90, 23);
-        new Player("Endrick", "", "FWD", realMadrid, brazil, 88, 17);
-        new Player("Joselu", "", "FWD", realMadrid, spain, 85, 34);
-        new Player("Nico", "Paz", "FWD", realMadrid, argentina, 77, 19);
+        new Player("Joselu", "", "FWD", realMadrid, spain, 83, 34);
+        new Player("Endrick", "", "FWD", realMadrid, brazil, 82, 17);
+        new Player("Brahim", "Diaz", "FWD", realMadrid, morocco, 80, 24);
 
         Team Barcelona = new Team("Barcelona", "Barca", "Barcelona.png", laLiga, new Integer[]{4, 3, 3}, new Color(168, 19, 62), 200);
         new Player("Marc-Andre", "ter Stegen", "GK", Barcelona, germany, 90, 32);
@@ -1036,6 +1039,7 @@ public class Data {
         new Player("Karim", "Adeyemi", "FWD", borussiaDortmund, germany, 86, 22);
         new Player("Niclas", "Fullkrug", "FWD", borussiaDortmund, germany, 84, 31);
         new Player("Youssoufa", "Moukoko", "FWD", borussiaDortmund, germany, 82, 19);
+        new Player("Jamie", "Bynoe Gittens", "FWD", borussiaDortmund, england, 75, 19);
 
         Team bayerLeverkusen = new Team("Bayer Leverkusen", "Leverkusen", "BayerLeverkusen.png", bundesliga, new Integer[]{4, 3, 3}, new Color(227, 34, 33), 100);
         new Player("Matej", "Kovar", "GK", bayerLeverkusen, czechRepublic, 80, 24);

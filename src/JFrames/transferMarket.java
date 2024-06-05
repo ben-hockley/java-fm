@@ -5,7 +5,10 @@ import Objects.Team;
 import data.Data;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -17,7 +20,8 @@ public class transferMarket extends JFrame {
         setLayout(new BorderLayout());
         setVisible(true);
 
-        JPanel topPanel = new JPanel(new GridLayout(1, 2));
+        JPanel topPanel = new JPanel(new GridLayout(1, 3));
+
 
         String heading = "Transfer Market";
         JLabel headingLabel = new JLabel(heading);
@@ -25,6 +29,10 @@ public class transferMarket extends JFrame {
         headingLabel.setHorizontalAlignment(SwingConstants.CENTER);
         headingLabel.setVerticalAlignment(SwingConstants.CENTER);
         topPanel.add(headingLabel);
+
+        JTextField tableFilter = new JTextField(15);
+        tableFilter.setText("Search");
+        topPanel.add(tableFilter);
 
         String transferBudget = "Transfer Budget: £" + NumberFormat.getInstance(Locale.US).format(userTeam.getTransferBudget());
         JLabel transferBudgetLabel = new JLabel(transferBudget);
@@ -183,8 +191,39 @@ public class transferMarket extends JFrame {
 
         };
 
+        TableRowSorter sorter = new TableRowSorter<>(tableModel);
+
         JTable allPlayers = new JTable(tableModel);
+
+        allPlayers.setRowSorter(sorter);
+
+
+
         JScrollPane sp = new JScrollPane(allPlayers);
         this.add(sp, BorderLayout.CENTER);
+
+        // add a document listener to the filter the table based on the text in the search bar.
+        // code from https://www.tutorialspoint.com/how-to-implement-the-search-functionality-of-a-jtable-in-java (accessed 05/06/2024)
+        tableFilter.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                search(tableFilter.getText());
+            }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                search(tableFilter.getText());
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                search(tableFilter.getText());
+            }
+            public void search(String str) {
+                if (str.length() == 0) {
+                    sorter.setRowFilter(null);
+                } else {
+                    sorter.setRowFilter(RowFilter.regexFilter(str));
+                }
+            }
+        });
     }
 }
