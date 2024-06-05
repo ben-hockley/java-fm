@@ -429,7 +429,7 @@ public class Data {
         new Player("Phil", "Foden", "FWD", manCity, england, 95, 23);
         new Player("Erling", "Haaland", "FWD", manCity, norway, 95, 23);
         new Player("Jeremy", "Doku", "FWD", manCity, belgium, 88, 21);
-        new Player("Julian", "Alvarez", "FWD", manCity, argentina, 84, 24);
+        new Player("Julian", "Alvarez", "FWD", manCity, argentina, 87, 24);
         new Player("Jack", "Grealish", "FWD", manCity, england, 82, 28);
         new Player("Oscar", "Bobb", "FWD", manCity, norway, 78, 20);
 
@@ -547,7 +547,7 @@ public class Data {
         new Player("Romeo", "Lavia", "MID", chelsea, belgium, 78, 20);
         new Player("Carney", "Chukwuemenka", "MID", chelsea, england, 76, 20);
 
-        new Player("Cole", "Palmer", "FWD", chelsea, england, 89, 22);
+        new Player("Cole", "Palmer", "FWD", chelsea, england, 92, 22);
         new Player("Christopher", "Nkunku", "FWD", chelsea, france, 86, 26);
         new Player("Raheem", "Sterling", "FWD", chelsea, england, 85, 29);
         new Player("Nicolas", "Jackson", "FWD", chelsea, senegal, 82, 22);
@@ -573,9 +573,9 @@ public class Data {
 
         new Player("Marcus", "Rashford", "FWD", manUtd, england, 85, 26);
         new Player("Rasmus", "Hojlund", "FWD", manUtd, denmark, 85, 21);
-        new Player("Alejandro", "Garnacho", "FWD", manUtd, argentina, 84, 19);
-        new Player("Antony", "", "FWD", manUtd, brazil, 77, 24);
-        new Player("Anthony", "Martial", "FWD", manUtd, france, 76, 28);
+        new Player("Alejandro", "Garnacho", "FWD", manUtd, argentina, 83, 19);
+        new Player("Antony", "", "FWD", manUtd, brazil, 76, 24);
+        new Player("Anthony", "Martial", "FWD", manUtd, france, 74, 28);
 
         //Team : Newcastle United
         Team newcastle = new Team("Newcastle United", "Newcastle", "Newcastle.png", premierLeague, new Integer[]{4, 3, 3}, new Color(45, 41, 38), 150);
@@ -1424,7 +1424,7 @@ public class Data {
         new Player("Lucas", "Torreira", "MID", galatasaray, uruguay, 82, 28);
         new Player("Tanguy", "Ndombele", "MID", galatasaray, france, 81, 27);
         new Player("Berkan", "Kutlu", "MID", galatasaray, turkey, 76, 26);
-        new Player("Eyup", "Aydin", "MID", galatasaray, turkey, 74, 19);
+        new Player("Eyup", "Aydin","MID", galatasaray, turkey, 74, 19);
         new Player("Efe", "Akman", "MID", galatasaray, turkey, 73, 18);
 
         new Player("Mauro", "Icardi", "FWD", galatasaray, argentina, 85, 31);

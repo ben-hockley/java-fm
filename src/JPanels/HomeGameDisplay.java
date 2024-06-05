@@ -136,13 +136,28 @@ public class HomeGameDisplay extends JPanel {
 
                     double scorerGenerator = Math.random();
                     // 60% chance the scorer is a forward (20% chance for each forward)
-                    if (scorerGenerator >= 0.8) {
-                        scorer = homeStartingEleven[10]; //FWD 1
-                    } else if (scorerGenerator >= 0.6) {
-                        scorer = homeStartingEleven[9]; //FWD 2
-                    } else if (scorerGenerator >= 0.4) {
-                        scorer = homeStartingEleven[8]; //FWD 3
-                    } else if (scorerGenerator >= 0.3) {
+                    if (scorerGenerator >= 0.4) {
+                        //FWD scores
+                        int FWD1Rating = homeStartingEleven[10].getRating() - 60;
+                        int FWD2Rating = homeStartingEleven[9].getRating() - 60;
+                        int FWD3Rating = homeStartingEleven[8].getRating() - 60;
+                        int combinedFWD = FWD1Rating + FWD2Rating + FWD3Rating;
+
+                        double FWD1Chance = (double)FWD1Rating / (double)combinedFWD;
+                        double FWD2Chance = (double)FWD2Rating / (double)combinedFWD;
+
+                        double randomFWD = Math.random();
+
+                        if (randomFWD < FWD1Chance) {
+                            scorer = homeStartingEleven[10]; //FWD 1
+                        } else if (randomFWD < FWD1Chance + FWD2Chance) {
+                            scorer = homeStartingEleven[9]; //FWD 2
+                        } else {
+                            scorer = homeStartingEleven[8]; //FWD 3
+                        }
+
+                    }
+                     else if (scorerGenerator >= 0.3) {
                         // 30% chance the scorer is a midfielder (10% chance for each midfielder)
                         scorer = homeStartingEleven[7]; //MID 1
                     } else if (scorerGenerator >= 0.2) {
@@ -169,12 +184,25 @@ public class HomeGameDisplay extends JPanel {
 
                     double scorerGenerator = Math.random();
                     // 60% chance the scorer is a forward (20% chance for each forward)
-                    if (scorerGenerator >= 0.8) {
-                        scorer = awayStartingEleven[10]; //FWD 1
-                    } else if (scorerGenerator >= 0.6) {
-                        scorer = awayStartingEleven[9]; //FWD 2
-                    } else if (scorerGenerator >= 0.4) {
-                        scorer = awayStartingEleven[8]; //FWD 3
+                    if (scorerGenerator >= 0.4) {
+                        //FWD scores
+                        int FWD1Rating = awayStartingEleven[10].getRating() - 60;
+                        int FWD2Rating = awayStartingEleven[9].getRating() - 60;
+                        int FWD3Rating = awayStartingEleven[8].getRating() - 60;
+                        int combinedFWD = FWD1Rating + FWD2Rating + FWD3Rating;
+
+                        double FWD1Chance = (double)FWD1Rating / (double)combinedFWD;
+                        double FWD2Chance = (double)FWD2Rating / (double)combinedFWD;
+
+                        double randomFWD = Math.random();
+
+                        if (randomFWD < FWD1Chance) {
+                            scorer = awayStartingEleven[10]; //FWD 1
+                        } else if (randomFWD < FWD1Chance + FWD2Chance) {
+                            scorer = awayStartingEleven[9]; //FWD 2
+                        } else {
+                            scorer = awayStartingEleven[8]; //FWD 3
+                        }
                     } else if (scorerGenerator >= 0.3) {
                         // 30% chance the scorer is a midfielder (10% chance for each midfielder)
                         scorer = awayStartingEleven[7]; //MID 1
