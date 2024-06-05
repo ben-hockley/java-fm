@@ -107,7 +107,7 @@ public class UI extends JFrame {
             int numberOfTransfers = (int) (Math.random() * 3);
 
             for (int i = 0; i < numberOfTransfers; i++){
-                Data.world.doRandomTransfer(userTeam);
+                Data.world.doRandomTransfer(userTeam, clock.getDateNumber(), clock.getMonthNumber());
             }
         }
         if (progressDateButton!=null) progressDateButton.setEnabled(true);

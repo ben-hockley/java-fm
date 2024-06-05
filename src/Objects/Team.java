@@ -563,4 +563,16 @@ public class Team {
     public void wipeFixtures(){
         this.fixtures = new ArrayList<>();
     }
+
+    public Player getLowestRatedStarterAtPosition(String position){
+        Player lowestRatedPlayer = null;
+        for (Player player : startingEleven) {
+            if (player.getPosition().equals(position)) {
+                if (lowestRatedPlayer == null || player.getRating() < lowestRatedPlayer.getRating()) {
+                    lowestRatedPlayer = player;
+                }
+            }
+        }
+        return lowestRatedPlayer;
+    }
 }

@@ -4,6 +4,7 @@ import JFrames.manageTeam;
 import JFrames.transferMarket;
 import Objects.Team;
 import Objects.dateTime;
+import data.Data;
 
 import javax.swing.*;
 import java.awt.*;
@@ -83,13 +84,36 @@ public class HomeDefaultDisplay extends JPanel {
 
         JLabel RedLabel = new JLabel();
         RedLabel.setBackground(Color.RED);
+        RedLabel.setLayout(new BoxLayout(RedLabel, BoxLayout.Y_AXIS));
+
+        JLabel recentTransfersTitle = new JLabel("Recent Transfers");
+        recentTransfersTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        recentTransfersTitle.setVerticalAlignment(SwingConstants.CENTER);
+        recentTransfersTitle.setFont(new Font("Arial", Font.PLAIN, 20));
+        recentTransfersTitle.setForeground(Color.WHITE);
+        RedLabel.add(recentTransfersTitle);
+
+        for (String transfer : Data.world.getRecentTransfers()){
+            JLabel transferLabel = new JLabel(transfer);
+            transferLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            transferLabel.setVerticalAlignment(SwingConstants.CENTER);
+            transferLabel.setFont(new Font("Arial", Font.PLAIN, 10));
+            transferLabel.setForeground(Color.WHITE);
+            RedLabel.add(transferLabel);
+        }
+
+
         RedLabel.setOpaque(true);
+
+        JScrollPane redScrollPane= new JScrollPane(RedLabel);
+        redScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        redScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
 
         centerLabel.add(teamTopGoalscorers);
         centerLabel.add(leagueTopGoalscorers);
         centerLabel.add(BlueLabel);
-        centerLabel.add(RedLabel);
+        centerLabel.add(redScrollPane);
 
         this.add(centerLabel, BorderLayout.CENTER);
     }

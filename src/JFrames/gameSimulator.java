@@ -396,6 +396,7 @@ public class gameSimulator extends JFrame {
             //End of season, load season summary JFrame, and trigger end of season events.
             new endOfSeasonSummary(userTeam);
             mainMenu.regenerateFixtures(userTeam);
+            Data.world.wipeRecentTransfersList();
         }
     }
 }
