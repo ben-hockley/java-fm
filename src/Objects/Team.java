@@ -586,11 +586,11 @@ public class Team {
         return defensiveRating;
     }
 
-    public Integer getOffensiveRating(){
+    public Integer getOffensiveRating() {
         int offensiveRating = 0;
         for (Player player : startingEleven) {
             if (player.getPosition().equals("MID") || player.getPosition().equals("FWD")) {
-                offensiveRating += (player.getRating()-60);
+                offensiveRating += (player.getRating() - 60);
             }
         }
         offensiveRating /= 10;

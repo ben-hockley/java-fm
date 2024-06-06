@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="More realistic game sim to account for opponents defence's impact on attacking returns">
+    <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="Message pane to update user on their cup status">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JFrames/endOfGroupStageSummary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/endOfGroupStageSummary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JFrames/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JFrames/endOfSemiFinalsSummary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/endOfSemiFinalsSummary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JFrames/gameSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/gameSimulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JPanels/HomeGameDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JPanels/HomeGameDisplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Objects/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Team.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Objects/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/World.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +195,8 @@
       <workItem from="1717528887036" duration="11396000" />
       <workItem from="1717570500052" duration="9192000" />
       <workItem from="1717583347260" duration="3656000" />
-      <workItem from="1717591646801" duration="11678000" />
+      <workItem from="1717591646801" duration="16595000" />
+      <workItem from="1717664485864" duration="4942000" />
     </task>
     <task id="LOCAL-00001" summary="calendar and event types to add to calendar">
       <created>1715611792284</created>
@@ -242,14 +246,6 @@
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
       <updated>1715807995417</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Basic skill based simulation and goalscorers randomly picked from staring 11">
-      <option name="closed" value="true" />
-      <created>1716025556456</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1716025556456</updated>
     </task>
     <task id="LOCAL-00017" summary="Improved stat tracking for league table">
       <option name="closed" value="true" />
@@ -579,7 +575,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717606384688</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Message pane to update user on their cup status">
+      <option name="closed" value="true" />
+      <created>1717617296756</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1717617296756</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -597,7 +601,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="User team can buy and sell players through the transfer market" />
     <MESSAGE value="Added constraints so user can not go below or above squad and position limits" />
     <MESSAGE value="blocked transfer market outside of transfer window" />
     <MESSAGE value="Player retirements and regens to replace retired players" />
@@ -622,7 +625,8 @@
     <MESSAGE value="Transfer constraints to add realism" />
     <MESSAGE value="Game simulator adjustments so better attackers score more goals" />
     <MESSAGE value="More realistic game sim to account for opponents defence's impact on attacking returns" />
-    <option name="LAST_COMMIT_MESSAGE" value="More realistic game sim to account for opponents defence's impact on attacking returns" />
+    <MESSAGE value="Message pane to update user on their cup status" />
+    <option name="LAST_COMMIT_MESSAGE" value="Message pane to update user on their cup status" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

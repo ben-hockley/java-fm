@@ -42,7 +42,7 @@ public class endOfSemiFinalsSummary extends JFrame {
         topScorersPanel.add(topScorersTitleLabel);
         ArrayList<Player> topGoalscorers = Data.world.getCupByName("UEFA Champions League").getPlayersByGoalsScored();
 
-        for (int i=0; i<9; i++){
+        for (int i=0; i<8; i++){
             Player player = topGoalscorers.get(i);
             JLabel playerLabel = new JLabel(player.getPlayerName() + " - " + player.getCupGoals() + " Goals");
             playerLabel.setFont(new Font("Arial", Font.PLAIN, 16));

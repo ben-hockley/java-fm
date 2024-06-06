@@ -372,6 +372,7 @@ public class HomeGameDisplay extends JPanel {
         opponentsLineup.add(new JLabel("Opponent: " + opponent.getTeamName()));
         opponentsLineup.add(new JLabel("Formation: " + opponent.getFormationInText()));
 
+        opponent.setDefaultStartingElevenandSubs();
         Player[] opponentStarting11 = opponent.getStartingEleven();
         for (Player player : opponentStarting11) {
             opponentsLineup.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));

@@ -1,9 +1,12 @@
 package main;
 
+import JFrames.endOfSemiFinalsSummary;
 import data.Data;
 import JFrames.UI;
 import Objects.Team;
 import javax.swing.JFrame;
+import java.util.ArrayList;
+
 public class Main {
     /**
      * Main method, starting point of the application.

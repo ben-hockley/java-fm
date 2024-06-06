@@ -191,10 +191,10 @@ public class UI extends JFrame {
                 }
 
                 if (dateNumber.equals(clock.getDateNumber())) {
+                    progressDateButton.setEnabled(false);
                     this.remove(homeDefaultDisplay);
                     label.setBackground(Color.BLUE);
                     homeDisplaySet = true;
-                    progressDateButton.setEnabled(false);
                     if (event instanceof Game) {
                         homeDefaultDisplay.setVisible(false); // Hide the default display
                         if (((Game) event).getGameType().equals("League")){

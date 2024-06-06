@@ -373,9 +373,19 @@ public class gameSimulator extends JFrame {
                     }
 
                     if (userTeam.isAdvancingToNextRound()){
-                        JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " advance to the quarter finals of the UEFA Champions League, after beating " + opponent.getTeamName() + " " + userTeam.getCupGoalsScored() + "-" + opponent.getCupGoalsScored() + " on aggregate");
+
+                        if (userTeam.getCupGoalsScored().equals(opponent.getCupGoalsScored())){
+                            JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " advance to the quarter finals of the UEFA Champions League, after drawing " + userTeam.getCupGoalsScored() + "-" + opponent.getCupGoalsScored() + " on aggregate. They win on penalties.");
+                        } else {
+                            JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " advance to the quarter finals of the UEFA Champions League, after beating " + opponent.getTeamName() + " " + userTeam.getCupGoalsScored() + "-" + opponent.getCupGoalsScored() + " on aggregate");
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " are eliminated from the UEFA Champions League, after losing to " + opponent.getTeamName() + " " + opponent.getCupGoalsScored() + "-" + userTeam.getCupGoalsScored() + " on aggregate");
+
+                        if (userTeam.getCupGoalsScored().equals(opponent.getCupGoalsScored())){
+                            JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " are eliminated from the UEFA Champions League, after drawing " + userTeam.getCupGoalsScored() + "-" + opponent.getCupGoalsScored() + " on aggregate, and losing on penalties");
+                        } else {
+                            JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " are eliminated from the UEFA Champions League, after losing to " + opponent.getTeamName() + " " + opponent.getCupGoalsScored() + "-" + userTeam.getCupGoalsScored() + " on aggregate");
+                        }
                     }
                     new endOfRoundOf16Summary(quarterFinalTeams, mainMenu, userTeam);
                 } else if (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage + 4)) {
@@ -387,9 +397,22 @@ public class gameSimulator extends JFrame {
                     }
 
                     if (userTeam.isAdvancingToNextRound()){
-                        JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " advance to the semi-finals of the UEFA Champions League, after beating " + opponent.getTeamName() + " " + userTeam.getCupGoalsScored() + "-" + opponent.getCupGoalsScored() + " on aggregate");
+
+                        if (userTeam.getCupGoalsScored().equals(opponent.getCupGoalsScored())){
+                            JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " advance to the semi finals of the UEFA Champions League, after drawing with  " + opponent.getTeamName() + " " + userTeam.getCupGoalsScored() + "-" + opponent.getCupGoalsScored() + " on aggregate. They win on penalties.");
+                        } else {
+                            JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " advance to the semi finals of the UEFA Champions League, after beating " + opponent.getTeamName() + " " + userTeam.getCupGoalsScored() + "-" + opponent.getCupGoalsScored() + " on aggregate");
+                        }
+
                     } else {
-                        JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " are eliminated from the UEFA Champions League, after losing to " + opponent.getTeamName() + " " + opponent.getCupGoalsScored() + "-" + userTeam.getCupGoalsScored() + " on aggregate");
+
+                        if (userTeam.getCupGoalsScored().equals(opponent.getCupGoalsScored())){
+                            JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " are eliminated from the UEFA Champions League, after drawing with " + opponent.getTeamName() + " " + userTeam.getCupGoalsScored() + "-" + opponent.getCupGoalsScored() + " on aggregate, and losing on penalties");
+                        } else {
+                            JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " are eliminated from the UEFA Champions League, after losing to " + opponent.getTeamName() + " " + opponent.getCupGoalsScored() + "-" + userTeam.getCupGoalsScored() + " on aggregate");
+                        }
+
+
                     }
                     new endOfQuarterFinalSummary(semiFinalTeams, mainMenu, userTeam);
                 } else if (userTeam.getCupMatchesPlayed().equals(numberOfGamesInChampionsLeagueGroupStage + 6)) {
@@ -408,9 +431,20 @@ public class gameSimulator extends JFrame {
                             finalOpponent = finalTeams.get(0);
                         }
 
-                        JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " advance to the final of the UEFA Champions League, after beating " + opponent.getTeamName() + " " + userTeam.getCupGoalsScored() + "-" + opponent.getCupGoalsScored() + " on aggregate. They will face " + finalOpponent.getTeamName() + " in the final.");
+                        if (userTeam.getCupGoalsScored().equals(opponent.getCupGoalsScored())){
+                            JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " advance to the final of the UEFA Champions League, after drawing with  " + opponent.getTeamName() + " " + userTeam.getCupGoalsScored() + "-" + opponent.getCupGoalsScored() + " on aggregate. They win on penalties and will face " + finalOpponent.getTeamName() + " in the final.");
+                        } else {
+                            JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " advance to the final of the UEFA Champions League, after beating " + opponent.getTeamName() + " " + userTeam.getCupGoalsScored() + "-" + opponent.getCupGoalsScored() + " on aggregate. They will face " + finalOpponent.getTeamName() + " in the final.");
+                        }
+
+
                     } else {
-                        JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " are eliminated from the UEFA Champions League, after losing to " + opponent.getTeamName() + " " + opponent.getCupGoalsScored() + "-" + userTeam.getCupGoalsScored() + " on aggregate. " + finalTeams.get(0).getTeamName() + " will face " + finalTeams.get(1).getTeamName() + " in the final.");
+
+                        if (userTeam.getCupGoalsScored().equals(opponent.getCupGoalsScored())){
+                            JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " are eliminated from the UEFA Champions League, after drawing with " + opponent.getTeamName() + " " + userTeam.getCupGoalsScored() + "-" + opponent.getCupGoalsScored() + " on aggregate, and losing on penalties." + finalTeams.get(0).getTeamName() + " will face " + finalTeams.get(1).getTeamName() + " in the final.");
+                        } else {
+                            JOptionPane.showMessageDialog(mainMenu, userTeam.getTeamName() + " are eliminated from the UEFA Champions League, after losing to " + opponent.getTeamName() + " " + opponent.getCupGoalsScored() + "-" + userTeam.getCupGoalsScored() + " on aggregate. " + finalTeams.get(0).getTeamName() + " will face " + finalTeams.get(1).getTeamName() + " in the final.");
+                        }
                     }
                     new endOfSemiFinalsSummary(finalTeams, mainMenu, userTeam);
                 }

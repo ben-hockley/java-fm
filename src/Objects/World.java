@@ -87,7 +87,7 @@ public class World {
     }
 
     public Team getRandomTeam() {
-        return leagues.get((int) (Math.random() * leagues.size())).getRandomTeam();
+        return getAllTeams().get((int) (Math.random() * getAllTeams().size()));
     }
 
     public ArrayList<Team> getAllTeams() {
@@ -106,11 +106,11 @@ public class World {
                 //check if the selling team has enough players in the squad and the player's position to sell the player.
                 //and that the selling team is not the user team (user transfers should be done manually).
                 sellingTeam == userTeam
-                || sellingTeam.getNumberOfPlayers() <= 15
-                || playerForSale.getPosition().equals("GK") && sellingTeam.getNumberOfGoalkeepers() <= 2
-                || playerForSale.getPosition().equals("DEF") && sellingTeam.getNumberOfDefenders() <= 4
-                || playerForSale.getPosition().equals("MID") && sellingTeam.getNumberOfMidfielders() <= 3
-                || playerForSale.getPosition().equals("ATT") && sellingTeam.getNumberOfForwards() <= 3
+                || sellingTeam.getNumberOfPlayers() <= 16 //min sub bench size is 5
+                || playerForSale.getPosition().equals("GK") && sellingTeam.getNumberOfGoalkeepers() <= 2 //team must have atleast one backup gk
+                || playerForSale.getPosition().equals("DEF") && sellingTeam.getNumberOfDefenders() <= 5 //team must have atleast one backup defender
+                || playerForSale.getPosition().equals("MID") && sellingTeam.getNumberOfMidfielders() <= 4 //team must have atleast one backup midfielder
+                || playerForSale.getPosition().equals("FWD") && sellingTeam.getNumberOfForwards() <= 4 //team must have atleast one backup forward
         ){
             //if conditions are not met, reselect a player to sell.
             playerForSale = getAllPlayers().get((int) (Math.random() * getAllPlayers().size()));
@@ -118,22 +118,7 @@ public class World {
         }
 
 
-        Team buyingTeam = getRandomTeam();
-
-        while (
-                buyingTeam == sellingTeam //check that the buying team is not the same as the selling team.
-                || buyingTeam == userTeam //check that the buying team is not the user team (user transfers should be done manually).
-                || buyingTeam.getTransferBudget() < playerForSale.getValue() //check that the buying team has enough money to buy the player.
-                || buyingTeam.getNumberOfPlayers() >= 23 //and that the buying team has enough space in the squad to buy the player.
-                || playerForSale.getPosition().equals("GK") && buyingTeam.getNumberOfGoalkeepers() >= 3
-                || playerForSale.getPosition().equals("DEF") && buyingTeam.getNumberOfDefenders() >= 10
-                || playerForSale.getPosition().equals("MID") && buyingTeam.getNumberOfMidfielders() >= 8
-                || playerForSale.getPosition().equals("ATT") && buyingTeam.getNumberOfForwards() >= 8
-                || playerForSale.getRating() + 3 < buyingTeam.getLowestRatedStarterAtPosition(playerForSale.getPosition()).getRating() //check that the player is good enough to be a realistic transfer target for the buying team.
-        ){
-            //if conditions are not met, reselect a team to buy the player.
-            buyingTeam = getRandomTeam();
-        }
+        Team buyingTeam = getBuyingTeam(userTeam, sellingTeam, playerForSale);
 
         //once eligible player and eligible buying team have been found, transfer the player.
         playerForSale.setTeam(buyingTeam);
@@ -146,6 +131,26 @@ public class World {
 
         //add transfer to the front of the recent transfers list which is displayed on the home screen.
         recentTransfers.add(0, playerForSale.getPlayerName() + " : " + sellingTeam.getShortName() + " -> " + buyingTeam.getShortName() + " , " + NumberFormat.getInstance(Locale.UK).format(playerForSale.getValue() / 1000000) + "M ( " + date + "/" + monthNumber + " ) ");
+    }
+
+    private Team getBuyingTeam(Team userTeam, Team sellingTeam, Player playerForSale) {
+        Team buyingTeam = getRandomTeam();
+
+        while (
+                buyingTeam == sellingTeam //check that the buying team is not the same as the selling team.
+                || buyingTeam == userTeam //check that the buying team is not the user team (user transfers should be done manually).
+                || buyingTeam.getTransferBudget() < playerForSale.getValue() //check that the buying team has enough money to buy the player.
+                || buyingTeam.getNumberOfPlayers() >= 23 //and that the buying team has enough space in the squad to buy the player.
+                || playerForSale.getPosition().equals("GK") && buyingTeam.getNumberOfGoalkeepers() >= 3
+                || playerForSale.getPosition().equals("DEF") && buyingTeam.getNumberOfDefenders() >= 9
+                || playerForSale.getPosition().equals("MID") && buyingTeam.getNumberOfMidfielders() >= 7
+                || playerForSale.getPosition().equals("FWD") && buyingTeam.getNumberOfForwards() >= 7
+                || playerForSale.getRating() + 3 < buyingTeam.getLowestRatedStarterAtPosition(playerForSale.getPosition()).getRating() //check that the player is good enough to be a realistic transfer target for the buying team.
+        ){
+            //if conditions are not met, reselect a different team to buy the player.
+            buyingTeam = getRandomTeam();
+        }
+        return buyingTeam;
     }
 
     public void wipeRecentTransfersList(){
