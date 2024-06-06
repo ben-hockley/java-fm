@@ -121,6 +121,11 @@ public class World {
         Team buyingTeam = getBuyingTeam(userTeam, sellingTeam, playerForSale);
 
         //once eligible player and eligible buying team have been found, transfer the player.
+
+        if (buyingTeam == null){
+            //if no suitable buying team has been found, then the player will not be sold.
+            return;
+        }
         playerForSale.setTeam(buyingTeam);
 
         //update the transfer budgets of the buying and selling teams.
@@ -136,6 +141,7 @@ public class World {
     private Team getBuyingTeam(Team userTeam, Team sellingTeam, Player playerForSale) {
         Team buyingTeam = getRandomTeam();
 
+        int teamsChecked = 0;
         while (
                 buyingTeam == sellingTeam //check that the buying team is not the same as the selling team.
                 || buyingTeam == userTeam //check that the buying team is not the user team (user transfers should be done manually).
@@ -149,6 +155,12 @@ public class World {
         ){
             //if conditions are not met, reselect a different team to buy the player.
             buyingTeam = getRandomTeam();
+            teamsChecked++;
+
+            if (teamsChecked >= getAllTeams().size()){
+                //if all teams have been checked and no suitable buying team has been found, then the player will not be sold.
+                return null;
+            }
         }
         return buyingTeam;
     }

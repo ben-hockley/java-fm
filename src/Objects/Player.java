@@ -116,7 +116,7 @@ public class Player {
         //create regen to replace retired player
         String regenFirstName = Data.listOfFirstNames[(int) (Math.random() * Data.listOfFirstNames.length)];
         String regenLastName = Data.listOfLastNames[(int) (Math.random() * Data.listOfLastNames.length)];
-        Integer regenRating = 70 + (int) (Math.random() * 10);
+        Integer regenRating = 70 + (int) (Math.random() * 15);
         Integer regenAge = 16 + (int) (Math.random() * 5);
 
         //create regen with same position, team, nationality as retired player.

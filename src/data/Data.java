@@ -1579,9 +1579,5 @@ public class Data {
         Team moroccoNationalTeam = new Team(morocco);
         Team senegalNationalTeam = new Team(senegal);
         Team maliNationalTeam = new Team(mali);
-
-
-
-
     }
 }
