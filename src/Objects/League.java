@@ -11,9 +11,11 @@ public class League {
 
     private final ArrayList<Team> teams;
     private final String name;
+    private final Nation nation;
 
     public League(String leagueName, String leagueLogo, Integer tier, Nation nation) {
         this.tier = tier;
+        this.nation = nation;
         this.name = leagueName;
 
         this.teams = new ArrayList<>(); // Initialize an empty list of teams.
@@ -106,6 +108,10 @@ public class League {
 
     public Integer getNumberOfGamesInSeason(){
         return (teams.size() - 1) * 2;
+    }
+
+    public Nation getCountry() {
+        return this.nation;
     }
 
 

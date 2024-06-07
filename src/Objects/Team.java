@@ -596,4 +596,18 @@ public class Team {
         offensiveRating /= 10;
         return offensiveRating;
     }
+
+    public void relegate(){
+
+        league.removeTeam(this);
+        this.league = league.getCountry().getLeagueByTier(league.getTier() + 1);
+        league.addTeam(this);
+    }
+
+    public void promote(){
+
+        league.removeTeam(this);
+        this.league = league.getCountry().getLeagueByTier(1);
+        league.addTeam(this);
+    }
 }

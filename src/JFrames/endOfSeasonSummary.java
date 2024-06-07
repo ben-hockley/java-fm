@@ -17,6 +17,15 @@ public class endOfSeasonSummary extends JFrame {
 
         //END OF SEASON BACK-END FUNCTIONS.
 
+        //promotion and relegation (english league)
+        Data.england.getLeagueByTier(1).getStandings().get(19).relegate();
+        Data.england.getLeagueByTier(1).getStandings().get(18).relegate();
+        Data.england.getLeagueByTier(1).getStandings().get(17).relegate();
+
+        Data.england.getLeagueByTier(2).getStandings().get(0).promote();
+        Data.england.getLeagueByTier(2).getStandings().get(0).promote();
+        Data.england.getLeagueByTier(2).getStandings().get(0).promote();
+
         //ArrayList to store retiring players, so they can be displayed in the JFrame.
         ArrayList<Player> retiringPlayers = new ArrayList<>();
 

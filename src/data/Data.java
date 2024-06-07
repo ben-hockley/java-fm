@@ -36,6 +36,7 @@ public class Data {
     public static Nation sweden = new Nation("Sweden", "Sweden.png", 23, "Europe");
     public static Nation poland = new Nation("Poland", "Poland.png", 25, "Europe");
     public static Nation jamaica = new Nation("Jamaica", "Jamaica.png", 26, "North America");
+    public static Nation zambia = new Nation("Zambia", "Zambia.png", 29, "Africa");
     public static Nation romania = new Nation("Romania", "Romania.png", 28, "Europe");
     public static Nation senegal = new Nation("Senegal", "Senegal.png", 29, "Africa");
     public static Nation southKorea = new Nation("South Korea", "SouthKorea.png", 30, "Asia");
@@ -371,7 +372,7 @@ public class Data {
         //League : Premier League
         League premierLeague = new League("Premier League", "PremierLeague.png", 1, england);
         //Team : Manchester City
-        Team manCity = new Team("Manchester City", "Man City", "manchesterCity.png", premierLeague, new Integer[]{4, 3, 3}, new Color(108, 171, 221), 250);
+        Team manCity = new Team("Manchester City", "Man City", "manCity.png", premierLeague, new Integer[]{4, 3, 3}, new Color(108, 171, 221), 250);
         new Player("Ederson", "", "GK", manCity, brazil, 90, 30);
         new Player("Stefan", "Ortega", "GK", manCity, germany, 80, 31);
 
@@ -397,7 +398,7 @@ public class Data {
         new Player("Oscar", "Bobb", "FWD", manCity, norway, 78, 20);
 
         //Team : Arsenal
-        Team arsenal = new Team("Arsenal", "Arsenal", "Arsenal.png", premierLeague, new Integer[]{4, 3, 3}, new Color(239, 1, 7), 200);
+        Team arsenal = new Team("Arsenal", "Arsenal", "arsenal.png", premierLeague, new Integer[]{4, 3, 3}, new Color(239, 1, 7), 200);
         new Player("David", "Raya", "GK", arsenal, spain, 85, 28);
         new Player("Aaron", "Ramsdale", "GK", arsenal, england, 84, 26);
 
@@ -421,7 +422,7 @@ public class Data {
         new Player("Leandro", "Trossard", "FWD", arsenal, belgium, 82, 29);
 
         //Team : Liverpool
-        Team liverpool = new Team("Liverpool", "Liverpool", "Liverpool.png", premierLeague, new Integer[]{4, 3, 3}, new Color(200, 16, 46), 150);
+        Team liverpool = new Team("Liverpool", "Liverpool", "liverpool.png", premierLeague, new Integer[]{4, 3, 3}, new Color(200, 16, 46), 150);
         new Player("Alisson", "", "GK", liverpool, brazil, 92, 31);
         new Player("Caoimhin", "Kelleher", "GK", liverpool, ireland, 80, 25);
 
@@ -445,7 +446,7 @@ public class Data {
         new Player("Cody", "Gakpo", "FWD", liverpool, netherlands, 81, 25);
 
         //Team : Aston Villa
-        Team astonVilla = new Team("Aston Villa", "Aston Villa", "AstonVilla.png", premierLeague, new Integer[]{4, 3, 3}, new Color(103, 14, 54), 100);
+        Team astonVilla = new Team("Aston Villa", "Aston Villa", "astonVilla.png", premierLeague, new Integer[]{4, 3, 3}, new Color(103, 14, 54), 100);
         new Player("Emiliano", "Martinez", "GK", astonVilla, argentina, 88, 31);
         new Player("Robin", "Olsen", "GK", astonVilla, sweden, 72, 34);
 
@@ -469,7 +470,7 @@ public class Data {
         new Player("Emi", "Buendia", "FWD", astonVilla, argentina, 80, 27);
 
         //Team : Spurs
-        Team spurs = new Team("Tottenham Hotspur", "Spurs", "Spurs.png", premierLeague, new Integer[]{4, 3, 3}, new Color(19, 34, 87), 150);
+        Team spurs = new Team("Tottenham Hotspur", "Spurs", "spurs.png", premierLeague, new Integer[]{4, 3, 3}, new Color(19, 34, 87), 150);
         new Player("Guglielmo", "Vicario", "GK", spurs, italy, 85, 27);
         new Player("Fraser", "Forster", "GK", spurs, england, 70, 36);
 
@@ -493,7 +494,7 @@ public class Data {
         new Player("Timo", "Werner", "FWD", spurs, germany, 77, 28);
 
         //Team : Chelsea
-        Team chelsea = new Team("Chelsea", "Chelsea", "Chelsea.png", premierLeague, new Integer[]{4, 3, 3}, new Color(3, 70, 148), 250);
+        Team chelsea = new Team("Chelsea", "Chelsea", "chelsea.png", premierLeague, new Integer[]{4, 3, 3}, new Color(3, 70, 148), 250);
         new Player("Robert", "Sanchez", "GK", chelsea, spain, 85, 26);
         new Player("Donde", "Petrovic", "GK", chelsea, croatia, 80, 24);
 
@@ -520,7 +521,7 @@ public class Data {
         new Player("Mykhaylo", "Mudryk", "FWD", chelsea, ukraine, 78, 23);
 
         //Team : Manchester United
-        Team manUtd = new Team("Manchester United", "Man Utd", "manchesterUnited.png", premierLeague, new Integer[]{4, 3, 3}, new Color(218, 41, 28), 200);
+        Team manUtd = new Team("Manchester United", "Man Utd", "manUtd.png", premierLeague, new Integer[]{4, 3, 3}, new Color(218, 41, 28), 200);
         new Player("Andre", "Onana", "GK", manUtd, cameroon, 86, 28);
         new Player("Altay", "Bayindir", "GK", manUtd, turkey, 80, 26);
 
@@ -544,7 +545,7 @@ public class Data {
         new Player("Anthony", "Martial", "FWD", manUtd, france, 74, 28);
 
         //Team : Newcastle United
-        Team newcastle = new Team("Newcastle United", "Newcastle", "Newcastle.png", premierLeague, new Integer[]{4, 3, 3}, new Color(45, 41, 38), 150);
+        Team newcastle = new Team("Newcastle United", "Newcastle", "newcastle.png", premierLeague, new Integer[]{4, 3, 3}, new Color(45, 41, 38), 150);
         new Player("Nick", "Pope", "GK", newcastle, england, 84, 32);
         new Player("Martin", "Dubravka", "GK", newcastle, slovakia, 80, 35);
 
@@ -568,7 +569,7 @@ public class Data {
         new Player("Callum", "Wilson", "FWD", newcastle, england, 76, 32);
 
         //Team : West Ham United
-        Team westHam = new Team("West Ham United", "West Ham", "WestHam.png", premierLeague, new Integer[]{4, 3, 3}, new Color(122, 38, 58), 100);
+        Team westHam = new Team("West Ham United", "West Ham", "westHam.png", premierLeague, new Integer[]{4, 3, 3}, new Color(122, 38, 58), 100);
         new Player("Lukasz", "Fabianski", "GK", westHam, poland, 82, 39);
         new Player("Alphonse", "Areola", "GK", westHam, france, 80, 31);
 
@@ -592,7 +593,7 @@ public class Data {
         new Player("Danny", "Ings", "FWD", westHam, england, 80, 31);
 
         //Team : Brighton & Hove Albion
-        Team brighton = new Team("Brighton & Hove Albion", "Brighton", "Brighton.png", premierLeague, new Integer[]{4, 3, 3}, new Color(0, 87, 184), 100);
+        Team brighton = new Team("Brighton & Hove Albion", "Brighton", "brighton.png", premierLeague, new Integer[]{4, 3, 3}, new Color(0, 87, 184), 100);
         new Player("Bart", "Verbruggen", "GK", brighton, belgium, 80, 21);
         new Player("Jason", "Steele", "GK", brighton, england, 74, 33);
 
@@ -616,7 +617,7 @@ public class Data {
         new Player("Ansu", "Fati", "FWD", brighton, spain, 77, 21);
 
         //Team : Bournemouth
-        Team bournemouth = new Team("AFC Bournemouth", "Bournemouth", "Bournemouth.png", premierLeague, new Integer[]{4, 3, 3}, new Color(218, 41, 28), 60);
+        Team bournemouth = new Team("AFC Bournemouth", "Bournemouth", "bournemouth.png", premierLeague, new Integer[]{4, 3, 3}, new Color(218, 41, 28), 60);
         new Player("Neto", "", "GK", bournemouth, brazil, 80, 34);
         new Player("Mark", "Travers", "GK", bournemouth, ireland, 74, 25);
 
@@ -640,7 +641,7 @@ public class Data {
         new Player("Antoine", "Semenyo", "FWD", bournemouth, ghana, 80, 24);
 
         //Team : Crystal Palace
-        Team crystalPalace = new Team("Crystal Palace", "Crystal Palace", "CrystalPalace.png", premierLeague, new Integer[]{4, 3, 3}, new Color(27, 69, 143), 100);
+        Team crystalPalace = new Team("Crystal Palace", "C Palace", "cPalace.png", premierLeague, new Integer[]{4, 3, 3}, new Color(27, 69, 143), 100);
         new Player("Sam", "Johnstone", "GK", crystalPalace, england, 82, 31);
         new Player("Dean", "Henderson", "GK", crystalPalace, england, 80, 27);
 
@@ -664,7 +665,7 @@ public class Data {
         new Player("Jordan", "Ayew", "FWD", crystalPalace, ghana, 80, 32);
 
         //Team : Wolverhampton Wanderers
-        Team wolves = new Team("Wolverhampton Wanderers", "Wolves", "Wolves.png", premierLeague, new Integer[]{4, 3, 3}, new Color(253, 185, 19), 60);
+        Team wolves = new Team("Wolverhampton Wanderers", "Wolves", "wolves.png", premierLeague, new Integer[]{4, 3, 3}, new Color(253, 185, 19), 60);
         new Player("Jose", "Sa", "GK", wolves, portugal, 81, 31);
         new Player("Daniel", "Bentley", "GK", wolves, england, 72, 30);
 
@@ -688,7 +689,7 @@ public class Data {
         new Player("Enso", "Gonzalez", "FWD", wolves, paraguay, 73, 19);
 
         //Team :Fulham
-        Team fulham = new Team("Fulham", "Fulham", "Fulham.png", premierLeague, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team fulham = new Team("Fulham", "Fulham", "fulham.png", premierLeague, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
         new Player("Bernd", "Leno", "GK", fulham, germany, 85, 32);
         new Player("Marek", "Rodak", "GK", fulham, slovakia, 80, 27);
 
@@ -712,7 +713,7 @@ public class Data {
         new Player("Harry", "Wilson", "FWD", fulham, wales, 75, 27);
 
         //Team : Everton
-        Team everton = new Team("Everton", "Everton", "Everton.png", premierLeague, new Integer[]{4, 3, 3}, new Color(39, 68, 136), 60);
+        Team everton = new Team("Everton", "Everton", "everton.png", premierLeague, new Integer[]{4, 3, 3}, new Color(39, 68, 136), 60);
         new Player("Jordan", "Pickford", "GK", everton, england, 85, 30);
         new Player("Joao", "Virginia", "GK", everton, portugal, 80, 24);
 
@@ -736,7 +737,7 @@ public class Data {
         new Player("Arnaut", "Danjuma", "FWD", everton, netherlands, 80, 27);
 
         //Team : Brentford
-        Team brentford = new Team("Brentford", "Brentford", "Brentford.png", premierLeague, new Integer[]{4, 3, 3}, new Color(227, 6, 19), 60);
+        Team brentford = new Team("Brentford", "Brentford", "brentford.png", premierLeague, new Integer[]{4, 3, 3}, new Color(227, 6, 19), 60);
         new Player("Mark", "Flekken", "GK", brentford, netherlands, 80, 30);
         new Player("Thomas", "Strakosha", "GK", brentford, albania, 80, 29);
 
@@ -760,7 +761,7 @@ public class Data {
         new Player("Kevin", "Schade", "FWD", brentford, germany, 80, 22);
 
         //Team: Nottingham Forest
-        Team nottinghamForest = new Team("Nottingham Forest", "Notts Forest", "NottinghamForest.png", premierLeague, new Integer[]{4, 3, 3}, new Color(221, 0, 0), 60);
+        Team nottinghamForest = new Team("Nottingham Forest", "Notts Forest", "nottsForest.png", premierLeague, new Integer[]{4, 3, 3}, new Color(221, 0, 0), 60);
         new Player("Matt", "Turner", "GK", nottinghamForest, usa, 80, 29);
         new Player("Odysseas", "Vlachodimos", "GK", nottinghamForest, greece, 80, 30);
 
@@ -784,7 +785,7 @@ public class Data {
         new Player("Giovanni", "Reyna", "FWD", nottinghamForest, usa, 75, 21);
 
         //Team : Luton
-        Team luton = new Team("Luton Town", "Luton", "Luton.png", premierLeague, new Integer[]{4, 3, 3}, new Color(247, 143, 30), 30);
+        Team luton = new Team("Luton Town", "Luton", "luton.png", premierLeague, new Integer[]{4, 3, 3}, new Color(247, 143, 30), 30);
         new Player("Thomas", "Kaminski", "GK", luton, belgium, 80, 31);
         new Player("Tim", "Krul", "GK", luton, netherlands, 80, 36);
 
@@ -808,7 +809,7 @@ public class Data {
         new Player("Chiedoze", "Ogbene", "FWD", luton, ireland, 75, 27);
 
         //Team: Burnley
-        Team burnley = new Team("Burnley", "Burnley", "Burnley.png", premierLeague, new Integer[]{4, 3, 3}, new Color(108, 29, 69), 60);
+        Team burnley = new Team("Burnley", "Burnley", "burnley.png", premierLeague, new Integer[]{4, 3, 3}, new Color(108, 29, 69), 60);
         new Player("James", "Trafford", "GK", burnley, england, 80, 21);
         new Player("Arijanet", "Muric", "GK", burnley, kosovo, 80, 25);
 
@@ -832,7 +833,7 @@ public class Data {
         new Player("Nathan", "Redmond", "FWD", burnley, england, 75, 30);
 
         //Team : Sheffield United
-        Team sheffieldUnited = new Team("Sheffield United", "Sheff Utd", "SheffieldUnited.png", premierLeague, new Integer[]{4, 3, 3}, new Color(238, 39, 55), 30);
+        Team sheffieldUnited = new Team("Sheffield United", "Sheff Utd", "sheffUtd.png", premierLeague, new Integer[]{4, 3, 3}, new Color(238, 39, 55), 30);
         new Player("Wes", "Foderingham", "GK", sheffieldUnited, england, 80, 33);
         new Player("Ivo", "Grbic", "GK", sheffieldUnited, croatia, 80, 28);
 
@@ -856,12 +857,87 @@ public class Data {
         new Player("William", "Osula", "FWD", sheffieldUnited, denmark, 75, 20);
 
         world.addLeague(premierLeague);
-    }
 
+        League championship = new League("Championship", "Championship.png", 2, england);
+
+        Team sheffieldWednesday = new Team("Sheffield Wednesday", "Sheff Wed", "sheffWed.png", championship, new Integer[]{4, 3, 3}, new Color(14, 98, 170), 30);
+
+        new Player("James", "Beadle", "GK", sheffieldWednesday, england, 80, 19);
+        new Player("Pierce", "Chales", "GK", sheffieldWednesday, england, 73, 18);
+
+        new Player("Di shon", "Bernard", "DEF", sheffieldWednesday, jamaica, 78, 23);
+        new Player("Pol", "Valentin", "DEF", sheffieldWednesday, spain, 77, 27);
+        new Player("Bambo", "Diaby", "DEF", sheffieldWednesday, senegal, 74, 26);
+        new Player("Marvin", "Johnson", "DEF", sheffieldWednesday, england, 73, 33);
+        new Player("Akin", "Famewo", "DEF", sheffieldWednesday, england, 72, 25);
+        new Player("Liam", "Palmer", "DEF", sheffieldWednesday, scotland, 71, 32);
+
+        new Player("Barry", "Bannan", "MID", sheffieldWednesday, scotland, 78, 34);
+        new Player("Josh", "Windass", "MID", sheffieldWednesday, england, 77, 30);
+        new Player("Will", "Vaulks", "MID", sheffieldWednesday, wales, 76, 30);
+        new Player("Ian Carlo", "Poveda", "MID", sheffieldWednesday, colombia, 75, 24);
+        new Player("Rio", "Shipston", "MID", sheffieldWednesday, england, 75, 19);
+
+        new Player("Ike", "Ugbo", "FWD", sheffieldWednesday, canada, 77, 25);
+        new Player("Bailey", "Cadamartieri", "FWD", sheffieldWednesday, jamaica, 76, 19);
+        new Player("Djedi", "Gassama", "FWD", sheffieldWednesday, france, 75, 20);
+        new Player("Anthony", "Musaba", "FWD", sheffieldWednesday, netherlands, 74, 23);
+        new Player("Lee", "Gregory", "FWD", sheffieldWednesday, england, 70, 35);
+
+        Team leeds = new Team("Leeds United", "Leeds", "leeds.png", championship, new Integer[]{4, 3, 3}, new Color(255,205,0), 60);
+        new Player("Illan", "Meslier", "GK", leeds, france, 80, 24);
+        new Player("Kristopffer", "Klaesson", "GK", leeds, norway, 75, 23);
+
+        new Player("Pascal", "Struijk", "DEF", leeds, netherlands, 78, 24);
+        new Player("Charlie", "Cresswell", "DEF", leeds, england, 77, 21);
+        new Player("Junior", "Firpo", "DEF", leeds, spain, 76, 27);
+        new Player("Luke", "Ayling", "DEF", leeds, england, 75, 32);
+        new Player("Liam", "Cooper", "DEF", leeds, scotland, 75, 32);
+        new Player("Cody", "Drameh", "DEF", leeds, england, 74, 22);
+
+        new Player("Archie", "Gray", "MID", leeds, england, 80, 18);
+        new Player("Ethan", "Ampadu", "MID", leeds, wales, 78, 23);
+        new Player("Georginio", "Rutter", "MID", leeds, france, 77, 22);
+        new Player("Glen", "Kamara", "MID", leeds, finland, 77, 28);
+        new Player("Jamie", "Shackleton", "MID", leeds, england, 72, 24);
+
+        new Player("Crysencio", "Summerville", "FWD", leeds, netherlands, 83, 22);
+        new Player("Daniel", "James", "FWD", leeds, wales, 80, 26);
+        new Player("Wilfried", "Gnonto", "FWD", leeds, italy, 78, 20);
+        new Player("Jack", "Harrison", "FWD", leeds, england, 77, 27);
+        new Player("Patrick", "Bamford", "FWD", leeds, england, 74, 30);
+
+        Team leicester = new Team("Leicester City", "Leicester", "leicester.png", championship, new Integer[]{4, 3, 3}, new Color(0,83,160), 60);
+        new Player("Mads", "Hermansen", "GK", leicester, denmark, 80, 23);
+        new Player("Danny", "Ward", "GK", leicester, wales, 75, 30);
+
+        new Player("Wout", "Faes", "DEF", leicester, belgium, 78, 26);
+        new Player("James", "Justin", "DEF", leicester, england, 77, 26);
+        new Player("Jannik", "Vestergaard", "DEF", leicester, denmark, 77, 31);
+        new Player("Ricardo", "Pereira", "DEF", leicester, portugal, 76, 30);
+        new Player("Luke", "Thomas", "DEF", leicester, england, 75, 22);
+        new Player("Conor", "Coady", "DEF", leicester, england, 74, 31);
+
+        new Player("Kiernan", "Dewsbury-Hall", "MID", leicester, england, 83, 25);
+        new Player("Wilfried", "Ndidi", "MID", leicester, nigeria, 80, 27);
+        new Player("Harry", "Winks", "MID", leicester, england, 78, 28);
+        new Player("Hamza", "Choudhury", "MID", leicester, england, 77, 26);
+        new Player("Marc", "Albrighton", "MID", leicester, england, 74, 34);
+
+        new Player("Jamie", "Vardy", "FWD", leicester, england, 83, 37);
+        new Player("Patson", "Daka", "FWD", leicester, zambia, 80, 25);
+        new Player("Stephy", "Mavididi", "FWD", leicester, england, 78, 26);
+        new Player("Issahaku", "Fatawu", "FWD", leicester, ghana, 77, 20);
+        new Player("Kelechi", "Iheanacho", "FWD", leicester, nigeria, 75, 27);
+
+        world.addLeague(championship);
+
+
+    }
     public static void setChampionsLeague() {
         League laLiga = new League("La Liga", "LaLiga.png", 1, spain);
 
-        Team realMadrid = new Team("Real Madrid", "Real Madrid", "RealMadrid.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 82, 159), 250);
+        Team realMadrid = new Team("Real Madrid", "Real Madrid", "realMadrid.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 82, 159), 250);
         new Player("Thibaut", "Courtois", "GK", realMadrid, belgium, 90, 32);
         new Player("Andriy", "Lunin", "GK", realMadrid, ukraine, 80, 25);
 
@@ -887,7 +963,7 @@ public class Data {
         new Player("Endrick", "", "FWD", realMadrid, brazil, 82, 17);
         new Player("Brahim", "Diaz", "FWD", realMadrid, morocco, 80, 24);
 
-        Team Barcelona = new Team("Barcelona", "Barca", "Barcelona.png", laLiga, new Integer[]{4, 3, 3}, new Color(168, 19, 62), 200);
+        Team Barcelona = new Team("Barcelona", "Barcelona", "barcelona.png", laLiga, new Integer[]{4, 3, 3}, new Color(168, 19, 62), 200);
         new Player("Marc-Andre", "ter Stegen", "GK", Barcelona, germany, 90, 32);
         new Player("Inaki", "Pena", "GK", Barcelona, spain, 80, 25);
 
@@ -911,7 +987,7 @@ public class Data {
         new Player("Ferran", "Torres", "FWD", Barcelona, spain, 83, 24);
         new Player("Vitor", "Roque", "FWD", Barcelona, brazil, 80, 19);
 
-        Team atleticoMadrid = new Team("Atletico Madrid", "Atletico Madrid", "AtleticoMadrid.png", laLiga, new Integer[]{4, 3, 3}, new Color(228, 29, 37), 150);
+        Team atleticoMadrid = new Team("Atletico Madrid", "Atl Madrid", "atlMadrid.png", laLiga, new Integer[]{4, 3, 3}, new Color(228, 29, 37), 150);
         new Player("Jan", "Oblak", "GK", atleticoMadrid, slovenia, 92, 31);
         new Player("Horatiu", "Moldovan", "GK", atleticoMadrid, romania, 80, 26);
 
@@ -934,7 +1010,7 @@ public class Data {
         new Player("Angel", "Correa", "FWD", atleticoMadrid, argentina, 82, 29);
         new Player("Rodrigo", "Riquelme", "FWD", atleticoMadrid, spain, 80, 24);
 
-        Team Girona = new Team("Girona", "Girona", "Girona.png", laLiga, new Integer[]{4, 3, 3}, new Color(205, 57, 32), 60);
+        Team Girona = new Team("Girona", "Girona", "girona.png", laLiga, new Integer[]{4, 3, 3}, new Color(205, 57, 32), 60);
         new Player("Paulo", "Gazzaniga", "GK", Girona, argentina, 80, 32);
         new Player("Juan", "Carlos", "GK", Girona, spain, 72, 36);
 
@@ -961,7 +1037,7 @@ public class Data {
 
         League bundesliga = new League("Bundesliga", "Bundesliga.png", 1, germany);
 
-        Team bayernMunich = new Team("Bayern Munich", "Bayern Munich", "BayernMunich.png", bundesliga, new Integer[]{4, 3, 3}, new Color(227, 6, 19), 200);
+        Team bayernMunich = new Team("Bayern Munich", "Bayern", "bayern.png", bundesliga, new Integer[]{4, 3, 3}, new Color(227, 6, 19), 200);
         new Player("Manuel", "Neuer", "GK", bayernMunich, germany, 92, 38);
         new Player("Sven", "Ulreich", "GK", bayernMunich, germany, 80, 35);
 
@@ -984,7 +1060,7 @@ public class Data {
         new Player("Serge", "Gnabry", "FWD", bayernMunich, germany, 87, 28);
         new Player("Mathys", "Tel", "FWD", bayernMunich, france, 82, 19);
 
-        Team borussiaDortmund = new Team("Borussia Dortmund", "Dortmund", "BorussiaDortmund.png", bundesliga, new Integer[]{4, 3, 3}, new Color(253, 225, 0), 100);
+        Team borussiaDortmund = new Team("Borussia Dortmund", "Dortmund", "dortmund.png", bundesliga, new Integer[]{4, 3, 3}, new Color(253, 225, 0), 100);
         new Player("Gregor", "Kobel", "GK", borussiaDortmund, switzerland, 85, 26);
         new Player("Marcel", "Lotka", "GK", borussiaDortmund, germany, 75, 23);
 
@@ -1008,7 +1084,7 @@ public class Data {
         new Player("Youssoufa", "Moukoko", "FWD", borussiaDortmund, germany, 82, 19);
         new Player("Jamie", "Bynoe Gittens", "FWD", borussiaDortmund, england, 75, 19);
 
-        Team bayerLeverkusen = new Team("Bayer Leverkusen", "Leverkusen", "BayerLeverkusen.png", bundesliga, new Integer[]{4, 3, 3}, new Color(227, 34, 33), 100);
+        Team bayerLeverkusen = new Team("Bayer Leverkusen", "Leverkusen", "leverkusen.png", bundesliga, new Integer[]{4, 3, 3}, new Color(227, 34, 33), 100);
         new Player("Matej", "Kovar", "GK", bayerLeverkusen, czechRepublic, 80, 24);
         new Player("Lukas", "Hradecky", "GK", bayerLeverkusen, finland, 80, 34);
 
@@ -1031,7 +1107,7 @@ public class Data {
         new Player("Amine", "Adli", "FWD", bayerLeverkusen, morocco, 84, 24);
         new Player("Jonas", "Hofmann", "FWD", bayerLeverkusen, germany, 82, 31);
 
-        Team rbLeipzig = new Team("RB Leipzig", "Leipzig", "RBLeipzig.png", bundesliga, new Integer[]{4, 3, 3}, new Color(12, 32, 67), 100);
+        Team rbLeipzig = new Team("RB Leipzig", "RB Leipzig", "rbLepizig.png", bundesliga, new Integer[]{4, 3, 3}, new Color(12, 32, 67), 100);
         new Player("Peter", "Gulacsi", "GK", rbLeipzig, hungary, 88, 34);
         new Player("Janis", "Blaswich", "GK", rbLeipzig, germany, 74, 33);
 
@@ -1058,7 +1134,7 @@ public class Data {
 
         League serieA = new League("Serie A", "SerieA.png", 1, italy);
 
-        Team interMilan = new Team("Inter Milan", "Inter", "InterMilan.png", serieA, new Integer[]{4, 3, 3}, new Color(1, 14, 128), 150);
+        Team interMilan = new Team("Inter Milan", "Inter", "inter.png", serieA, new Integer[]{4, 3, 3}, new Color(1, 14, 128), 150);
         new Player("Yann", "Sommer", "GK", interMilan, switzerland, 88, 33);
         new Player("Emil", "Audero", "GK", interMilan, italy, 80, 25);
 
@@ -1081,7 +1157,7 @@ public class Data {
         new Player("Alexis", "Sanchez", "FWD", interMilan, chile, 80, 35);
         new Player("Marko", "Arnautovic", "FWD", interMilan, austria, 79, 35);
 
-        Team acMilan = new Team("AC Milan", "AC Milan", "ACMilan.png", serieA, new Integer[]{4, 3, 3}, new Color(251, 9, 11), 100);
+        Team acMilan = new Team("AC Milan", "AC Milan", "acMilan.png", serieA, new Integer[]{4, 3, 3}, new Color(251, 9, 11), 100);
         new Player("Mike", "Maignan", "GK", acMilan, france, 88, 28);
         new Player("Marco", "Sportiello", "GK", acMilan, italy, 80, 32);
 
@@ -1104,7 +1180,7 @@ public class Data {
         new Player("Noah", "Okafor", "FWD", acMilan, switzerland, 82, 24);
         new Player("Samuel", "Chukwueze", "FWD", acMilan, nigeria, 80, 25);
 
-        Team juventus = new Team("Juventus", "Juventus", "Juventus.png", serieA, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 100);
+        Team juventus = new Team("Juventus", "Juventus", "juventus.png", serieA, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 100);
         new Player("Wojciech", "Szczesny", "GK", juventus, poland, 88, 34);
         new Player("Mattia", "Perin", "GK", juventus, italy, 80, 31);
 
@@ -1127,7 +1203,7 @@ public class Data {
         new Player("Samuel", "Iling-Junior", "FWD", juventus, england, 80, 20);
         new Player("Timothy", "Weah", "FWD", juventus, usa, 80, 24);
 
-        Team napoli = new Team("Napoli", "Napoli", "Napoli.png", serieA, new Integer[]{4, 3, 3}, new Color(0, 70, 147), 100);
+        Team napoli = new Team("SSC Napoli", "Napoli", "napoli.png", serieA, new Integer[]{4, 3, 3}, new Color(0, 70, 147), 100);
         new Player("Alex", "Meret", "GK", napoli, italy, 85, 27);
         new Player("Pierluigi", "Gollini", "GK", napoli, italy, 80, 29);
 
@@ -1154,7 +1230,7 @@ public class Data {
 
         League ligue1 = new League("Ligue 1", "Ligue1.png", 1, france);
 
-        Team psg = new Team("Paris Saint-Germain", "PSG", "ParisSaintGermain.png", ligue1, new Integer[]{4, 3, 3}, new Color(1, 66, 106), 250);
+        Team psg = new Team("Paris Saint-Germain", "PSG", "psg.png", ligue1, new Integer[]{4, 3, 3}, new Color(1, 66, 106), 250);
         new Player("Gianluigi", "Donnarumma", "GK", psg, italy, 90, 25);
         new Player("Arnau", "Tenas", "GK", psg, spain, 76, 23);
 
@@ -1177,7 +1253,7 @@ public class Data {
         new Player("Goncalo", "Ramos", "FWD", psg, portugal, 85, 22);
         new Player("Bradley", "Barcola", "FWD", psg, france, 80, 21);
 
-        Team monaco = new Team("AS Monaco", "Monaco", "ASMonaco.png", ligue1, new Integer[]{4, 3, 3}, new Color(229, 27, 34), 100);
+        Team monaco = new Team("AS Monaco", "Monaco", "monaco.png", ligue1, new Integer[]{4, 3, 3}, new Color(229, 27, 34), 100);
         new Player("Philipp", "Kohn", "GK", monaco, switzerland, 77, 26);
         new Player("Radoslaw", "Majewski", "GK", monaco, poland, 75, 24);
 
@@ -1200,7 +1276,7 @@ public class Data {
         new Player("Breel", "Embolo", "FWD", monaco, switzerland, 79, 27);
         new Player("Krepin", "Diatta", "FWD", monaco, senegal, 78, 25);
 
-        Team lyon = new Team("Olympique Lyon", "Lyon", "OlympiqueLyon.png", ligue1, new Integer[]{4, 3, 3}, new Color(20, 56, 127), 60);
+        Team lyon = new Team("Olympique Lyon", "OL", "ol.png", ligue1, new Integer[]{4, 3, 3}, new Color(20, 56, 127), 60);
         new Player("Anthony", "Lopes", "GK", lyon, portugal, 85, 33);
         new Player("Lucas", "Perri", "GK", lyon, brazil, 75, 26);
 
@@ -1223,7 +1299,7 @@ public class Data {
         new Player("Gift", "Orban", "FWD", lyon, nigeria, 76, 21);
         new Player("Ernest", "Nuamah", "FWD", lyon, ghana, 75, 20);
 
-        Team lille = new Team("LOSC Lille", "Lille", "Lille.png", ligue1, new Integer[]{4, 3, 3}, new Color(224, 30, 19), 60);
+        Team lille = new Team("LOSC Lille", "Lille", "lille.png", ligue1, new Integer[]{4, 3, 3}, new Color(224, 30, 19), 60);
         new Player("Lucas", "Chevalier", "GK", lille, france, 80, 22);
         new Player("Vito", "Mannone", "GK", lille, italy, 75, 36);
 
@@ -1250,7 +1326,7 @@ public class Data {
 
         League eredivisie = new League("Eredivisie", "Eredivisie.png", 1, netherlands);
 
-        Team ajax = new Team("Ajax", "Ajax", "Ajax.png", eredivisie, new Integer[]{4, 3, 3}, new Color(210, 18, 46), 60);
+        Team ajax = new Team("Ajax Amsterdam", "Ajax", "ajax.png", eredivisie, new Integer[]{4, 3, 3}, new Color(210, 18, 46), 60);
         new Player("Diant", "Ramaj", "GK", ajax, germany, 78, 22);
         new Player("Geronimo", "Rulli", "GK", ajax, argentina, 78, 32);
 
@@ -1273,7 +1349,7 @@ public class Data {
         new Player("Chuba", "Akpom", "FWD", ajax, nigeria, 80, 26);
         new Player("Carlos", "Forbs", "FWD", ajax, portugal, 76, 20);
 
-        Team psv = new Team("PSV", "PSV", "PSV.png", eredivisie, new Integer[]{4, 3, 3}, new Color(240, 0, 0), 60);
+        Team psv = new Team("PSV Eindhoven", "PSV", "psv.png", eredivisie, new Integer[]{4, 3, 3}, new Color(240, 0, 0), 60);
         new Player("Walter", "Benitez", "GK", psv, argentina, 85, 31);
         new Player("Joel", "Drommel", "GK", psv, netherlands, 76, 27);
 
@@ -1300,7 +1376,7 @@ public class Data {
 
         League primeraDivision = new League("Primera Division", "PrimeraDivision.png", 1, portugal);
 
-        Team benfica = new Team("Benfica", "Benfica", "Benfica.png", primeraDivision, new Integer[]{4, 3, 3}, new Color(232, 48, 48), 60);
+        Team benfica = new Team("S.L. Benfica", "Benfica", "benfica.png", primeraDivision, new Integer[]{4, 3, 3}, new Color(232, 48, 48), 60);
         new Player("Anatoliy", "Trubin", "GK", benfica, ukraine, 84, 22);
         new Player("Samuel", "Soares", "GK", benfica, portugal, 75, 21);
 
@@ -1323,7 +1399,7 @@ public class Data {
         new Player("Marcos", "Leonardo", "FWD", benfica, brazil, 80, 21);
         new Player("Casper", "Tengstedt", "FWD", benfica, denmark, 76, 23);
 
-        Team sportingCP = new Team("Sporting Lisbon", "Sporting CP", "SportingCP.png", primeraDivision, new Integer[]{4, 3, 3}, new Color(0, 128, 87), 60);
+        Team sportingCP = new Team("Sporting Lisbon", "Sporting CP", "sportingCP.png", primeraDivision, new Integer[]{4, 3, 3}, new Color(0, 128, 87), 60);
         new Player("Antonio", "Adan", "GK", sportingCP, spain, 80, 37);
         new Player("Franco", "Israel", "GK", sportingCP, uruguay, 75, 24);
 
@@ -1350,7 +1426,7 @@ public class Data {
 
         League proLeague = new League("Pro League", "ProLeague.png", 1, belgium);
 
-        Team anderlecht = new Team("RSC Anderlecht", "Anderlecht", "RSCAnderlecht.png", proLeague, new Integer[]{4, 3, 3}, new Color(81, 46, 143), 30);
+        Team anderlecht = new Team("RSC Anderlecht", "Anderlecht", "anderlecht.png", proLeague, new Integer[]{4, 3, 3}, new Color(81, 46, 143), 30);
         new Player("Kasper", "Schmeichel", "GK", anderlecht, denmark, 82, 37);
         new Player("Mads", "Kikkenborg", "GK", anderlecht, denmark, 73, 24);
 
@@ -1377,7 +1453,7 @@ public class Data {
 
         League superLig = new League("Super Lig", "SuperLig.png", 1, turkey);
 
-        Team galatasaray = new Team("Galatasaray", "Galatasaray", "Galatasaray.png", superLig, new Integer[]{4, 3, 3}, new Color(253, 185, 18), 100);
+        Team galatasaray = new Team("Galatasaray", "Galatasaray", "galatasaray.png", superLig, new Integer[]{4, 3, 3}, new Color(253, 185, 18), 100);
         new Player("Fernando", "Muslera", "GK", galatasaray, uruguay, 77, 37);
         new Player("Gunay", "Guvenc", "GK", galatasaray, turkey, 72, 32);
 
@@ -1400,7 +1476,7 @@ public class Data {
         new Player("Kerem", "Akturkoglu", "FWD", galatasaray, turkey, 81, 25);
         new Player("Baris Alper", "Yilmaz", "FWD", galatasaray, turkey, 79, 24);
 
-        Team fenerbahce = new Team("Fenerbahce", "Fenerbahce", "Fenerbahce.png", superLig, new Integer[]{4, 3, 3}, new Color(0, 65, 127), 100);
+        Team fenerbahce = new Team("Fenerbahce", "Fenerbahce", "fenerbahce.png", superLig, new Integer[]{4, 3, 3}, new Color(0, 65, 127), 100);
         new Player("Dominik", "Livakovic", "GK", fenerbahce, croatia, 82, 29);
         new Player("Irfan", "Can", "GK", fenerbahce, turkey, 75, 25);
 
@@ -1426,7 +1502,7 @@ public class Data {
 
         League scottishPremiership = new League("Scottish Premiership", "ScottishPremiership.png", 1, scotland);
 
-        Team celtic = new Team("Celtic", "Celtic", "Celtic.png", scottishPremiership, new Integer[]{4, 3, 3}, new Color(1, 135, 73), 60);
+        Team celtic = new Team("Celtic", "Celtic", "celtic.png", scottishPremiership, new Integer[]{4, 3, 3}, new Color(1, 135, 73), 60);
         new Player("Joe", "Hart", "GK", celtic, england, 80, 37);
         new Player("Scott", "Bain", "GK", celtic, scotland, 74, 32);
 
@@ -1450,7 +1526,7 @@ public class Data {
         new Player("James", "Forrest", "FWD", celtic, scotland, 79, 32);
         new Player("Hyun-Jun", "Yang", "FWD", celtic, southKorea, 75, 22);
 
-        Team rangers = new Team("Rangers", "Rangers", "Rangers.png", scottishPremiership, new Integer[]{4, 3, 3}, new Color(27, 69, 143), 60);
+        Team rangers = new Team("Rangers", "Rangers", "rangers.png", scottishPremiership, new Integer[]{4, 3, 3}, new Color(27, 69, 143), 60);
         new Player("Jack", "Butland", "GK", rangers, england, 80, 31);
         new Player("Robbie", "McCrorie", "GK", rangers, scotland, 74, 26);
 
@@ -1477,7 +1553,7 @@ public class Data {
 
         League austriaBundesliga = new League("Austria Bundesliga", "AustriaBundesliga.png", 1, austria);
 
-        Team rbSalzburg = new Team("Red Bull Salzburg", "RB Salzburg", "RBSalzburg.png", austriaBundesliga, new Integer[]{4, 3, 3}, new Color(219, 0, 0), 60);
+        Team rbSalzburg = new Team("Red Bull Salzburg", "RB Salzburg", "rbSalzburg.png", austriaBundesliga, new Integer[]{4, 3, 3}, new Color(219, 0, 0), 60);
         new Player("Alexander", "Schlager", "GK", rbSalzburg, austria, 82, 28);
         new Player("Timo", "Horn", "GK", rbSalzburg, germany, 76, 31);
 
@@ -1504,7 +1580,7 @@ public class Data {
 
         League greekSuperLeague = new League("Greek Super League", "GreekSuperLeague.png", 1, greece);
 
-        Team olympiacos = new Team("Olympiacos", "Olympiacos", "Olympiacos.png", greekSuperLeague, new Integer[]{4, 3, 3}, new Color(208, 6, 31), 60);
+        Team olympiacos = new Team("Olympiacos Piraeus", "Olympiacos", "olympiacos.png", greekSuperLeague, new Integer[]{4, 3, 3}, new Color(208, 6, 31), 60);
         new Player("Konstantinos", "Tzolakis", "GK", olympiacos, greece, 75, 21);
         new Player("Alexandros", "Paschalakis", "GK", olympiacos, greece, 74, 34);
 
