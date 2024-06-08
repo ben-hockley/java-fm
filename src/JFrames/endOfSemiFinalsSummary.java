@@ -66,6 +66,9 @@ public class endOfSemiFinalsSummary extends JFrame {
         homeTeamLabel.setHorizontalAlignment(SwingConstants.CENTER);
         homeTeamLabel.setBackground(homeTeam.getTeamColor());
         homeTeamLabel.setForeground(Color.WHITE);
+        homeTeamLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + homeTeam.getTeamLogo()).getImage().getScaledInstance(110,144, Image.SCALE_SMOOTH)));
+        homeTeamLabel.setVerticalTextPosition(SwingConstants.BOTTOM);
+        homeTeamLabel.setHorizontalTextPosition(SwingConstants.CENTER);
         homeTeamLabel.setFont(new Font("Arial", Font.BOLD, 24));
         homeTeamLabel.setOpaque(true);
 
@@ -74,6 +77,9 @@ public class endOfSemiFinalsSummary extends JFrame {
         awayTeamLabel.setHorizontalAlignment(SwingConstants.CENTER);
         awayTeamLabel.setBackground(awayTeam.getTeamColor());
         awayTeamLabel.setForeground(Color.WHITE);
+        awayTeamLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + awayTeam.getTeamLogo()).getImage().getScaledInstance(110,144, Image.SCALE_SMOOTH)));
+        awayTeamLabel.setVerticalTextPosition(SwingConstants.BOTTOM);
+        awayTeamLabel.setHorizontalTextPosition(SwingConstants.CENTER);
         awayTeamLabel.setFont(new Font("Arial", Font.BOLD, 24));
         awayTeamLabel.setOpaque(true);
 

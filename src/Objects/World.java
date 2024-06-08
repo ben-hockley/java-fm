@@ -185,6 +185,10 @@ public class World {
         }
     }
 
+    public ArrayList<League> getAllLeagues() {
+        return leagues;
+    }
+
 
 
 }

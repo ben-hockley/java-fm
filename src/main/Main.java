@@ -1,5 +1,6 @@
 package main;
 
+import JFrames.endOfSeasonSummary;
 import JFrames.endOfSemiFinalsSummary;
 import data.Data;
 import JFrames.UI;

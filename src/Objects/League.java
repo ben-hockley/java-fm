@@ -5,6 +5,7 @@ import events.Game;
 import main.fixtureGen;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class League {
     private final Integer tier;
@@ -112,6 +113,14 @@ public class League {
 
     public Nation getCountry() {
         return this.nation;
+    }
+
+    //used to shuffle standings to get random standings for non-user leagues.
+    public ArrayList<Team> shuffleStandings() {
+        ArrayList<Team> standings = getStandings();
+        Collections.shuffle(standings);
+
+        return standings;
     }
 
 

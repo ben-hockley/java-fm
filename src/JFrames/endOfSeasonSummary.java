@@ -3,12 +3,19 @@ package JFrames;
 import Objects.Player;
 import Objects.Team;
 import data.Data;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
 public class endOfSeasonSummary extends JFrame {
+
+    Team championshipWinners;
+    Team championsShipRunnersUp;
+    Team championshipPlayoffWinners;
+
+    Team premierLeague20th;
+    Team premierLeague19th;
+    Team premierLeague18th;
     public endOfSeasonSummary(Team userTeam) {
         setTitle("End of Season Summary");
         setSize(800, 600);
@@ -18,13 +25,27 @@ public class endOfSeasonSummary extends JFrame {
         //END OF SEASON BACK-END FUNCTIONS.
 
         //promotion and relegation (english league)
-        Data.england.getLeagueByTier(1).getStandings().get(19).relegate();
-        Data.england.getLeagueByTier(1).getStandings().get(18).relegate();
-        Data.england.getLeagueByTier(1).getStandings().get(17).relegate();
 
-        Data.england.getLeagueByTier(2).getStandings().get(0).promote();
-        Data.england.getLeagueByTier(2).getStandings().get(0).promote();
-        Data.england.getLeagueByTier(2).getStandings().get(0).promote();
+
+        //promote three random teams from the championship to the premier league.
+        ArrayList<Team> randomisedChampionshipStandings = Data.england.getLeagueByTier(2).shuffleStandings();
+
+        championshipWinners = randomisedChampionshipStandings.get(0);
+        championsShipRunnersUp = randomisedChampionshipStandings.get(1);
+        championshipPlayoffWinners = randomisedChampionshipStandings.get(2);
+
+        championshipWinners.promote();
+        championsShipRunnersUp.promote();
+        championshipPlayoffWinners.promote();
+
+        //relegate bottom 3 teams from premier league to the championship
+        premierLeague20th = Data.england.getLeagueByTier(1).getStandings().get(19);
+        premierLeague19th = Data.england.getLeagueByTier(1).getStandings().get(18);
+        premierLeague18th = Data.england.getLeagueByTier(1).getStandings().get(17);
+
+        premierLeague18th.relegate();
+        premierLeague19th.relegate();
+        premierLeague20th.relegate();
 
         //ArrayList to store retiring players, so they can be displayed in the JFrame.
         ArrayList<Player> retiringPlayers = new ArrayList<>();
@@ -72,7 +93,8 @@ public class endOfSeasonSummary extends JFrame {
         // CONTENTS OF JFRAME
         setLayout(new BorderLayout());
 
-        JLabel titleLabel = getLeagueChampionsLabel("End of Season Summary", Font.BOLD, 24, SwingConstants.CENTER, Color.BLUE);
+        JLabel titleLabel = getHeadingLabel("End of Season Summary", Font.BOLD, 24, SwingConstants.CENTER, Color.BLUE);
+        titleLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + userTeam.getTeamLogo()).getImage().getScaledInstance(55,72, Image.SCALE_SMOOTH)));
 
         titleLabel.setPreferredSize(new Dimension(800, 50));
         this.add(titleLabel, BorderLayout.NORTH);
@@ -82,7 +104,7 @@ public class endOfSeasonSummary extends JFrame {
         retiringPlayersPanel.setBackground(Color.GRAY);
         retiringPlayersPanel.setForeground(Color.BLUE);
 
-        JLabel retiringPlayersTitleLabel = getLeagueChampionsLabel("Retiring Players:", Font.PLAIN, 18, SwingConstants.LEFT, Color.BLUE);
+        JLabel retiringPlayersTitleLabel = getHeadingLabel("Retiring Players:", Font.PLAIN, 18, SwingConstants.LEFT, Color.BLUE);
         retiringPlayersPanel.add(retiringPlayersTitleLabel);
 
         for (Player player : retiringPlayers){
@@ -112,50 +134,59 @@ public class endOfSeasonSummary extends JFrame {
         }
     }
 
-    private static JPanel getMainPanel(Team userTeam) {
+    private JPanel getMainPanel(Team userTeam) {
         JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(6, 1));
+        mainPanel.setLayout(new GridLayout(8, 1));
         mainPanel.setBackground(Color.GRAY);
-
 
         // League
         String leagueName = userTeam.getLeague().getName();
         Team LeagueChampions = userTeam.getLeague().getStandings().get(0);
-        Player TopGoalscorer = userTeam.getLeague().getTopGoalscorers().get(0);
+        Team ChampionsLeagueWinner = Data.world.getCupByName("UEFA Champions League").getChampion();
+        Player LeagueTopGoalscorer = userTeam.getLeague().getTopGoalscorers().get(0);
+        Player ChampionsLeagueTopGoalscorer = Data.world.getCupByName("UEFA Champions League").getTopGoalscorer().get(0);
 
-        JLabel leagueChampionsLabel = getLeagueChampionsLabel(leagueName + " Champions:" + LeagueChampions.getTeamName(), Font.BOLD, 18, SwingConstants.LEFT, LeagueChampions.getTeamColor());
+        JLabel leagueChampionsLabel = getHeadingLabel(leagueName + " Champions:" + LeagueChampions.getTeamName(), Font.BOLD, 18, SwingConstants.LEFT, LeagueChampions.getTeamColor());
+        leagueChampionsLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + LeagueChampions.getTeamLogo()).getImage().getScaledInstance(55,72, Image.SCALE_SMOOTH)));
+        leagueChampionsLabel.setHorizontalTextPosition(SwingConstants.LEFT);
+        leagueChampionsLabel.setIconTextGap(50);
+
+        JLabel leagueTopGoalScorerLabel = getFormattedTopGoalScorerLabel(LeagueTopGoalscorer, "League");
+        JLabel leagueRelegatedTeamsLabel = getRelegatedTeamsLabel();
+        JLabel teamsPromotedToLeagueLabel = getHeadingLabel("Teams Promoted to " + leagueName + ": " + championshipWinners.getTeamName() + ", " + championsShipRunnersUp.getTeamName() + ", " + championshipPlayoffWinners.getTeamName(), Font.BOLD, 12, SwingConstants.LEFT, Color.GREEN);
+        JLabel championsLeagueWinnerLabel = getHeadingLabel("Champions League Winner: " + ChampionsLeagueWinner.getTeamName(), Font.BOLD, 18, SwingConstants.LEFT, ChampionsLeagueWinner.getTeamColor());
+        championsLeagueWinnerLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + ChampionsLeagueWinner.getTeamLogo()).getImage().getScaledInstance(55,72, Image.SCALE_SMOOTH)));
+        championsLeagueWinnerLabel.setHorizontalTextPosition(SwingConstants.LEFT);
+        championsLeagueWinnerLabel.setIconTextGap(50);
+
+        JLabel topGoalScorerChampionsLeague = getFormattedTopGoalScorerLabel(ChampionsLeagueTopGoalscorer, "Cup");
+        JLabel ballonDorWinnerLabel = getBallonDorWinnerLabel();
+        JLabel goldenBoyWinnerLabel = getGoldenBoyWinnerLabel();
+
         mainPanel.add(leagueChampionsLabel);
-
-        JLabel leagueTopGoalScorerLabel = getTopGoalScorerLabel(TopGoalscorer, "League");
         mainPanel.add(leagueTopGoalScorerLabel);
-
-        JLabel championsLeagueWinner = getLeagueChampionsLabel("Champions League Winner: " + Data.world.getCupByName("UEFA Champions League").getChampion().getTeamName(), Font.BOLD, 18, SwingConstants.LEFT, Data.world.getCupByName("UEFA Champions League").getChampion().getTeamColor());
-        mainPanel.add(championsLeagueWinner);
-
-        JLabel topGoalScorerChampionsLeague = getTopGoalScorerLabel(Data.world.getCupByName("UEFA Champions League").getTopGoalscorer().get(0), "Cup");
+        mainPanel.add(leagueRelegatedTeamsLabel);
+        mainPanel.add(teamsPromotedToLeagueLabel);
+        mainPanel.add(championsLeagueWinnerLabel);
         mainPanel.add(topGoalScorerChampionsLeague);
-
-        JLabel ballonDorWinner = getBallonDorWinner();
-        mainPanel.add(ballonDorWinner);
-
-        JLabel goldenBoyWinner = getGoldenBoyWinner();
-        mainPanel.add(goldenBoyWinner);
+        mainPanel.add(ballonDorWinnerLabel);
+        mainPanel.add(goldenBoyWinnerLabel);
 
         return mainPanel;
     }
 
-    private static JLabel getLeagueChampionsLabel(String leagueName, int bold, int size, int left, Color LeagueChampions) {
-        JLabel leagueChampionsLabel = new JLabel(leagueName);
-        leagueChampionsLabel.setFont(new Font("Arial", bold, size));
-        leagueChampionsLabel.setHorizontalAlignment(left);
-        leagueChampionsLabel.setVerticalAlignment(SwingConstants.CENTER);
-        leagueChampionsLabel.setBackground(LeagueChampions);
-        leagueChampionsLabel.setForeground(Color.WHITE);
-        leagueChampionsLabel.setOpaque(true);
-        return leagueChampionsLabel;
+    private JLabel getHeadingLabel(String leagueName, int bold, int size, int left, Color LeagueChampions) {
+        JLabel newJLabel = new JLabel(leagueName);
+        newJLabel.setFont(new Font("Arial", bold, size));
+        newJLabel.setHorizontalAlignment(left);
+        newJLabel.setVerticalAlignment(SwingConstants.CENTER);
+        newJLabel.setBackground(LeagueChampions);
+        newJLabel.setForeground(Color.WHITE);
+        newJLabel.setOpaque(true);
+        return newJLabel;
     }
 
-    private static JLabel getGoldenBoyWinner() {
+    private JLabel getGoldenBoyWinnerLabel() {
         Player bestYoungPlayerInWorld = Data.world.getHighestRatedPlayerUnder21();
         JLabel goldenBoyWinner = new JLabel("Golden Boy: " + bestYoungPlayerInWorld.getPlayerName() + ", " + bestYoungPlayerInWorld.getTeam().getTeamName() + "/" + bestYoungPlayerInWorld.getNationality().getNationName());
         goldenBoyWinner.setHorizontalAlignment(SwingConstants.CENTER);
@@ -167,7 +198,7 @@ public class endOfSeasonSummary extends JFrame {
         return goldenBoyWinner;
     }
 
-    private static JLabel getBallonDorWinner() {
+    private JLabel getBallonDorWinnerLabel() {
         Player bestPlayerInWorld = Data.world.getHighestRatedPlayer();
         JLabel ballonDorWinner = new JLabel("Ballon d'Or: " + bestPlayerInWorld.getPlayerName() + ", " + bestPlayerInWorld.getTeam().getTeamName() + "/" + bestPlayerInWorld.getNationality().getNationName());
         ballonDorWinner.setHorizontalAlignment(SwingConstants.CENTER);
@@ -179,11 +210,14 @@ public class endOfSeasonSummary extends JFrame {
         return ballonDorWinner;
     }
 
-    private static JLabel getTopGoalScorerLabel(Player TopGoalscorer, String tournamentType) {
+    private JLabel getFormattedTopGoalScorerLabel(Player TopGoalscorer, String tournamentType) {
 
 
-        JLabel topGoalScorerLabel = getGoalScorerLabel(TopGoalscorer, tournamentType);
+        JLabel topGoalScorerLabel = getTopGoalScorerLabel(TopGoalscorer, tournamentType);
         topGoalScorerLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        topGoalScorerLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + TopGoalscorer.getTeam().getTeamLogo()).getImage().getScaledInstance(55,72, Image.SCALE_SMOOTH)));
+        topGoalScorerLabel.setHorizontalTextPosition(SwingConstants.LEFT);
+        topGoalScorerLabel.setIconTextGap(50);
         topGoalScorerLabel.setHorizontalAlignment(SwingConstants.LEFT);
         topGoalScorerLabel.setVerticalAlignment(SwingConstants.CENTER);
         topGoalScorerLabel.setBackground(TopGoalscorer.getTeam().getTeamColor());
@@ -192,7 +226,7 @@ public class endOfSeasonSummary extends JFrame {
         return topGoalScorerLabel;
     }
 
-    private static JLabel getGoalScorerLabel(Player TopGoalscorer, String tournamentType) {
+    private JLabel getTopGoalScorerLabel(Player TopGoalscorer, String tournamentType) {
         JLabel topGoalScorerLabel;
 
         if (tournamentType.equals("League")){
@@ -205,7 +239,11 @@ public class endOfSeasonSummary extends JFrame {
         return topGoalScorerLabel;
     }
 
-    private static JLabel getRetiringPlayerLabel(Player player) {
-        return getLeagueChampionsLabel(player.getPlayerName() + ", " + player.getAge() + ", " + player.getPosition() + ", " + player.getTeam().getShortName(), Font.PLAIN, 12, SwingConstants.LEFT, player.getTeam().getTeamColor());
+    private JLabel getRelegatedTeamsLabel() {
+        return getHeadingLabel("Premier League Relegated Teams: " + premierLeague20th.getTeamName() + ", " + premierLeague19th.getTeamName() + ", " + premierLeague18th.getTeamName(), Font.BOLD, 12, SwingConstants.LEFT, Color.RED);
+    }
+
+    private JLabel getRetiringPlayerLabel(Player player) {
+        return getHeadingLabel(player.getPlayerName() + ", " + player.getAge() + ", " + player.getPosition() + ", " + player.getTeam().getShortName(), Font.PLAIN, 12, SwingConstants.LEFT, player.getTeam().getTeamColor());
     }
 }
