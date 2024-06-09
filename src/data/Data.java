@@ -75,6 +75,7 @@ public class Data {
     public static Nation guinea = new Nation("Guinea", "Guinea.png", 59, "Africa");
     public static Nation georgia = new Nation("Georgia", "Georgia.png", 60, "Europe");
     public static Nation bosniaHerzegovina = new Nation("Bosnia and Herzegovina", "BosniaHerzegovina.png", 61, "Europe");
+    public static Nation northernIreland = new Nation("Northern Ireland", "NorthernIreland.png", 62, "Europe");
     public static Nation canada = new Nation("Canada", "Canada.png", 55, "North America");
     public static Integer[][] listOfLeagueDates = {
             {6, 8},
@@ -531,6 +532,7 @@ public class Data {
         new Player("Luke", "Shaw", "DEF", manUtd, england, 81, 28);
         new Player("Harry", "Maguire", "DEF", manUtd, england, 80, 31);
         new Player("Diogo", "Dalot", "DEF", manUtd, portugal, 78, 25);
+        new Player("Jonny", "Evans", "DEF", manUtd, northernIreland, 74, 36);
 
         new Player("Bruno", "Fernandes", "MID", manUtd, portugal, 92, 29);
         new Player("Scott", "McTominay", "MID", manUtd, scotland, 85, 27);
@@ -863,7 +865,7 @@ public class Data {
         Team sheffieldWednesday = new Team("Sheffield Wednesday", "Sheff Wed", "sheffWed.png", championship, new Integer[]{4, 3, 3}, new Color(14, 98, 170), 30);
 
         new Player("James", "Beadle", "GK", sheffieldWednesday, england, 80, 19);
-        new Player("Pierce", "Chales", "GK", sheffieldWednesday, england, 73, 18);
+        new Player("Pierce", "Charles", "GK", sheffieldWednesday, northernIreland, 73, 18);
 
         new Player("Di shon", "Bernard", "DEF", sheffieldWednesday, jamaica, 78, 23);
         new Player("Pol", "Valentin", "DEF", sheffieldWednesday, spain, 77, 27);
@@ -930,9 +932,53 @@ public class Data {
         new Player("Issahaku", "Fatawu", "FWD", leicester, ghana, 77, 20);
         new Player("Kelechi", "Iheanacho", "FWD", leicester, nigeria, 75, 27);
 
+        Team southampton = new Team("Southampton", "Southampton", "southampton.png", championship, new Integer[]{4, 3, 3}, new Color(213, 0, 0), 60);
+        new Player("Gavin", "Bazunu", "GK", southampton, ireland, 80, 22);
+        new Player("Alex", "McCarthy", "GK", southampton, england, 75, 34);
+
+        new Player("Taylor", "Harwood-Bellis", "DEF", southampton, england, 83, 22);
+        new Player("Jan", "Bednarek", "DEF", southampton, poland, 78, 28);
+        new Player("Kyle", "Walker-Peters", "DEF", southampton, england, 77, 27);
+        new Player("Romain", "Perraud", "DEF", southampton, france, 75, 26);
+        new Player("Jack", "Stephens", "DEF", southampton, england, 74, 30);
+        new Player("Juan", "Larios", "DEF", southampton, spain, 72, 20);
+
+        new Player("Shea", "Charles", "MID", southampton, northernIreland, 80, 20);
+        new Player("Carlos", "Alcaraz", "MID", southampton, argentina, 78, 21);
+        new Player("Will", "Smallbone", "MID", southampton, ireland, 75, 24);
+        new Player("Joe", "Aribo", "MID", southampton, nigeria, 74, 27);
+        new Player("Stuart", "Armstrong", "MID", southampton, scotland, 73, 31);
+
+        new Player("Adam", "Armstrong", "FWD", southampton, england, 80, 27);
+        new Player("Paul", "Onuachu", "FWD", southampton, nigeria, 79, 30);
+        new Player("Kamaldeen", "Sulemana", "FWD", southampton, ghana, 76, 22);
+        new Player("Samuel", "Edozie", "FWD", southampton, england, 75, 21);
+        new Player("Che", "Adams", "FWD", southampton, scotland, 75, 27);
+
+        Team sunderland = new Team("Sunderland", "Sunderland", "sunderland.png", championship, new Integer[]{4, 3, 3}, new Color(255, 0, 0), 30);
+        new Player("Anthony", "Patterson", "GK", sunderland, england, 82, 24);
+        new Player("Nathan", "Bishop", "GK", sunderland, england, 70, 24);
+
+        new Player("Trai", "Hulme", "DEF", sunderland, northernIreland, 76, 22);
+        new Player("Dennis", "Cirkin", "DEF", sunderland, england, 75, 22);
+        new Player("Daniel", "Ballard", "DEF", sunderland, northernIreland, 74, 24);
+        new Player("Luke", "O'Nien", "DEF", sunderland, england, 73, 29);
+        new Player("Leo Fuhr", "Hjelde", "DEF", sunderland, norway, 72, 20);
+        new Player("Niall", "Huggins", "DEF", sunderland, wales, 71, 23);
+
+        new Player("Dan", "Neil", "MID", sunderland, scotland, 77, 22);
+        new Player("Pierre", "Ekwah", "MID", sunderland, france, 76, 20);
+        new Player("Chris", "Rigg", "MID", sunderland, england, 74, 16);
+        new Player("Corry", "Evans", "MID", sunderland, northernIreland, 72, 33);
+        new Player("Elliot", "Embleton", "MID", sunderland, england, 70, 25);
+
+        new Player("Jack", "Clarke", "FWD", sunderland, england, 81, 23);
+        new Player("Jobe", "Bellingham", "FWD", sunderland, england, 78, 18);
+        new Player("Patrick", "Roberts", "FWD", sunderland, england, 76, 27);
+        new Player("Adil", "Aouchiche", "FWD", sunderland, france, 73, 21);
+        new Player("Abdoullah", "Bah", "FWD", sunderland, france, 72, 20);
+
         world.addLeague(championship);
-
-
     }
     public static void setChampionsLeague() {
         League laLiga = new League("La Liga", "LaLiga.png", 1, spain);

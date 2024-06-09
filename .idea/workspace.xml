@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="Promotion and relegation in england">
+    <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="New formatting on JFrames with team images">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JFrames/endOfSeasonSummary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/endOfSeasonSummary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JFrames/endOfSemiFinalsSummary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/endOfSemiFinalsSummary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/League.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/League.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/World.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JFrames/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JPanels/HomeDefaultDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JPanels/HomeDefaultDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JPanels/HomeGameDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JPanels/HomeGameDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Data.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +194,9 @@
       <workItem from="1717591646801" duration="16595000" />
       <workItem from="1717664485864" duration="8617000" />
       <workItem from="1717785087679" duration="9740000" />
-      <workItem from="1717829786817" duration="4786000" />
+      <workItem from="1717829786817" duration="4940000" />
+      <workItem from="1717845562643" duration="700000" />
+      <workItem from="1717927315878" duration="4154000" />
     </task>
     <task id="LOCAL-00001" summary="calendar and event types to add to calendar">
       <created>1715611792284</created>
@@ -245,14 +246,6 @@
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
       <updated>1715807995417</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Colour coded positions and added error handling for different positions">
-      <option name="closed" value="true" />
-      <created>1716066058424</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1716066058424</updated>
     </task>
     <task id="LOCAL-00021" summary="Removed unnecessary messages">
       <option name="closed" value="true" />
@@ -582,7 +575,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717800052904</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="New formatting on JFrames with team images">
+      <option name="closed" value="true" />
+      <created>1717840720718</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1717840720719</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,7 +601,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Dynamic player ratings, ratings displayed in team management." />
     <MESSAGE value="debugs" />
     <MESSAGE value="new 'World' object, contains all leagues loaded into game" />
     <MESSAGE value="Added more champions league teams" />
@@ -625,7 +625,8 @@
     <MESSAGE value="Set league and champions league matches to actual dates" />
     <MESSAGE value="Fixed bug where getting stuck in for loop was causing program to crash" />
     <MESSAGE value="Promotion and relegation in england" />
-    <option name="LAST_COMMIT_MESSAGE" value="Promotion and relegation in england" />
+    <MESSAGE value="New formatting on JFrames with team images" />
+    <option name="LAST_COMMIT_MESSAGE" value="New formatting on JFrames with team images" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

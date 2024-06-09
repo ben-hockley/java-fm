@@ -285,7 +285,7 @@ public class HomeGameDisplay extends JPanel {
     }
 
     private JLabel getManageTeamButton(Team userTeam) {
-        manageTeamButton = new JLabel("Manage Team");
+        manageTeamButton = new JLabel("Manage Team (M)"); //references shortcut to manage team (M).
 
         manageTeamButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

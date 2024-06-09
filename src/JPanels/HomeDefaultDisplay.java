@@ -1,5 +1,6 @@
 package JPanels;
 
+import JFrames.UI;
 import JFrames.manageTeam;
 import JFrames.transferMarket;
 import Objects.Team;
@@ -13,7 +14,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class HomeDefaultDisplay extends JPanel {
-    public HomeDefaultDisplay(ArrayList<Team> leagueStandings, Team userTeam, dateTime clock) {
+    public HomeDefaultDisplay(ArrayList<Team> leagueStandings, Team userTeam, dateTime clock, UI parentUI) {
         this.setPreferredSize(new Dimension(1000,350));
         this.setLayout(new BorderLayout());
         this.removeAll();
@@ -54,6 +55,8 @@ public class HomeDefaultDisplay extends JPanel {
         BlueLabel.add(manageTeamPrompt);
         BlueLabel.setFocusable(true);
 
+        //these key listeners act as a substitute for the key listeners on the progress date button as the progress date button is not focused when the homeDefaultDisplay first loads.
+
         BlueLabel.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -66,6 +69,28 @@ public class HomeDefaultDisplay extends JPanel {
                             new transferMarket(userTeam);
                         } else {
                             JOptionPane.showMessageDialog(null, "Transfer window shut, you can buy and sell players in January, June, July and August.");
+                        }
+                    }
+                }
+            }
+        });
+
+
+
+        BlueLabel.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_P) {
+                    if (parentUI.progressDateButton.isEnabled()){
+                        clock.progressDate();
+                        parentUI.updateCalendar(clock.getDateNumber(), userTeam);
+
+                        //dispose of all frames except the main frame.
+                        if (Frame.getFrames().length > 1){
+
+                            for (int i=1; i< Frame.getFrames().length; i++){
+                                Frame.getFrames()[i].dispose();
+                            }
                         }
                     }
                 }

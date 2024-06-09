@@ -32,7 +32,7 @@ public class UI extends JFrame {
      * The panel that contains the calendar, applied NORTH in the BorderLayout.
      */
     private final JPanel topPanel; //JPanel to hold the calendar. (North)
-    private final Button progressDateButton; //Button to progress the date. (South)
+    public final Button progressDateButton; //Button to progress the date. (South)
     private JPanel homeDefaultDisplay;
 
     ArrayList<ArrayList<Game>> allGameFixtures;
@@ -60,12 +60,43 @@ public class UI extends JFrame {
         this.add(topPanel, BorderLayout.NORTH);
 
         // Add a button to progress the date to the SOUTH of the BorderLayout.
-        progressDateButton = new Button("Progress Date");
+        progressDateButton = new Button("Progress Date (P)"); //references shortcut to progress date (P).
         progressDateButton.setPreferredSize(new Dimension(100, 50));
         progressDateButton.addActionListener(e -> {
             clock.progressDate();
             updateCalendar(clock.getDateNumber(), userTeam);
+
+            //dispose of all frames except the main frame.
+            if (Frame.getFrames().length > 1){
+
+                for (int i=1; i< Frame.getFrames().length; i++){
+                    Frame.getFrames()[i].dispose();
+                }
+            }
         });
+
+
+        //progress date shortcut by pressing P.
+        progressDateButton.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_P) {
+                    if (progressDateButton.isEnabled()) {
+                        clock.progressDate();
+                        updateCalendar(clock.getDateNumber(), userTeam);
+
+                        //dispose of all frames except the main frame.
+                        if (Frame.getFrames().length > 1){
+
+                            for (int i=1; i< Frame.getFrames().length; i++){
+                                Frame.getFrames()[i].dispose();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
         progressDateButton.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -125,7 +156,7 @@ public class UI extends JFrame {
 
             ArrayList<Team> actualStandings = userTeam.getLeague().getStandings();
 
-            homeDefaultDisplay = new HomeDefaultDisplay(actualStandings, userTeam, clock);
+            homeDefaultDisplay = new HomeDefaultDisplay(actualStandings, userTeam, clock, this);
             this.add(homeDefaultDisplay, BorderLayout.CENTER);
             homeDisplaySet = true;
         }
