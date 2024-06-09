@@ -71,13 +71,15 @@ public class endOfSeasonSummary extends JFrame {
             }
 
             //if player is 35 or above, 50% chance the player retires
-            if (player.getAge() >= 35){
+            if (player.getRating() < 70){
+                player.retirePlayer(); //retire player if they are not good enough anymore
+                retiringPlayers.add(player);
+            } else if (player.getAge() >= 35){
                 int retirementChance = (int) Math.round(Math.random());
 
                 if (retirementChance == 1){
                     //removes the player and replaces them with a regen
                     player.retirePlayer();
-
                     retiringPlayers.add(player);
                 }
             }

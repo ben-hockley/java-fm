@@ -34,8 +34,6 @@ public class Main {
 
         JFrame userUI = new UI(userTeam);
         userUI.setTitle("Football Manager 2024");
-
-        System.out.println(Data.world.getAllTeams().size());
     }
 }
 
