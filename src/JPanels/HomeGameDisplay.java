@@ -106,29 +106,48 @@ public class HomeGameDisplay extends JPanel {
                     }
                 }
 
-
-                //add appearances to all players in the game.
+                //add appearances to all starting players and players subbed on in the non-user game.
                 Player[] homeStartingEleven = game.getHomeTeam().getStartingEleven();
+                ArrayList<ArrayList<Player>> homeSubstitutions = game.getHomeTeam().getSubstitutions();
+                Integer[] homeSubstitutionMinutes = new Integer[3];
+                for (int i = 0; i < 3; i++) {
+
+                    //random minute between 45 and 95 for each substitution. (subs don't usually happen before half-time)
+                    homeSubstitutionMinutes[i] = (int) (Math.random() * 50 + 45);
+                }
 
                 if (game.getGameType().equals("League")){
                     for (Player player : homeStartingEleven) {
+                        player.addLeagueAppearance();
+                    }
+                    for (Player player : homeSubstitutions.get(1)){
                         player.addLeagueAppearance();
                     }
                 } else if (game.getGameType().equals("Cup")){
                     for (Player player : homeStartingEleven) {
                         player.addCupAppearance();
                     }
+                    for (Player player : homeSubstitutions.get(1)){
+                        player.addCupAppearance();
+                    }
                 }
 
 
                 Player[] awayStartingEleven = game.getAwayTeam().getStartingEleven();
+                ArrayList<ArrayList<Player>> awaySubstitutions = game.getAwayTeam().getSubstitutions();
 
                 if (game.getGameType().equals("League")){
                     for (Player player : awayStartingEleven) {
                         player.addLeagueAppearance();
                     }
+                    for (Player player : awaySubstitutions.get(1)){
+                        player.addLeagueAppearance();
+                    }
                 } else if (game.getGameType().equals("Cup")){
                     for (Player player : awayStartingEleven) {
+                        player.addCupAppearance();
+                    }
+                    for (Player player : awaySubstitutions.get(1)){
                         player.addCupAppearance();
                     }
                 }
@@ -172,6 +191,14 @@ public class HomeGameDisplay extends JPanel {
                         int randomIntBetween1And4 = (int)Math.floor(Math.random()*4) + 1;
                         scorer = homeStartingEleven[randomIntBetween1And4]; //DEFENDER
                     }
+
+                     if (homeSubstitutions.get(0).contains(scorer)){
+                         //50% chance the scorer is the player that replaced the subbed off starter.
+                         if (Math.random() > 0.5){
+                             int index = homeSubstitutions.get(0).indexOf(scorer);
+                             scorer = homeSubstitutions.get(1).get(index);
+                         }
+                     }
 
                     //add a goal to the goalscorer's tally
 
@@ -217,6 +244,14 @@ public class HomeGameDisplay extends JPanel {
                         // 10% chance the scorer is a defender (2.5% chance for each defender)
                         int randomIntBetween1And4 = (int)Math.floor(Math.random()*4) + 1;
                         scorer = awayStartingEleven[randomIntBetween1And4]; //DEFENDER
+                    }
+
+                    if (awaySubstitutions.get(0).contains(scorer)){
+                        //50% chance the scorer is the player that replaced the subbed off starter.
+                        if (Math.random() > 0.5){
+                            int index = awaySubstitutions.get(0).indexOf(scorer);
+                            scorer = awaySubstitutions.get(1).get(index);
+                        }
                     }
 
                     //add a goal to the goalscorer's tally
