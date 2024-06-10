@@ -18,6 +18,7 @@ public class Player {
     //Cup stats
     private Integer cupAppearances;
     private Integer cupGoals;
+    private Boolean sellable;
 
     public Player(String firstName, String lastName, String position,
                   Team team, Nation nationality, Integer rating, Integer age) {
@@ -44,6 +45,8 @@ public class Player {
         //Cup stats (set to zero by default)
         this.cupAppearances = 0;
         this.cupGoals = 0;
+
+        this.sellable = true; //allows player to be sold in the transfer market.
     }
 
     public String getPlayerName() {
@@ -151,5 +154,13 @@ public class Player {
 
     public Nation getNationality() {
         return nationality;
+    }
+
+    public void setSellable(Boolean sellable){
+        this.sellable = sellable;
+    }
+
+    public Boolean getSellable(){
+        return sellable;
     }
 }

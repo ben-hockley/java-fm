@@ -111,6 +111,7 @@ public class World {
                 || playerForSale.getPosition().equals("DEF") && sellingTeam.getNumberOfDefenders() <= 5 //team must have atleast one backup defender
                 || playerForSale.getPosition().equals("MID") && sellingTeam.getNumberOfMidfielders() <= 4 //team must have atleast one backup midfielder
                 || playerForSale.getPosition().equals("FWD") && sellingTeam.getNumberOfForwards() <= 4 //team must have atleast one backup forward
+                || playerForSale.getSellable().equals(false) //check if the player is sellable (some players are not sellable, e.g. new signings)
         ){
             //if conditions are not met, reselect a player to sell.
             playerForSale = getAllPlayers().get((int) (Math.random() * getAllPlayers().size()));
@@ -122,11 +123,13 @@ public class World {
 
         //once eligible player and eligible buying team have been found, transfer the player.
 
-        if (buyingTeam == null){
+        if (buyingTeam == null) {
             //if no suitable buying team has been found, then the player will not be sold.
             return;
         }
+
         playerForSale.setTeam(buyingTeam);
+        playerForSale.setSellable(false); //new signings cannot be sold in the same season they are purchased.
 
         //update the transfer budgets of the buying and selling teams.
         buyingTeam.reduceTransferBudget(playerForSale.getValue());
@@ -166,7 +169,13 @@ public class World {
     }
 
     public void wipeRecentTransfersList(){
+
         recentTransfers.clear();
+
+        for (Player player : getAllPlayers()){
+            //set all players to sellable at the start of the new season.
+            player.setSellable(true);
+        }
     }
 
     public ArrayList<String> getRecentTransfers(){
@@ -184,11 +193,4 @@ public class World {
             return digit + "th";
         }
     }
-
-    public ArrayList<League> getAllLeagues() {
-        return leagues;
-    }
-
-
-
 }
