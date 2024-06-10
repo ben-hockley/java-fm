@@ -1,6 +1,7 @@
 package Objects;
 
 import data.Data;
+import data.regenNames;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class Nation {
 
         //if less than the desired amount of players in the position, add random players to fill the position.
         while (playersInPosition.size() < numberOfPlayers) {
-            playersInPosition.add(new Player(Data.listOfFirstNames[(int) (Math.random () * Data.listOfFirstNames.length)], Data.listOfLastNames[(int) (Math.random () * Data.listOfLastNames.length)], position, null, this, 60, 18 + (int) (Math.random() * 20)));
+            playersInPosition.add(new Player(regenNames.listOfFirstNames[(int) (Math.random () * regenNames.listOfFirstNames.length)], regenNames.listOfLastNames[(int) (Math.random () * regenNames.listOfLastNames.length)], position, null, this, 60, 18 + (int) (Math.random() * 20)));
         }
 
         return playersInPosition;

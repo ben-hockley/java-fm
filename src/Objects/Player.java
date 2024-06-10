@@ -1,6 +1,7 @@
 package Objects;
 
 import data.Data;
+import data.regenNames;
 
 public class Player {
     private final String firstName;
@@ -117,8 +118,8 @@ public class Player {
 
     public void retirePlayer(){
         //create regen to replace retired player
-        String regenFirstName = Data.listOfFirstNames[(int) (Math.random() * Data.listOfFirstNames.length)];
-        String regenLastName = Data.listOfLastNames[(int) (Math.random() * Data.listOfLastNames.length)];
+        String regenFirstName = regenNames.listOfFirstNames[(int) (Math.random() * regenNames.listOfFirstNames.length)];
+        String regenLastName = regenNames.listOfLastNames[(int) (Math.random() * regenNames.listOfLastNames.length)];
         Integer regenRating = 70 + (int) (Math.random() * 15);
         Integer regenAge = 16 + (int) (Math.random() * 5);
 
