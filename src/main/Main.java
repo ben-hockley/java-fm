@@ -1,12 +1,9 @@
 package main;
 
-import JFrames.endOfSeasonSummary;
-import JFrames.endOfSemiFinalsSummary;
 import data.Data;
 import JFrames.UI;
 import Objects.Team;
 import javax.swing.JFrame;
-import java.util.ArrayList;
 
 public class Main {
     /**

@@ -46,6 +46,25 @@ public class gameSimulator extends JFrame {
         int homeGoals = (int)Math.round(homeRating * homeRandomValue);
         int awayGoals = (int)Math.round(awayRating * awayRandomValue);
 
+        //get substitutions for home team (these will be applied later on in the code)
+        ArrayList<ArrayList<Player>> homeSubstitutions = homeTeam.getSubstitutions();
+        Integer[] homeSubstitutionMinutes = new Integer[3];
+        for (int i = 0; i < 3; i++) {
+
+            //random minute between 45 and 95 for each substitution. (subs don't usually happen before half-time)
+            homeSubstitutionMinutes[i] = (int) (Math.random() * 50 + 45);
+        }
+
+        //get substitutions for away team (these will be applied later on in the code)
+        ArrayList<ArrayList<Player>> awaySubstitutions = awayTeam.getSubstitutions();
+        Integer[] awaySubstitutionMinutes = new Integer[3];
+        for (int i = 0; i < 3; i++) {
+            //random minute between 45 and 95 for each substitution. (subs don't usually happen before half-time)
+            awaySubstitutionMinutes[i] = (int) (Math.random() * 50 + 45);
+        }
+
+
+
         if (simulatedGame.getGameType().equals("League")) {
             //add results to teams' league stats for the league table.
             if (homeGoals > awayGoals) {
@@ -120,6 +139,14 @@ public class gameSimulator extends JFrame {
                 scorer = homeTeam.getStartingEleven()[randomIntBetween1And4]; //DEFENDER
             }
 
+            int minuteOfGoal = (int)(Math.random() * 98 + 1);
+
+            //switch goalscorer to the player who replaced the generated goalscorer if the scorer had been subbed off before the minute of the goal.
+            if (homeSubstitutions.get(0).contains(scorer) && minuteOfGoal > homeSubstitutionMinutes[homeSubstitutions.get(0).indexOf(scorer)]) {
+                int index = homeSubstitutions.get(0).indexOf(scorer);
+                scorer = homeSubstitutions.get(1).get(index);
+            }
+
             //add a goal to the goalscorer's league goals tally
             if (simulatedGame.getGameType().equals("League")) {
                 scorer.addLeagueGoal();
@@ -128,7 +155,7 @@ public class gameSimulator extends JFrame {
             }
 
             //add scorer and random minute to the list of goalscorers printed on the match report.
-            homeGoalscorers.add(scorer.getPlayerName() + "  '" + (int)(Math.random() * 98 + 1));
+            homeGoalscorers.add(scorer.getPlayerName() + "  '" + minuteOfGoal);
         }
 
         for (int i = 0; i < awayGoals; i++) {
@@ -168,6 +195,14 @@ public class gameSimulator extends JFrame {
                 scorer = awayTeam.getStartingEleven()[randomIntBetween1And4]; //DEFENDER
             }
 
+            int minuteOfGoal = (int)(Math.random() * 98 + 1);
+
+            //switch goalscorer to the player who replaced the generated goalscorer if the scorer had been subbed off before the minute of the goal.
+            if (awaySubstitutions.get(0).contains(scorer) && minuteOfGoal > awaySubstitutionMinutes[awaySubstitutions.get(0).indexOf(scorer)]) {
+                int index = awaySubstitutions.get(0).indexOf(scorer);
+                scorer = awaySubstitutions.get(1).get(index);
+            }
+
             //add a goal to the goalscorer's league goals tally
             if (simulatedGame.getGameType().equals("League")) {
                 scorer.addLeagueGoal();
@@ -176,7 +211,7 @@ public class gameSimulator extends JFrame {
             }
 
             //add scorer and random minute to the list of goalscorers printed on the match report.
-            awayGoalscorers.add(scorer.getPlayerName() + "  '" + (int)(Math.random() * 98 + 1));
+            awayGoalscorers.add(scorer.getPlayerName() + "  '" + minuteOfGoal);
         }
 
 
@@ -220,7 +255,9 @@ public class gameSimulator extends JFrame {
             homeLineupLabel.setForeground(Color.BLACK);
             homeLineupLabel.setOpaque(true);
             homeLineupLabel.add(new JLabel("Formation: " + homeTeam.getFormationInText()));
+
             Player[] homeStarting11 = homeTeam.getStartingEleven();
+
             for (Player player : homeStarting11) {
 
                 //add a league appearance to the player's stats
@@ -231,14 +268,41 @@ public class gameSimulator extends JFrame {
                 }
 
                 //add the players name to the list of players printed on the starting 11 on the match report.
-                homeLineupLabel.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
+
+                JLabel playerLabel = new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating());
+
+                if (homeSubstitutions.get(0).contains(player)) {
+                    int index = homeSubstitutions.get(0).indexOf(player);
+                    int minuteSubbed = homeSubstitutionMinutes[index];
+
+                    playerLabel.setText(playerLabel.getText() + " ( ↘ " + minuteSubbed + "')");
+                }
+
+                homeLineupLabel.add(playerLabel);
             }
             ArrayList<Player> homeSubs = homeTeam.getSubstitutes();
             homeLineupLabel.add(new JLabel("Substitutes:"));
             for (Player player : homeSubs) {
 
                 //add the players name to the list of players printed on the substitutes on the match report.
-                homeLineupLabel.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
+
+                JLabel playerLabel = new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating());
+
+                if (homeSubstitutions.get(1).contains(player)) {
+                    int index = homeSubstitutions.get(1).indexOf(player);
+                    int minuteSubbed = homeSubstitutionMinutes[index];
+
+                    playerLabel.setText(playerLabel.getText() + " ( ↗ " + minuteSubbed + "')");
+
+                    //add appearance to the stats of the player subbed on
+                    if (simulatedGame.getGameType().equals("League")) {
+                        player.addLeagueAppearance();
+                    } else if (simulatedGame.getGameType().equals("Cup")) {
+                        player.addCupAppearance();
+                    }
+                }
+
+                homeLineupLabel.add(playerLabel);
             }
 
             homeTeamLabel.add(homeLineupLabel);
@@ -276,7 +340,9 @@ public class gameSimulator extends JFrame {
             awayLineupLabel.setForeground(Color.BLACK);
             awayLineupLabel.setOpaque(true);
             awayLineupLabel.add(new JLabel("Formation: " + awayTeam.getFormationInText()));
+
             Player[] awayStarting11 = awayTeam.getStartingEleven();
+
             for (Player player : awayStarting11) {
 
                 //add a league appearance to the player's stats.
@@ -287,14 +353,37 @@ public class gameSimulator extends JFrame {
                 }
 
                 //add the players name to the list of players printed on the starting 11 on the match report.
-                awayLineupLabel.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
+                JLabel playerLabel = new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating());
+
+                if (awaySubstitutions.get(0).contains(player)) {
+                    int index = awaySubstitutions.get(0).indexOf(player);
+                    int minuteSubbed = awaySubstitutionMinutes[index];
+
+                    playerLabel.setText(playerLabel.getText() + " ( ↘ " + minuteSubbed + "')");
+                }
+                awayLineupLabel.add(playerLabel);
             }
             ArrayList<Player> awaySubs = awayTeam.getSubstitutes();
             awayLineupLabel.add(new JLabel("Substitutes:"));
             for (Player player : awaySubs) {
 
                 //add the players name to the list of players printed on the substitutes on the match report.
-                awayLineupLabel.add(new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating()));
+                JLabel playerLabel = new JLabel(player.getPlayerName() + " - " + player.getPosition() + " - " + player.getRating());
+
+                if (awaySubstitutions.get(1).contains(player)) {
+                    int index = awaySubstitutions.get(1).indexOf(player);
+                    int minuteSubbed = awaySubstitutionMinutes[index];
+
+                    playerLabel.setText(playerLabel.getText() + " ( ↗ " + minuteSubbed + "')");
+
+                    //add appearance to the stats of the player subbed on
+                    if (simulatedGame.getGameType().equals("League")) {
+                        player.addLeagueAppearance();
+                    } else if (simulatedGame.getGameType().equals("Cup")) {
+                        player.addCupAppearance();
+                    }
+                }
+                awayLineupLabel.add(playerLabel);
             }
 
             awayTeamLabel.add(awayLineupLabel);

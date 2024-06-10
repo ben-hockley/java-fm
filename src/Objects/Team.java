@@ -5,6 +5,7 @@ import events.Game;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Team {
     //Team details, these will not change.
@@ -609,5 +610,80 @@ public class Team {
         league.removeTeam(this);
         this.league = league.getCountry().getLeagueByTier(1);
         league.addTeam(this);
+    }
+
+
+    /**
+     * Function to generate a 2D ArrayList of 3 random substitutions for the team to make in the match.
+     * @return a 2D arrayList, where the 1st inner arrayList contains the players to be subbed off, and the 2nd inner arrayList contains the players to be subbed in.
+     * ------------------------------------------------
+     * The two inner arrayLists are parralel arrays:
+     * e.g. 1st sub = .get(0).get(0) subbed off, .get(1).get(0) subbed in.
+     * 2nd sub = .get(0).get(1) subbed off, .get(1).get(1) subbed in.
+     * 3rd sub = .get(0).get(2) subbed off, .get(1).get(2) subbed in.
+     */
+    public ArrayList<ArrayList<Player>> getSubstitutions() {
+        ArrayList<ArrayList<Player>> substitutions = new ArrayList<>();
+
+        //don't let the number of players subbed in any position exceed the number of players of that position on the bench.
+        int noOfDefendersSubbed = 0;
+        int noOfMidfieldersSubbed = 0;
+        int noOfForwardsSubbed = 0;
+
+        int noOfDefendersOnBench = getNumberOfDefenders() - formation[0];
+        int noOfMidfieldersOnBench = getNumberOfMidfielders() - formation[1];
+        int noOfForwardsOnBench = getNumberOfForwards() - formation[2];
+
+        ArrayList<Player> playersOut = new ArrayList<>();
+        ArrayList<Player> playersIn = new ArrayList<>();
+        for (int i=0; i<3; i++){
+
+            //Part 1: get player to be subbed off.
+            Player playerOut = null;
+
+            //regenerate player to be subbed off until a valid option is found.
+            while (
+                    playerOut == null
+                    || playersOut.contains(playerOut)
+                    || playerOut.getPosition().equals("DEF") && noOfDefendersSubbed >= noOfDefendersOnBench
+                    || playerOut.getPosition().equals("MID") && noOfMidfieldersSubbed >= noOfMidfieldersOnBench
+                    || playerOut.getPosition().equals("FWD") && noOfForwardsSubbed >= noOfForwardsOnBench
+            ) {
+                playerOut = startingEleven[(int) (Math.random() * 10 + 1)]; //get any player in the starting 11 except the GK.
+            }
+
+            switch (playerOut.getPosition()) {
+                case "DEF" -> noOfDefendersSubbed++;
+                case "MID" -> noOfMidfieldersSubbed++;
+                case "FWD" -> noOfForwardsSubbed++;
+            }
+
+            playersOut.add(playerOut);
+
+            //Part 2: get player to be subbed in.
+            Player playerIn = null;
+
+            //regenerate player to replace subbed off player found in part 1 until a valid option is found.
+            while (
+                    playerIn == null
+                    || playersIn.contains(playerIn)
+                    || !playerIn.getPosition().equals(playerOut.getPosition())
+            ) {
+                playerIn = substitutes.get((int) (Math.random() * substitutes.size()));
+            }
+
+            playersIn.add(playerIn);
+        }
+
+        substitutions.add(playersOut); // .get(0) will be the players to be subbed off.
+        substitutions.add(playersIn); // .get(1) will be the players to be subbed in.
+
+
+        // .get(0) and .get(1) will be parallel arrays.
+        // e.g. 1st sub = .get(0).get(0) subbed off, .get(1).get(0) subbed in.
+        // 2nd sub = .get(0).get(1) subbed off, .get(1).get(1) subbed in.
+        // 3rd sub = .get(0).get(2) subbed off, .get(1).get(2) subbed in.
+
+        return substitutions;
     }
 }

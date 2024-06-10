@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="Shortcuts to game controls and deletion of old frames when date progresses.">
+    <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="Retires players below 70 rated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JFrames/endOfSeasonSummary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/endOfSeasonSummary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JFrames/gameSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/gameSimulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Objects/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Team.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -194,7 +195,9 @@
       <workItem from="1717785087679" duration="9740000" />
       <workItem from="1717829786817" duration="4940000" />
       <workItem from="1717845562643" duration="700000" />
-      <workItem from="1717927315878" duration="7714000" />
+      <workItem from="1717927315878" duration="18748000" />
+      <workItem from="1718011472284" duration="1183000" />
+      <workItem from="1718028177173" duration="7760000" />
     </task>
     <task id="LOCAL-00001" summary="calendar and event types to add to calendar">
       <created>1715611792284</created>
@@ -244,14 +247,6 @@
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
       <updated>1715807995417</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Generates cpu team's fixtures and simulates results based on team rating.">
-      <option name="closed" value="true" />
-      <created>1716284517781</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1716284517781</updated>
     </task>
     <task id="LOCAL-00023" summary="Added game logic to cpu-only games in background to make a more realistic simulator.">
       <option name="closed" value="true" />
@@ -581,7 +576,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717931707673</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Retires players below 70 rated">
+      <option name="closed" value="true" />
+      <created>1717941382262</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1717941382264</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -599,7 +602,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="new 'World' object, contains all leagues loaded into game" />
     <MESSAGE value="Added more champions league teams" />
     <MESSAGE value="Placefiller players if national team is short on players" />
     <MESSAGE value="Added year number to dateTime" />
@@ -624,7 +626,8 @@
     <MESSAGE value="Promotion and relegation in england" />
     <MESSAGE value="New formatting on JFrames with team images" />
     <MESSAGE value="Shortcuts to game controls and deletion of old frames when date progresses." />
-    <option name="LAST_COMMIT_MESSAGE" value="Shortcuts to game controls and deletion of old frames when date progresses." />
+    <MESSAGE value="Retires players below 70 rated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Retires players below 70 rated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
