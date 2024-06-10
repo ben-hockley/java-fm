@@ -160,6 +160,20 @@ public class UI extends JFrame {
             this.add(homeDefaultDisplay, BorderLayout.CENTER);
             homeDisplaySet = true;
         }
+
+
+        if (clock.getMonthNumber().equals(1) && clock.getDateNumber().equals(1)){
+            JOptionPane.showMessageDialog(null, "Happy New Year! It's now " + clock.getYearNumber() + "!" + ", the transfer market is open.");
+        }
+        if (clock.getMonthNumber().equals(6) && clock.getDateNumber().equals(1)){
+            JOptionPane.showMessageDialog(null, "It's now June, the transfer market is open.");
+        }
+        if ((clock.getMonthNumber().equals(8) || clock.getMonthNumber().equals(1)) && clock.getDateNumber().equals(31)){
+            JOptionPane.showMessageDialog(null, "It's Transfer deadline day, wrap up any last-minute deals before it's too late.");
+        }
+        if ((clock.getMonthNumber().equals(9) || clock.getMonthNumber().equals(2)) && clock.getDateNumber().equals(1)){
+            JOptionPane.showMessageDialog(null, "The transfer window is now closed, you can no longer buy or sell players.");
+        }
     }
     /**
      * inner method for updateCalendar.

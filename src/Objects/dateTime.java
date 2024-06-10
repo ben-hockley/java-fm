@@ -51,8 +51,10 @@ public class dateTime {
             monthName = "October";
         } else if (monthNumber == 11){
             monthName = "November";
-        } else {
+        } else if (monthNumber == 12){
             monthName = "December";
+        } else {
+            monthName = "January";
         }
         return monthName;
     }
