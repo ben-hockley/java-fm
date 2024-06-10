@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="Random substitutions in cpu games.">
-      <change beforePath="$PROJECT_DIR$/src/Objects/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Objects/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Objects/World.java" afterDir="false" />
+    <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="Restrictions to prevent cpu player sales if the player has already been sold that season.">
+      <change beforePath="$PROJECT_DIR$/src/JFrames/transferMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/transferMarket.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +194,7 @@
       <workItem from="1717845562643" duration="700000" />
       <workItem from="1717927315878" duration="18748000" />
       <workItem from="1718011472284" duration="1183000" />
-      <workItem from="1718028177173" duration="9712000" />
+      <workItem from="1718028177173" duration="10464000" />
     </task>
     <task id="LOCAL-00001" summary="calendar and event types to add to calendar">
       <created>1715611792284</created>
@@ -245,14 +244,6 @@
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
       <updated>1715807995417</updated>
-    </task>
-    <task id="LOCAL-00025" summary="re added player ages from main branch and adjusted player object to match">
-      <option name="closed" value="true" />
-      <created>1716914195124</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1716914195124</updated>
     </task>
     <task id="LOCAL-00026" summary="transfer market lists all players sorted by value">
       <option name="closed" value="true" />
@@ -582,7 +573,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718040694349</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Restrictions to prevent cpu player sales if the player has already been sold that season.">
+      <option name="closed" value="true" />
+      <created>1718041165191</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1718041165191</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,7 +599,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added year number to dateTime" />
     <MESSAGE value="International Games etc." />
     <MESSAGE value="validate matches as league matches before adding points to table" />
     <MESSAGE value="validate matches as league matches before adding stats to player stats" />
@@ -625,7 +623,8 @@
     <MESSAGE value="Retires players below 70 rated" />
     <MESSAGE value="Random substitutions in user games." />
     <MESSAGE value="Random substitutions in cpu games." />
-    <option name="LAST_COMMIT_MESSAGE" value="Random substitutions in cpu games." />
+    <MESSAGE value="Restrictions to prevent cpu player sales if the player has already been sold that season." />
+    <option name="LAST_COMMIT_MESSAGE" value="Restrictions to prevent cpu player sales if the player has already been sold that season." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

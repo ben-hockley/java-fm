@@ -93,15 +93,18 @@ public class transferMarket extends JFrame {
                     } else if (transferTarget.getPosition().equals("GK") && sellingTeam.getNumberOfGoalkeepers() <= 2){
                         //block transfer if the target is a goalkeeper, and selling team has too few goalkeepers
                         JOptionPane.showMessageDialog(null, "This player is not for sale, their team has too few goalkeepers.");
-                    } else if (transferTarget.getPosition().equals("DEF") && sellingTeam.getNumberOfDefenders() <= 4){
+                    } else if (transferTarget.getPosition().equals("DEF") && sellingTeam.getNumberOfDefenders() <= 5){
                         //block transfer if the target is a defender, and selling team has too few defenders
                         JOptionPane.showMessageDialog(null, "This player is not for sale, their team has too few defenders.");
-                    } else if (transferTarget.getPosition().equals("MID") && sellingTeam.getNumberOfMidfielders() <= 3){
+                    } else if (transferTarget.getPosition().equals("MID") && sellingTeam.getNumberOfMidfielders() <= 4){
                         //block transfer if the target is a midfielder, and the selling team has too few midfielders
                         JOptionPane.showMessageDialog(null, "This player is not for sale, their team has too few midfielders.");
-                    } else if (transferTarget.getPosition().equals("FWD") && sellingTeam.getNumberOfForwards() <= 3){
+                    } else if (transferTarget.getPosition().equals("FWD") && sellingTeam.getNumberOfForwards() <= 4){
                         //block transfer if selling team has too few forwards
                         JOptionPane.showMessageDialog(null, "This player is not for sale, their team has too few forwards.");
+                    } else if (transferTarget.getSellable().equals(false)) {
+                        //block transfer if the player is not sellable. (e.g. new signings)
+                        JOptionPane.showMessageDialog(null, "The player is not willing to sign for a new club right now, since he only signed for his current club recently.");
                     }
 
                     //if all conditions are met, ask the user to confirm the purchase.
@@ -119,6 +122,7 @@ public class transferMarket extends JFrame {
                             userTeam.reduceTransferBudget(transferTarget.getValue());
 
                             transferTarget.setTeam(userTeam);
+                            transferTarget.setSellable(false); //new signings cannot be sold in the same season they are purchased.
                             JOptionPane.showConfirmDialog(null,transferTarget.getPlayerName() + " to " + userTeam.getTeamName() + " from " + sellingTeam.getTeamName() + " for  £" + NumberFormat.getInstance(Locale.US).format(transferTarget.getValue()) + ", Here we go!" , "New Signing", JOptionPane.DEFAULT_OPTION);
 
                             //refresh the transfer market window.
@@ -152,20 +156,24 @@ public class transferMarket extends JFrame {
 
                             if (userTeam.getNumberOfPlayers() <= 16) {
                                 //block sale if player squad is too small.
-                                JOptionPane.showMessageDialog(null, "You must have at least 17 players in your squad to sell a player.");
+                                JOptionPane.showMessageDialog(null, "You must have at least 16 players in your squad to sell a player.");
                             } else if (playerForSale.getPosition().equals("GK") && userTeam.getNumberOfGoalkeepers() <= 2){
                                 //block sale if player is a goalkeeper and user team has too few goalkeepers.
                                 JOptionPane.showMessageDialog(null, "Transfer blocked, not enough Goalkeepers, you must have at least 2 goalkeepers in your squad.");
-                            } else if (playerForSale.getPosition().equals("DEF") && userTeam.getNumberOfDefenders() <= 4){
+                            } else if (playerForSale.getPosition().equals("DEF") && userTeam.getNumberOfDefenders() <= 5){
                                 //block sale if player is a defender and user team has too few defenders.
-                                JOptionPane.showMessageDialog(null, "Transfer blocked, not enough Defenders, you must have at least 4 defenders in your squad.");
-                            } else if (playerForSale.getPosition().equals("MID") && userTeam.getNumberOfMidfielders() <= 3){
+                                JOptionPane.showMessageDialog(null, "Transfer blocked, not enough Defenders, you must have at least 5 defenders in your squad.");
+                            } else if (playerForSale.getPosition().equals("MID") && userTeam.getNumberOfMidfielders() <= 4){
                                 //block sale if player is a midfielder and user team has too few midfielders.
-                                JOptionPane.showMessageDialog(null, "Transfer blocked, not enough Midfielders, you must have at least 3 midfielders in your squad.");
-                            } else if (playerForSale.getPosition().equals("FWD") && userTeam.getNumberOfForwards() <= 3){
+                                JOptionPane.showMessageDialog(null, "Transfer blocked, not enough Midfielders, you must have at least 4 midfielders in your squad.");
+                            } else if (playerForSale.getPosition().equals("FWD") && userTeam.getNumberOfForwards() <= 4){
                                 //block sale if player is a forward and user team has too few forwards.
-                                JOptionPane.showMessageDialog(null, "Transfer blocked, not enough Forwards, you must have at least 3 forwards in your squad.");
-                            } else {
+                                JOptionPane.showMessageDialog(null, "Transfer blocked, not enough Forwards, you must have at least 4 forwards in your squad.");
+                            } else if (playerForSale.getSellable().equals(false)) {
+                                //block sale if player is not sellable. (e.g. new signings)
+                                JOptionPane.showMessageDialog(null, "You can't sell a player if you only signed him this season.");
+                            }
+                            else {
                                 //transfer player to the buying team if all conditions are met.
 
                                 //increase transfer budget of the selling team (user).
@@ -175,6 +183,7 @@ public class transferMarket extends JFrame {
                                 buyingTeam.reduceTransferBudget(playerForSale.getValue());
 
                                 playerForSale.setTeam(buyingTeam);
+                                playerForSale.setSellable(false); //new signings cannot be sold in the same season they are purchased.
                                 JOptionPane.showConfirmDialog(null,playerForSale.getPlayerName() + " to " + buyingTeam.getTeamName() + " from " + userTeam.getTeamName() + " for " + getValueAt(row,5) + ", Here we go!" , "Player Sold", JOptionPane.DEFAULT_OPTION);
 
                                 //refresh the transfer market window.
@@ -218,7 +227,7 @@ public class transferMarket extends JFrame {
                 search(tableFilter.getText());
             }
             public void search(String str) {
-                if (str.length() == 0) {
+                if (str.isEmpty()) {
                     sorter.setRowFilter(null);
                 } else {
                     sorter.setRowFilter(RowFilter.regexFilter(str));
