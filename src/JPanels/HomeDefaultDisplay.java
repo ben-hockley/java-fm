@@ -3,8 +3,8 @@ package JPanels;
 import JFrames.UI;
 import JFrames.manageTeam;
 import JFrames.transferMarket;
-import Objects.Team;
-import Objects.dateTime;
+import objects.Team;
+import objects.dateTime;
 import data.Data;
 
 import javax.swing.*;

@@ -1,12 +1,28 @@
-package Objects;
+package objects;
 
 public class dateTime {
     //contains functions for updating the in-game calendar.
+    /**
+     * The day of the month, increments by 1 each day, and resets to one
+     * at the end of the month.
+     */
     private Integer dateNumber;
+    /**
+     * The month of the year, increments by 1 each month, and resets to one
+     * at the end of the year.
+     */
     private Integer monthNumber;
+    /**
+     * The year of the simulation, increments by 1 each year.
+     */
     private Integer yearNumber;
-
+    /**
+     * The number of days in the current month, dependant by monthNumber.
+     */
     private Integer monthLength;
+    /**
+     * The name of the current month, dependant by monthNumber.
+     */
     private String monthName;
 
     public dateTime(Integer[] startingDate){

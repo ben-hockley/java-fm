@@ -2,9 +2,9 @@ package JPanels;
 
 import JFrames.gameSimulator;
 import JFrames.manageTeam;
-import Objects.Player;
-import Objects.Team;
-import Objects.dateTime;
+import objects.Player;
+import objects.Team;
+import objects.dateTime;
 import JFrames.UI;
 import events.Game;
 

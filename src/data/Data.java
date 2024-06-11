@@ -1,6 +1,6 @@
 package data;
 
-import Objects.*;
+import objects.*;
 
 import java.awt.*;
 

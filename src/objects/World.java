@@ -1,4 +1,4 @@
-package Objects;
+package objects;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;

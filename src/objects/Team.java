@@ -1,11 +1,10 @@
-package Objects;
+package objects;
 
 import data.Data;
 import events.Game;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Team {
     //Team details, these will not change.

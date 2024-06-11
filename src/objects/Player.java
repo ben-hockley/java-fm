@@ -1,6 +1,5 @@
-package Objects;
+package objects;
 
-import data.Data;
 import data.regenNames;
 
 public class Player {

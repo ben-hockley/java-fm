@@ -1,6 +1,6 @@
 package main;
 
-import Objects.Team;
+import objects.Team;
 import data.Data;
 import events.Game;
 

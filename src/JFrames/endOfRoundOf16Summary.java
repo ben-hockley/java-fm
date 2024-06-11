@@ -1,7 +1,7 @@
 package JFrames;
 
-import Objects.Team;
-import Objects.Player;
+import objects.Team;
+import objects.Player;
 
 import javax.swing.*;
 import java.awt.*;

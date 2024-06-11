@@ -1,7 +1,7 @@
 package JFrames;
 
-import Objects.Cup;
-import Objects.Team;
+import objects.Cup;
+import objects.Team;
 import data.Data;
 import events.Game;
 

@@ -1,5 +1,5 @@
 package events;
-import Objects.Team;
+import objects.Team;
 
 public class Game extends Event {
     /**

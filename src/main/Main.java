@@ -2,7 +2,7 @@ package main;
 
 import data.Data;
 import JFrames.UI;
-import Objects.Team;
+import objects.Team;
 import javax.swing.JFrame;
 
 public class Main {

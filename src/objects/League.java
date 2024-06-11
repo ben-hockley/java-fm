@@ -1,4 +1,4 @@
-package Objects;
+package objects;
 
 import data.Data;
 import events.Game;
