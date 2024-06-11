@@ -27,7 +27,7 @@ public class Main {
             team.setDefaultStartingElevenandSubs();
         }
 
-        Team userTeam = Data.england.getLeagueByTier(1).getTeamByName("Manchester City");
+        Team userTeam = Data.international.getLeagueByTier(1).getTeamByName("England");
 
         JFrame userUI = new UI(userTeam);
         userUI.setTitle("Football Manager 2024");

@@ -1,5 +1,6 @@
 package JFrames;
 
+import events.Game;
 import objects.Player;
 import objects.Team;
 import data.Data;
@@ -155,7 +156,9 @@ public class endOfSeasonSummary extends JFrame {
 
         JLabel leagueTopGoalScorerLabel = getFormattedTopGoalScorerLabel(LeagueTopGoalscorer, "League");
         JLabel leagueRelegatedTeamsLabel = getRelegatedTeamsLabel();
+        leagueRelegatedTeamsLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + Data.england.getLeagueByTier(2).getLeagueLogo()).getImage().getScaledInstance(55,72, Image.SCALE_SMOOTH)));
         JLabel teamsPromotedToLeagueLabel = getHeadingLabel("Teams Promoted to " + leagueName + ": " + championshipWinners.getTeamName() + ", " + championsShipRunnersUp.getTeamName() + ", " + championshipPlayoffWinners.getTeamName(), Font.BOLD, 12, SwingConstants.LEFT, Color.GREEN);
+        teamsPromotedToLeagueLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + Data.england.getLeagueByTier(1).getLeagueLogo()).getImage().getScaledInstance(55,72, Image.SCALE_SMOOTH)));
         JLabel championsLeagueWinnerLabel = getHeadingLabel("Champions League Winner: " + ChampionsLeagueWinner.getTeamName(), Font.BOLD, 18, SwingConstants.LEFT, ChampionsLeagueWinner.getTeamColor());
         championsLeagueWinnerLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + ChampionsLeagueWinner.getTeamLogo()).getImage().getScaledInstance(55,72, Image.SCALE_SMOOTH)));
         championsLeagueWinnerLabel.setHorizontalTextPosition(SwingConstants.LEFT);

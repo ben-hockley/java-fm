@@ -3,6 +3,7 @@ package JPanels;
 import JFrames.UI;
 import JFrames.manageTeam;
 import JFrames.transferMarket;
+import events.Game;
 import objects.Team;
 import objects.dateTime;
 import data.Data;
@@ -322,6 +323,7 @@ public class HomeDefaultDisplay extends JPanel {
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titleLabel.setVerticalAlignment(SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        titleLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + (userTeam.getTeamLogo())).getImage().getScaledInstance(20,25, Image.SCALE_SMOOTH)));
         titleLabel.setPreferredSize(new Dimension(1000,25));
 
         JLabel topGoalScorersLabel = new JLabel();
@@ -409,6 +411,7 @@ public class HomeDefaultDisplay extends JPanel {
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titleLabel.setVerticalAlignment(SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        titleLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + (userTeam.getLeague().getLeagueLogo())).getImage().getScaledInstance(20,25, Image.SCALE_SMOOTH)));
         titleLabel.setPreferredSize(new Dimension(1000,25));
 
         JLabel topGoalScorersLabel = new JLabel();

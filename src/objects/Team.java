@@ -171,18 +171,7 @@ public class Team {
             }
         }
 
-        while (playersInPosition.size() > numberOfPlayers) {
-            Integer lowestRating = 100;
-            Player lowestRatedPlayer = null;
-            for (Player player : playersInPosition) {
-
-                if (player.getRating() < lowestRating) {
-                    lowestRating = player.getRating();
-                    lowestRatedPlayer = player;
-                }
-            }
-            playersInPosition.remove(lowestRatedPlayer);
-        }
+        Nation.getBestPlayers(numberOfPlayers, playersInPosition);
 
         return playersInPosition;
     }
