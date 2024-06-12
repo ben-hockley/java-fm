@@ -89,7 +89,6 @@ public class endOfSeasonSummary extends JFrame {
         //reset every team's transfer budget to their initial transfer budget.
         for (Team team : Data.world.getAllTeams()){
             team.resetTransferBudget();
-            team.setCupMatchesPlayed(0);
         }
 
 
@@ -132,8 +131,7 @@ public class endOfSeasonSummary extends JFrame {
         }
 
         for (Player player : Data.world.getAllPlayers()){
-            player.resetLeagueStats();
-            player.resetCupStats();
+            player.resetSeasonStats();
         }
     }
 

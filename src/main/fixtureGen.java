@@ -69,7 +69,7 @@ public class fixtureGen {
 
                 for (Team teamInGroup : group) {
                     teamInGroup.setChampionsLeagueGroup(group);
-                    teamInGroup.setChampionsLeagueGroupNumber(groupNumber);
+                    teamInGroup.setChampionsLeagueGroupLetter(groupNumber);
                 }
 
                 groups.add(group);

@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f23c6e0-1400-4764-8c4b-98da8ebdf5ad" name="Changes" comment="league images and cleaned up code">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JFrames/endOfSeasonSummary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JFrames/endOfSeasonSummary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JPanels/HomeDefaultDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JPanels/HomeDefaultDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Data.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/League.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/League.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Nation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Nation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/fixtureGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/fixtureGen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Team.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -202,7 +201,9 @@
       <workItem from="1717927315878" duration="18748000" />
       <workItem from="1718011472284" duration="1183000" />
       <workItem from="1718028177173" duration="21517000" />
-      <workItem from="1718094998486" duration="9614000" />
+      <workItem from="1718094998486" duration="21842000" />
+      <workItem from="1718140038312" duration="604000" />
+      <workItem from="1718187643071" duration="4671000" />
     </task>
     <task id="LOCAL-00001" summary="calendar and event types to add to calendar">
       <created>1715611792284</created>
@@ -252,14 +253,6 @@
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
       <updated>1715807995417</updated>
-    </task>
-    <task id="LOCAL-00031" summary="removed unneccesary variable">
-      <option name="closed" value="true" />
-      <created>1716934193943</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1716934193943</updated>
     </task>
     <task id="LOCAL-00032" summary="User team can buy and sell players through the transfer market">
       <option name="closed" value="true" />
@@ -589,7 +582,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718090450637</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="league images and cleaned up code">
+      <option name="closed" value="true" />
+      <created>1718117581881</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1718117581881</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

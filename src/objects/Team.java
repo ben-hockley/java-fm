@@ -3,72 +3,183 @@ package objects;
 import data.Data;
 import events.Game;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class Team {
-    //Team details, these will not change.
-    private final String teamType;
-    private final String teamName;
+    /**
+     * The type of the team, either "Club" or "International".
+     */
+    private final String type;
+    /**
+     * The full name of the team. (e.g. Manchester United)
+     */
+    private final String name;
+    /**
+     * The shortened version of the team name (e.g. Man Utd)
+     * Used for displaying the team in smaller spaces in the UI.
+     */
     private final String shortName;
-    private final String teamLogo;
+    /**
+     * The file name of the league logo (.png) in the teamImages folder.
+     */
+    private final String logo;
 
-    //Team properties that can change.
+    /**
+     * The league the team is currently in, may change if the team is promoted
+     * or relegated.
+     */
     private League league;
 
-
-    //League stats.
+    /**
+     * The number of points the team has in their league this season.
+     * Primary factor in determining league standings.
+     * Each win adds 3 points, each draw adds 1 point.
+     */
     private Integer leaguePoints;
+    /**
+     * The number of matches the team has played in their league this season.
+     */
     private Integer leagueMatchesPlayed;
+    /**
+     * The number of wins the team has in their league this season.
+     */
     private Integer leagueWins;
+    /**
+     * The number of draws the team has in their league this season.
+     */
     private Integer leagueDraws;
+    /**
+     * The number of losses the team has in their league this season.
+     */
     private Integer leagueLosses;
 
-    //Cup stats
+    /**
+     * The number of points the team has in the champions league group stage
+     * this season. The top 2 teams in the group stage advance to the knockout
+     * round.
+     */
     private Integer cupPoints;
+    /**
+     * The number of matches the team has played in the cup this season.
+     */
     private Integer cupMatchesPlayed;
+    /**
+     * The number of matches the team has played in THIS STAGE of the champions
+     * league this season.
+     * This resets back to 0 at the end of each stage.
+     */
     private Integer cupGames;
+    /**
+     * The number of wins the team has in THIS STAGE of the champions league
+     * this season.
+     */
     private Integer cupWins;
+    /**
+     * The number of draws the team has in THIS STAGE of the champions league
+     * this season.
+     */
     private Integer cupDraws;
+    /**
+     * The number of losses the team has in THIS STAGE of the champions league
+     * this season.
+     */
     private Integer cupLosses;
+    /**
+     * The number of goals the team has scored in THIS STAGE of the champions
+     * league this season, used to determine winners in knockout rounds by
+     * aggregate score across two legs.
+     */
     private Integer cupGoalsScored;
+    /**
+     * Whether the team is advancing to the next round of the cup.
+     */
     private Boolean advancingToNextRound;
+    /**
+     * ArrayList containing all the teams in the team's champions league group.
+     * The team must play each of these twice (one home and one away) in the
+     * group stage.
+     */
+    private ArrayList<Team> championsLeagueGroupStage;
+    /**
+     * The letter of the team's champions league group. (e.g. A, B, C, D, E, F)
+     */
+    private Character championsLeagueGroupLetter = 'A';
 
-    private ArrayList<Team> championsLeagueGroupStage; //list of other teams in the team's champions league group.
-
-    private Integer championsLeagueGroupNumber; //the group number of the team's champions league group.
-
-    private Character championsLeagueGroupLetter; //the group letter of the team's champions league group.
-
-
-
-    private final Integer[] formation; //e.g. 4-4-2 would be [4,4,2], should always be 3 numbers.
-
+    /**
+     * List of Integers representing the formation of the team. (length = 3)
+     * formation[0] = number of defenders.
+     * formation[1] = number of midfielders.
+     * formation[2] = number of forwards.
+     */
+    private final Integer[] formation;
+    /**
+     * List of Player's in the team's starting 11. (length = 11)
+     * The starting 11 is determined by the best players of each position
+     * in the team.
+     * startingEleven[0] = the starting goalkeeper.
+     * Rest of startingEleven = the starting defenders, midfielders, forwards.
+     */
     private Player[] startingEleven;
-
+    /**
+     * ArrayList of the player's substitutes (length 5-12).
+     */
     private ArrayList<Player> substitutes;
-
+    /**
+     * ArrayList containing all the team's scheduled fixtures for the season.
+     * New fixtures are added if the team makes the next stage of a cup.
+     */
     private ArrayList<Game> fixtures;
-
-    private final Color teamColor;
-
+    /**
+     * A colour used to represent the team, usually the team's primary colour,
+     * but may be the team's secondary colour if the primary color is too light
+     * to display white text on. (RGB / HEX)
+     */
+    private final Color color;
+    /**
+     * The team's starting transfer budget, which the team's transfer budget
+     * is set to at the beginning of each new season.
+     */
     private final Integer initialTransferBudget;
+    /**
+     * The team's current transfer budget.
+     * This increases by half the player's value when a player is sold.
+     * This decreases by the player's value when a player is bought.
+     * This is set to the team's initialTransferBudget
+     * at the start of each season.
+     */
     private Integer transferBudget;
 
+    /**
+     * ArrayList containing all the players in the team.
+     * This includes the starting 11 (length 11) and substitutes (length 5-12).
+     * Total length of players = 16-23.
+     */
+    private final ArrayList<Player> players;
 
-    public ArrayList<Player> players;
+    /**
+     * Constructor to create a new club team.
+     * @param teamLongName the team's full name (e.g. Manchester United)
+     * @param teamShortName the team's shortened name (e.g. Man Utd)
+     * @param teamLogo file name of the team's logo in the teamImages folder.
+     * @param currentLeague the current league in which the team plays.
+     * @param primaryFormation the default formation of the team.
+     * @param teamColor a color to represent the team.
+     * @param transferBudgetMillions the teams transfer budget in millions.
+     */
+    public Team(final String teamLongName, final String teamShortName,
+                final String teamLogo, final League currentLeague,
+                final Integer[] primaryFormation, final Color teamColor,
+                final Integer transferBudgetMillions) {
+        this.type = "Club";
 
-    //constructor to create club teams.
-    public Team(String teamName,String shortName ,String teamLogo, League league, Integer[] formation, Color teamColor, Integer transferBudget_millions) {
-        this.teamType = "Club";
+        this.name = teamLongName;
+        this.shortName = teamShortName;
+        this.logo = teamLogo;
+        this.color = teamColor;
 
-        this.teamName = teamName;
-        this.shortName = shortName;
-        this.teamLogo = teamLogo;
-        this.teamColor = teamColor;
-
-        this.league = league;
-        this.formation = formation;
+        this.league = currentLeague;
+        this.formation = primaryFormation;
 
         this.players = new ArrayList<>();
 
@@ -95,24 +206,33 @@ public class Team {
 
         this.championsLeagueGroupStage = new ArrayList<>();
 
-        this.initialTransferBudget = transferBudget_millions * 1000000;
-        this.transferBudget = transferBudget_millions * 1000000;
+        this.initialTransferBudget = transferBudgetMillions * 1000000;
+        this.transferBudget = transferBudgetMillions * 1000000;
 
         league.addTeam(this); //after creating a team, add them to their league.
     }
 
 
-    //constructor to create national teams.
-    public Team(Nation nationalTeam){
-        this.teamType = "International";
+    /**
+     * Constructor to create a new international team.
+     * @param nationalTeam the nation which the team represents.
+     */
+    public Team(final Nation nationalTeam) {
+        this.type = "International";
 
-        this.teamName = nationalTeam.getNationName();
+        this.name = nationalTeam.getNationName();
         this.shortName = nationalTeam.getNationName();
-        this.teamLogo = nationalTeam.getNationFlag();
-        this.teamColor = Color.BLUE;
+        this.logo = nationalTeam.getNationFlag();
+        this.color = Color.BLUE;
 
         this.league = Data.international.getLeagueByTier(1); //world cup
-        this.formation = new Integer[]{4,3,3};
+
+        final int numberOfDefenders = 4;
+        final int numberOfMidfielders = 3;
+        final int numberOfForwards = 3;
+
+        this.formation = new Integer[]{
+                numberOfDefenders, numberOfMidfielders, numberOfForwards};
 
         this.players = nationalTeam.getBestSquad();
 
@@ -143,27 +263,43 @@ public class Team {
         Data.international.getLeagueByTier(1).addTeam(this);
     }
 
-    public void addPlayer(Player player) {
+    /**
+     * Adds a player to the team's list of players.
+     * Used when a new player is created with this team as their team,
+     * or when a player transfers to this team.
+     * @param player the player to add to the team.
+     */
+    protected void addPlayer(final Player player) {
         this.players.add(player);
     }
 
+    /**
+     * Getter method to get the team's full name. (e.g. Manchester United)
+     * @return the team's long/full name.
+     */
     public String getTeamName() {
-        return teamName;
+        return name;
     }
 
+    /**
+     * Getter method to get the team's shortened name (e.g. Man Utd)
+     * @return the team's shortened name.
+     */
     public String getShortName() {
         return shortName;
     }
 
+    /**
+     * Getter method to get the team logo's file name in the teamImages folder.
+     * @return the team's logo file name.
+     */
     public String getTeamLogo() {
-        return teamLogo;
+        return logo;
     }
 
-    //searches for players by position and returns the top n players.
-    //this function could be used to pick the starting lineup for an CPU controlled team.
-    //e.g. the CPU could play 4-4-2 and would call getPlayersByPosition("DEF", 4) to get the top 4 defenders.
-    //I could advance this function by adding more parameters to players and eliminating injured/suspended players.
-    public ArrayList<Player> getPlayersByPosition(String position, Integer numberOfPlayers){
+
+    private ArrayList<Player> getPlayersByPosition(
+            final String position, final Integer numberOfPlayers) {
         ArrayList<Player> playersInPosition = new ArrayList<>();
         for (Player player : players) {
             if (player.getPosition().equals(position)) {
@@ -176,46 +312,57 @@ public class Team {
         return playersInPosition;
     }
 
+    /**
+     * Sets the team's starting 11 as the best players in the team that fit the
+     * team's formation. Sets the substitutes as the remaining players in the
+     * squad.
+     */
     public void setDefaultStartingElevenandSubs() {
         startingEleven = bestStartingEleven();
 
         substitutes = bestSubs();
     }
 
-    //gets the best starting 11 for the team.
-    //finds the best combination of goalkeepers, defenders, midfielders and forwards based on the formation.
-    //sorts players by player rating and puts the highest rated players in the starting 11.
-    //this function could be used to pick the starting lineup for an CPU controlled team.
-    private Player[] bestStartingEleven(){
-        Player[] startingEleven = new Player[11];
+    /**
+     * Generates the teams best starting eleven and returns it as an array.
+     * @return array of the players in the team's best starting 11. (length=11)
+     */
+    private Player[] bestStartingEleven() {
+        final int startingLineupSize = 11;
+
+        Player[] starting11 = new Player[startingLineupSize];
 
         Integer numberGoalkeepers = 1;
         Integer numberDefenders = formation[0];
         Integer numberMidfielders = formation[1];
         Integer numberForwards = formation[2];
 
-        ArrayList<Player> goalkeepers = getPlayersByPosition("GK", numberGoalkeepers);
-        ArrayList<Player> defenders = getPlayersByPosition("DEF", numberDefenders);
-        ArrayList<Player> midfielders = getPlayersByPosition("MID", numberMidfielders);
-        ArrayList<Player> forwards = getPlayersByPosition("FWD", numberForwards);
+        ArrayList<Player> goalkeepers =
+                getPlayersByPosition("GK", numberGoalkeepers);
+        ArrayList<Player> defenders =
+                getPlayersByPosition("DEF", numberDefenders);
+        ArrayList<Player> midfielders =
+                getPlayersByPosition("MID", numberMidfielders);
+        ArrayList<Player> forwards =
+                getPlayersByPosition("FWD", numberForwards);
 
-        startingEleven[0] = goalkeepers.get(0);
+        starting11[0] = goalkeepers.get(0);
 
         int playerIndex = 1;
         for (Player player : defenders) {
-            startingEleven[playerIndex] = player;
+            starting11[playerIndex] = player;
             playerIndex++;
         }
         for (Player player : midfielders) {
-            startingEleven[playerIndex] = player;
+            starting11[playerIndex] = player;
             playerIndex++;
         }
         for (Player player : forwards) {
-            startingEleven[playerIndex] = player;
+            starting11[playerIndex] = player;
             playerIndex++;
         }
 
-        return startingEleven;
+        return starting11;
     }
 
     private ArrayList<Player> bestSubs() {
@@ -227,64 +374,138 @@ public class Team {
         }
         return subs;
     }
-
+    /**
+     * converts the team's formation from an array to a string and returns it.
+     * @return the team's formation as a string. (e.g. 4-3-3)
+     */
     public String getFormationInText() {
         return formation[0] + "-" + formation[1] + "-" + formation[2];
     }
 
-    public League getLeague(){
+    /**
+     * Getter method to get the team's league.
+     * @return the team the league is currently playing in.
+     */
+    public League getLeague() {
         return league;
     }
 
+    /**
+     * Getter method to get the number of league matches played by the team
+     * this season.
+     * @return the number of league matches played by the team this season.
+     */
     public Integer getLeagueMatchesPlayed() {
         return leagueMatchesPlayed;
     }
 
 
+    /**
+     * Getter method to get the number of league games won by the team
+     * this season.
+     * @return the number of league wins the team has this season.
+     */
     public Integer getLeagueWins() {
         return leagueWins;
     }
 
+    /**
+     * Getter method to get the number of league games drawn by the team
+     * this season.
+     * @return the number of league draws the team has this season.
+     */
     public Integer getLeagueDraws() {
         return leagueDraws;
     }
 
+    /**
+     * Getter method to get the number of league games lost by the team
+     * this season.
+     * @return the number of league losses the team has this season.
+     */
     public Integer getLeagueLosses() {
         return leagueLosses;
     }
 
+    /**
+     * Getter method to get the number of league points of the team this season.
+     * @return the number of league points the team has this season.
+     */
     public Integer getLeaguePoints() {
         return leaguePoints;
     }
 
+    /**
+     * Function to apply when the team wins a league match.
+     * Increases the number of league matches played by 1.
+     * Increases the number of league wins by 1.
+     * Increases the number of league points by 3.
+     */
     public void addLeagueWin() {
+        final int pointsForWin = 3;
+
         this.leagueMatchesPlayed += 1;
         this.leagueWins += 1;
-        this.leaguePoints += 3;
+        this.leaguePoints += pointsForWin;
     }
 
+    /**
+     * Function to apply when the team draws a league match.
+     * Increases the number of league matches played by 1.
+     * Increases the number of league draws by 1.
+     * Increases the number of league points by 1.
+     */
     public void addLeagueDraw() {
         this.leagueMatchesPlayed += 1;
         this.leagueDraws += 1;
         this.leaguePoints += 1;
     }
 
+    /**
+     * Function to apply when the team loses a league match.
+     * Increases the number of league matches played by 1.
+     * Increases the number of league losses by 1.
+     */
     public void addLeagueLoss() {
         this.leagueMatchesPlayed += 1;
         this.leagueLosses += 1;
     }
 
-    public void addCupWin(Integer goalsScored) {
+    /**
+     * Function to apply when the team wins a cup match.
+     * Increases the number of cup matches played by 1.
+     * Increases the number of cup games played this round by 1.
+     * Increases the number of cup wins by 1.
+     * Increases the number of cup points by 3.
+     * Increases the number of cup goals scored this round by the number of
+     * goals scored. (this is used to calculate aggregate results in two-legged
+     * knockout rounds)
+     * @param goalsScored the number of goals scored by the team in the match.
+     */
+    public void addCupWin(final Integer goalsScored) {
+        final int pointsForWin = 3;
+
         this.cupMatchesPlayed += 1;
 
         this.cupGames += 1;
         this.cupWins += 1;
-        this.cupPoints += 3;
+        this.cupPoints += pointsForWin;
 
         this.cupGoalsScored += goalsScored;
     }
 
-    public void addCupDraw(Integer goalsScored) {
+    /**
+     * Function to apply when the team draws a cup match.
+     * Increases the number of cup matches played by 1.
+     * Increases the number of cup games played this round by 1.
+     * Increases the number of cup draws by 1.
+     * Increases the number of cup points by 1.
+     * Increases the number of cup goals scored this roundby the number of
+     * goals scored. (this is used to calculate aggregate results in two-legged
+     * knockout rounds)
+     * @param goalsScored the number of goals scored by the team in the match.
+     */
+    public void addCupDraw(final Integer goalsScored) {
         this.cupMatchesPlayed += 1;
 
         this.cupGames += 1;
@@ -294,7 +515,17 @@ public class Team {
         this.cupGoalsScored += goalsScored;
     }
 
-    public void addCupLoss(Integer goalsScored) {
+    /**
+     * Function to apply when the team loses a cup match.
+     * Increases the number of cup matches played by 1.
+     * Increases the number of cup games played this round by 1.
+     * Increases the number of cup losses by 1.
+     * Increases the number of cup goals scored this round by the number of
+     * goals scored. (this is used to calculate aggregate results in two-legged
+     * knockout rounds)
+     * @param goalsScored the number of goals scored by the team in the match.
+     */
+    public void addCupLoss(final Integer goalsScored) {
         this.cupMatchesPlayed += 1;
 
         this.cupGames += 1;
@@ -302,35 +533,52 @@ public class Team {
 
         this.cupGoalsScored += goalsScored;
     }
-    public ArrayList<Player> getAllPlayers() {
+
+    /**
+     * Getter method to get all the team's players.
+     * @return an ArrayList of all the team's players.
+     */
+    protected ArrayList<Player> getAllPlayers() {
         return players;
     }
 
-    public Integer getRating() {
-        Player[] startingEleven = getStartingEleven();
-        Integer teamRating = -700;
-        for (Player player : startingEleven) {
-            teamRating += player.getRating();
-        }
-        return teamRating;
-    }
-
+    /**
+     * Getter method to get the team's starting 11.
+     * @return an array of the team's starting 11 players. (length=11)
+     */
     public Player[] getStartingEleven() {
         return startingEleven;
     }
 
-    public ArrayList<Player> getTopGoalscorers(){
+    /**
+     * Sorts the team's players by goals scored and returns them as an
+     * arrayList, sorted in descending order.
+     * @return an arrayList of the team's players sorted by goals scored.(desc)
+     */
+    public ArrayList<Player> getTopGoalscorers() {
         ArrayList<Player> topGoalscorers = new ArrayList<>(players);
-        topGoalscorers.sort((o1, o2) -> o2.getLeagueGoals().compareTo(o1.getLeagueGoals()));
+        topGoalscorers.sort((o1, o2) ->
+                o2.getLeagueGoals().compareTo(o1.getLeagueGoals()));
         return topGoalscorers;
     }
 
+    /**
+     * Gets all the team's players who are not in the starting 11 and returns
+     * them as an arrayList. (size = 5-12)
+     * @return an arrayList of the team's substitutes.
+     */
     public ArrayList<Player> getSubstitutes() {
         return substitutes;
     }
 
-    public void makeSubstitution(Player playerOut, Player playerIn) {
-        //replace playerOut with playerIn in the starting 11.
+    /**
+     * Function to change the starting lineup in the 'manage team' section.
+     * Changes the lineup that will start in the next match.
+     * @param playerOut the player to be replaced in the starting lineup.
+     * @param playerIn the player to be added to the starting lineup.
+     */
+    public void makeSubstitution(final Player playerOut,
+                                 final Player playerIn) {
         for (int i = 0; i < startingEleven.length; i++) {
             if (startingEleven[i] == playerOut) {
                 startingEleven[i] = playerIn;
@@ -346,7 +594,13 @@ public class Team {
         }
     }
 
-    public Player getPlayerByName(String playerName) {
+    /**
+     * Searches the teams list of current players and returns the matching
+     * player if there is one, otherwise returns null.
+     * @param playerName the name to search.
+     * @return player matching playerName if exists, otherwise null.
+     */
+    public Player getPlayerByName(final String playerName) {
         for (Player player : players) {
             if (player.getPlayerName().equals(playerName)) {
                 return player;
@@ -355,26 +609,58 @@ public class Team {
         return null;
     }
 
-    public void addFixture(Game game) {
+    /**
+     * Adds a new game to the team's list of fixtures, if this is a user team,
+     * the game will appear in the calendar and be simulated in gameSimulator
+     * on the date, otherwise the game will be simulated in the background
+     * simultaneously as the user plays a game in the same gameweek.
+     * @param game game to be added to the team's list of fixtures.
+     */
+    public void addFixture(final Game game) {
         this.fixtures.add(game);
     }
 
+    /**
+     * Returns an arrayList of all the team's fixtures currently scheduled.
+     * @return arrayList of all games upcoming for the team.
+     */
     public ArrayList<Game> getFixtures() {
         return fixtures;
     }
 
+    /**
+     * Getter method to get the team's primary colour.
+     * @return the team's primary colour.
+     */
     public Color getTeamColor() {
-        return teamColor;
+        return color;
     }
 
-    public void removePlayer(Player player) {
+    /**
+     * Removes a player from their team, and does not assign a new team.
+     * This is used to retire players.
+     * @param player player to be removed from team (e.g. retired)
+     */
+    protected void removePlayer(final Player player) {
         this.players.remove(player);
     }
 
+    /**
+     * Returns the number of players in the team.
+     * Is used to query team size to make sure team does not exceed max size,
+     * or go below minimum size.
+     * @return size of the team's player list.
+     */
     public Integer getNumberOfPlayers() {
         return players.size();
     }
 
+    /**
+     * Returns the number of goalkeepers in the teams player list.
+     * Is used to make sure the team doesn't have too many or too few
+     * goalkeepers before completing a transfer.
+     * @return number of "GK" players in the team's list of current players.
+     */
     public Integer getNumberOfGoalkeepers() {
         Integer numberOfGoalkeepers = 0;
         for (Player player : players) {
@@ -385,6 +671,12 @@ public class Team {
         return numberOfGoalkeepers;
     }
 
+    /**
+     * Returns the number of defenders in the teams player list.
+     * Is used to make sure the team doesn't have too many or too few
+     * defenders before completing a transfer.
+     * @return number of "DEF" players in the team's list of current players.
+     */
     public Integer getNumberOfDefenders() {
         Integer numberOfDefenders = 0;
         for (Player player : players) {
@@ -395,6 +687,12 @@ public class Team {
         return numberOfDefenders;
     }
 
+    /**
+     * Returns the number of midfielders in the teams player list.
+     * Is used to make sure the team doesn't have too many or too few
+     * midfielders before completing a transfer.
+     * @return number of "MID" players in the team's list of current players.
+     */
     public Integer getNumberOfMidfielders() {
         Integer numberOfMidfielders = 0;
         for (Player player : players) {
@@ -405,6 +703,12 @@ public class Team {
         return numberOfMidfielders;
     }
 
+    /**
+     * Returns the number of forwards in the teams player list.
+     * Is used to make sure the team doesn't have too many or too few
+     * forwards before completing a transfer.
+     * @return number of "FWD" players in the team's list of current players.
+     */
     public Integer getNumberOfForwards() {
         Integer numberOfForwards = 0;
         for (Player player : players) {
@@ -415,14 +719,10 @@ public class Team {
         return numberOfForwards;
     }
 
-
-    //can be used for promotion, relegation.
-    public void setNewLeague(League newLeague){
-        league.removeTeam(this);
-        this.league = newLeague;
-        newLeague.addTeam(this);
-    }
-
+    /**
+     * Resets all the team's league stats to 0.
+     * Used to reset stats at the end of the season.
+     */
     public void resetLeagueStats() {
         this.leagueMatchesPlayed = 0;
         this.leagueWins = 0;
@@ -430,6 +730,11 @@ public class Team {
         this.leagueLosses = 0;
         this.leaguePoints = 0;
     }
+
+    /**
+     * Resets all the team's cup stats to 0.
+     * Used to reset stats at the end of the season.
+     */
     public void resetCupStats() {
         this.cupMatchesPlayed = 0;
 
@@ -440,6 +745,13 @@ public class Team {
         this.cupPoints = 0;
     }
 
+    /**
+     * Resets round-specific cup stats at the end of each round of the cup.
+     * (e.g. Champions League group stage, Champions League knockout round 1)
+     * Round-specific stats must be reset so aggregate scoring on two-legged
+     * knockout rounds can be tracked accurately to determine which team
+     * progresses to the next round.
+     */
     public void resetCupRoundStats() {
         this.cupGames = 0;
         this.cupWins = 0;
@@ -450,150 +762,298 @@ public class Team {
         this.cupGoalsScored = 0;
     }
 
+    /**
+     * Getter method for the team's current transfer budget.
+     * @return the team's current transfer budget.
+     * Used to display transfer budget in transfer market UI.
+     * Also used to query transfers to make sure the team has enough funds,
+     * before the deal goes ahead.
+     * If the team has insufficient funds, the transfer will not go through.
+     */
     public Integer getTransferBudget() {
         return transferBudget;
     }
 
-    public void reduceTransferBudget(Integer amount) {
+    /**
+     * Reduces the team's transfer budget by the int amount passed as args.
+     * Used to reduce the team's budget after a player is bought.
+     * @param amount amount to reduce the team's transfer budget by.
+     */
+    public void reduceTransferBudget(final Integer amount) {
         this.transferBudget -= amount;
     }
 
-    public void increaseTransferBudget(Integer amount){
+    /**
+     * Increases the team's transfer budget by the int amount passed as args.
+     * Used to increase the team's budget after a player is sold.
+     * @param amount amount to increase the team's transfer budget by.
+     */
+    public void increaseTransferBudget(final Integer amount) {
         this.transferBudget += amount;
     }
 
+    /**
+     * Getter method for the team's type.
+     * (either "Club" or "International")
+     * @return the team's type. ("Club" or "International")
+     */
     public String getTeamType() {
-        return teamType;
+        return type;
     }
 
-    public void addCupMatchPlayed() {
-        this.cupMatchesPlayed += 1;
-    }
-
-    public Integer getCupMatchesPlayed(){
+    /**
+     * Getter method for the total number of Champions league matches played
+     * this season.
+     * Used to determine which round of the champions league the team is in.
+     * @return the total number of champions league matches played this season.
+     */
+    public Integer getCupMatchesPlayed() {
         return cupMatchesPlayed;
     }
 
-    public Integer getCupGames(){ return cupGames; }
+    /**
+     * Getter method to return the number of cup games played in THIS ROUND
+     * or the champions league. Used to determine whether a round should end.
+     * @return the number of cup games played in THIS ROUND.
+     */
+    public Integer getCupGames() {
+        return cupGames;
+    }
+
+    /**
+     * Getter method to return the number of cup wins in THIS ROUND.
+     * @return the number of cup wins in THIS ROUND.
+     */
     public Integer getCupWins() {
         return cupWins;
     }
+
+    /**
+     * Getter method to return the number of cup draws in THIS ROUND.
+     * @return the number of cup draws in THIS ROUND.
+     */
     public Integer getCupDraws() {
         return cupDraws;
     }
+
+    /**
+     * Getter method to return the number of cup losses in THIS ROUND.
+     * @return the number of cup losses in THIS ROUND.
+     */
     public Integer getCupLosses() {
         return cupLosses;
     }
+
+    /**
+     * Getter method for the number of points scored in THIS ROUND of the cup.
+     * Used to determine group stage standings.
+     * @return number of points scored in THIS ROUND of the cup.
+     */
     public Integer getCupPoints() {
         return cupPoints;
     }
 
+    /**
+     * Sets the team's transfer budget to their initial transfer budget.
+     * Used at the end of the season.
+     */
     public void resetTransferBudget() {
         this.transferBudget = initialTransferBudget;
     }
 
-    public void setCupMatchesPlayed(Integer cupMatchesPlayed) {
-        this.cupMatchesPlayed = cupMatchesPlayed;
-    }
-
-    public void setChampionsLeagueGroup(ArrayList<Team> teams){
+    /**
+     * Adds all team's in the team's champions league group to an arraylist.
+     * So they can be sorted into a group stage table.
+     * @param teams all the teams in the team's champions league group.
+     */
+    public void setChampionsLeagueGroup(final ArrayList<Team> teams) {
         championsLeagueGroupStage.addAll(teams);
     }
 
-    public void setChampionsLeagueGroupNumber(Integer groupNumber){
-        this.championsLeagueGroupNumber = groupNumber;
-
-        if (groupNumber == 1){
-            this.championsLeagueGroupLetter = 'A';
-        } else if (groupNumber == 2){
-            this.championsLeagueGroupLetter = 'B';
-        } else if (groupNumber == 3){
-            this.championsLeagueGroupLetter = 'C';
-        } else if (groupNumber == 4){
-            this.championsLeagueGroupLetter = 'D';
-        } else if (groupNumber == 5){
-            this.championsLeagueGroupLetter = 'E';
-        } else if (groupNumber == 6){
-            this.championsLeagueGroupLetter = 'F';
-        } else if (groupNumber == 7){
-            this.championsLeagueGroupLetter = 'G';
-        } else if (groupNumber == 8){
-            this.championsLeagueGroupLetter = 'H';
+    /**
+     * Sets the letter of the team's champions league group.
+     * @param groupNumber the number of the group the team is in.
+     *                    1 - > 'A'
+     *                    2 - > 'B'
+     *                    3 - > 'C'
+     *                    4 - > 'D'
+     *                    5 - > 'E'
+     *                    6 - > 'F'
+     *                    7 - > 'G'
+     *                    8 - > 'H'
+     */
+    public void setChampionsLeagueGroupLetter(final Integer groupNumber) {
+        switch (groupNumber) {
+            case 1 -> championsLeagueGroupLetter = 'A';
+            case 2 -> championsLeagueGroupLetter = 'B';
+            case 3 -> championsLeagueGroupLetter = 'C';
+            case 4 -> championsLeagueGroupLetter = 'D';
+            case 5 -> championsLeagueGroupLetter = 'E';
+            case 6 -> championsLeagueGroupLetter = 'F';
+            case 7 -> championsLeagueGroupLetter = 'G';
+            case 8 -> championsLeagueGroupLetter = 'H';
+            default -> championsLeagueGroupLetter = null;
         }
     }
 
-    public Character getChampionsLeagueGroupLetter(){
+    /**
+     * Getter method to get the letter of the team's champions league group.
+     * @return the letter of the champions league group (e.g. A, B, C, D, E, F)
+     */
+    public Character getChampionsLeagueGroupLetter() {
         return championsLeagueGroupLetter;
     }
 
-    public ArrayList<Team> getChampionsLeagueGroupStandings(){
+    /**
+     * Gets all the teams in the team's champions league group and sorts them
+     * by points, to determine who advances to the knockout rounds.
+     * @return an arrayList of the teams in the team's champions league group,
+     * sorted by points.
+     */
+    public ArrayList<Team> getChampionsLeagueGroupStandings() {
         ArrayList<Team> standings = new ArrayList<>(championsLeagueGroupStage);
-        standings.sort((o1, o2) -> o2.getCupPoints().compareTo(o1.getCupPoints()));
+        standings.sort((o1, o2) ->
+                o2.getCupPoints().compareTo(o1.getCupPoints()));
         return standings;
     }
 
-    public void resetChampionsLeagueGroupStage(){
+    /**
+     * Reset the team's champions league group at the end of the season, in
+     * case the team is in the champions league again and needs to generate
+     * a new group.
+     */
+    public void resetChampionsLeagueGroupStage() {
         this.championsLeagueGroupStage = new ArrayList<>();
-        this.championsLeagueGroupNumber = null;
         this.championsLeagueGroupLetter = null;
     }
-    public Integer getCupGoalsScored(){
+
+    /**
+     * Getter method for number of goals scored by the team in THIS ROUND of
+     * the cup (e.g. champions league).
+     * Useful for determining aggregate scores in two-legged knockout rounds,
+     * or tiebreakers if teams are equal on points at the end of the group
+     * stage.
+     * @return the number of goals scored by the team in THIS ROUND of the cup.
+     */
+    public Integer getCupGoalsScored() {
         return cupGoalsScored;
     }
 
-    public void setAdvancingToNextRound(Boolean advancingToNextRound){
-        this.advancingToNextRound = advancingToNextRound;
+    /**
+     * Sets the teams progression status to 'true' or 'false' depending on
+     * whether they are advancing to the next cup round.
+     * Group stage = top 2 teams progress.
+     * Knockout rounds = winner of the two-legged tie progresses.
+     * Advancing teams are filtered through and used to generate the next
+     * round of fixtures in the cup (e.g. Champions League).
+     * @param isAdvancing 'true' if the team is advancing to the next
+     *                             round, 'false' if the team is eliminated.
+     */
+    public void setAdvancingToNextRound(final Boolean isAdvancing) {
+        this.advancingToNextRound = isAdvancing;
     }
 
-    public Boolean isAdvancingToNextRound(){
+    /**
+     * Getter method for the team's progression status in the cup.
+     * @return true if the team is advancing to the next round, false if not.
+     */
+    public Boolean isAdvancingToNextRound() {
         return advancingToNextRound;
     }
 
-    public void wipeFixtures(){
+    /**
+     * Clears the team's entire fixture list, to make room for new fixtures
+     * at the start of a new season.
+     */
+    public void wipeFixtures() {
         this.fixtures = new ArrayList<>();
     }
 
-    public Player getLowestRatedStarterAtPosition(String position){
+    /**
+     * Returns the team's weakest starter in the specified position.
+     * Is used to determine whether a listed player would be a realistic
+     * transfer target for the team.
+     * Stops CPU teams from signing players significantly below their level.
+     * @param position position to query.
+     * @return lowest rated starter at position passed as args.
+     */
+    protected Player getLowestRatedStarterAtPosition(final String position) {
         Player lowestRatedPlayer = null;
         for (Player player : startingEleven) {
             if (player.getPosition().equals(position)) {
-                if (lowestRatedPlayer == null || player.getRating() < lowestRatedPlayer.getRating()) {
+                if (lowestRatedPlayer == null
+                        || player.getRating() < lowestRatedPlayer.getRating()) {
                     lowestRatedPlayer = player;
                 }
             }
         }
         return lowestRatedPlayer;
     }
-    public Integer getDefensiveRating(){
+
+    /**
+     * Calculates and returns the teams defensive rating, based upon the
+     * average rating or the team's current defenders and goalkeeper.
+     * A higher defensive rating reduces the opposition's chance of scoring.
+     * @return the team's defensive rating (higher is better).
+     */
+    public Integer getDefensiveRating() {
+        final int minimumPlayerRating = 60;
+        final int numberOfDefensivePlayers = 1 + formation[0];
+
         int defensiveRating = 0;
         for (Player player : startingEleven) {
-            if (player.getPosition().equals("GK") || player.getPosition().equals("DEF")) {
-                defensiveRating += (player.getRating()-60);
+            if (player.getPosition().equals("GK")
+                    || player.getPosition().equals("DEF")) {
+                defensiveRating += (player.getRating() - minimumPlayerRating);
             }
         }
-        defensiveRating /= 10;
+        defensiveRating /= (numberOfDefensivePlayers * 2);
         return defensiveRating;
     }
 
+    /**
+     * Calculates and returns the teams offensive rating, based upon the
+     * average rating of the team's current midfielders and forwards.
+     * A higher offensive rating increases the team's chance of scoring.
+     * @return the team's offensive rating (higher is better).
+     */
     public Integer getOffensiveRating() {
+        final int minimumPlayerRating = 60;
+        final int numberOfOffensivePlayers = formation[1] + formation[2];
+
         int offensiveRating = 0;
         for (Player player : startingEleven) {
-            if (player.getPosition().equals("MID") || player.getPosition().equals("FWD")) {
-                offensiveRating += (player.getRating() - 60);
+            if (player.getPosition().equals("MID")
+                    || player.getPosition().equals("FWD")) {
+                offensiveRating += (player.getRating() - minimumPlayerRating);
             }
         }
-        offensiveRating /= 10;
+        offensiveRating /= (numberOfOffensivePlayers * 2);
         return offensiveRating;
     }
 
-    public void relegate(){
+    /**
+     * Relegates the team to the next league down.
+     * Removes the team from their current league and adds them to the league
+     * at the next tier down in the football pyramid in the same country.
+     * Used when a team is relegated at the end of the season.
+     * (e.g. Premier League -> Championship)
+     */
+    public void relegate() {
 
         league.removeTeam(this);
         this.league = league.getCountry().getLeagueByTier(league.getTier() + 1);
         league.addTeam(this);
     }
 
-    public void promote(){
+    /**
+     * Promotes the team to the next league up.
+     * Removes the team from their current league and adds them to the league
+     * at the next tier up in the football pyramid in the same country.
+     * Used when a team is promoted at the end of the season.
+     * (e.g. Championship -> Premier League)
+     */
+    public void promote() {
 
         league.removeTeam(this);
         this.league = league.getCountry().getLeagueByTier(1);
@@ -602,8 +1062,11 @@ public class Team {
 
 
     /**
-     * Function to generate a 2D ArrayList of 3 random substitutions for the team to make in the match.
-     * @return a 2D arrayList, where the 1st inner arrayList contains the players to be subbed off, and the 2nd inner arrayList contains the players to be subbed in.
+     * Function to generate a 2D ArrayList of 3 random substitutions for the
+     * team to make in the match.
+     * @return a 2D arrayList,
+     * where the 1st inner arrayList contains the players to be subbed off,
+     * and the 2nd inner arrayList contains the players to be subbed in.
      * ------------------------------------------------
      * The two inner arrayLists are parralel arrays:
      * e.g. 1st sub = .get(0).get(0) subbed off, .get(1).get(0) subbed in.
@@ -613,7 +1076,8 @@ public class Team {
     public ArrayList<ArrayList<Player>> getSubstitutions() {
         ArrayList<ArrayList<Player>> substitutions = new ArrayList<>();
 
-        //don't let the number of players subbed in any position exceed the number of players of that position on the bench.
+        // don't let the number of players subbed in any position exceed the
+        // number of players of that position on the bench.
         int noOfDefendersSubbed = 0;
         int noOfMidfieldersSubbed = 0;
         int noOfForwardsSubbed = 0;
@@ -624,7 +1088,9 @@ public class Team {
 
         ArrayList<Player> playersOut = new ArrayList<>();
         ArrayList<Player> playersIn = new ArrayList<>();
-        for (int i=0; i<3; i++){
+
+
+        for (int i = 0; i < 3; i++){
 
             //Part 1: get player to be subbed off.
             Player playerOut = null;
