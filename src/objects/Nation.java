@@ -143,7 +143,7 @@ public class Nation {
      * Getter function to return an arrayList of all the nation's leagues.
      * @return arrayList of all the nation's leagues.
      */
-    protected ArrayList<League> getAllLeagues() {
+    public ArrayList<League> getAllLeagues() {
         return leagues;
     }
 
@@ -218,5 +218,14 @@ public class Nation {
      */
     public Color getNationColor() {
         return nationColor;
+    }
+
+    /**
+     * Gets the length of the nation's leagues arraylist, to determine how many
+     * leagues it has.
+     * @return the number of leagues in the Nation.
+     */
+    public Integer getNumberOfLeagues(){
+        return leagues.size();
     }
 }

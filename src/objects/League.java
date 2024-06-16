@@ -135,7 +135,8 @@ public class League {
      */
     public ArrayList<ArrayList<Game>> generateLeagueFixtures() {
         ArrayList<ArrayList<Game>> fixtures
-                = fixtureGen.generateLeagueFixtureSchedule(teams, Data.listOfLeagueDates, "League");
+                = fixtureGen.generateLeagueFixtureSchedule(
+                        teams, Data.listOfLeagueDates, "League");
 
         for (ArrayList<Game> week : fixtures) {
             for (Game game : week) {
@@ -147,7 +148,8 @@ public class League {
     }
 
     /**
-     * complies all players on every team in the league to get a long list of players.
+     * complies all players on every team in the league to get a long list of
+     * players.
      * @return arraylist of all players in the league.
      */
     public ArrayList<Player> getAllPlayers() {
@@ -165,13 +167,16 @@ public class League {
      */
     public ArrayList<Player> getTopGoalscorers() {
         ArrayList<Player> topGoalscorers = getAllPlayers();
-        topGoalscorers.sort((o1, o2) -> o2.getLeagueGoals().compareTo(o1.getLeagueGoals()));
-        topGoalscorers.sort((o1, o2) -> o2.getLeagueGoals().compareTo(o1.getLeagueGoals()));
+        topGoalscorers.sort((o1, o2)
+                -> o2.getLeagueGoals().compareTo(o1.getLeagueGoals()));
+        topGoalscorers.sort((o1, o2)
+                -> o2.getLeagueGoals().compareTo(o1.getLeagueGoals()));
         return topGoalscorers;
     }
 
     /**
-     * Searches list of all players in the league for a specific player (playername).
+     * Searches list of all players in the league for a specific player
+     * (playername).
      * Returns the player if found, otherwise returns null.
      * @param playerName String name of the missing player.
      * @return player object or null if player not found.
@@ -231,6 +236,10 @@ public class League {
      */
     public String getLeagueLogo() {
         return logo;
+    }
+
+    public Integer getNumberOfTeams() {
+        return teams.size();
     }
 
 

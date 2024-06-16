@@ -47,6 +47,7 @@ public class UI extends JFrame {
         regenerateFixtures(userTeam);
 
         //set basic properties of the JFrame.
+        this.setTitle("Football Manager 2024");
         this.setSize(1000, 600);
         this.pack();
         this.setMinimumSize(new Dimension(1000, 600));
@@ -69,8 +70,10 @@ public class UI extends JFrame {
             //dispose of all frames except the main frame.
             if (Frame.getFrames().length > 1){
 
-                for (int i=1; i< Frame.getFrames().length; i++){
-                    Frame.getFrames()[i].dispose();
+                for (Frame jframe : Frame.getFrames()){
+                    if (!jframe.getTitle().equals("Football Manager 2024")) {
+                        jframe.dispose();
+                    }
                 }
             }
         });
@@ -87,9 +90,10 @@ public class UI extends JFrame {
 
                         //dispose of all frames except the main frame.
                         if (Frame.getFrames().length > 1){
-
-                            for (int i=1; i< Frame.getFrames().length; i++){
-                                Frame.getFrames()[i].dispose();
+                            for (Frame jframe : Frame.getFrames()){
+                                if (!jframe.getTitle().equals("Football Manager 2024")) {
+                                    jframe.dispose();
+                                }
                             }
                         }
                     }

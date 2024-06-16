@@ -1,9 +1,8 @@
 package main;
 
 import data.Data;
-import JFrames.UI;
+import JFrames.menu;
 import objects.Team;
-import javax.swing.JFrame;
 
 public class Main {
     /**
@@ -27,10 +26,7 @@ public class Main {
             team.setDefaultStartingElevenandSubs();
         }
 
-        Team userTeam = Data.england.getLeagueByTier(1).getTeamByName("Manchester United");
-
-        JFrame userUI = new UI(userTeam);
-        userUI.setTitle("Football Manager 2024");
+        new menu();
     }
 }
 

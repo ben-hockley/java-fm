@@ -3,7 +3,6 @@ package JPanels;
 import JFrames.UI;
 import JFrames.manageTeam;
 import JFrames.transferMarket;
-import events.Game;
 import objects.Team;
 import objects.dateTime;
 import data.Data;
@@ -88,9 +87,10 @@ public class HomeDefaultDisplay extends JPanel {
 
                         //dispose of all frames except the main frame.
                         if (Frame.getFrames().length > 1){
-
-                            for (int i=1; i< Frame.getFrames().length; i++){
-                                Frame.getFrames()[i].dispose();
+                            for (Frame jframe : Frame.getFrames()){
+                                if (!jframe.getTitle().equals("Football Manager 2024")) {
+                                    jframe.dispose();
+                                }
                             }
                         }
                     }

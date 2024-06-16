@@ -10,8 +10,9 @@ public class dateTime {
      * The names of each month.
      */
     private final String[] monthNames =
-            new String[]{"January", "February", "March", "April", "May", "June",
-                    "July", "August", "September", "October", "November", "December"};
+            new String[]{"January", "February", "March", "April", "May",
+                    "June", "July", "August", "September", "October",
+                    "November", "December"};
     /**
      * The day of the month, increments by 1 each day, and resets to one
      * at the end of the month.

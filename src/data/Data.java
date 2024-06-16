@@ -157,6 +157,7 @@ public class Data {
         Team manCity = new Team("Manchester City", "Man City", "manCity.png", premierLeague, new Integer[]{4, 3, 3}, new Color(108, 171, 221), 250);
         new Player("Ederson", "", "GK", manCity, brazil, 90, 30);
         new Player("Stefan", "Ortega", "GK", manCity, germany, 80, 31);
+        new Player("Scott", "Carson", "GK", manCity, england, 73, 38);
 
         new Player("Kyle", "Walker", "DEF", manCity, england, 90, 33);
         new Player("Ruben", "Dias", "DEF", manCity, portugal, 90, 27);
@@ -183,6 +184,7 @@ public class Data {
         Team arsenal = new Team("Arsenal", "Arsenal", "arsenal.png", premierLeague, new Integer[]{4, 3, 3}, new Color(239, 1, 7), 200);
         new Player("David", "Raya", "GK", arsenal, spain, 85, 28);
         new Player("Aaron", "Ramsdale", "GK", arsenal, england, 84, 26);
+        new Player("Arthur", "Okonkwo", "GK", arsenal, nigeria, 73, 22);
 
         new Player("William", "Saliba", "DEF", arsenal, france, 93, 23);
         new Player("Ben", "White", "DEF", arsenal, england, 88, 26);

@@ -1089,8 +1089,14 @@ public class Team {
         ArrayList<Player> playersOut = new ArrayList<>();
         ArrayList<Player> playersIn = new ArrayList<>();
 
+        final int starting11Size = 11;
+        final int numberOfSubGks = this.getNumberOfGoalkeepers() - 1;
+        final int nonGkSubs = substitutes.size() - numberOfSubGks;
+        final int maxSubsAllowed = 3;
+        final int subsPossible = Math.min(maxSubsAllowed, nonGkSubs);
 
-        for (int i = 0; i < 3; i++){
+
+        for (int i = 0; i < subsPossible; i++) {
 
             //Part 1: get player to be subbed off.
             Player playerOut = null;
@@ -1099,17 +1105,23 @@ public class Team {
             while (
                     playerOut == null
                     || playersOut.contains(playerOut)
-                    || playerOut.getPosition().equals("DEF") && noOfDefendersSubbed >= noOfDefendersOnBench
-                    || playerOut.getPosition().equals("MID") && noOfMidfieldersSubbed >= noOfMidfieldersOnBench
-                    || playerOut.getPosition().equals("FWD") && noOfForwardsSubbed >= noOfForwardsOnBench
+                    || playerOut.getPosition().equals("DEF")
+                            && noOfDefendersSubbed >= noOfDefendersOnBench
+                    || playerOut.getPosition().equals("MID")
+                            && noOfMidfieldersSubbed >= noOfMidfieldersOnBench
+                    || playerOut.getPosition().equals("FWD")
+                            && noOfForwardsSubbed >= noOfForwardsOnBench
             ) {
-                playerOut = startingEleven[(int) (Math.random() * 10 + 1)]; //get any player in the starting 11 except the GK.
+                playerOut = startingEleven[
+                        (int) (Math.random() * (starting11Size - 1) + 1)];
             }
 
             switch (playerOut.getPosition()) {
                 case "DEF" -> noOfDefendersSubbed++;
                 case "MID" -> noOfMidfieldersSubbed++;
                 case "FWD" -> noOfForwardsSubbed++;
+                default -> throw new IllegalStateException("Unexpected value: "
+                        + playerOut.getPosition());
             }
 
             playersOut.add(playerOut);
@@ -1117,20 +1129,20 @@ public class Team {
             //Part 2: get player to be subbed in.
             Player playerIn = null;
 
-            //regenerate player to replace subbed off player found in part 1 until a valid option is found.
             while (
                     playerIn == null
                     || playersIn.contains(playerIn)
                     || !playerIn.getPosition().equals(playerOut.getPosition())
             ) {
-                playerIn = substitutes.get((int) (Math.random() * substitutes.size()));
+                playerIn = substitutes.get((int) (Math.random()
+                        * substitutes.size()));
             }
 
             playersIn.add(playerIn);
         }
 
-        substitutions.add(playersOut); // .get(0) will be the players to be subbed off.
-        substitutions.add(playersIn); // .get(1) will be the players to be subbed in.
+        substitutions.add(playersOut);
+        substitutions.add(playersIn);
 
 
         // .get(0) and .get(1) will be parallel arrays.
@@ -1139,5 +1151,13 @@ public class Team {
         // 3rd sub = .get(0).get(2) subbed off, .get(1).get(2) subbed in.
 
         return substitutions;
+    }
+
+    /**
+     * Getter method to get the team's formation.
+     * @return the team's formation as an array.
+     */
+    public Integer[] getFormation() {
+        return formation;
     }
 }
