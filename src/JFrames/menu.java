@@ -19,6 +19,14 @@ public class menu extends JFrame {
         this.setTitle("Setup Menu");
     }
 
+    /**
+     * Method to create the title menu.
+     * This is the first JPanel that is displayed to the user.
+     * The method is triggered when the program is run, and when the user
+     * presses the back button on the 'select country' menu.
+     * (the 2nd menu that is displayed to the user).
+     * @return JPanel of the title menu.
+     */
     private JPanel getTitleMenu() {
         JPanel titleMenu = new JPanel(new BorderLayout());
 
@@ -63,15 +71,37 @@ public class menu extends JFrame {
     private JPanel getSelectCountryMenu() {
         JPanel selectCountryMenu = new JPanel(new BorderLayout());
 
+        JLabel titleLabel = new JLabel();
+        titleLabel.setPreferredSize(new Dimension(1000, 100));
+
         JLabel title = new JLabel("Select Country");
+        title.setBounds(100, 0, this.getWidth()-100, 100);
         title.setForeground(java.awt.Color.WHITE);
         title.setBackground(Color.RED);
         title.setOpaque(true);
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setVerticalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 30));
-        title.setPreferredSize(new Dimension(1000, 100));
-        selectCountryMenu.add(title, BorderLayout.NORTH);
+        titleLabel.add(title);
+
+        JLabel backButton = new JLabel("⬅ Back");
+        backButton.setBounds(0, 0, 100, 100);
+        backButton.setForeground(Color.BLUE);
+        backButton.setBackground(Color.WHITE);
+        backButton.setOpaque(true);
+        backButton.setHorizontalAlignment(SwingConstants.CENTER);
+        backButton.setVerticalAlignment(SwingConstants.CENTER);
+        titleLabel.add(backButton);
+
+        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                selectCountryMenu.setVisible(false);
+                SwingUtilities.getWindowAncestor(selectCountryMenu).add(getTitleMenu());
+            }
+        });
+
+
+        selectCountryMenu.add(titleLabel, BorderLayout.NORTH);
 
         final int numberOfCountries = 2;
         int numberOfRows = numberOfCountries / 3;
@@ -97,15 +127,37 @@ public class menu extends JFrame {
         JPanel selectLeagueMenu = new JPanel(new BorderLayout());
 
         String nationName = nationSelected.getNationName();
+        JLabel titleLabel = new JLabel();
+        titleLabel.setPreferredSize(new Dimension(1000, 100));
+
         JLabel title = new JLabel(nationName + ": Select League");
+        title.setBounds(100, 0, this.getWidth()-100, 100);
         title.setForeground(java.awt.Color.WHITE);
         title.setBackground(Color.RED);
         title.setOpaque(true);
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setVerticalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 30));
-        title.setPreferredSize(new Dimension(1000, 100));
-        selectLeagueMenu.add(title, BorderLayout.NORTH);
+        titleLabel.add(title);
+
+        JLabel backButton = new JLabel("⬅ Back");
+        backButton.setBounds(0, 0, 100, 100);
+        backButton.setForeground(Color.BLUE);
+        backButton.setBackground(Color.WHITE);
+        backButton.setOpaque(true);
+        backButton.setHorizontalAlignment(SwingConstants.CENTER);
+        backButton.setVerticalAlignment(SwingConstants.CENTER);
+        titleLabel.add(backButton);
+
+        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                selectLeagueMenu.setVisible(false);
+                SwingUtilities.getWindowAncestor(selectLeagueMenu).add(getSelectCountryMenu());
+            }
+        });
+
+
+        selectLeagueMenu.add(titleLabel, BorderLayout.NORTH);
 
         JLabel leagueList = new JLabel();
         leagueList.setLayout(new GridLayout(numberOfLeagues, 1, 10, 10));
@@ -140,15 +192,38 @@ public class menu extends JFrame {
         JPanel selectTeamMenu = new JPanel(new BorderLayout());
 
         String leagueName = leagueSelected.getName();
+        JLabel titleLabel = new JLabel();
+        titleLabel.setPreferredSize(new Dimension(1000, 100));
+
         JLabel title = new JLabel(leagueName + ": Select Team");
+        title.setBounds(100, 0, this.getWidth()-100, 100);
         title.setForeground(java.awt.Color.WHITE);
         title.setBackground(Color.RED);
         title.setOpaque(true);
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setVerticalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 30));
-        title.setPreferredSize(new Dimension(1000, 100));
-        selectTeamMenu.add(title, BorderLayout.NORTH);
+        titleLabel.add(title);
+
+        JLabel backButton = new JLabel("⬅ Back");
+        backButton.setBounds(0, 0, 100, 100);
+        backButton.setForeground(Color.BLUE);
+        backButton.setBackground(Color.WHITE);
+        backButton.setOpaque(true);
+        backButton.setHorizontalAlignment(SwingConstants.CENTER);
+        backButton.setVerticalAlignment(SwingConstants.CENTER);
+        titleLabel.add(backButton);
+
+        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                selectTeamMenu.setVisible(false);
+                Nation nationSelected = leagueSelected.getCountry();
+                SwingUtilities.getWindowAncestor(selectTeamMenu).add(selectLeagueMenu(nationSelected));
+            }
+        });
+
+
+        selectTeamMenu.add(titleLabel, BorderLayout.NORTH);
 
         JLabel teamList = new JLabel();
 
