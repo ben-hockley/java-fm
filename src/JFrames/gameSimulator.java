@@ -1,5 +1,9 @@
 package JFrames;
 
+import JFrames.championsLeaguePopups.endOfGroupStageSummary;
+import JFrames.championsLeaguePopups.endOfQuarterFinalSummary;
+import JFrames.championsLeaguePopups.endOfRoundOf16Summary;
+import JFrames.championsLeaguePopups.endOfSemiFinalsSummary;
 import objects.Player;
 import objects.Team;
 import data.Data;

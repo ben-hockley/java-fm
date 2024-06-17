@@ -209,8 +209,9 @@ public class League {
      */
     public Integer getNumberOfGamesInSeason() {
         int noOfTeams = teams.size();
+        final int maxTeams = 24;
 
-        if (noOfTeams > 24) {
+        if (noOfTeams > maxTeams) {
             return noOfTeams - 1;
         } else {
             return noOfTeams * 2 - 2;
@@ -247,9 +248,10 @@ public class League {
         return logo;
     }
 
+    /**
+     * @return number of teams in the league.
+     */
     public Integer getNumberOfTeams() {
         return teams.size();
     }
-
-
 }

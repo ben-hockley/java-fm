@@ -1438,51 +1438,25 @@ public class Data {
 
         world.addCup(championsLeague);
     }
-    public static void setWorldCup() {
+    public static void setWorldLeague() {
         new League("World League", "fifa.png", 1, international);
 
-        //world league teams
+        Nation[] worldLeagueTeams = {
+            england, france, germany, italy, netherlands, portugal, spain, belgium, croatia, denmark, sweden, switzerland, turkey, austria,
+            //South America (5)
+            argentina, brazil, chile, colombia, uruguay,
+            //North America (3)
+            canada, usa, mexico,
+            //Asia (2)
+            japan, southKorea,
+            //Africa (8)
+            nigeria, ghana, ivoryCoast, cameroon, algeria, morocco, senegal, mali
+        };
 
-        //Europe (14)
-        new Team(england);
-        new Team(france);
-        new Team(germany);
-        new Team(italy);
-        new Team(netherlands);
-        new Team(portugal);
-        new Team(spain);
-        new Team(belgium);
-        new Team(croatia);
-        new Team(denmark);
-        new Team(sweden);
-        new Team(switzerland);
-        new Team(turkey);
-        new Team(austria);
+        for (Nation nationalTeam : worldLeagueTeams){
+            new Team(nationalTeam);
+        }
 
-        //South America (5)
-        new Team(argentina);
-        new Team(brazil);
-        new Team(chile);
-        new Team(colombia);
-        new Team(uruguay);
 
-        //North America (3)
-        new Team(canada);
-        new Team(usa);
-        new Team(mexico);
-
-        //Asia (2)
-        new Team(japan);
-        new Team(southKorea);
-
-        //Africa (8)
-        new Team(nigeria);
-        new Team(ghana);
-        new Team(ivoryCoast);
-        new Team(cameroon);
-        new Team(algeria);
-        new Team(morocco);
-        new Team(senegal);
-        new Team(mali);
     }
 }

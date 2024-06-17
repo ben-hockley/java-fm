@@ -1,5 +1,6 @@
-package JFrames;
+package JFrames.championsLeaguePopups;
 
+import JFrames.UI;
 import objects.Player;
 import objects.Team;
 import data.Data;

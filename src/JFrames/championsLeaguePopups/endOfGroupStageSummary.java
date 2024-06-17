@@ -1,5 +1,6 @@
-package JFrames;
+package JFrames.championsLeaguePopups;
 
+import JFrames.UI;
 import objects.Cup;
 import objects.Team;
 import data.Data;
@@ -32,13 +33,24 @@ public class endOfGroupStageSummary extends JFrame {
      */
     public endOfGroupStageSummary(final Team userTeam, final UI mainMenu) {
         setTitle("UCL: End of Group Stage Summary");
-        setSize(800, 600);
+        Cup championsLeague = Data.world.getCupByName("UEFA Champions League");
+        final int popupWidth = 800;
+        final int popupHeight = 600;
+
+        final int noTeams = 16;
+        final int noTies = noTeams / 2;
+        final int groupStageGames = 6;
+
+        final Integer[] leg1Date = Data.listOfCupDates[groupStageGames];
+        final Integer[] leg2Date = Data.listOfCupDates[groupStageGames + 1];
+
+        setSize(popupWidth, popupHeight);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
         ArrayList<Team> teamsAdvancingToKnockouts = new ArrayList<>();
-        for (Team team : Data.world.getCupByName("UEFA Champions League").getTeams()){
-            if (team.getChampionsLeagueGroupStandings().indexOf(team) < 2){
+        for (Team team : championsLeague.getTeams()) {
+            if (team.getChampionsLeagueGroupStandings().indexOf(team) < 2) {
                 teamsAdvancingToKnockouts.add(team);
                 team.setAdvancingToNextRound(true);
             } else {
@@ -48,8 +60,10 @@ public class endOfGroupStageSummary extends JFrame {
 
         //sorts teams by group position (Group winners first).
         teamsAdvancingToKnockouts.sort((team1, team2) -> {
-            int team1GroupPosition = team1.getChampionsLeagueGroupStandings().indexOf(team1);
-            int team2GroupPosition = team2.getChampionsLeagueGroupStandings().indexOf(team2);
+            int team1GroupPosition =
+                    team1.getChampionsLeagueGroupStandings().indexOf(team1);
+            int team2GroupPosition =
+                    team2.getChampionsLeagueGroupStandings().indexOf(team2);
 
             return Integer.compare(team1GroupPosition, team2GroupPosition);
         });
@@ -57,27 +71,26 @@ public class endOfGroupStageSummary extends JFrame {
         ArrayList<Game> roundOf16HomeFixtures = new ArrayList<>();
         ArrayList<Game> roundOf16AwayFixtures = new ArrayList<>();
 
-        for (int i=0; i<8; i++){
-            Team fixtureHomeTeam = teamsAdvancingToKnockouts.get(i);
-            Team fixtureAwayTeam = teamsAdvancingToKnockouts.get(15 - i);
+        for (int i = 0; i < noTies; i++) {
+            Team teamA = teamsAdvancingToKnockouts.get(i);
+            Team teamB = teamsAdvancingToKnockouts.get(noTeams - 1 - i);
 
-            Game homeFixture = new Game(fixtureHomeTeam, fixtureAwayTeam, Data.listOfCupDates[6], "Cup");
-            Game awayFixture = new Game(fixtureAwayTeam, fixtureHomeTeam, Data.listOfCupDates[7], "Cup");
+            Game leg1 = new Game(teamA, teamB, leg1Date, "Cup");
+            Game leg2 = new Game(teamB, teamA, leg2Date, "Cup");
 
             //add all round of 16 fixtures to all games 2d array
-            roundOf16HomeFixtures.add(homeFixture);
-            roundOf16AwayFixtures.add(awayFixture);
+            roundOf16HomeFixtures.add(leg1);
+            roundOf16AwayFixtures.add(leg2);
 
-            //if the fixture involves the user team, add it to the events array so that  it appears in the calendar.
-            if (fixtureHomeTeam == userTeam || fixtureAwayTeam == userTeam){
-                mainMenu.addUserGame(homeFixture);
-                mainMenu.addUserGame(awayFixture);
+            //Add user games to events (calendar).
+            if (teamA == userTeam || teamB == userTeam) {
+                mainMenu.addUserGame(leg1);
+                mainMenu.addUserGame(leg2);
             }
         }
 
 
-        // adds non-user champions league fixtures to the fixture list so that
-        // they will be simulated in the background simultaneoulsy to the user's games.
+        // Non-user games added to list of games be simulated in background.
         mainMenu.addRoundOfChampionsLeagueFixtures(roundOf16HomeFixtures);
         mainMenu.addRoundOfChampionsLeagueFixtures(roundOf16AwayFixtures);
 
@@ -86,7 +99,7 @@ public class endOfGroupStageSummary extends JFrame {
         add(titleLabel, BorderLayout.NORTH);
 
         JPanel teamsAdvancingPanel = new JPanel();
-        teamsAdvancingPanel.setPreferredSize(new Dimension(300,600));
+        teamsAdvancingPanel.setPreferredSize(new Dimension(300, popupHeight));
         teamsAdvancingPanel.setLayout(new BoxLayout(teamsAdvancingPanel, BoxLayout.Y_AXIS));
         teamsAdvancingPanel.setBackground(new Color(14,32,80));
         teamsAdvancingPanel.setForeground(Color.WHITE);

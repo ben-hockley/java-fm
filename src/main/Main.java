@@ -1,7 +1,7 @@
 package main;
 
 import data.Data;
-import JFrames.menu;
+import JFrames.Menu;
 import objects.Team;
 
 public class Main {
@@ -14,7 +14,7 @@ public class Main {
         //so the player can choose which leagues to load.
         Data.setPremierLeague();
         Data.setChampionsLeague();
-        Data.setWorldCup();
+        Data.setWorldLeague();
 
         //set default starting 11 and subs for all club teams.
         for (Team team : Data.world.getAllTeams()) {
@@ -26,7 +26,7 @@ public class Main {
             team.setDefaultStartingElevenandSubs();
         }
 
-        new menu();
+        new Menu();
     }
 }
 

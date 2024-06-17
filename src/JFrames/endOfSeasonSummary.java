@@ -3,81 +3,122 @@ package JFrames;
 import objects.Player;
 import objects.Team;
 import data.Data;
-import javax.swing.*;
-import java.awt.*;
+
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Image;
 import java.util.ArrayList;
 
 public class endOfSeasonSummary extends JFrame {
 
-    Team championshipWinners;
-    Team championsShipRunnersUp;
-    Team championshipPlayoffWinners;
+    /**
+     * The championshipWinners are the team that finished top of the
+     * championship. (are promoted to the premier league).
+     */
+    private final Team championshipWinners;
+    /**
+     * The championshipRunnersUp are the team that finished 2nd in the
+     * championship. (are promoted to the premier league).
+     */
+    private final Team championshipRunnersUp;
+    /**
+     * The championshipPlayoffWinners are the team that won the championship
+     * playoffs. (are promoted to the premier league).
+     */
+    private final Team championshipPlayoffWinners;
+    /**
+     * The teams that get relegated from the premier league.
+     */
+    private final Team[] plRelegatedTeams;
 
-    Team premierLeague20th;
-    Team premierLeague19th;
-    Team premierLeague18th;
-    public endOfSeasonSummary(Team userTeam) {
+    /**
+     * Constructor for the endOfSeasonSummary JFrame.
+     * @param userTeam the team that the user is managing.
+     */
+    public endOfSeasonSummary(final Team userTeam) {
         setTitle("End of Season Summary");
-        setSize(800, 600);
+
+        final int popupWidth = 800;
+        final int popupHeight = 600;
+        setSize(popupWidth, popupHeight);
+
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-
         //END OF SEASON BACK-END FUNCTIONS.
 
         //promotion and relegation (english league)
 
 
-        //promote three random teams from the championship to the premier league.
-        ArrayList<Team> randomisedChampionshipStandings = Data.england.getLeagueByTier(2).shuffleStandings();
+        //promote 3 random teams from the championship -> premier league.
+        ArrayList<Team> randomisedChampionshipStandings =
+                Data.england.getLeagueByTier(2).shuffleStandings();
 
         championshipWinners = randomisedChampionshipStandings.get(0);
-        championsShipRunnersUp = randomisedChampionshipStandings.get(1);
+        championshipRunnersUp = randomisedChampionshipStandings.get(1);
         championshipPlayoffWinners = randomisedChampionshipStandings.get(2);
 
         championshipWinners.promote();
-        championsShipRunnersUp.promote();
+        championshipRunnersUp.promote();
         championshipPlayoffWinners.promote();
 
         //relegate bottom 3 teams from premier league to the championship
-        premierLeague20th = Data.england.getLeagueByTier(1).getStandings().get(19);
-        premierLeague19th = Data.england.getLeagueByTier(1).getStandings().get(18);
-        premierLeague18th = Data.england.getLeagueByTier(1).getStandings().get(17);
+        final int teamsRelegated = 3;
+        ArrayList<Team> plStandings =
+                Data.england.getLeagueByTier(1).getStandings();
+        plRelegatedTeams = new Team[teamsRelegated];
+        for (int i = 0; i < teamsRelegated; i++) {
+            plRelegatedTeams[i] = plStandings.get(plStandings.size() - 1 - i);
+            plRelegatedTeams[i].relegate();
+        }
 
-        premierLeague18th.relegate();
-        premierLeague19th.relegate();
-        premierLeague20th.relegate();
-
-        //ArrayList to store retiring players, so they can be displayed in the JFrame.
+        //arraylist to store season's retiring players.
         ArrayList<Player> retiringPlayers = new ArrayList<>();
 
-        //age all players by one year
-        for (Player player : Data.world.getAllPlayers()){
+        //age all players by one year + increase/decrease rating based on age.
+        final int peakAge = 25;
+        final int declineAge = 31;
+        final int retirementAge = 35;
+
+        final int minRating = 70;
+        final int maxRating = 99;
+        final int maxRatingChange = 4;
+
+        for (Player player : Data.world.getAllPlayers()) {
             player.increaseAge(1);
 
             //increase rating for young players
-            if (player.getAge() <= 25){
-                player.increaseRating((int) (Math.random() * 4));
+            if (player.getAge() <= peakAge) {
+                player.increaseRating((int) (Math.random() * maxRatingChange));
                 //player rating increases by random int between 0 and 3.
-                if (player.getRating() > 99){
-                    player.setRating(99);
-                    //if player rating is greater than 99, set it to 99, the maximum rating.
+                if (player.getRating() > maxRating) {
+                    player.setRating(maxRating);
+                    //if player rating > 99, set it to 99, the maximum rating.
                 }
             }
 
             //decrease rating for old players
-            if (player.getAge() >= 31){
-                player.decreaseRating((int) (Math.random() * 4));
+            if (player.getAge() >= declineAge) {
+                player.decreaseRating((int) (Math.random() * maxRatingChange));
                 //player rating decreases by random int between 0 and 3
             }
 
             //if player is 35 or above, 50% chance the player retires
-            if (player.getRating() < 70){
-                player.retirePlayer(); //retire player if they are not good enough anymore
+            if (player.getRating() < minRating) {
+                player.retirePlayer(); //retire low rated players.
                 retiringPlayers.add(player);
-            } else if (player.getAge() >= 35){
+            } else if (player.getAge() >= retirementAge) {
                 int retirementChance = (int) Math.round(Math.random());
 
-                if (retirementChance == 1){
+                if (retirementChance == 1) {
                     //removes the player and replaces them with a regen
                     player.retirePlayer();
                     retiringPlayers.add(player);
@@ -88,26 +129,29 @@ public class endOfSeasonSummary extends JFrame {
         //for retiring players.
 
         //reset every team's transfer budget to their initial transfer budget.
-        for (Team team : Data.world.getAllTeams()){
+        for (Team team : Data.world.getAllTeams()) {
             team.resetTransferBudget();
         }
-
 
         // CONTENTS OF JFRAME
         setLayout(new BorderLayout());
 
-        JLabel titleLabel = getHeadingLabel("End of Season Summary", Font.BOLD, 24, SwingConstants.CENTER, Color.BLUE);
-        titleLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + userTeam.getTeamLogo()).getImage().getScaledInstance(55,72, Image.SCALE_SMOOTH)));
+        JLabel titleLabel = getHeadingLabel("End of Season Summary", Font.BOLD,
+                24, SwingConstants.CENTER, Color.BLUE);
+        titleLabel.setIcon(new ImageIcon(new ImageIcon(
+                "teamImages/" + userTeam.getTeamLogo()).getImage().getScaledInstance(55,72, Image.SCALE_SMOOTH)));
 
-        titleLabel.setPreferredSize(new Dimension(800, 50));
+        titleLabel.setPreferredSize(new Dimension(popupWidth, 50));
         this.add(titleLabel, BorderLayout.NORTH);
 
         JPanel retiringPlayersPanel = new JPanel();
-        retiringPlayersPanel.setLayout(new BoxLayout(retiringPlayersPanel, BoxLayout.Y_AXIS));
+        retiringPlayersPanel.setLayout(new BoxLayout(retiringPlayersPanel,
+                BoxLayout.Y_AXIS));
         retiringPlayersPanel.setBackground(Color.GRAY);
         retiringPlayersPanel.setForeground(Color.BLUE);
 
-        JLabel retiringPlayersTitleLabel = getHeadingLabel("Retiring Players:", Font.PLAIN, 18, SwingConstants.LEFT, Color.BLUE);
+        JLabel retiringPlayersTitleLabel = getHeadingLabel("Retiring Players:",
+                Font.PLAIN, 18, SwingConstants.LEFT, Color.BLUE);
         retiringPlayersPanel.add(retiringPlayersTitleLabel);
 
         for (Player player : retiringPlayers){
@@ -181,7 +225,7 @@ public class endOfSeasonSummary extends JFrame {
         if (userTeam.getTeamType().equals("Club")){
             leagueRelegatedTeamsLabel = getRelegatedTeamsLabel();
             leagueRelegatedTeamsLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + Data.england.getLeagueByTier(2).getLeagueLogo()).getImage().getScaledInstance(55,72, Image.SCALE_SMOOTH)));
-            teamsPromotedToLeagueLabel = getHeadingLabel("Teams Promoted to " + leagueName + ": " + championshipWinners.getTeamName() + ", " + championsShipRunnersUp.getTeamName() + ", " + championshipPlayoffWinners.getTeamName(), Font.BOLD, 12, SwingConstants.LEFT, Color.GREEN);
+            teamsPromotedToLeagueLabel = getHeadingLabel("Teams Promoted to " + leagueName + ": " + championshipWinners.getTeamName() + ", " + championshipRunnersUp.getTeamName() + ", " + championshipPlayoffWinners.getTeamName(), Font.BOLD, 12, SwingConstants.LEFT, Color.GREEN);
             teamsPromotedToLeagueLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + Data.england.getLeagueByTier(1).getLeagueLogo()).getImage().getScaledInstance(55,72, Image.SCALE_SMOOTH)));
         }
 
@@ -209,10 +253,10 @@ public class endOfSeasonSummary extends JFrame {
         return mainPanel;
     }
 
-    private JLabel getHeadingLabel(String leagueName, int bold, int size, int left, Color LeagueChampions) {
+    private JLabel getHeadingLabel(String leagueName, int font, int size, int horizontalAlignment, Color LeagueChampions) {
         JLabel newJLabel = new JLabel(leagueName);
-        newJLabel.setFont(new Font("Arial", bold, size));
-        newJLabel.setHorizontalAlignment(left);
+        newJLabel.setFont(new Font("Arial", font, size));
+        newJLabel.setHorizontalAlignment(horizontalAlignment);
         newJLabel.setVerticalAlignment(SwingConstants.CENTER);
         newJLabel.setBackground(LeagueChampions);
         newJLabel.setForeground(Color.WHITE);
@@ -274,7 +318,7 @@ public class endOfSeasonSummary extends JFrame {
     }
 
     private JLabel getRelegatedTeamsLabel() {
-        return getHeadingLabel("Premier League Relegated Teams: " + premierLeague20th.getTeamName() + ", " + premierLeague19th.getTeamName() + ", " + premierLeague18th.getTeamName(), Font.BOLD, 12, SwingConstants.LEFT, Color.RED);
+        return getHeadingLabel("Premier League Relegated Teams: " + plRelegatedTeams[0].getTeamName() + ", " + plRelegatedTeams[1].getTeamName() + ", " + plRelegatedTeams[2].getTeamName(), Font.BOLD, 12, SwingConstants.LEFT, Color.RED);
     }
 
     private JLabel getRetiringPlayerLabel(Player player) {
