@@ -202,10 +202,19 @@ public class League {
     /**
      * Number of games in a standard round-robin league season, where each
      * team plays every other team twice, once at home and once away.
+     * If the league has over 24 teams, the schedule is reduced to each team
+     * playing each other once so there is enough time for the season to
+     * finish.
      * @return number of club games in a season.
      */
     public Integer getNumberOfGamesInSeason() {
-        return (teams.size() - 1) * 2;
+        int noOfTeams = teams.size();
+
+        if (noOfTeams > 24) {
+            return noOfTeams - 1;
+        } else {
+            return noOfTeams * 2 - 2;
+        }
     }
 
     /**

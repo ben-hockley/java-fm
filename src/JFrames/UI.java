@@ -6,23 +6,48 @@ import JPanels.CalendarPanel;
 import JPanels.HomeDefaultDisplay;
 import JPanels.HomeGameDisplay;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import objects.*;
 import events.Event;
 import main.fixtureGen;
+import objects.Team;
+import objects.dateTime;
 
 //JAVA swing to create the user interface.
 public class UI extends JFrame {
 
-    //ArrayList to store all events. Events can be added and removed.
-    ArrayList<Event> events;
+    /**
+     * All the events that involve the user's team. These events will be shown
+     * on the calendar panel.
+     * userEvents stores the following:
+     * - user's league fixtures (Game objects)
+     * - user's cup fixtures (Game objects)
+     */
+    private ArrayList<Event> userEvents;
 
-    ArrayList<Game> cpuGames;
+    /**
+     * ArrayList that stores all the games that the CPU has to play in that
+     * round (for cup games) / gameweek (for league games). This is so the CPU
+     * games can be simulated simultaneously as the user plays their game.
+     */
+    private ArrayList<Game> cpuGames;
 
     /**
      * The clock object used to track date and month to update the calendar.
@@ -31,15 +56,50 @@ public class UI extends JFrame {
     /**
      * The panel that contains the calendar, applied NORTH in the BorderLayout.
      */
-    private final JPanel topPanel; //JPanel to hold the calendar. (North)
-    public final Button progressDateButton; //Button to progress the date. (South)
+    private final JPanel topPanel;
+
+    /**
+     * The button that progresses the date by one day. Moves the calendar panel
+     * across one day and updates the main panel if there is an event on the
+     * day.
+     */
+    private final Button progressDateButton;
+
+    /**
+     * Panel displayed in the center of the BorderLayout in the main UI when
+     * there is no game being played by the user's team.
+     * This panel displays the league standings, the league top scorers, and
+     * the user team's top scorers.
+     * It also displays which keys should be pressed to access different
+     * JFrames such as the transfer market.
+     */
     private JPanel homeDefaultDisplay;
 
-    ArrayList<ArrayList<Game>> allGameFixtures;
+    /**
+     * 2D arrayList that stores all the league fixtures for the season.
+     * Each inner arrayList represents a gameweek, containing all the games to
+     * be played in that week.
+     * This arrayList contains all the fixtures in the league, not just the
+     * games involving the user's team.
+     */
+    private ArrayList<ArrayList<Game>> allGameFixtures;
 
-    ArrayList<ArrayList<Game>> championsLeagueFixtures;
-    //constructor to initialize homepage.
-    public UI(Team userTeam) {
+    /**
+     * This 2D arrayList contains all the currently schedules champions league
+     * fixtures. When new fixtures are generated, they are added to this.
+     * Each inner arrayList represents a round of fixtures, containing all the
+     * fixtures to be played in that round. (by any team).
+     */
+    private ArrayList<ArrayList<Game>> championsLeagueFixtures;
+
+    /**
+     * Constructor for the main UI that contains the general flow of the game
+     * and the main panels.
+     * @param userTeam the team the user is controlling, as selected by the
+     *                 user in the game setup JFrame. (loaded by Main.java
+     *                 before us.)
+     */
+    public UI(final Team userTeam) {
 
 
         // generates all league fixtures for the league,
@@ -165,18 +225,20 @@ public class UI extends JFrame {
             homeDisplaySet = true;
         }
 
-
-        if (clock.getMonthNumber().equals(1) && clock.getDateNumber().equals(1)){
-            JOptionPane.showMessageDialog(null, "Happy New Year! It's now " + clock.getYearNumber() + "!" + ", the transfer market is open.");
-        }
-        if (clock.getMonthNumber().equals(6) && clock.getDateNumber().equals(1)){
-            JOptionPane.showMessageDialog(null, "It's now June, the transfer market is open.");
-        }
-        if ((clock.getMonthNumber().equals(8) || clock.getMonthNumber().equals(1)) && clock.getDateNumber().equals(31)){
-            JOptionPane.showMessageDialog(null, "It's Transfer deadline day, wrap up any last-minute deals before it's too late.");
-        }
-        if ((clock.getMonthNumber().equals(9) || clock.getMonthNumber().equals(2)) && clock.getDateNumber().equals(1)){
-            JOptionPane.showMessageDialog(null, "The transfer window is now closed, you can no longer buy or sell players.");
+        //transfer market updates for club teams only (irrelevant to international teams).
+        if (userTeam.getTeamType().equals("Club")){
+            if (clock.getMonthNumber().equals(1) && clock.getDateNumber().equals(1)){
+                JOptionPane.showMessageDialog(null, "Happy New Year! It's now " + clock.getYearNumber() + "!" + ", the transfer market is open.");
+            }
+            if (clock.getMonthNumber().equals(6) && clock.getDateNumber().equals(1)){
+                JOptionPane.showMessageDialog(null, "It's now June, the transfer market is open.");
+            }
+            if ((clock.getMonthNumber().equals(8) || clock.getMonthNumber().equals(1)) && clock.getDateNumber().equals(31)){
+                JOptionPane.showMessageDialog(null, "It's Transfer deadline day, wrap up any last-minute deals before it's too late.");
+            }
+            if ((clock.getMonthNumber().equals(9) || clock.getMonthNumber().equals(2)) && clock.getDateNumber().equals(1)){
+                JOptionPane.showMessageDialog(null, "The transfer window is now closed, you can no longer buy or sell players.");
+            }
         }
     }
     /**
@@ -209,7 +271,7 @@ public class UI extends JFrame {
 
 
         // Check if there is an event on this date, add the event logo to the label if there is.
-        for (Event event : events) {
+        for (Event event : userEvents) {
             if (event.getDayOfMonth().equals(dateNumber) && event.getMonth().equals(clock.getMonthNumber())) {
                 label.setBackground(Color.yellow); //set the label to yellow when there is an event on this date.
                 if (event instanceof Game) {
@@ -263,7 +325,7 @@ public class UI extends JFrame {
     }
 
     public void addUserGame(Event userGame) {
-        events.add(userGame);
+        userEvents.add(userGame);
     }
 
     public void addRoundOfChampionsLeagueFixtures(ArrayList<Game> roundOfChampionsLeagueFixtures) {
@@ -278,7 +340,7 @@ public class UI extends JFrame {
 
         Data.world.getCupByName("UEFA Champions League").updateChampionsLeagueTeams();
 
-        events = new ArrayList<>();
+        userEvents = new ArrayList<>();
 
         allGameFixtures = userTeam.getLeague().generateLeagueFixtures();
 
@@ -297,6 +359,10 @@ public class UI extends JFrame {
         }
 
         ArrayList<Game> fixtures = userTeam.getFixtures();
-        events.addAll(fixtures);
+        userEvents.addAll(fixtures);
+    }
+
+    public Button getProgressDateButton() {
+        return progressDateButton;
     }
 }

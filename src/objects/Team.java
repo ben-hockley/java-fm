@@ -155,7 +155,13 @@ public class Team {
      * This includes the starting 11 (length 11) and substitutes (length 5-12).
      * Total length of players = 16-23.
      */
-    private final ArrayList<Player> players;
+    private ArrayList<Player> players;
+
+    /**
+     * This is the associated country with the national team.
+     * Club teams do not have an associated nation, so this is not used. (null)
+     */
+    private final Nation associatedNation;
 
     /**
      * Constructor to create a new club team.
@@ -210,6 +216,8 @@ public class Team {
         this.transferBudget = transferBudgetMillions * 1000000;
 
         league.addTeam(this); //after creating a team, add them to their league.
+
+        this.associatedNation = null; //national teams only.
     }
 
 
@@ -219,6 +227,8 @@ public class Team {
      */
     public Team(final Nation nationalTeam) {
         this.type = "International";
+        this.associatedNation = nationalTeam;
+
 
         this.name = nationalTeam.getNationName();
         this.shortName = nationalTeam.getNationName();
@@ -1159,5 +1169,9 @@ public class Team {
      */
     public Integer[] getFormation() {
         return formation;
+    }
+
+    public void updateBestSquad() {
+        this.players = associatedNation.getBestSquad();
     }
 }

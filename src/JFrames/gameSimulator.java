@@ -18,6 +18,8 @@ public class gameSimulator extends JFrame {
      */
     public gameSimulator(Game simulatedGame, Team userTeam, UI mainMenu) {
 
+        System.out.println(userTeam.getLeague().getNumberOfGamesInSeason());
+
         Team homeTeam = simulatedGame.getHomeTeam();
         Team awayTeam = simulatedGame.getAwayTeam();
 

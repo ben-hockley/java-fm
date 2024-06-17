@@ -25,7 +25,7 @@ public class fixtureGen {
         int totalRounds = (numberOfTeams - 1) * 2; //38 for a 20 team league
         int matchesPerRound = numberOfTeams / 2; //10 for a 20 team league
 
-        if (numberOfTeams > 20){
+        if (numberOfTeams > 24){
             totalRounds /= 2;
         }
 

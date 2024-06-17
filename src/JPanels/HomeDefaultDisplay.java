@@ -81,7 +81,7 @@ public class HomeDefaultDisplay extends JPanel {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_P) {
-                    if (parentUI.progressDateButton.isEnabled()){
+                    if (parentUI.getProgressDateButton().isEnabled()){
                         clock.progressDate();
                         parentUI.updateCalendar(clock.getDateNumber(), userTeam);
 

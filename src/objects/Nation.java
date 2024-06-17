@@ -27,7 +27,7 @@ public class Nation {
      * All The players that are from this nation.
      * Players are added to their club and nation via constructor when created.
      */
-    private final ArrayList<Player> players;
+    private ArrayList<Player> players;
     /**
      * All the leagues that are in this nation.
      * Leagues are added to their nation via constructor when created.

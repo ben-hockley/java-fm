@@ -1,6 +1,5 @@
 package JFrames;
 
-import events.Game;
 import objects.Player;
 import objects.Team;
 import data.Data;
@@ -85,6 +84,8 @@ public class endOfSeasonSummary extends JFrame {
                 }
             }
         }
+        //reset every club and national team's starting 11 and subs to account
+        //for retiring players.
 
         //reset every team's transfer budget to their initial transfer budget.
         for (Team team : Data.world.getAllTeams()){
@@ -120,7 +121,6 @@ public class endOfSeasonSummary extends JFrame {
 
         JPanel mainPanel = getMainPanel(userTeam);
 
-
         this.add(mainPanel, BorderLayout.CENTER);
         this.setVisible(true);
 
@@ -132,6 +132,27 @@ public class endOfSeasonSummary extends JFrame {
 
         for (Player player : Data.world.getAllPlayers()){
             player.resetSeasonStats();
+        }
+
+        for (Team team : Data.world.getAllTeams()) {
+            team.setDefaultStartingElevenandSubs();
+        }
+
+        if (userTeam.getTeamType().equals("International")){
+            for (Player nationalPlayer : userTeam.getLeague().getAllPlayers()){
+                nationalPlayer.resetSeasonStats();
+            }
+
+            for (Team nationalTeam : userTeam.getLeague().getAllTeams()){
+                nationalTeam.resetLeagueStats();
+                nationalTeam.wipeFixtures();
+            }
+        }
+        //set default starting 11 and subs for all international teams.
+        for (Team team : Data.international.getLeagueByTier(1).getAllTeams()) {
+
+            team.updateBestSquad();
+            team.setDefaultStartingElevenandSubs();
         }
     }
 
@@ -153,10 +174,17 @@ public class endOfSeasonSummary extends JFrame {
         leagueChampionsLabel.setIconTextGap(50);
 
         JLabel leagueTopGoalScorerLabel = getFormattedTopGoalScorerLabel(LeagueTopGoalscorer, "League");
-        JLabel leagueRelegatedTeamsLabel = getRelegatedTeamsLabel();
-        leagueRelegatedTeamsLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + Data.england.getLeagueByTier(2).getLeagueLogo()).getImage().getScaledInstance(55,72, Image.SCALE_SMOOTH)));
-        JLabel teamsPromotedToLeagueLabel = getHeadingLabel("Teams Promoted to " + leagueName + ": " + championshipWinners.getTeamName() + ", " + championsShipRunnersUp.getTeamName() + ", " + championshipPlayoffWinners.getTeamName(), Font.BOLD, 12, SwingConstants.LEFT, Color.GREEN);
-        teamsPromotedToLeagueLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + Data.england.getLeagueByTier(1).getLeagueLogo()).getImage().getScaledInstance(55,72, Image.SCALE_SMOOTH)));
+
+
+        JLabel leagueRelegatedTeamsLabel = new JLabel();
+        JLabel teamsPromotedToLeagueLabel = new JLabel();
+        if (userTeam.getTeamType().equals("Club")){
+            leagueRelegatedTeamsLabel = getRelegatedTeamsLabel();
+            leagueRelegatedTeamsLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + Data.england.getLeagueByTier(2).getLeagueLogo()).getImage().getScaledInstance(55,72, Image.SCALE_SMOOTH)));
+            teamsPromotedToLeagueLabel = getHeadingLabel("Teams Promoted to " + leagueName + ": " + championshipWinners.getTeamName() + ", " + championsShipRunnersUp.getTeamName() + ", " + championshipPlayoffWinners.getTeamName(), Font.BOLD, 12, SwingConstants.LEFT, Color.GREEN);
+            teamsPromotedToLeagueLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + Data.england.getLeagueByTier(1).getLeagueLogo()).getImage().getScaledInstance(55,72, Image.SCALE_SMOOTH)));
+        }
+
         JLabel championsLeagueWinnerLabel = getHeadingLabel("Champions League Winner: " + ChampionsLeagueWinner.getTeamName(), Font.BOLD, 18, SwingConstants.LEFT, ChampionsLeagueWinner.getTeamColor());
         championsLeagueWinnerLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + ChampionsLeagueWinner.getTeamLogo()).getImage().getScaledInstance(55,72, Image.SCALE_SMOOTH)));
         championsLeagueWinnerLabel.setHorizontalTextPosition(SwingConstants.LEFT);
@@ -168,10 +196,13 @@ public class endOfSeasonSummary extends JFrame {
 
         mainPanel.add(leagueChampionsLabel);
         mainPanel.add(leagueTopGoalScorerLabel);
-        mainPanel.add(leagueRelegatedTeamsLabel);
-        mainPanel.add(teamsPromotedToLeagueLabel);
-        mainPanel.add(championsLeagueWinnerLabel);
-        mainPanel.add(topGoalScorerChampionsLeague);
+
+        if (userTeam.getTeamType().equals("Club")){
+            mainPanel.add(leagueRelegatedTeamsLabel);
+            mainPanel.add(teamsPromotedToLeagueLabel);
+            mainPanel.add(championsLeagueWinnerLabel);
+            mainPanel.add(topGoalScorerChampionsLeague);
+        }
         mainPanel.add(ballonDorWinnerLabel);
         mainPanel.add(goldenBoyWinnerLabel);
 

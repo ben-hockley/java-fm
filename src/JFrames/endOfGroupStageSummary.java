@@ -5,22 +5,40 @@ import objects.Team;
 import data.Data;
 import events.Game;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 public class endOfGroupStageSummary extends JFrame {
 
-    public endOfGroupStageSummary(Team userTeam, UI mainMenu){
+    /**
+     * This class is a JFrame that displays the end of group stage summary
+     * for the UEFA Champions League.
+     * It displays the teams that have advanced to the knockout stage, and
+     * provides a list of the round of 16 fixtures.
+     * It also lists the top goalscorers so far in the competition.
+     * @param userTeam the team the user is playing as.
+     * @param mainMenu the main UI JFrame, where the game runs.
+     */
+    public endOfGroupStageSummary(final Team userTeam, final UI mainMenu) {
         setTitle("UCL: End of Group Stage Summary");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        //get arrayList of all the teams that finished 1st or 2nd in their group, so qualify for the knockout stage.
         ArrayList<Team> teamsAdvancingToKnockouts = new ArrayList<>();
         for (Team team : Data.world.getCupByName("UEFA Champions League").getTeams()){
             if (team.getChampionsLeagueGroupStandings().indexOf(team) < 2){
-                //advance team to knockout if they finished first or second in their group.
                 teamsAdvancingToKnockouts.add(team);
                 team.setAdvancingToNextRound(true);
             } else {
@@ -146,8 +164,8 @@ public class endOfGroupStageSummary extends JFrame {
             Team awayTeam = roundOf16Fixture.getAwayTeam();
 
             JLabel roundOf16FixtureLabel = new JLabel(homeTeam.getTeamName() + " vs " + awayTeam.getTeamName());
-            roundOf16FixtureLabel.setVerticalAlignment(SwingConstants.CENTER);
             roundOf16FixtureLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            roundOf16FixtureLabel.setVerticalAlignment(SwingConstants.CENTER);
             roundOf16FixtureLabel.setForeground(Color.WHITE);
 
             mainPanel.add(roundOf16FixtureLabel);

@@ -22,7 +22,6 @@ public class menu extends JFrame {
     private JPanel getTitleMenu() {
         JPanel titleMenu = new JPanel(new BorderLayout());
 
-        //component index 0
         JLabel title = new JLabel("Football Manager 2024");
         title.setForeground(java.awt.Color.WHITE);
         title.setBackground(Color.RED);
@@ -33,7 +32,6 @@ public class menu extends JFrame {
         title.setPreferredSize(new Dimension(1000, 100));
         titleMenu.add(title, BorderLayout.NORTH);
 
-        //component index 1
         JLabel startButtonContainer = new JLabel();
         JLabel startButton = new JLabel("Start");
         startButton.setForeground(Color.BLUE);
@@ -82,34 +80,14 @@ public class menu extends JFrame {
         JPanel countryList = new JPanel(new GridLayout(numberOfRows, numberOfColumns, 10, 10));
         countryList.setPreferredSize(new Dimension(1000, 400));
 
-        JLabel englandLabel = new JLabel("England");
-        englandLabel.setForeground(Color.BLUE);
-        englandLabel.setBackground(Color.WHITE);
-        englandLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        englandLabel.setOpaque(true);
-        englandLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        englandLabel.setVerticalAlignment(SwingConstants.CENTER);
-        englandLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        countryList.add(englandLabel);
+        JLabel internationalLabel = getNationLabel(Data.international, selectCountryMenu);
+        JLabel englandLabel = getNationLabel(Data.england, selectCountryMenu);
 
-        JLabel franceLabel = new JLabel("France");
-        franceLabel.setForeground(Color.BLUE);
-        franceLabel.setBackground(Color.WHITE);
-        franceLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        franceLabel.setOpaque(true);
-        franceLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        franceLabel.setVerticalAlignment(SwingConstants.CENTER);
-        franceLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        countryList.add(franceLabel);
+        countryList.add(englandLabel);
+        countryList.add(internationalLabel);
 
         selectCountryMenu.add(countryList, BorderLayout.CENTER);
 
-        englandLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                selectCountryMenu.setVisible(false);
-                SwingUtilities.getWindowAncestor(selectCountryMenu).add(selectLeagueMenu(Data.england));
-            }
-        });
         return selectCountryMenu;
     }
 
@@ -205,6 +183,31 @@ public class menu extends JFrame {
         selectTeamMenu.add(teamList, BorderLayout.CENTER);
 
         return selectTeamMenu;
+    }
+
+    private JLabel getNationLabel(Nation nationOption, JPanel parentPanel){
+        JLabel nationLabel = new JLabel(nationOption.getNationName());
+        nationLabel.setForeground(Color.BLUE);
+        nationLabel.setBackground(Color.WHITE);
+        nationLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        nationLabel.setOpaque(true);
+        nationLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        nationLabel.setVerticalAlignment(SwingConstants.CENTER);
+        nationLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        nationLabel.setIcon(new ImageIcon(new ImageIcon("teamImages/" + nationOption.getNationFlag()).getImage().getScaledInstance(200,120, Image.SCALE_SMOOTH)));
+        nationLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+        nationLabel.setVerticalTextPosition(SwingConstants.BOTTOM);
+        nationLabel.setIconTextGap(10);
+
+        nationLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+
+                parentPanel.setVisible(false);
+                SwingUtilities.getWindowAncestor(parentPanel).add(selectLeagueMenu(nationOption));
+            }
+        });
+
+        return nationLabel;
     }
 
 }

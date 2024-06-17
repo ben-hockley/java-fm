@@ -9,7 +9,7 @@ public class Data {
 
     public static World world = new World();
 
-    public static Nation international = new Nation("International", "International.png", 0, "World");
+    public static Nation international = new Nation("International", "fifa.png", 0, "World");
     public static Nation england = new Nation("England", "England.png", 4, "Europe");
     public static Nation brazil = new Nation("Brazil", "Brazil.png", 5, "South America");
     public static Nation croatia = new Nation("Croatia", "Croatia.png", 10, "Europe");
@@ -778,7 +778,7 @@ public class Data {
         new Player("Ferland", "Mendy", "DEF", realMadrid, france, 78, 28);
         new Player("Fran", "Garcia", "DEF", realMadrid, spain, 77, 24);
 
-        new Player("Jude", "Bellingham", "MID", realMadrid, england, 92, 22);
+        new Player("Jude", "Bellingham", "MID", realMadrid, england, 92, 20);
         new Player("Federico", "Valverde", "MID", realMadrid, uruguay, 90, 25);
         new Player("Aurelien", "Tchouameni", "MID", realMadrid, france, 88, 24);
         new Player("Eduardo", "Camavinga", "MID", realMadrid, france, 87, 21);
@@ -1439,50 +1439,50 @@ public class Data {
         world.addCup(championsLeague);
     }
     public static void setWorldCup() {
-        League worldCup = new League("World Cup", "WorldCup.png", 1, international);
+        new League("World League", "fifa.png", 1, international);
 
-        //world cup teams
+        //world league teams
 
         //Europe (14)
-        Team englandNationalTeam = new Team(england);
-        Team franceNationalTeam = new Team(france);
-        Team germanyNationalTeam = new Team(germany);
-        Team italyNationalTeam = new Team(italy);
-        Team netherlandsNationalTeam = new Team(netherlands);
-        Team portugalNationalTeam = new Team(portugal);
-        Team spainNationalTeam = new Team(spain);
-        Team belgiumNationalTeam = new Team(belgium);
-        Team croatiaNationalTeam = new Team(croatia);
-        Team denmarkNationalTeam = new Team(denmark);
-        Team swedenNationalTeam = new Team(sweden);
-        Team switzerlandNationalTeam = new Team(switzerland);
-        Team turkeyNationalTeam = new Team(turkey);
-        Team austriaNationalTeam = new Team(austria);
+        new Team(england);
+        new Team(france);
+        new Team(germany);
+        new Team(italy);
+        new Team(netherlands);
+        new Team(portugal);
+        new Team(spain);
+        new Team(belgium);
+        new Team(croatia);
+        new Team(denmark);
+        new Team(sweden);
+        new Team(switzerland);
+        new Team(turkey);
+        new Team(austria);
 
         //South America (5)
-        Team argentinaNationalTeam = new Team(argentina);
-        Team brazilNationalTeam = new Team(brazil);
-        Team chileNationalTeam = new Team(chile);
-        Team colombiaNationalTeam = new Team(colombia);
-        Team uruguayNationalTeam = new Team(uruguay);
+        new Team(argentina);
+        new Team(brazil);
+        new Team(chile);
+        new Team(colombia);
+        new Team(uruguay);
 
         //North America (3)
-        Team canadaNationalTeam = new Team(canada);
-        Team usaNationalTeam = new Team(usa);
-        Team mexicoNationalTeam = new Team(mexico);
+        new Team(canada);
+        new Team(usa);
+        new Team(mexico);
 
         //Asia (2)
-        Team japanNationalTeam = new Team(japan);
-        Team southKoreaNationalTeam = new Team(southKorea);
+        new Team(japan);
+        new Team(southKorea);
 
         //Africa (8)
-        Team nigeriaNationalTeam = new Team(nigeria);
-        Team ghanaNationalTeam = new Team(ghana);
-        Team ivoryCoastNationalTeam = new Team(ivoryCoast);
-        Team cameroonNationalTeam = new Team(cameroon);
-        Team algeriaNationalTeam = new Team(algeria);
-        Team moroccoNationalTeam = new Team(morocco);
-        Team senegalNationalTeam = new Team(senegal);
-        Team maliNationalTeam = new Team(mali);
+        new Team(nigeria);
+        new Team(ghana);
+        new Team(ivoryCoast);
+        new Team(cameroon);
+        new Team(algeria);
+        new Team(morocco);
+        new Team(senegal);
+        new Team(mali);
     }
 }
