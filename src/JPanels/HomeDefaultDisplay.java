@@ -83,7 +83,7 @@ public class HomeDefaultDisplay extends JPanel {
                 if (e.getKeyCode() == KeyEvent.VK_P) {
                     if (parentUI.getProgressDateButton().isEnabled()){
                         clock.progressDate();
-                        parentUI.updateCalendar(clock.getDateNumber(), userTeam);
+                        parentUI.updateCalendar(userTeam);
 
                         //dispose of all frames except the main frame.
                         if (Frame.getFrames().length > 1){

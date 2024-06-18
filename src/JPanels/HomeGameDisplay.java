@@ -352,7 +352,7 @@ public class HomeGameDisplay extends JPanel {
                 new gameSimulator(simulatedGame, userTeam, ui);
 
                 clock.progressDate();
-                ui.updateCalendar(clock.getDateNumber(), userTeam);
+                ui.updateCalendar(userTeam);
                 ui.revalidate();
             }
         });
