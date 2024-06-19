@@ -1,6 +1,7 @@
 package objects;
 
 import data.Data;
+import data.regenNames;
 import events.Game;
 
 import java.awt.Color;
@@ -1173,5 +1174,27 @@ public class Team {
 
     public void updateBestSquad() {
         this.players = associatedNation.getBestSquad();
+    }
+
+    public void fillTeam(){
+        while (getNumberOfGoalkeepers() < 2) {
+            generateRandomPlayer("GK");
+        }
+        while (getNumberOfDefenders() < formation[0] + 1) {
+            generateRandomPlayer("DEF");
+        }
+        while (getNumberOfMidfielders() < formation[1] + 1) {
+            generateRandomPlayer("MID");
+        }
+        while (getNumberOfForwards() < formation[2] + 1) {
+            generateRandomPlayer("FWD");
+        }
+    }
+    private void generateRandomPlayer(String position) {
+        String fName = regenNames.listOfFirstNames[(int) (Math.random() * regenNames.listOfFirstNames.length)];
+        String lName = regenNames.listOfLastNames[(int) (Math.random() * regenNames.listOfLastNames.length)];
+        int rating = 70 + (int) (Math.random() * 6);
+        int age = 20 + (int) (Math.random() * 15);
+        new Player(fName, lName, position, this, this.league.getCountry(), rating, age);
     }
 }

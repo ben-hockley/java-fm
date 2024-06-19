@@ -763,7 +763,8 @@ public class Data {
 
         world.addLeague(championship);
     }
-    public static void setChampionsLeague() {
+
+    public static void setLaLiga() {
         League laLiga = new League("La Liga", "LaLiga.png", 1, spain);
 
         Team realMadrid = new Team("Real Madrid", "Real Madrid", "realMadrid.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 82, 159), 250);
@@ -862,8 +863,159 @@ public class Data {
         new Player("Portu", "", "FWD", Girona, spain, 77, 32);
         new Player("Christian", "Stuani", "FWD", Girona, uruguay, 76, 37);
 
-        world.addLeague(laLiga);
+        Team realSociedad = new Team("Real Sociedad", "Real Sociedad", "realSociedad.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        new Player("Alex", "Remiro", "GK", realSociedad, spain, 80, 29);
+        new Player("Unai", "Marrero", "GK", realSociedad, spain, 72, 22);
 
+        new Player("Robin", "Le Normand", "DEF", realSociedad, spain, 85, 27);
+        new Player("Kieran", "Tierney", "DEF", realSociedad, scotland, 81, 27);
+        new Player("Igor", "Zubeldia", "DEF", realSociedad, spain, 80, 27);
+        new Player("Hamari", "Traore", "DEF", realSociedad, mali, 77, 32);
+        new Player("Jon", "Pacheco", "DEF", realSociedad, spain, 76, 23);
+        new Player("Jon", "Aramburu", "DEF", realSociedad, venezuela, 72, 21);
+
+        new Player("Martin", "Zubimendi", "MID", realSociedad, spain, 84, 25);
+        new Player("Mikel", "Merino", "MID", realSociedad, spain, 83, 27);
+        new Player("Brais", "Mendez", "MID", realSociedad, spain, 82, 27);
+        new Player("Benat", "Turrientes", "MID", realSociedad, spain, 80, 22);
+        new Player("David", "Silva", "MID", realSociedad, spain, 80, 38);
+
+        new Player("Mikel", "Oyarzabal", "FWD", realSociedad, spain, 86, 27);
+        new Player("Takefusa", "Kubo", "FWD", realSociedad, japan, 84, 23);
+        new Player("Andre", "Silva", "FWD", realSociedad, portugal, 78, 28);
+        new Player("Ander", "Barrenetxea", "FWD", realSociedad, spain, 77, 22);
+        new Player("Umar", "Sadiq", "FWD", realSociedad, nigeria, 74, 27);
+
+        Team bilbao = new Team("Athletic Bilbao", "Ath Bilbao", "athBilbao.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        new Player("Unai", "Simon", "GK", bilbao, spain, 90, 27);
+        new Player("Julen", "Agirrezabala", "GK", bilbao, spain, 76, 23);
+
+        new Player("Dani", "Vivian", "DEF", bilbao, spain, 84, 24);
+        new Player("Aitor", "Paredes", "DEF", bilbao, spain, 82, 24);
+        new Player("Oscar", "de Marcos", "DEF", bilbao, spain, 82, 35);
+        new Player("Yuri", "Berchiche", "DEF", bilbao, spain, 78, 34);
+        new Player("Yeray", "Alvarez", "DEF", bilbao, spain, 77, 29);
+        new Player("Inigo", "Lekue", "DEF", bilbao, spain, 74, 31);
+
+        new Player("Oihan", "Sancet", "MID", bilbao, spain, 83, 24);
+        new Player("Benat", "Prados", "MID", bilbao, spain, 80, 23);
+        new Player("Ander", "Herrera", "MID", bilbao, spain, 77, 34);
+        new Player("Iker", "Muniain", "MID", bilbao, spain, 77, 31);
+        new Player("Unai", "Gomez", "MID", bilbao, spain, 76, 21);
+
+        new Player("Nico", "Williams", "FWD", bilbao, spain, 85, 21);
+        new Player("Inaki", "Williams", "FWD", bilbao, ghana, 82, 30);
+        new Player("Gorka", "Guruzeta", "FWD", bilbao, spain, 81, 27);
+        new Player("Alex", "Berenguer", "FWD", bilbao, spain, 78, 28);
+        new Player("Asier", "Villalibre", "FWD", bilbao, spain, 75, 26);
+
+        Team valencia = new Team("Valencia", "Valencia", "valencia.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        new Player("Giorgi", "Mamardashvili", "GK", valencia, georgia, 92, 23);
+        new Player("Jaume", "Domenech", "GK", valencia, spain, 74, 33);
+
+        new Player("Jose", "Gaya", "DEF", valencia, spain, 83, 29);
+        new Player("Christian", "Mosquera", "DEF", valencia, spain, 82, 19);
+        new Player("Yarek", "Gasiorowski", "DEF", valencia, spain, 78, 19);
+        new Player("Thierry", "Correia", "DEF", valencia, portugal, 76, 25);
+        new Player("Cenk", "Ozkacar", "DEF", valencia, turkey, 75, 23);
+        new Player("Jesus", "Vazquez", "DEF", valencia, spain, 74, 21);
+
+        new Player("Pepulu", "", "MID", valencia, spain, 82, 25);
+        new Player("Javi", "Guerra", "MID", valencia, spain, 80, 21);
+        new Player("Andre", "Almeida", "MID", valencia, portugal, 78, 24);
+        new Player("Hugo", "Guillamon", "MID", valencia, spain, 77, 24);
+        new Player("Selim", "Amallah", "MID", valencia, morocco, 73, 27);
+
+        new Player("Hugo", "Duro", "FWD", valencia, spain, 81, 24);
+        new Player("Diego", "Lopez", "FWD", valencia, spain, 80, 22);
+        new Player("Sergi", "Canos", "FWD", valencia, spain, 75, 27);
+        new Player("Fran", "Perez", "FWD", valencia, spain, 74, 21);
+        new Player("Roman", "Yaremchuk", "FWD", valencia, ukraine, 74, 28);
+
+        Team villareal = new Team("Villareal", "Villareal", "villareal.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        new Player("Filip", "Jorgensen", "GK", villareal, denmark, 82, 22);
+        new Player("Pepe", "Reina", "GK", villareal, spain, 74, 41);
+
+        new Player("Raul", "Albiol", "DEF", villareal, spain, 83, 38);
+        new Player("Juan", "Foyth", "DEF", villareal, argentina, 82, 26);
+        new Player("Eric", "Bailly", "DEF", villareal, ivoryCoast, 79, 30);
+        new Player("Yerson", "Mosquera", "DEF", villareal, colombia, 78, 23);
+        new Player("Alfonso", "Pedraza", "DEF", villareal, spain, 76, 28);
+        new Player("Aissa", "Mandi", "DEF", villareal, algeria, 75, 32);
+
+        new Player("Alex", "Baena", "MID", villareal, spain, 84, 22);
+        new Player("Dani", "Parejo", "MID", villareal, spain, 83, 35);
+        new Player("Manu", "Trigueros", "MID", villareal, spain, 80, 32);
+        new Player("Santi", "Comesana", "MID", villareal, spain, 75, 27);
+        new Player("Etienne", "Capoue", "MID", villareal, france, 74, 35);
+
+        new Player("Alexander", "Sorloth", "FWD", villareal, norway, 86, 28);
+        new Player("Gerard", "Moreno", "FWD", villareal, spain, 82, 34);
+        new Player("Yeremi", "Pino", "FWD", villareal, spain, 79, 21);
+        new Player("Ilias", "Akhomach", "FWD", villareal, morocco, 77, 20);
+        new Player("Bertrand", "Traore", "FWD", villareal, burkinaFaso, 76, 28);
+
+        Team sevilla = new Team("Sevilla", "Sevilla", "sevilla.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        new Player("Orjan", "Nyland", "GK", sevilla, norway, 76, 33);
+        new Player("Marko", "Dmitrovic", "GK", sevilla, serbia, 74, 32);
+
+        new Player("Jesus", "Navas", "DEF", sevilla, spain, 84, 38);
+        new Player("Sergio", "Ramos", "DEF", sevilla, spain, 84, 38);
+        new Player("Nemanja", "Gudelj", "DEF", sevilla, serbia, 81, 32);
+        new Player("Marcos", "Acuna", "DEF", sevilla, argentina, 80, 32);
+        new Player("Juanlu", "Sanchez", "DEF", sevilla, spain, 78, 20);
+        new Player("Loic", "Bade", "DEF", sevilla, france, 77, 24);
+
+        new Player("Boubakary", "Soumare", "MID", sevilla, france, 81, 25);
+        new Player("Djibril", "Sow", "MID", sevilla, switzerland, 79, 27);
+        new Player("Hannibal", "Mejbri", "MID", sevilla, france, 78, 21);
+        new Player("Joan", "Jordan", "MID", sevilla, spain, 77, 29);
+        new Player("Lucien", "Agoume", "MID", sevilla, france, 76, 22);
+
+        new Player("Youssef", "En-Nesyri", "FWD", sevilla, morocco, 84, 27);
+        new Player("Dodi", "Lukebakio", "FWD", sevilla, belgium, 78, 26);
+        new Player("Lucas", "Ocampos", "FWD", sevilla, argentina, 77, 29);
+        new Player("Isaac", "Romero", "FWD", sevilla, spain, 76, 24);
+        new Player("Adnan", "Januzaj", "FWD", sevilla, belgium, 73, 29);
+
+        Team realBetis = new Team("Real Betis", "Real Betis", "realBetis.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        new Player("Claudio", "Bravo", "GK", realBetis, chile, 80, 38);
+        new Player("Rui", "Silva", "GK", realBetis, portugal, 78, 30);
+
+        new Player("Chadi", "Riad", "DEF", realBetis, morocco, 82, 21);
+        new Player("Juan", "Miranda", "DEF", realBetis, spain, 81, 24);
+        new Player("Sokratis", "Papastathopoulos", "DEF", realBetis, greece, 78, 36);
+        new Player("Hector", "Bellerin", "DEF", realBetis, spain, 78, 24);
+        new Player("Marc", "Bartra", "DEF", realBetis, spain, 78, 33);
+        new Player("Youssouf", "Sabaly", "DEF", realBetis, senegal, 76, 31);
+
+        new Player("Isco", "Alarcon", "MID", realBetis, spain, 86, 32);
+        new Player("Guido", "Rodriguez", "MID", realBetis, argentina, 82, 30);
+        new Player("William", "Carvalho", "MID", realBetis, portugal, 81, 32);
+        new Player("Nabil", "Fekir", "MID", realBetis, france, 81, 30);
+        new Player("Johnny", "Cardoso", "MID", realBetis, usa, 78, 22);
+
+        new Player("Ayoze", "Perez", "FWD", realBetis, spain, 82, 30);
+        new Player("Willian", "Jose", "FWD", realBetis, brazil, 81, 32);
+        new Player("Assane", "Diao", "FWD", realBetis, spain, 78, 18);
+        new Player("Abde", "Azzalzouli", "FWD", realBetis, morocco, 77, 22);
+        new Player("Pablo", "Fornals", "FWD", realBetis, spain, 76, 27);
+
+        Team celtaVigo = new Team("Celta Vigo", "Celta Vigo", "celtaVigo.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team deportivoAlaves = new Team("Deportivo Alaves", "Alaves", "alaves.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team lasPalmas = new Team("Las Palmas", "Las Palmas", "lasPalmas.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team getafe = new Team("Getafe", "Getafe", "getafe.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team osasuna = new Team("Osasuna", "Osasuna", "osasuna.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team mallorca = new Team("Mallorca", "Mallorca", "mallorca.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team almeria = new Team("Almeria", "Almeria", "almeria.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team granada = new Team("Granada", "Granada", "granada.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team rayovallecano = new Team("Rayo Vallecano", "Rayo Vallecano", "rayoVallecano.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team cadiz = new Team("Cadiz", "Cadiz", "cadiz.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        world.addLeague(laLiga);
+    }
+
+
+    public static void setChampionsLeague() {
         League bundesliga = new League("Bundesliga", "Bundesliga.png", 1, germany);
 
         Team bayernMunich = new Team("Bayern Munich", "Bayern", "bayern.png", bundesliga, new Integer[]{4, 3, 3}, new Color(227, 6, 19), 200);

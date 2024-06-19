@@ -13,11 +13,13 @@ public class Main {
         //have multiple leagues in separate functions ,
         //so the player can choose which leagues to load.
         Data.setPremierLeague();
+        Data.setLaLiga();
         Data.setChampionsLeague();
         Data.setWorldLeague();
 
         //set default starting 11 and subs for all club teams.
         for (Team team : Data.world.getAllTeams()) {
+            team.fillTeam();
             team.setDefaultStartingElevenandSubs();
         }
 

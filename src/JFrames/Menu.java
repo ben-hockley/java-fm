@@ -129,7 +129,7 @@ public class Menu extends JFrame {
                 selectCountryMenu, getTitleMenu());
         selectCountryMenu.add(titleLabel, BorderLayout.NORTH);
 
-        final int numberOfCountries = 2;
+        final int numberOfCountries = 6;
         int numberOfRows = numberOfCountries / rowSize;
         int numberOfColumns = Math.min(rowSize, numberOfCountries);
 
@@ -140,9 +140,18 @@ public class Menu extends JFrame {
 
         JLabel internationalLabel = getNationLabel(
                 Data.international, selectCountryMenu);
+
         JLabel englandLabel = getNationLabel(Data.england, selectCountryMenu);
+        JLabel franceLabel = getNationLabel(Data.france, selectCountryMenu);
+        JLabel germanyLabel = getNationLabel(Data.germany, selectCountryMenu);
+        JLabel italyLabel = getNationLabel(Data.italy, selectCountryMenu);
+        JLabel spainLabel = getNationLabel(Data.spain, selectCountryMenu);
 
         countryList.add(englandLabel);
+        countryList.add(franceLabel);
+        countryList.add(germanyLabel);
+        countryList.add(italyLabel);
+        countryList.add(spainLabel);
         countryList.add(internationalLabel);
 
         selectCountryMenu.add(countryList, BorderLayout.CENTER);
@@ -239,7 +248,7 @@ public class Menu extends JFrame {
     private JLabel getNationLabel(final Nation nationOption,
                                   final JPanel parentPanel) {
         final int flagWidth = 200;
-        final int flagHeight = 200;
+        final int flagHeight = 150;
 
         JLabel nationLabel = new JLabel(nationOption.getNationName());
         formatClickableLabel(nationLabel);

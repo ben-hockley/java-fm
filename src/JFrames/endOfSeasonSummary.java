@@ -241,7 +241,7 @@ public class endOfSeasonSummary extends JFrame {
         mainPanel.add(leagueChampionsLabel);
         mainPanel.add(leagueTopGoalScorerLabel);
 
-        if (userTeam.getTeamType().equals("Club")){
+        if (userTeam.getTeamType().equals("Club") && userTeam.getLeague().getCountry().equals(Data.england)){
             mainPanel.add(leagueRelegatedTeamsLabel);
             mainPanel.add(teamsPromotedToLeagueLabel);
             mainPanel.add(championsLeagueWinnerLabel);
