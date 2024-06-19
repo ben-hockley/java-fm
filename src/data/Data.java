@@ -863,7 +863,7 @@ public class Data {
         new Player("Portu", "", "FWD", Girona, spain, 77, 32);
         new Player("Christian", "Stuani", "FWD", Girona, uruguay, 76, 37);
 
-        Team realSociedad = new Team("Real Sociedad", "Real Sociedad", "realSociedad.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team realSociedad = new Team("Real Sociedad", "Real Sociedad", "realSociedad.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 103, 177), 60);
         new Player("Alex", "Remiro", "GK", realSociedad, spain, 80, 29);
         new Player("Unai", "Marrero", "GK", realSociedad, spain, 72, 22);
 
@@ -886,7 +886,7 @@ public class Data {
         new Player("Ander", "Barrenetxea", "FWD", realSociedad, spain, 77, 22);
         new Player("Umar", "Sadiq", "FWD", realSociedad, nigeria, 74, 27);
 
-        Team bilbao = new Team("Athletic Bilbao", "Ath Bilbao", "athBilbao.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team bilbao = new Team("Athletic Bilbao", "Ath Bilbao", "athBilbao.png", laLiga, new Integer[]{4, 3, 3}, new Color(238,37,35), 60);
         new Player("Unai", "Simon", "GK", bilbao, spain, 90, 27);
         new Player("Julen", "Agirrezabala", "GK", bilbao, spain, 76, 23);
 
@@ -909,7 +909,7 @@ public class Data {
         new Player("Alex", "Berenguer", "FWD", bilbao, spain, 78, 28);
         new Player("Asier", "Villalibre", "FWD", bilbao, spain, 75, 26);
 
-        Team valencia = new Team("Valencia", "Valencia", "valencia.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team valencia = new Team("Valencia", "Valencia", "valencia.png", laLiga, new Integer[]{4, 3, 3}, new Color(0,151,215), 60);
         new Player("Giorgi", "Mamardashvili", "GK", valencia, georgia, 92, 23);
         new Player("Jaume", "Domenech", "GK", valencia, spain, 74, 33);
 
@@ -932,7 +932,7 @@ public class Data {
         new Player("Fran", "Perez", "FWD", valencia, spain, 74, 21);
         new Player("Roman", "Yaremchuk", "FWD", valencia, ukraine, 74, 28);
 
-        Team villareal = new Team("Villareal", "Villareal", "villareal.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team villareal = new Team("Villareal", "Villareal", "villareal.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 81, 135), 60);
         new Player("Filip", "Jorgensen", "GK", villareal, denmark, 82, 22);
         new Player("Pepe", "Reina", "GK", villareal, spain, 74, 41);
 
@@ -955,7 +955,7 @@ public class Data {
         new Player("Ilias", "Akhomach", "FWD", villareal, morocco, 77, 20);
         new Player("Bertrand", "Traore", "FWD", villareal, burkinaFaso, 76, 28);
 
-        Team sevilla = new Team("Sevilla", "Sevilla", "sevilla.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team sevilla = new Team("Sevilla", "Sevilla", "sevilla.png", laLiga, new Integer[]{4, 3, 3}, new Color(244, 51, 51), 60);
         new Player("Orjan", "Nyland", "GK", sevilla, norway, 76, 33);
         new Player("Marko", "Dmitrovic", "GK", sevilla, serbia, 74, 32);
 
@@ -978,7 +978,7 @@ public class Data {
         new Player("Isaac", "Romero", "FWD", sevilla, spain, 76, 24);
         new Player("Adnan", "Januzaj", "FWD", sevilla, belgium, 73, 29);
 
-        Team realBetis = new Team("Real Betis", "Real Betis", "realBetis.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team realBetis = new Team("Real Betis", "Real Betis", "realBetis.png", laLiga, new Integer[]{4, 3, 3}, new Color(11,179,99), 60);
         new Player("Claudio", "Bravo", "GK", realBetis, chile, 80, 38);
         new Player("Rui", "Silva", "GK", realBetis, portugal, 78, 30);
 
@@ -1001,16 +1001,16 @@ public class Data {
         new Player("Abde", "Azzalzouli", "FWD", realBetis, morocco, 77, 22);
         new Player("Pablo", "Fornals", "FWD", realBetis, spain, 76, 27);
 
-        Team celtaVigo = new Team("Celta Vigo", "Celta Vigo", "celtaVigo.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
-        Team deportivoAlaves = new Team("Deportivo Alaves", "Alaves", "alaves.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
-        Team lasPalmas = new Team("Las Palmas", "Las Palmas", "lasPalmas.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
-        Team getafe = new Team("Getafe", "Getafe", "getafe.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
-        Team osasuna = new Team("Osasuna", "Osasuna", "osasuna.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
-        Team mallorca = new Team("Mallorca", "Mallorca", "mallorca.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
-        Team almeria = new Team("Almeria", "Almeria", "almeria.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
-        Team granada = new Team("Granada", "Granada", "granada.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
-        Team rayovallecano = new Team("Rayo Vallecano", "Rayo Vallecano", "rayoVallecano.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
-        Team cadiz = new Team("Cadiz", "Cadiz", "cadiz.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 0, 0), 60);
+        Team celtaVigo = new Team("Celta Vigo", "Celta Vigo", "celtaVigo.png", laLiga, new Integer[]{4, 3, 3}, new Color(138,195,238), 30);
+        Team deportivoAlaves = new Team("Deportivo Alaves", "Alaves", "alaves.png", laLiga, new Integer[]{4, 3, 3}, new Color(7,97,175), 30);
+        Team lasPalmas = new Team("Las Palmas", "Las Palmas", "lasPalmas.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 114, 187), 30);
+        Team getafe = new Team("Getafe", "Getafe", "getafe.png", laLiga, new Integer[]{4, 3, 3}, new Color(0, 89, 153), 30);
+        Team osasuna = new Team("Osasuna", "Osasuna", "osasuna.png", laLiga, new Integer[]{4, 3, 3}, new Color(10, 52, 111), 30);
+        Team mallorca = new Team("Mallorca", "Mallorca", "mallorca.png", laLiga, new Integer[]{4, 3, 3}, new Color(226, 6, 19), 30);
+        Team almeria = new Team("Almeria", "Almeria", "almeria.png", laLiga, new Integer[]{4, 3, 3}, Color.RED, 30);
+        Team granada = new Team("Granada", "Granada", "granada.png", laLiga, new Integer[]{4, 3, 3}, new Color(166, 27, 43), 30);
+        Team rayovallecano = new Team("Rayo Vallecano", "Rayo Vallecano", "rayoVallecano.png", laLiga, new Integer[]{4, 3, 3}, new Color(228, 48, 41), 30);
+        Team cadiz = new Team("Cadiz", "Cadiz", "cadiz.png", laLiga, new Integer[]{4, 3, 3}, new Color(225, 223, 0), 30);
         world.addLeague(laLiga);
     }
 
